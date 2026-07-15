@@ -1,0 +1,572 @@
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --surface-2:#F5EDE3;
+    --ink:#2A2320; --ink-soft:#8A7C6E; --line:#DED3C4;
+    --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --node:#B0532F; --graph-dim:#D6C9B8;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE; --footer-soft:#A99A8B;
+    --maxw:1080px; --measure:66ch;
+    --font-display:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+    --font-mono:-apple-system,"Helvetica Neue",Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#241C17; --surface:#2C231D; --surface-2:#332821;
+      --ink:#EFE7DC; --ink-soft:#A8998A; --line:#4A3C31;
+      --accent:#E08A5A; --accent-bright:#C96A3C; --on-accent:#241A14;
+      --node:#D2703F; --graph-dim:#4A3A2E;
+      --footer-bg:#1C1511; --footer-ink:#D9CEC1; --footer-soft:#8E8073;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#EFE8DE; --surface:#FBF7F1; --surface-2:#F5EDE3;
+    --ink:#2A2320; --ink-soft:#8A7C6E; --line:#DED3C4;
+    --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --node:#B0532F; --graph-dim:#D6C9B8;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE; --footer-soft:#A99A8B;
+  }
+  :root[data-theme="dark"]{
+    --ground:#241C17; --surface:#2C231D; --surface-2:#332821;
+    --ink:#EFE7DC; --ink-soft:#A8998A; --line:#4A3C31;
+    --accent:#E08A5A; --accent-bright:#C96A3C; --on-accent:#241A14;
+    --node:#D2703F; --graph-dim:#4A3A2E;
+    --footer-bg:#1C1511; --footer-ink:#D9CEC1; --footer-soft:#8E8073;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0}
+  .page{
+    background:var(--ground); color:var(--ink);
+    font-family:var(--font-body);
+    font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  p{margin:0}
+  a{color:inherit}
+  h1,h2,h3{margin:0; text-wrap:balance; line-height:1.08}
+  h1,h2,.h2{font-family:var(--font-display); font-weight:700; letter-spacing:-.012em}
+  h3{font-family:var(--font-body); font-weight:700; letter-spacing:-.01em}
+  .mono{font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.13em; font-size:.72rem; color:var(--ink-soft); font-weight:600}
+  .accent{color:var(--accent)}
+
+  .bar{position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--ground) 90%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .bar-in{max-width:var(--maxw); margin:0 auto; padding:12px 24px; display:flex; align-items:center; gap:16px; justify-content:space-between}
+  .brand{font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.14em; font-size:.74rem; font-weight:600}
+  .brand b{color:var(--accent)}
+  .bar-right{display:flex; align-items:center; gap:16px}
+  .bar-price{font-family:var(--font-mono); font-size:.74rem; color:var(--ink-soft)}
+  @media(max-width:620px){.bar-price{display:none}}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:.5em;
+    background:var(--accent-bright); color:var(--on-accent);
+    font-family:var(--font-body); font-weight:700; font-size:.95rem; letter-spacing:-.01em;
+    padding:.72em 1.15em; border-radius:2px; border:1px solid transparent;
+    text-decoration:none; cursor:pointer; transition:transform .12s ease, filter .12s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{filter:brightness(1.05); transform:translateY(-1px)}
+  .btn:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+  .btn.sm{padding:.55em .9em; font-size:.85rem}
+  .btn .arw{transition:transform .15s ease}
+  .btn:hover .arw{transform:translateX(3px)}
+
+  .hero{padding:66px 0 40px}
+  .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:44px; align-items:center}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr; gap:28px}}
+  .eyebrow{display:flex; align-items:center; gap:10px; margin-bottom:22px}
+  .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--accent-bright); box-shadow:0 0 0 4px color-mix(in srgb,var(--accent-bright) 20%, transparent)}
+  h1{font-size:clamp(2.6rem,6vw,4.5rem); letter-spacing:-.02em; line-height:1}
+  .hero-sub{margin-top:24px; font-size:1.18rem; line-height:1.5; color:var(--ink-soft); max-width:32ch}
+  .hero-sub b{color:var(--ink); font-weight:600}
+  .hero-cta{margin-top:30px; display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+  .trust{font-family:var(--font-mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); line-height:1.7; font-weight:600}
+
+  .canvas-panel{position:relative; border:1px solid var(--line); border-radius:4px; background:var(--surface); aspect-ratio:1/1; overflow:hidden}
+  .canvas-panel canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
+  .canvas-tag{position:absolute; left:14px; bottom:12px; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-soft); font-weight:600}
+  .canvas-tag .t2{color:var(--accent)}
+
+  section{padding:56px 0; border-top:1px solid var(--line)}
+  .lead-label{margin-bottom:18px; color:var(--accent)}
+  .h2{font-size:clamp(1.9rem,3.6vw,2.7rem); letter-spacing:-.015em}
+  .body{max-width:var(--measure); font-size:1.14rem; line-height:1.62; color:var(--ink-soft)}
+  .body b{color:var(--ink); font-weight:600}
+  .body + .body{margin-top:1em}
+
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; margin-top:34px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--surface); padding:30px 26px; display:flex; flex-direction:column; gap:14px; border-left:3px solid var(--accent-bright)}
+  .step-n{font-family:var(--font-mono); font-size:.72rem; letter-spacing:.16em; color:var(--accent); font-weight:600}
+  .step h3{font-size:1.3rem; color:var(--accent)}
+  .step h3 .sub{color:var(--ink); display:block; font-weight:700}
+  .step p{color:var(--ink-soft); font-size:1rem; line-height:1.55}
+  .method-foot{margin-top:22px; font-family:var(--font-mono); font-size:.74rem; letter-spacing:.05em; color:var(--ink-soft); text-transform:uppercase; font-weight:600}
+
+  .stack{margin-top:32px; border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--surface)}
+  .row{display:grid; grid-template-columns:1fr auto; gap:20px; padding:18px 24px; border-bottom:1px solid var(--line); align-items:start}
+  .row:last-child{border-bottom:0}
+  .row .rt{font-weight:700; font-size:1.02rem}
+  .row .rd{color:var(--ink-soft); font-size:.95rem; line-height:1.5; margin-top:4px; max-width:56ch}
+  .row .rv{font-family:var(--font-mono); font-size:.82rem; color:var(--ink-soft); white-space:nowrap; font-variant-numeric:tabular-nums; padding-top:3px}
+  .row.total{background:var(--surface-2)}
+  .row.total .rt{font-size:1.05rem}
+  .row.total .rv{color:var(--accent); font-size:1.1rem; font-weight:700}
+  .badge-lock{display:inline-block; font-family:var(--font-mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); border:1px solid color-mix(in srgb,var(--accent) 40%, var(--line)); border-radius:999px; padding:2px 8px; margin-left:8px; vertical-align:middle; font-weight:600}
+  .price-line{margin-top:24px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+  .price-big{font-family:var(--font-display); font-size:clamp(2.4rem,5vw,3.2rem); font-weight:700; letter-spacing:-.02em}
+  .price-big span{font-family:var(--font-body); font-size:1.1rem; color:var(--ink-soft); font-weight:500; letter-spacing:0}
+  .price-note{font-family:var(--font-mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); font-weight:600}
+
+  .guarantee{border:1px solid var(--accent); border-radius:4px; background:color-mix(in srgb,var(--accent-bright) 8%, var(--surface)); padding:32px 30px; display:flex; gap:22px; align-items:flex-start; margin-top:8px}
+  @media(max-width:620px){.guarantee{flex-direction:column; gap:14px}}
+  .seal{flex:none; width:62px; height:62px; border-radius:50%; border:2px solid var(--accent); display:grid; place-items:center; font-family:var(--font-mono); font-size:.54rem; text-transform:uppercase; letter-spacing:.05em; text-align:center; color:var(--accent); line-height:1.15; font-weight:600}
+  .guarantee .gt{font-family:var(--font-display); font-weight:700; font-size:1.2rem; margin-bottom:8px; letter-spacing:-.01em}
+  .guarantee .gd{color:var(--ink-soft); font-size:1.05rem; line-height:1.55; max-width:60ch}
+
+  .stat-strip{display:flex; align-items:baseline; gap:18px; margin-bottom:30px; flex-wrap:wrap}
+  .stat-num{font-family:var(--font-display); font-size:clamp(2.8rem,7vw,4.2rem); font-weight:700; letter-spacing:-.02em; color:var(--accent); font-variant-numeric:tabular-nums}
+  .stat-txt{font-size:1.15rem; color:var(--ink-soft); max-width:38ch}
+  .metrics{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:16px}
+  .metrics.two{grid-template-columns:repeat(2,1fr); max-width:640px}
+  @media(max-width:760px){.metrics{grid-template-columns:1fr}}
+  .metric{border:1px solid var(--line); border-radius:4px; background:var(--surface); padding:22px}
+  .metric .mn{font-family:var(--font-display); font-size:2.1rem; font-weight:700; letter-spacing:-.02em; color:var(--accent); font-variant-numeric:tabular-nums}
+  .metric .ml{margin-top:8px; color:var(--ink-soft); font-size:.95rem; line-height:1.45}
+  .cases{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:26px 0 34px}
+  @media(max-width:820px){.cases{grid-template-columns:1fr}}
+  .case{border:1px solid var(--line); border-left:3px solid var(--accent-bright); border-radius:4px; background:var(--surface); padding:22px 20px; display:flex; flex-direction:column; gap:14px}
+  .case .ct{font-family:var(--font-mono); font-size:.64rem; letter-spacing:.09em; text-transform:uppercase; color:var(--accent); line-height:1.4; font-weight:600}
+  .case .ba{font-size:.98rem; line-height:1.5; color:var(--ink-soft)}
+  .case .ba .lb{display:block; font-family:var(--font-mono); font-size:.58rem; letter-spacing:.13em; text-transform:uppercase; margin-bottom:4px; font-weight:600}
+  .case .ba .lb.b{color:var(--ink-soft)}
+  .case .ba .lb.a{color:var(--accent)}
+  .cases-note{font-family:var(--font-mono); font-size:.66rem; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:30px; font-weight:600}
+
+  .quotes{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media(max-width:820px){.quotes{grid-template-columns:1fr}}
+  .quote{border:1px solid var(--line); border-radius:4px; background:var(--surface); padding:24px 22px; display:flex; flex-direction:column; gap:14px}
+  .quote p{font-family:var(--font-display); font-style:italic; font-size:1.05rem; line-height:1.5}
+  .quote .who{font-family:var(--font-mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.09em; color:var(--ink-soft); margin-top:auto; font-weight:600}
+  .quote .mk{font-family:Georgia,serif; font-size:2.2rem; line-height:.5; color:var(--accent); height:.5em}
+  .live-it{margin-top:26px; padding:22px 24px; border-left:3px solid var(--accent); background:var(--surface); font-size:1.08rem; line-height:1.55}
+  .live-it b{color:var(--ink)}
+
+  .fit{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:30px}
+  @media(max-width:700px){.fit{grid-template-columns:1fr}}
+  .fit-col{border:1px solid var(--line); border-radius:4px; padding:26px 24px; background:var(--surface)}
+  .fit-col h3{font-size:1.05rem; margin-bottom:16px; display:flex; align-items:center; gap:9px}
+  .fit-col.no h3{color:var(--ink-soft)}
+  .fit-col .mark{font-family:var(--font-mono); font-weight:700}
+  .fit-col.yes .mark{color:var(--accent)}
+  .fit-li{display:flex; gap:11px; padding:9px 0; color:var(--ink-soft); font-size:1.02rem; line-height:1.45; border-top:1px solid var(--line)}
+  .fit-li:first-of-type{border-top:0}
+  .fit-li .b{color:var(--accent); flex:none; font-family:var(--font-mono); font-size:.85rem; padding-top:2px}
+  .fit-col.no .fit-li .b{color:var(--ink-soft)}
+
+  .deadlines{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px}
+  @media(max-width:640px){.deadlines{grid-template-columns:1fr}}
+  .dl{border:1px solid var(--line); border-radius:4px; padding:24px; background:var(--surface)}
+  .dl .when{font-family:var(--font-display); font-weight:700; font-size:1.3rem; color:var(--accent); margin-bottom:10px; letter-spacing:-.01em}
+  .dl .what{font-size:1.1rem; font-weight:600; line-height:1.4}
+  .dl .cd{margin-top:10px; font-family:var(--font-mono); font-size:.74rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.07em; font-weight:600}
+  .cap-line{margin-top:20px; font-family:var(--font-mono); font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-soft); display:flex; align-items:center; gap:12px; font-weight:600}
+  .cap-line .k{color:var(--accent); font-weight:700}
+
+  .faq{margin-top:26px; border-top:1px solid var(--line)}
+  .qa{border-bottom:1px solid var(--line); padding:22px 0}
+  .qa .q{font-family:var(--font-display); font-weight:700; font-size:1.15rem; margin-bottom:8px; letter-spacing:-.01em}
+  .qa .a{color:var(--ink-soft); font-size:1.05rem; line-height:1.55; max-width:64ch}
+
+  .final{text-align:center; padding:74px 0}
+  .final h2{font-size:clamp(2.1rem,4.6vw,3.1rem); letter-spacing:-.015em; max-width:20ch; margin:0 auto}
+  .final .body{margin:20px auto 0; text-align:center}
+  .final-cta{margin-top:32px; display:flex; flex-direction:column; align-items:center; gap:14px}
+  .final .btn{font-size:1.05rem; padding:.85em 1.5em}
+  .final .kw{font-family:var(--font-mono); font-size:.74rem; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-soft); font-weight:600}
+  .final .kw b{color:var(--accent)}
+
+  footer{background:var(--footer-bg); color:var(--footer-ink); padding:34px 0 44px; margin-top:0}
+  footer .fin{max-width:var(--maxw); margin:0 auto; padding:0 24px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:var(--font-mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:600}
+  footer .fin .soft{color:var(--footer-soft)}
+
+  @media (prefers-reduced-motion:reduce){.btn,.btn .arw{transition:none}}
+</style>
+
+<div class="page">
+
+  <div class="bar">
+    <div class="bar-in">
+      <div class="brand">The Second&nbsp;<b>Brain</b>&nbsp;Method</div>
+      <div class="bar-right">
+        <span class="bar-price">$250/mo · 20 founding spots</span>
+        <a class="btn sm" href="#claim" data-cta>Claim a spot</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="dot"></span><span class="mono">Founding cohort — 20 spots</span></div>
+        <h1>The reason you can't hit your next revenue milestone.</h1>
+        <p class="hero-sub">It's not demand. It's not effort. It's that your business runs on one brain — <b>yours</b>. We <b>map how it actually runs</b>, turn the chaos into systems, and put AI on top — so your own capacity stops being the ceiling on your growth.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#claim" data-cta>Claim a founding spot <span class="arw">→</span></a>
+          <div class="trust">100+ businesses mapped<br>Founding rate locked for life</div>
+        </div>
+      </div>
+      <div class="canvas-panel">
+        <canvas id="brainmap" aria-hidden="true"></canvas>
+        <div class="canvas-tag">In your head <span class="t2">→ mapped</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="problem">
+    <div class="wrap">
+      <div class="mono lead-label">01 — The problem</div>
+      <h2 class="h2">You don't have a demand problem. You have a ceiling.</h2>
+      <div class="body" style="margin-top:22px">
+        <p>You built something that works — real clients, real reputation, <b>$10–20k months</b>. But every time you push for the next level, you hit the same wall. More clients just means more of <b>you</b> — more QA, more decisions routing to your desk, the whole thing <b>held together with duct tape</b>. You're <b>the human router</b>, and you wrote a <b>100+ page SOP and still can't let go</b> — because a doc can't transfer your judgment.</p>
+        <p class="body"><b>Demand isn't the issue. Capacity is.</b> Revenue goes up and the complexity eats the margin. You can <b>feel it becoming the ceiling</b> — the reason you can't get to the next milestone. That's not a discipline problem. It's structural.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="reframe">
+    <div class="wrap">
+      <div class="mono lead-label">02 — The reframe</div>
+      <h2 class="h2">The ceiling isn't your market. It's your head.</h2>
+      <div class="body" style="margin-top:22px">
+        <p>The next milestone doesn't come from more leads or more hustle — you've already proven you can sell. It comes from a business that can hold more than <b>you</b> can remember. Right now every standard and judgment call lives in your head, so you can only grow as fast as you can personally touch.</p>
+        <p class="body">That's the ceiling — and it's a context problem, not an intelligence or discipline one. Your business is simply missing a <b>second brain</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="vision">
+    <div class="wrap">
+      <div class="mono lead-label">03 — What it is</div>
+      <h2 class="h2">A second brain is how you break the ceiling.</h2>
+      <div class="body" style="margin-top:22px">
+        <p>In the words of an operator who actually built one: <b>"you stop being the bottleneck because information doesn't live in your head anymore — it lives in the system. You stop being the human router for every question and decision."</b></p>
+        <p class="body">One place that holds everything your business knows — how it runs, what "good" looks like, where the money leaks — so you can take on the next 5, 10, 20 clients <b>without becoming the bottleneck again.</b> You scale the business, not yourself. <b>And I live it</b> — I run my entire business on one, and I'll show you mine.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap">
+      <div class="mono lead-label">The method</div>
+      <h2 class="h2">How we build it — with you, on your business.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">STEP 01</div>
+          <h3>See it.<span class="sub">Map your operations.</span></h3>
+          <p>In your first hour, we map how your business actually runs and where the bottlenecks are. Clarity, on paper, out of your head.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">STEP 02</div>
+          <h3>Fix it.<span class="sub">Chaos into systems.</span></h3>
+          <p>We turn your trapped judgment — the standards only you can hold — into rules and systems, so the work stops routing through you.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">STEP 03</div>
+          <h3>Scale it.<span class="sub">Put AI on top.</span></h3>
+          <p>We put AI to work on your operations, so your business holds its own context and runs without you re-explaining everything.</p>
+        </div>
+      </div>
+      <div class="method-foot">Not a course · Not a template · Your business, one bottleneck at a time</div>
+    </div>
+  </section>
+
+  <section id="proof">
+    <div class="wrap">
+      <div class="mono lead-label">The receipts</div>
+      <div class="stat-strip">
+        <div class="stat-num">100+</div>
+        <div class="stat-txt">businesses mapped in under an hour. Here's what the mapping actually surfaced — real engagements, names removed.</div>
+      </div>
+      <div class="metrics two">
+        <div class="metric"><div class="mn">$60–80K</div><div class="ml">a year in labor savings identified for one firm — off a single map</div></div>
+        <div class="metric"><div class="mn">9.5 hrs/day</div><div class="ml">one task was quietly eating from one person — invisible until it was mapped</div></div>
+      </div>
+      <div class="cases">
+        <div class="case">
+          <div class="ct">Brokerage · regulated, high-value deals</div>
+          <div class="ba"><span class="lb b">Before</span>Data scattered across 11+ disconnected tools; the ops lead losing 8–10 hrs/week to manual entry alone.</div>
+          <div class="ba"><span class="lb a">After the map</span>A phased roadmap tied to ROI: $60–80K/yr in labor savings, $10–15K in software cut, 15% faster closings.</div>
+        </div>
+        <div class="case">
+          <div class="ct">Retail operation · 150 people, 11 departments</div>
+          <div class="ba"><span class="lb b">Before</span>The CEO had zero cross-department visibility — couldn't see how the company actually ran.</div>
+          <div class="ba"><span class="lb a">After the map</span>A full view of all 11 departments — plus a hidden task burning 9.5 hrs/day of one person's time, finally exposed.</div>
+        </div>
+        <div class="case">
+          <div class="ct">Recruiting firm · bilingual, high-volume</div>
+          <div class="ba"><span class="lb b">Before</span>Recruiters juggling 18–30 open reqs each, no central system, every message written from scratch.</div>
+          <div class="ba"><span class="lb a">After the map</span>A live capacity dashboard + 9 deployed automations running at 0% error across 50+ verified executions.</div>
+        </div>
+      </div>
+      <div class="quotes">
+        <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>What stood out is how quickly it creates clarity — a clear view of what's happening operationally, where the bottlenecks are, and what needs to happen next.</p>
+          <div class="who">Founder · consulting practice</div>
+        </div>
+        <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>This is exactly what I do. I literally tried to hire somebody to do that — I've been looking for this.</p>
+          <div class="who">President · medtech firm</div>
+        </div>
+        <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>These are beautiful questions — absolutely amazing questions. The potential is enormous. It would be very valuable.</p>
+          <div class="who">Founder · operations advisory</div>
+        </div>
+      </div>
+      <div class="live-it"><b>And I don't just teach it — I live it.</b> I run my whole business on a second brain. I'm not handing you theory; I'm handing you what I actually use.</div>
+    </div>
+  </section>
+
+  <section id="included">
+    <div class="wrap">
+      <div class="mono lead-label">The offer</div>
+      <h2 class="h2">What you get, every month.</h2>
+      <div class="stack">
+        <div class="row">
+          <div><div class="rt">The monthly cycle</div><div class="rd">Hour-one map + your #1 bottleneck → a 30-day one-move plan → implementation training → the room of operators → a fresh map every 30 days.</div></div>
+          <div class="rv">$2,000/mo value</div>
+        </div>
+        <div class="row">
+          <div><div class="rt">🎟 July 24 — Live Second Brain Workshop</div><div class="rd">Build your first Claude-powered second-brain asset live with me. Founding members only.</div></div>
+          <div class="rv">$500</div>
+        </div>
+        <div class="row">
+          <div><div class="rt">🧠 The Judgment Extraction Vault</div><div class="rd">The templates that get your judgment out of your head — not just your tasks.</div></div>
+          <div class="rv">$300</div>
+        </div>
+        <div class="row">
+          <div><div class="rt">👀 Steal My Second Brain</div><div class="rd">A walkthrough of the actual system I run my business on.</div></div>
+          <div class="rv">$500</div>
+        </div>
+        <div class="row">
+          <div><div class="rt">🤝 A founding buddy</div><div class="rd">An accountability partner from day one — because bought-and-never-used is the only way this fails.</div></div>
+          <div class="rv">$200</div>
+        </div>
+        <div class="row">
+          <div><div class="rt">🔧 Monthly live working session</div><div class="rd">We build together, live — you leave each month with the next piece of your second brain actually done, not just planned.</div></div>
+          <div class="rv">$400</div>
+        </div>
+        <div class="row">
+          <div><div class="rt">⚙️ The Second Brain Starter Kit</div><div class="rd">The exact Claude prompts, skill-file templates, and setup I use — so you never start from a blank page.</div></div>
+          <div class="rv">$300</div>
+        </div>
+        <div class="row">
+          <div><div class="rt">Founding rate <span class="badge-lock">locked for life</span></div><div class="rd">The first 20 never pay more, ever.</div></div>
+          <div class="rv">the incentive</div>
+        </div>
+        <div class="row total">
+          <div class="rt">Total value</div>
+          <div class="rv">~$4,200</div>
+        </div>
+      </div>
+      <div class="price-line">
+        <div class="price-big">$250<span>/mo</span></div>
+        <div class="price-note">Founding rate — first 20 only</div>
+      </div>
+      <div style="margin-top:26px"><a class="btn" href="#claim" data-cta>Claim a founding spot <span class="arw">→</span></a></div>
+    </div>
+  </section>
+
+  <section id="guarantee">
+    <div class="wrap">
+      <div class="mono lead-label">Zero risk</div>
+      <div class="guarantee">
+        <div class="seal">First-Hour<br>Guarantee</div>
+        <div>
+          <div class="gt">Your business mapped in your first hour — or your first month is free.</div>
+          <div class="gd">The moment you join, you map your business and see your #1 bottleneck — in your first hour. If you don't get that clarity, tell me: your first month is on me, and you keep the map.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fit">
+    <div class="wrap">
+      <div class="mono lead-label">Honest fit</div>
+      <h2 class="h2">Who this is for.</h2>
+      <div class="fit">
+        <div class="fit-col yes">
+          <h3><span class="mark">[ + ]</span> It's for you if</h3>
+          <div class="fit-li"><span class="b">→</span> You run a done-for-you agency, consultancy, or advisory practice (~$10k/mo+).</div>
+          <div class="fit-li"><span class="b">→</span> You've plateaued — and you know more clients would just mean more of you.</div>
+          <div class="fit-li"><span class="b">→</span> You want to build your way out — not hand it off and hope.</div>
+        </div>
+        <div class="fit-col no">
+          <h3><span class="mark">[ − ]</span> It's not for you if</h3>
+          <div class="fit-li"><span class="b">×</span> You want done-for-you. I architect; you implement.</div>
+          <div class="fit-li"><span class="b">×</span> You're looking for a magic button or an autonomous AI overnight.</div>
+          <div class="fit-li"><span class="b">×</span> You want another generic course to save and never open.</div>
+        </div>
+      </div>
+      <p class="body" style="margin-top:22px">This is done <b>with</b> you. It works if you do.</p>
+    </div>
+  </section>
+
+  <section id="urgency">
+    <div class="wrap">
+      <h2 class="h2">Two dates that matter.</h2>
+      <div class="deadlines">
+        <div class="dl">
+          <div class="when">July 24</div>
+          <div class="what">Join by now to be in the live Second Brain Workshop — build your first asset with me.</div>
+          <div class="cd" id="cd-24"></div>
+        </div>
+        <div class="dl">
+          <div class="when">July 31</div>
+          <div class="what">The founding rate rises — for good. Lock $250/mo for life before then.</div>
+          <div class="cd" id="cd-31"></div>
+        </div>
+      </div>
+      <div class="cap-line"><span class="k">Hard cap:</span> only 20 founding members. Then the doors close on the founding rate.</div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="mono lead-label">Straight answers</div>
+      <h2 class="h2">The questions you're already asking.</h2>
+      <div class="faq">
+        <div class="qa"><div class="q">Isn't this just another course?</div><div class="a">No. Nothing here is generic — every single month starts with a map of <em>your</em> business, not a video library everyone gets.</div></div>
+        <div class="qa"><div class="q">Will I actually use it?</div><div class="a">That's what the room, the buddy, and the 30-day one-move plan are for. And the First-Hour Guarantee means you get a real result on day one or it's free.</div></div>
+        <div class="qa"><div class="q">Is $250 worth it?</div><div class="a">You're already paying more than that — in the hours lost to rework and the growth you're capping. This plugs the leak.</div></div>
+        <div class="qa"><div class="q">Do I need to be technical?</div><div class="a">No. I architect the AI; you implement the one next move. If you can follow a plan, you can do this.</div></div>
+        <div class="qa"><div class="q">What if it's not for me?</div><div class="a">The First-Hour Guarantee. Zero risk to find out.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="claim">
+    <div class="wrap">
+      <div class="mono lead-label" style="justify-content:center; text-align:center">The founding 20</div>
+      <h2>The first 20 build it at the founding rate. Then it's gone.</h2>
+      <p class="body">Your map, your bottleneck, your 30-day plan, the room, and the how — every month. Locked at $250 for life.</p>
+      <div class="final-cta">
+        <a class="btn" href="#claim" data-cta>Claim a founding spot → $250/mo</a>
+        <div class="kw">or comment <b>BRAIN</b> to start</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fin">
+      <span>The Second Brain Method &nbsp;·&nbsp; Puja Patel LLC</span>
+      <span class="soft">Get your business out of your head</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var CHECKOUT_URL = "https://aios-with-puja-patel.circle.so/checkout/opmap";
+  if(CHECKOUT_URL && CHECKOUT_URL !== "#claim"){
+    document.querySelectorAll('[data-cta]').forEach(function(a){ a.setAttribute('href', CHECKOUT_URL); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener'); });
+  }
+
+  function daysTo(y,m,d){
+    var now=new Date(); var t=new Date(y,m-1,d,23,59,59);
+    return Math.ceil((t-now)/86400000);
+  }
+  function setCd(id,y,m,d,openLabel){
+    var el=document.getElementById(id); if(!el)return;
+    var n=daysTo(y,m,d);
+    if(n>1) el.textContent=n+" days left";
+    else if(n===1) el.textContent="1 day left";
+    else if(n===0) el.textContent="today";
+    else el.textContent=openLabel;
+  }
+  setCd('cd-24',2026,7,24,"workshop passed");
+  setCd('cd-31',2026,7,31,"founding rate now closing");
+
+  var canvas=document.getElementById('brainmap');
+  if(!canvas) return;
+  var ctx=canvas.getContext('2d');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
+  var N=13, nodes=[], edges=[];
+  function buildTargets(){
+    nodes=[];
+    var cols=[0.2,0.5,0.8], perCol=[4,5,4], idx=0;
+    for(var c=0;c<3;c++){
+      var cnt=perCol[c];
+      for(var r=0;r<cnt;r++){
+        nodes.push({ox:cols[c], oy:(r+1)/(cnt+1),
+          cx:0.5+(Math.random()-0.5)*0.5, cy:0.5+(Math.random()-0.5)*0.5, col:c});
+        idx++; if(idx>=N)break;
+      }
+      if(idx>=N)break;
+    }
+  }
+  function buildEdges(){
+    edges=[]; var byCol=[[],[],[]];
+    nodes.forEach(function(n,i){ byCol[n.col].push(i); });
+    for(var c=0;c<2;c++){
+      byCol[c].forEach(function(a){
+        var next=byCol[c+1], k=1+Math.floor(Math.random()*2);
+        for(var j=0;j<k;j++){ var b=next[Math.floor(Math.random()*next.length)]; if(b!=null) edges.push([a,b]); }
+      });
+    }
+  }
+  function resize(){
+    var r=canvas.getBoundingClientRect(); W=r.width; H=r.height;
+    canvas.width=W*DPR; canvas.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  var t=0, start=null, DUR=2600;
+  function ease(x){ return 1-Math.pow(1-x,3); }
+  function pos(n,tt){ return { x:( n.cx+(n.ox-n.cx)*tt )*W, y:( n.cy+(n.oy-n.cy)*tt )*H }; }
+  function frame(ts){
+    if(start===null) start=ts;
+    var p=Math.min((ts-start)/DUR,1); t=ease(p); draw();
+    if(p<1) requestAnimationFrame(frame); else draw();
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var accent=css('--accent-bright')||'#B0532F';
+    var dim=css('--graph-dim')||'#D6C9B8';
+    var node=css('--node')||accent;
+    edges.forEach(function(e){
+      var a=pos(nodes[e[0]],t), b=pos(nodes[e[1]],t);
+      ctx.beginPath();
+      if(t<0.98){
+        var mx=(a.x+b.x)/2, my=(a.y+b.y)/2, wob=(1-t)*40;
+        ctx.moveTo(a.x,a.y);
+        ctx.quadraticCurveTo(mx+wob*Math.sin(e[0]+e[1]), my-wob*Math.cos(e[0]-e[1]), b.x,b.y);
+      } else { ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); }
+      ctx.strokeStyle=dim; ctx.globalAlpha=0.4+0.4*t; ctx.lineWidth=1; ctx.stroke();
+    });
+    ctx.globalAlpha=1;
+    nodes.forEach(function(n){
+      var p=pos(n,t), rad=3.2+2.8*t;
+      ctx.beginPath(); ctx.arc(p.x,p.y,rad+3,0,Math.PI*2);
+      ctx.fillStyle=accent; ctx.globalAlpha=0.10+0.12*t; ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x,p.y,rad,0,Math.PI*2);
+      ctx.globalAlpha=1; ctx.fillStyle= t>0.5 ? node : dim; ctx.fill();
+    });
+    ctx.globalAlpha=1;
+  }
+  function init(){
+    resize(); buildTargets(); buildEdges();
+    if(reduce){ t=1; draw(); } else { start=null; requestAnimationFrame(frame); }
+  }
+  init();
+  var rt;
+  window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ resize(); draw(); },150); });
+  new MutationObserver(function(){ draw(); }).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){ draw(); });
+})();
+</script>
