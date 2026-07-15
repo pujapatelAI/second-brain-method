@@ -166,6 +166,7 @@
   .fit-col.no .fit-li .b{color:var(--ink-soft)}
 
   .deadlines{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px}
+  .deadlines.one{grid-template-columns:1fr; max-width:620px}
   @media(max-width:640px){.deadlines{grid-template-columns:1fr}}
   .dl{border:1px solid var(--line); border-radius:4px; padding:24px; background:var(--surface)}
   .dl .when{font-family:var(--font-display); font-weight:700; font-size:1.3rem; color:var(--accent); margin-bottom:10px; letter-spacing:-.01em}
@@ -310,23 +311,6 @@
           <div class="ba"><span class="lb a">After the map</span>A live capacity dashboard + 9 deployed automations running at 0% error across 50+ verified executions.</div>
         </div>
       </div>
-      <div class="quotes">
-        <div class="quote">
-          <div class="mk">&ldquo;</div>
-          <p>What stood out is how quickly it creates clarity — a clear view of what's happening operationally, where the bottlenecks are, and what needs to happen next.</p>
-          <div class="who">Founder · consulting practice</div>
-        </div>
-        <div class="quote">
-          <div class="mk">&ldquo;</div>
-          <p>This is exactly what I do. I literally tried to hire somebody to do that — I've been looking for this.</p>
-          <div class="who">President · medtech firm</div>
-        </div>
-        <div class="quote">
-          <div class="mk">&ldquo;</div>
-          <p>These are beautiful questions — absolutely amazing questions. The potential is enormous. It would be very valuable.</p>
-          <div class="who">Founder · operations advisory</div>
-        </div>
-      </div>
       <div class="live-it"><b>And I don't just teach it — I live it.</b> I run my whole business on a second brain. I'm not handing you theory; I'm handing you what I actually use.</div>
     </div>
   </section>
@@ -418,20 +402,15 @@
 
   <section id="urgency">
     <div class="wrap">
-      <h2 class="h2">Two dates that matter.</h2>
-      <div class="deadlines">
+      <h2 class="h2">One date that matters.</h2>
+      <div class="deadlines one">
         <div class="dl">
           <div class="when">July 24</div>
-          <div class="what">Join by now to be in the live Second Brain Workshop — build your first asset with me.</div>
+          <div class="what">Join the founding 20 before the live Second Brain Workshop — build your first asset with me, and lock the founding rate for life. When the doors close, they close.</div>
           <div class="cd" id="cd-24"></div>
         </div>
-        <div class="dl">
-          <div class="when">July 31</div>
-          <div class="what">The founding rate rises — for good. Lock $250/mo for life before then.</div>
-          <div class="cd" id="cd-31"></div>
-        </div>
       </div>
-      <div class="cap-line"><span class="k">Hard cap:</span> only 20 founding members. Then the doors close on the founding rate.</div>
+      <div class="cap-line"><span class="k">Hard cap:</span> only 20 founding members — the rate is locked for life.</div>
     </div>
   </section>
 
@@ -449,6 +428,30 @@
     </div>
   </section>
 
+  <section id="testimonials">
+    <div class="wrap">
+      <div class="mono lead-label">In their words</div>
+      <h2 class="h2">What owners say after the map.</h2>
+      <div class="quotes" style="margin-top:30px">
+        <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>What stood out is how quickly it creates clarity — a clear view of what's happening operationally, where the bottlenecks are, and what needs to happen next.</p>
+          <div class="who">Founder · consulting practice</div>
+        </div>
+        <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>This is exactly what I do. I literally tried to hire somebody to do that — I've been looking for this.</p>
+          <div class="who">President · medtech firm</div>
+        </div>
+        <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>These are beautiful questions — absolutely amazing questions. The potential is enormous. It would be very valuable.</p>
+          <div class="who">Founder · operations advisory</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="final" id="claim">
     <div class="wrap">
       <div class="mono lead-label" style="justify-content:center; text-align:center">The founding 20</div>
@@ -456,7 +459,6 @@
       <p class="body">Your map, your bottleneck, your 30-day plan, the room, and the how — every month. Locked at $250 for life.</p>
       <div class="final-cta">
         <a class="btn" href="#claim" data-cta>Claim a founding spot → $250/mo</a>
-        <div class="kw">or comment <b>BRAIN</b> to start</div>
       </div>
     </div>
   </section>
@@ -490,7 +492,6 @@
     else el.textContent=openLabel;
   }
   setCd('cd-24',2026,7,24,"workshop passed");
-  setCd('cd-31',2026,7,31,"founding rate now closing");
 
   var canvas=document.getElementById('brainmap');
   if(!canvas) return;
