@@ -1,4 +1,30 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Second Brain Method — Get Your Business Out of Your Head</title>
+<meta name="description" content="Your business runs on one brain — yours. That's the ceiling. We map how it actually runs, turn the chaos into systems, and put AI on top. Founding cohort: 20 spots, doors close July 24.">
+<link rel="canonical" href="https://puja-patel.com/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://puja-patel.com/">
+<meta property="og:title" content="The Second Brain Method — Get Your Business Out of Your Head">
+<meta property="og:description" content="Map your business in your first hour. Your #1 bottleneck, named — and a 30-day plan. Founding cohort: 20 spots at $250/mo locked for life. Doors close July 24.">
+<meta property="og:image" content="https://puja-patel.com/assets/og_card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Second Brain Method — Get Your Business Out of Your Head">
+<meta name="twitter:description" content="Map your business in your first hour. 20 founding spots. Doors close July 24.">
+<meta name="twitter:image" content="https://puja-patel.com/assets/og_card.jpg">
+<!-- Microsoft Clarity — project "Second Brain Method" (xni1glpbqz) -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];if(y&&y.parentNode){y.parentNode.insertBefore(t,y);}else{l.head.appendChild(t);}
+  })(window, document, "clarity", "script", "xni1glpbqz");
+</script>
 <style>
+  html{scroll-behavior:smooth}
   :root{
     --ground:#EFE8DE; --surface:#FBF7F1; --surface-2:#F5EDE3;
     --ink:#2A2320; --ink-soft:#8A7C6E; --line:#DED3C4;
@@ -69,6 +95,8 @@
   .btn:hover{filter:brightness(1.05); transform:translateY(-1px)}
   .btn:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
   .btn.sm{padding:.55em .9em; font-size:.85rem}
+  .btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--accent); color:var(--accent); filter:none}
   .btn .arw{transition:transform .15s ease}
   .btn:hover .arw{transform:translateX(3px)}
 
@@ -192,7 +220,63 @@
   footer .fin{max-width:var(--maxw); margin:0 auto; padding:0 24px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:var(--font-mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:600}
   footer .fin .soft{color:var(--footer-soft)}
 
-  @media (prefers-reduced-motion:reduce){.btn,.btn .arw{transition:none}}
+  /* ── Who's leading this (bio) ── */
+  .bio-grid{display:grid; grid-template-columns:.44fr 1fr; gap:44px; align-items:start; margin-top:30px}
+  @media(max-width:760px){.bio-grid{grid-template-columns:1fr; gap:24px; max-width:420px}}
+  .bio-photo{border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--surface)}
+  .bio-photo img{display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover}
+  .bio-cap{padding:10px 14px; border-top:1px solid var(--line); font-family:var(--font-mono); font-size:.62rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-soft); font-weight:600}
+  .bio-cap .t2{color:var(--accent)}
+
+  /* ── asset placeholder slot (pre-launch: dashed box until the real asset lands) ── */
+  .ph-slot{display:flex; align-items:center; justify-content:center; text-align:center; border:2px dashed color-mix(in srgb,var(--accent) 45%, var(--line)); border-radius:4px; background:var(--surface-2); color:var(--accent); font-family:var(--font-mono); font-size:.72rem; letter-spacing:.11em; text-transform:uppercase; font-weight:600; padding:18px; line-height:1.7}
+
+  /* ── first-hour timeline — follows .stack/.row conventions ── */
+  .timeline{margin-top:32px; border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--surface)}
+  .tl-row{display:grid; grid-template-columns:120px 1fr; gap:20px; padding:20px 24px; border-bottom:1px solid var(--line); align-items:start}
+  .tl-row:last-child{border-bottom:0}
+  @media(max-width:560px){.tl-row{grid-template-columns:1fr; gap:6px}}
+  .tl-t{font-family:var(--font-mono); font-size:.72rem; letter-spacing:.13em; text-transform:uppercase; color:var(--accent); font-weight:600; padding-top:3px; white-space:nowrap}
+  .tl-row .rt{font-weight:700; font-size:1.02rem}
+  .tl-row .rd{color:var(--ink-soft); font-size:.98rem; line-height:1.55; margin-top:4px; max-width:60ch}
+  .tl-row .rd b{color:var(--ink)}
+  .cadence{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:24px}
+  @media(max-width:700px){.cadence{grid-template-columns:1fr}}
+  .cad{border:1px solid var(--line); border-left:3px solid var(--accent-bright); border-radius:4px; background:var(--surface); padding:22px 20px}
+  .cad .ct{font-family:var(--font-mono); font-size:.64rem; letter-spacing:.09em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:8px}
+  .cad .cx{color:var(--ink-soft); font-size:.98rem; line-height:1.5}
+  .cad .cx b{color:var(--ink)}
+
+  /* ── section-end journey stepper ── */
+  .next-step{display:inline-flex; align-items:center; gap:.5em; margin-top:30px; font-family:var(--font-mono); font-size:.74rem; letter-spacing:.11em; text-transform:uppercase; font-weight:600; color:var(--accent); text-decoration:none}
+  .next-step .dn{transition:transform .15s ease}
+  .next-step:hover .dn{transform:translateY(2px)}
+  @media (prefers-reduced-motion:reduce){.next-step .dn{transition:none}}
+
+  /* Small-screen (≤560px) adjustments — page must stay readable at 375px */
+  @media(max-width:560px){
+    .page{font-size:16px}
+    .wrap{padding:0 18px}
+    .bar-in{padding:10px 18px}
+    section{padding:44px 0}
+    .hero{padding:44px 0 32px}
+    .hero-sub{font-size:1.08rem; max-width:none}
+    .hero-cta{gap:12px}
+    .hero-cta .btn{width:100%; justify-content:center; white-space:normal; text-align:center}
+    .btn{white-space:normal}
+    .body{font-size:1.06rem}
+    .step{padding:24px 20px}
+    .row{grid-template-columns:1fr; gap:6px; padding:16px 18px}
+    .row .rv{white-space:normal; padding-top:0}
+    .guarantee{padding:24px 20px}
+    .stat-strip{gap:10px; margin-bottom:22px}
+    .fit-col{padding:20px 18px}
+    .dl{padding:20px 18px}
+    .final{padding:56px 0}
+    .final .btn{font-size:.98rem}
+  }
+
+  @media (prefers-reduced-motion:reduce){.btn,.btn .arw{transition:none} html{scroll-behavior:auto}}
 </style>
 
 <div class="page">
@@ -201,13 +285,13 @@
     <div class="bar-in">
       <div class="brand">The Second&nbsp;<b>Brain</b>&nbsp;Method</div>
       <div class="bar-right">
-        <span class="bar-price">$250/mo · 20 founding spots</span>
+        <span class="bar-price">$250/mo · 20 spots · doors close July 24</span>
         <a class="btn sm" href="#claim" data-cta>Claim a spot</a>
       </div>
     </div>
   </div>
 
-  <header class="hero">
+  <header class="hero" id="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <div class="eyebrow"><span class="dot"></span><span class="mono">Founding cohort — 20 spots</span></div>
@@ -215,7 +299,8 @@
         <p class="hero-sub">It's not demand. It's not effort. It's that your business runs on one brain — <b>yours</b>. We <b>map how it actually runs</b>, turn the chaos into systems, and put AI on top — so your own capacity stops being the ceiling on your growth.</p>
         <div class="hero-cta">
           <a class="btn" href="#claim" data-cta>Claim a founding spot <span class="arw">→</span></a>
-          <div class="trust">100+ businesses mapped<br>Founding rate locked for life</div>
+          <a class="btn ghost" href="#problem">See how it works <span class="arw">↓</span></a>
+          <div class="trust">100+ businesses mapped<br>Founding rate locked for life · Doors close July 24, 2026</div>
         </div>
       </div>
       <div class="canvas-panel">
@@ -233,6 +318,7 @@
         <p>You built something that works — real clients, real reputation, <b>$10–20k months</b>. But every time you push for the next level, you hit the same wall. More clients just means more of <b>you</b> — more QA, more decisions routing to your desk, the whole thing <b>held together with duct tape</b>. You're <b>the human router</b>, and you wrote a <b>100+ page SOP and still can't let go</b> — because a doc can't transfer your judgment.</p>
         <p class="body"><b>Demand isn't the issue. Capacity is.</b> Revenue goes up and the complexity eats the margin. You can <b>feel it becoming the ceiling</b> — the reason you can't get to the next milestone. That's not a discipline problem. It's structural.</p>
       </div>
+      <a class="next-step" href="#reframe">Why this keeps happening <span class="dn">↓</span></a>
     </div>
   </section>
 
@@ -244,6 +330,7 @@
         <p>The next milestone doesn't come from more leads or more hustle — you've already proven you can sell. It comes from a business that can hold more than <b>you</b> can remember. Right now every standard and judgment call lives in your head, so you can only grow as fast as you can personally touch.</p>
         <p class="body">That's the ceiling — and it's a context problem, not an intelligence or discipline one. Your business is simply missing a <b>second brain</b>.</p>
       </div>
+      <a class="next-step" href="#vision">What a second brain actually is <span class="dn">↓</span></a>
     </div>
   </section>
 
@@ -255,6 +342,30 @@
         <p>In the words of an operator who actually built one: <b>"you stop being the bottleneck because information doesn't live in your head anymore — it lives in the system. You stop being the human router for every question and decision."</b></p>
         <p class="body">One place that holds everything your business knows — how it runs, what "good" looks like, where the money leaks — so you can take on the next 5, 10, 20 clients <b>without becoming the bottleneck again.</b> You scale the business, not yourself. <b>And I live it</b> — I run my entire business on one, and I'll show you mine.</p>
       </div>
+      <a class="next-step" href="#who">Who's leading this <span class="dn">↓</span></a>
+    </div>
+  </section>
+
+  <section id="who">
+    <div class="wrap">
+      <div class="mono lead-label">Who's leading this</div>
+      <h2 class="h2">Hi — I'm Puja.</h2>
+      <div class="bio-grid">
+        <div class="bio-photo">
+          <!-- Swap the placeholder below for:
+               <img src="..." alt="Puja Patel" loading="lazy" width="800" height="1000">
+               Real photo, not stock — candid-professional (desk/whiteboard mid-map), 4:5 portrait, min ~800px wide, warm/neutral background. -->
+          <img src="assets/puja.jpg" alt="Puja Patel" width="1000" height="1250" style="display:block; width:100%; height:auto; border-radius:4px" loading="lazy">
+          <div class="bio-cap">Puja Patel <span class="t2">· 100+ businesses mapped</span></div>
+        </div>
+        <div>
+          <div class="body">
+            <p>I map how businesses actually run — <b>over 100 of them so far</b>. A 150-person retail operation where the CEO couldn't see across his own 11 departments. A brokerage losing 8–10 hours a week to manual entry across 11 disconnected tools. A recruiting firm where every message was written from scratch. Different industries, same finding: <b>the whole thing was running on one person's head.</b></p>
+            <p class="body"><b>And I live it.</b> My own business — clients, pipeline, content, cash flow — runs on a second brain I built for myself first. That's the system I'll walk you through inside. Not theory I packaged. <b>The thing I actually use, every day.</b></p>
+          </div>
+        </div>
+      </div>
+      <a class="next-step" href="#method">How we build yours <span class="dn">↓</span></a>
     </div>
   </section>
 
@@ -280,6 +391,7 @@
         </div>
       </div>
       <div class="method-foot">Not a course · Not a template · Your business, one bottleneck at a time</div>
+      <div><a class="next-step" href="#proof">What the map surfaces — real numbers <span class="dn">↓</span></a></div>
     </div>
   </section>
 
@@ -312,6 +424,46 @@
         </div>
       </div>
       <div class="live-it"><b>And I don't just teach it — I live it.</b> I run my whole business on a second brain. I'm not handing you theory; I'm handing you what I actually use.</div>
+      <a class="next-step" href="#different">Why this is different <span class="dn">↓</span></a>
+    </div>
+  </section>
+
+  <section id="different">
+    <div class="wrap">
+      <div class="mono lead-label">Why this is different</div>
+      <h2 class="h2">You've seen a hundred AI communities. So have I.</h2>
+      <div class="body" style="margin-top:22px">
+        <p>Most of them are one of three things: a video library, a piece of software, or a group chat. You get the one thing, and the rest is on you. That's why they don't stick — <b>a course can't see your business, a tool can't tell you what to fix first, and a chat can't build anything.</b></p>
+        <p class="body">This is all three, on purpose. Here's exactly what's underneath:</p>
+      </div>
+      <div class="steps" style="margin-top:30px">
+        <div class="step">
+          <div class="step-n">01 · A LIVE ARCHITECT</div>
+          <h3>Me, on your map.<span class="sub">Not a video library.</span></h3>
+          <p>Every month I map <b>your</b> business — where the work actually sits, what moved, what's still stuck. There's no "lesson 4 of module 2." There's your operation, on the table, with someone who's mapped 100+ of them looking at it with you.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">02 · A MAP THAT STAYS LIVE</div>
+          <h3>You watch it change.<span class="sub">Not a whiteboard that dies after the call.</span></h3>
+          <p>Your operating map isn't a one-time exercise — it stays live in the tool I built and run my own business on, and every 30 days we re-run it. <b>Month one, a bottleneck comes off the map. Month two, the next one.</b> You literally watch your business stop depending on you, on one screen.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">03 · THE ROOM</div>
+          <h3>Operators at your stage.<span class="sub">Plus a founding buddy.</span></h3>
+          <p>Twenty founders hitting the same ceiling, building the same thing — and one buddy whose actual job is making sure you show up. Bought-and-never-used is the only way this fails, so the room exists to prevent exactly that.</p>
+        </div>
+      </div>
+      <!-- HIDDEN until a real operating-map screenshot exists — remove `hidden` and swap the
+           placeholder per the comment inside. -->
+      <figure style="margin:30px 0 0" hidden>
+        <!-- Swap the placeholder below for:
+             <img src="..." alt="A real business map inside OpMap" style="display:block; width:100%; height:auto; border:1px solid var(--line); border-radius:4px">
+             Real map from opmap.ai (her own or anonymized client), landscape, legible on a phone screen. -->
+        <div class="ph-slot" style="aspect-ratio:16/9">[PUJA: MAP SCREENSHOT]<br>real operating map · landscape · legible on mobile</div>
+        <figcaption class="mono" style="margin-top:10px">A real operating map — what your business looks like out of your head, on one screen</figcaption>
+      </figure>
+      <p class="body" style="margin-top:26px"><b>Most offers are one of the three.</b> A course gives you videos and hopes you apply them. A tool gives you software and silence. A community gives you the room and no method. This is all three, pointed at the same bottleneck every month — because one alone doesn't break the ceiling.</p>
+      <a class="next-step" href="#included">What you get every month <span class="dn">↓</span></a>
     </div>
   </section>
 
@@ -321,11 +473,11 @@
       <h2 class="h2">What you get, every month.</h2>
       <div class="stack">
         <div class="row">
-          <div><div class="rt">The monthly cycle</div><div class="rd">Hour-one map + your #1 bottleneck → a 30-day one-move plan → implementation training → the room of operators → a fresh map every 30 days.</div></div>
+          <div><div class="rt">The monthly cycle</div><div class="rd">Hour-one operating map of your business → your #1 bottleneck, named → a 30-day one-move plan → implementation training → the room of operators → a fresh map every 30 days showing exactly what moved.</div></div>
           <div class="rv">$2,000/mo value</div>
         </div>
         <div class="row">
-          <div><div class="rt">🎟 July 24 — Live Second Brain Workshop</div><div class="rd">Build your first Claude-powered second-brain asset live with me. Founding members only.</div></div>
+          <div><div class="rt">🎟 July 24, 2026 — Live Second Brain Workshop</div><div class="rd">Build your first Claude-powered second-brain asset live with me, the same day doors hard-close. Founding members only.</div></div>
           <div class="rv">$500</div>
         </div>
         <div class="row">
@@ -362,6 +514,43 @@
         <div class="price-note">Founding rate — first 20 only</div>
       </div>
       <div style="margin-top:26px"><a class="btn" href="#claim" data-cta>Claim a founding spot <span class="arw">→</span></a></div>
+      <!-- TODO(Puja): when the walkthrough video exists, retarget this stepper back to #walkthrough
+           with label "Watch before you decide" and remove `hidden` from the #walkthrough section. -->
+      <div><a class="next-step" href="#guarantee">The guarantee behind it <span class="dn">↓</span></a></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WALKTHROUGH VIDEO SECTION
+       POSTER FRAME GUIDANCE (for [PUJA: WALKTHROUGH VIDEO EMBED]):
+       - The poster/thumbnail must be Puja's FACE, mid-explanation — at her desk
+         or whiteboard, with the actual operations map visible on screen behind
+         or beside her. People buy who, not what; the face is the conversion lever.
+       - Warm natural light; the frame should sit comfortably on the cream
+         (#EFE8DE) / dark (#241C17) grounds — avoid pure-white studio backdrops.
+       - NO text overlay, NO arrow-pointing-at-face YouTube thumbnail energy,
+         no play-button graphics baked into the image (the player adds its own).
+       - A slightly imperfect mid-sentence frame beats a posed smile — it should
+         read "she's already talking to me," not "promo asset."
+       Script for the recording: 94_WALKTHROUGH_VIDEO_SCRIPT.md (same folder).
+  ============================================================ -->
+  <!-- HIDDEN until the walkthrough video is recorded (script: 94_WALKTHROUGH_VIDEO_SCRIPT.md).
+       To go live: paste the embed per the swap comment below, remove `hidden` from this <section>,
+       and retarget the #included stepper above back to #walkthrough. -->
+  <section id="walkthrough" hidden>
+    <div class="wrap">
+      <div class="mono lead-label">Watch before you decide</div>
+      <h2 class="h2">Don't take the page's word for it.</h2>
+      <p class="body" style="margin-top:22px">This is me, walking you through the whole thing — what happens in your first hour, what each month actually looks like, and who shouldn't buy this. One take, no edits. If this isn't for you, the video will tell you faster than the page will.</p>
+      <div style="margin-top:30px; position:relative; border:1px solid var(--line); border-radius:4px; background:var(--surface); aspect-ratio:16/9; overflow:hidden">
+        <!-- Swap the placeholder below for the iframe or <video> tag.
+             Style it to fill the container: style="position:absolute; inset:0; width:100%; height:100%; border:0"
+             If using <video>, set poster="..." per the poster guidance above, preload="metadata", playsinline. -->
+        <div class="ph-slot" style="position:absolute; inset:6px">[PUJA: WALKTHROUGH VIDEO EMBED]<br>8–10 min walkthrough · Loom / unlisted YouTube / Circle native</div>
+      </div>
+      <div class="mono" style="margin-top:14px">≈9 min · Recorded once, unedited · What you're getting, start to finish</div>
+      <div style="margin-top:26px"><a class="btn" href="#claim" data-cta>Claim a founding spot <span class="arw">→</span></a></div>
+      <div><a class="next-step" href="#guarantee">The guarantee behind it <span class="dn">↓</span></a></div>
     </div>
   </section>
 
@@ -375,6 +564,50 @@
           <div class="gd">The moment you join, you map your business and see your #1 bottleneck — in your first hour. If you don't get that clarity, tell me: your first month is on me, and you keep the map.</div>
         </div>
       </div>
+      <a class="next-step" href="#first-hour">Your first hour, minute by minute <span class="dn">↓</span></a>
+    </div>
+  </section>
+
+  <section id="first-hour">
+    <div class="wrap">
+      <div class="mono lead-label">Full transparency</div>
+      <h2 class="h2">Your first hour, minute by minute.</h2>
+      <div class="body" style="margin-top:22px">
+        <p>No mystery, no "wait for onboarding." Here's exactly what happens the moment you join — I'd rather you know everything before you pay than be surprised after.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-row">
+          <div class="tl-t">Minute 0</div>
+          <div><div class="rt">You claim your spot.</div><div class="rd">Checkout runs through Circle — <b>$250/mo at the founding rate, locked for life.</b> Your confirmation email lands with your login. That's the whole signup.</div></div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-t">Minute 2</div>
+          <div><div class="rt">You're in the room.</div><div class="rd">You land in the members space. One pinned post, one instruction: <b>start your map.</b> And I say hi — personally.</div></div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-t">Minute 5</div>
+          <div><div class="rt">You start mapping.</div><div class="rd">You open your operating map and answer plain-English questions about how your business actually runs — who does what, where work sits before someone notices, what routes through your desk. <b>No prep. No spreadsheet homework.</b> Everything in your head, going onto paper.</div></div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-t">~ Minute 50</div>
+          <div><div class="rt">Your operation, on one screen.</div><div class="rd">Every function, every handoff, every place the work waits on <b>you</b>. I've run this 100+ times — there's almost always something in the first look you've felt for years but couldn't point to.</div></div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-t">Hour one, done</div>
+          <div><div class="rt">Your #1 bottleneck, named — and one move.</div><div class="rd">You walk out of your first hour with your map, your #1 bottleneck, and a 30-day plan built around <b>one move.</b> Not twelve. One. That's the First-Hour Guarantee — if you don't get this, your first month is free and you keep the map.</div></div>
+        </div>
+      </div>
+
+      <div class="mono" style="margin-top:34px; color:var(--accent)">Then, every 30 days</div>
+      <div class="cadence">
+        <div class="cad"><div class="ct">Day 1 of each cycle</div><div class="cx"><b>A fresh map.</b> We re-map and you see what actually moved since last month — and what didn't. The count doesn't flatter you. That's the point.</div></div>
+        <div class="cad"><div class="ct">The next move</div><div class="cx"><b>Your next bottleneck, your next 30-day plan.</b> One bottleneck a month, in order of what it's costing you — not in order of what's trendy to automate.</div></div>
+        <div class="cad"><div class="ct">The live working session</div><div class="cx"><b>Scheduled with the founding 20 in week one</b> — the slot fits the room, not the other way around. We build the move together, live. You leave with the piece done, not planned.</div></div>
+        <div class="cad"><div class="ct">The room, all month</div><div class="cx"><b>Founding operators, between sessions.</b> Post your map, ask the question, steal what's working for someone two moves ahead of you.</div></div>
+      </div>
+      <p class="body" style="margin-top:24px"><b>That's the timeline.</b> Ninety days in, three bottlenecks that used to route through you are mapped, systematized, and running without you — not because you learned more, but because there are fewer things only you can do. That's the transformation this buys: the business holds its own context, and you get your head back.</p>
+      <p class="body" style="margin-top:24px">And for the founding 20 only — <b>July 24 at 2:00 pm EDT:</b> the live Second Brain Workshop. You build your first Claude-powered second-brain asset with me, live.<!-- [PUJA: RECORDING POLICY — add a sentence here once decided: what happens if a founding member can't attend live.] --></p>
+      <a class="next-step" href="#fit">Who this is for — honestly <span class="dn">↓</span></a>
     </div>
   </section>
 
@@ -397,6 +630,7 @@
         </div>
       </div>
       <p class="body" style="margin-top:22px">This is done <b>with</b> you. It works if you do.</p>
+      <a class="next-step" href="#urgency">The one date that matters <span class="dn">↓</span></a>
     </div>
   </section>
 
@@ -405,12 +639,13 @@
       <h2 class="h2">One date that matters.</h2>
       <div class="deadlines one">
         <div class="dl">
-          <div class="when">July 24</div>
-          <div class="what">Join the founding 20 before the live Second Brain Workshop — build your first asset with me, and lock the founding rate for life. When the doors close, they close.</div>
+          <div class="when">July 24, 2026</div>
+          <div class="what">Doors hard-close July 24, 2026 — the same day as the live Second Brain Workshop. Join the founding 20 before then: build your first asset with me live, and lock the founding rate for life. When the doors close, they close.</div>
           <div class="cd" id="cd-24"></div>
         </div>
       </div>
       <div class="cap-line"><span class="k">Hard cap:</span> only 20 founding members — the rate is locked for life.</div>
+      <a class="next-step" href="#faq">Straight answers to what you're thinking <span class="dn">↓</span></a>
     </div>
   </section>
 
@@ -423,8 +658,12 @@
         <div class="qa"><div class="q">Will I actually use it?</div><div class="a">That's what the room, the buddy, and the 30-day one-move plan are for. And the First-Hour Guarantee means you get a real result on day one or it's free.</div></div>
         <div class="qa"><div class="q">Is $250 worth it?</div><div class="a">You're already paying more than that — in the hours lost to rework and the growth you're capping. This plugs the leak.</div></div>
         <div class="qa"><div class="q">Do I need to be technical?</div><div class="a">No. I architect the AI; you implement the one next move. If you can follow a plan, you can do this.</div></div>
+        <div class="qa"><div class="q">How much time does this take per week?</div><div class="a">One hour up front — that's the map. After that, the plan is one move per month, not a curriculum: plan on a few focused hours a week to implement it, at your pace. And honestly — if you can't find a few hours a week to get yourself out of the bottleneck, that's not a time problem. That <em>is</em> the bottleneck.</div></div>
+        <div class="qa"><div class="q">What exactly happens on July 24?</div><div class="a">The live Second Brain Workshop — founding members only, at 2:00 pm EDT. You build your first Claude-powered second-brain asset with me, live — you leave with it working, not with notes. It's also the day the doors close: join before it and you're in the room; after it, you're not.<!-- [PUJA: RECORDING POLICY — add once decided: answer for members who can't attend live.] --></div></div>
+        <div class="qa"><div class="q">I'm not on Claude — I don't have any AI set up yet. Can I still start?</div><div class="a">Yes — and it doesn't matter yet. Step 1 is the map, and that needs nothing but you and an hour. AI doesn't enter until your operations are on paper, because AI amplifies whatever you already have — clean operation, faster; mess, faster mess. When you reach the build, the Starter Kit walks you through the exact setup I use. A Claude account by your first build — that's the only tool requirement.</div></div>
         <div class="qa"><div class="q">What if it's not for me?</div><div class="a">The First-Hour Guarantee. Zero risk to find out.</div></div>
       </div>
+      <a class="next-step" href="#testimonials">What owners say after the map <span class="dn">↓</span></a>
     </div>
   </section>
 
@@ -432,11 +671,24 @@
     <div class="wrap">
       <div class="mono lead-label">In their words</div>
       <h2 class="h2">What owners say after the map.</h2>
-      <div class="quotes" style="margin-top:30px">
+      <!-- Featured testimonial: Hector's quote + name as already published on the Circle checkout
+           page (same exposure level). Initial-avatar instead of photo. If Puja gets a headshot +
+           written OK later, swap the avatar div for an <img>. -->
+      <div class="quote" style="margin-top:30px; padding:30px 28px; border-left:3px solid var(--accent-bright)">
+        <div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap">
+          <div aria-hidden="true" style="flex:none; width:64px; height:64px; border-radius:50%; border:1px solid var(--line); background:var(--surface-2); color:var(--accent); font-family:var(--font-display); font-size:1.6rem; font-weight:700; display:flex; align-items:center; justify-content:center">H</div>
+          <div style="flex:1; min-width:240px">
+            <div class="mk">&ldquo;</div>
+            <p style="font-size:1.25rem; line-height:1.45">I'm impressed with how quickly this creates clarity. A clear view of what's happening operationally, where the bottlenecks are, and what needs to happen next.</p>
+            <div class="who" style="margin-top:14px">Hector · consulting company owner</div>
+          </div>
+        </div>
+      </div>
+      <div class="quotes" style="margin-top:16px">
         <div class="quote">
           <div class="mk">&ldquo;</div>
-          <p>What stood out is how quickly it creates clarity — a clear view of what's happening operationally, where the bottlenecks are, and what needs to happen next.</p>
-          <div class="who">Founder · consulting practice</div>
+          <p>I was looking for a place where I can actually implement and learn the things I see online — this is one of the only places where I got the help MY business needed and not some generic course or template.</p>
+          <div class="who">Jane · marketing agency owner</div>
         </div>
         <div class="quote">
           <div class="mk">&ldquo;</div>
@@ -449,6 +701,7 @@
           <div class="who">Founder · operations advisory</div>
         </div>
       </div>
+      <a class="next-step" href="#claim">Claim your founding spot <span class="dn">↓</span></a>
     </div>
   </section>
 
@@ -459,6 +712,7 @@
       <p class="body">Your map, your bottleneck, your 30-day plan, the room, and the how — every month. Locked at $250 for life.</p>
       <div class="final-cta">
         <a class="btn" href="#claim" data-cta>Claim a founding spot → $250/mo</a>
+        <div class="kw">Doors hard-close <b>July 24, 2026</b> · Hard cap <b>20</b> · Founding rate locked for life</div>
       </div>
     </div>
   </section>
@@ -472,12 +726,60 @@
 
 </div>
 
+<!-- ═══ CLOSE-DATE CONSISTENCY — INTEGRATOR CHECKLIST (pre-publish) ═══
+CANON: Doors HARD-CLOSE July 24, 2026 (workshop day). ONE date. No July 31 anywhere.
+
+1. Countdown timezone: setCd('cd-24',2026,7,24,...) below counts to 23:59:59 Jul 24 in the
+   VISITOR'S LOCAL TIME. Decide the real close moment: [PUJA: EXACT CLOSE TIME + TIMEZONE]
+   (at workshop start? midnight ET?) and hard-code that timezone in daysTo().
+2. Post-close behavior: after Jul 24 the countdown reads "doors closed" but every data-cta
+   button still opens live checkout — the page would keep selling founding spots after the
+   close. Define the closed state: [PUJA: POST-CLOSE STATE — waitlist link, "doors closed"
+   notice, or page down?]
+3. Sold-out-before-date: the 20-spot hard cap has no live counter — if spots sell out BEFORE
+   Jul 24, same problem. Manual update plan or counter: [PUJA: SOLD-OUT-BEFORE-DATE PLAN.]
+4. Off-page surfaces: [PUJA: CONFIRM Circle checkout page + any scheduled posts/emails carry
+   July 24, not July 31.] (92_LANDING_PAGE.md's "Jul 31 rate rise" build note is STALE — ignore.)
+
+RULE FOR ALL SURFACES: urgency is the real date and the real cap, stated flat — never
+"last chance" language, no fake countdown theatrics beyond the factual days-left counter. -->
 <script>
 (function(){
   var CHECKOUT_URL = "https://aios-with-puja-patel.circle.so/checkout/the-second-brain-method";
   if(CHECKOUT_URL && CHECKOUT_URL !== "#claim"){
     document.querySelectorAll('[data-cta]').forEach(function(a){ a.setAttribute('href', CHECKOUT_URL); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener'); });
   }
+
+  /* ---- Clarity custom events: section reach + CTA clicks ----
+     Makes Clarity filterable by journey stage instead of raw scroll %.
+     Events appear in Clarity under Filters → User actions → Smart events / Custom. */
+  function clar(){ if(window.clarity){ try{ window.clarity.apply(null, arguments); }catch(e){} } }
+  // Which checkout CTA converts: hero / offer / walkthrough / final
+  document.querySelectorAll('[data-cta]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var sec = a.closest('section'); var where = sec && sec.id ? sec.id : (a.closest('.bar') ? 'stickybar' : 'hero');
+      clar('event', 'checkout_click');
+      clar('set', 'checkout_from', where);
+    });
+  });
+  // Journey depth: fire once when each key section becomes visible
+  if('IntersectionObserver' in window){
+    var seen = {};
+    var keySections = ['problem','who','proof','different','included','guarantee','first-hour','fit','urgency','faq','testimonials','claim'];
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting && !seen[en.target.id]){
+          seen[en.target.id] = 1;
+          clar('event', 'reached_' + en.target.id);
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold: 0.25});
+    keySections.forEach(function(id){ var el=document.getElementById(id); if(el && !el.hidden) io.observe(el); });
+  }
+  // Qualified-lead signal: 5+ minutes on page (the "good lead" threshold)
+  setTimeout(function(){ clar('event', 'engaged_5min'); clar('set', 'lead_quality', 'engaged_5min'); }, 300000);
+  setTimeout(function(){ clar('event', 'engaged_2min'); }, 120000);
 
   function daysTo(y,m,d){
     var now=new Date(); var t=new Date(y,m-1,d,23,59,59);
@@ -491,7 +793,7 @@
     else if(n===0) el.textContent="today";
     else el.textContent=openLabel;
   }
-  setCd('cd-24',2026,7,24,"workshop passed");
+  setCd('cd-24',2026,7,24,"doors closed");
 
   var canvas=document.getElementById('brainmap');
   if(!canvas) return;
