@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're likely past do-it-with-you — Puja Patel</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --on-accent:#FBF7F1;
+    --font-display:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --ground:#241C17; --surface:#2C231D; --ink:#EFE7DC; --ink-soft:#A8998A; --line:#4A3C31; --accent:#E08A5A; --on-accent:#241C17; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.65}
+  .wrap{max-width:640px; margin:0 auto; padding:72px 24px 80px}
+  h1{font-family:var(--font-display); font-size:2.1rem; letter-spacing:-.015em; margin:0 0 14px}
+  p{color:var(--ink-soft)}
+  p b{color:var(--ink)}
+  .btn{display:inline-block; background:var(--accent); color:var(--on-accent); font-weight:700; font-size:1.05rem; padding:15px 26px; border-radius:10px; text-decoration:none; margin:18px 0 6px}
+  .alt{display:block; margin-top:22px; color:var(--accent); font-size:.95rem}
+  .note{font-size:.85rem; color:var(--ink-soft); margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>You're likely past do-it-with-you.</h1>
+  <p>Based on your answers, the founding membership isn't the best fit — <b>you don't need a room to build in, you need it built.</b> That's a different way of working with me: I map your business the same way, then my team and I do the building.</p>
+  <p>The right next step is a 20-minute call. No pitch theater — we look at how your business runs and I'll tell you straight whether it's worth working together.</p>
+  <a class="btn" id="book" href="mailto:info@puja-patel.com?subject=Results%20call%20—%20from%20the%20Second%20Brain%20page&body=Hi%20Puja%20—%20I%20went%20through%20the%20fit%20check%20and%20landed%20here.%20My%20business%3A%20">Book a 20-min call &rarr;</a>
+  <p class="note">Or just reply from your inbox — this opens an email to me directly.</p>
+  <a class="alt" href="https://aios-with-puja-patel.circle.so/checkout/the-second-brain-method">Rather build it yourself anyway? The doors are open until July 24 &rarr;</a>
+</div>
+<script>
+  // tracking parity
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1358901016182853'); fbq('track', 'PageView');
+  var _cio = _cio || [];
+  (function(){var a,b,c;a=function(f){return function(){_cio.push([f].concat(
+  Array.prototype.slice.call(arguments,0)))}};b=["load","identify","sidentify","track","page","on","off"];
+  for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};var t=document.createElement('script'),
+  s=document.getElementsByTagName('script')[0];t.async=true;t.id='cio-tracker';
+  t.setAttribute('data-site-id','3f7f4e3fdaf9decb1c47');t.src='https://assets.customer.io/assets/track.js';
+  s.parentNode.insertBefore(t,s)})();
+  document.getElementById('book').addEventListener('click', function(){
+    if(window.fbq) fbq('track', 'Schedule');
+    if(window._cio) _cio.track('dfy_book_clicked');
+  });
+</script>
+</body>
+</html>

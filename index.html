@@ -35,6 +35,16 @@ fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></noscript>
+<!-- customer.io — workspace OpMap (225895) -->
+<script type="text/javascript">
+var _cio = _cio || [];
+(function(){var a,b,c;a=function(f){return function(){_cio.push([f].concat(
+Array.prototype.slice.call(arguments,0)))}};b=["load","identify","sidentify","track","page","on","off"];
+for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};var t=document.createElement('script'),
+s=document.getElementsByTagName('script')[0];t.async=true;t.id='cio-tracker';
+t.setAttribute('data-site-id','3f7f4e3fdaf9decb1c47');t.src='https://assets.customer.io/assets/track.js';
+s.parentNode.insertBefore(t,s)})();
+</script>
 <style>
   html{scroll-behavior:smooth}
   :root{
@@ -766,13 +776,135 @@ RULE FOR ALL SURFACES: urgency is the real date and the real cap, stated flat �
      Makes Clarity filterable by journey stage instead of raw scroll %.
      Events appear in Clarity under Filters → User actions → Smart events / Custom. */
   function clar(){ if(window.clarity){ try{ window.clarity.apply(null, arguments); }catch(e){} } }
-  // Which checkout CTA converts: hero / offer / walkthrough / final
+  /* ---- Qualify step: 2 taps + email before checkout (spec: 15_QUALIFY_FORM.md v3) ---- */
+  var qualifyState = { biz: null, rev: null, from: 'hero' };
+
+  var modalCSS = document.createElement('style');
+  modalCSS.textContent = '\
+    .qmask{position:fixed;inset:0;background:rgba(20,14,10,.65);backdrop-filter:blur(3px);z-index:999;display:none;align-items:center;justify-content:center;padding:16px}\
+    .qmask.open{display:flex}\
+    .qcard{background:var(--surface);color:var(--ink);border-radius:14px;max-width:480px;width:100%;padding:28px 26px;box-shadow:0 24px 80px rgba(0,0,0,.35);position:relative}\
+    .qcard h3{font-family:var(--font-display,Georgia,serif);font-size:1.45rem;margin:0 0 6px}\
+    .qcard .qsub{color:var(--ink-soft);font-size:.95rem;margin:0 0 18px}\
+    .qcard .qq{font-weight:600;margin:0 0 10px}\
+    .qopt{display:block;width:100%;text-align:left;background:var(--surface-2,#F5EDE3);border:1px solid var(--line);border-radius:10px;padding:13px 14px;margin:8px 0;font-size:1rem;cursor:pointer;color:var(--ink)}\
+    .qopt:hover{border-color:var(--accent)}\
+    .qx{position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.5rem;color:var(--ink-soft);cursor:pointer}\
+    .qemail{width:100%;padding:13px 14px;font-size:1rem;border:1px solid var(--line);border-radius:10px;margin:8px 0 12px;background:var(--surface-2,#F5EDE3);color:var(--ink);box-sizing:border-box}\
+    .qgo{display:block;width:100%;padding:14px;border:none;border-radius:10px;background:var(--accent);color:var(--on-accent,#FBF7F1);font-size:1.05rem;font-weight:700;cursor:pointer}\
+    .qnote{font-size:.85rem;color:var(--ink-soft);margin-top:10px}\
+    .qwarn{background:var(--surface-2,#F5EDE3);border-left:3px solid var(--accent);padding:10px 12px;font-size:.92rem;margin:12px 0;border-radius:0 8px 8px 0}\
+    @media(max-width:480px){.qcard{padding:22px 18px}}';
+  document.head.appendChild(modalCSS);
+
+  var qmask = document.createElement('div');
+  qmask.className = 'qmask';
+  qmask.innerHTML = '<div class="qcard" role="dialog" aria-modal="true">'
+    + '<button class="qx" aria-label="Close">&times;</button>'
+    + '<div class="qstep" data-step="1">'
+    +   '<h3>Quick check &mdash; this only works for the right business.</h3>'
+    +   '<p class="qsub">Two taps. If it\'s not a fit, I\'ll tell you straight.</p>'
+    +   '<p class="qq">What kind of business do you run?</p>'
+    +   '<button class="qopt" data-biz="service">A service business &mdash; clients pay for my/my team\'s work (agency, consulting, done-for-you, coaching)</button>'
+    +   '<button class="qopt" data-biz="products">I sell products (ecommerce, physical, digital)</button>'
+    +   '<button class="qopt" data-biz="none">I\'m not running a business yet</button>'
+    + '</div>'
+    + '<div class="qstep" data-step="2" hidden>'
+    +   '<p class="qq">Where\'s your monthly revenue right now?</p>'
+    +   '<button class="qopt" data-rev="lt5k">Under $5k/mo</button>'
+    +   '<button class="qopt" data-rev="5-10k">$5k&ndash;$10k/mo</button>'
+    +   '<button class="qopt" data-rev="10-30k">$10k&ndash;$30k/mo</button>'
+    +   '<button class="qopt" data-rev="30k+">Over $30k/mo</button>'
+    + '</div>'
+    + '<div class="qstep" data-step="3" hidden>'
+    +   '<p class="qq">Where should I send your founding-spot details?</p>'
+    +   '<input class="qemail" type="email" placeholder="you@yourbusiness.com" autocomplete="email">'
+    +   '<button class="qgo qsubmit">See if you\'re in &rarr;</button>'
+    +   '<p class="qnote">No spam. Doors close July 24 either way.</p>'
+    + '</div>'
+    + '<div class="qstep" data-step="pass" hidden>'
+    +   '<h3>You\'re in the right room.</h3>'
+    +   '<div class="qwarn"><b>Fair warning: I architect, you build.</b> If you want it built FOR you, <a href="/call.html" class="qdfy">book a call instead &rarr;</a></div>'
+    +   '<button class="qgo qcheckout">Continue to checkout &mdash; $250/mo &rarr;</button>'
+    +   '<p class="qnote">Founding rate, locked for life. 20 spots.</p>'
+    + '</div>'
+    + '</div>';
+  document.body.appendChild(qmask);
+
+  function qshow(step){
+    qmask.querySelectorAll('.qstep').forEach(function(s){ s.hidden = s.getAttribute('data-step') !== step; });
+    qmask.classList.add('open');
+  }
+  function qclose(){ qmask.classList.remove('open'); }
+  qmask.querySelector('.qx').addEventListener('click', qclose);
+  qmask.addEventListener('click', function(e){ if(e.target === qmask) qclose(); });
+
+  function getUTM(){ try{ return JSON.parse(localStorage.getItem('sbm_utm')||'{}'); }catch(e){ return {}; } }
+
+  function goCheckout(){
+    clar('event', 'checkout_click'); clar('set', 'checkout_from', qualifyState.from);
+    if(window.fbq) fbq('track', 'InitiateCheckout', {value: 250, currency: 'USD', content_name: qualifyState.from});
+    if(window._cio) _cio.track('checkout_clicked', {from: qualifyState.from});
+    setTimeout(function(){ window.location.href = CHECKOUT_URL; }, 250);
+  }
+
+  function routeSubmit(email){
+    var biz = qualifyState.biz, rev = qualifyState.rev;
+    var pass = (biz === 'service' && rev === '10-30k');
+    var dfy = (biz === 'service' && rev === '30k+');
+    var attrs = Object.assign({
+      id: email, email: email,
+      biz_type: biz, revenue_band: rev,
+      qualified: pass, dfy_lead: dfy, waitlist: (!pass && !dfy),
+      deadline: '2026-07-24', source: 'qualify_form', source_page: 'second-brain-method',
+      created_at: Math.floor(Date.now()/1000)
+    }, getUTM());
+    if(window._cio){ _cio.identify(attrs); _cio.track('qualify_submitted', {biz_type: biz, revenue_band: rev, result: pass?'pass':(dfy?'dfy':'waitlist')}); }
+    clar('event', 'qualify_submitted'); clar('set', 'qualify_result', pass?'pass':(dfy?'dfy':'waitlist'));
+    if(pass){
+      if(window.fbq) fbq('track', 'CompleteRegistration', {value: 250, currency: 'USD'});
+      try{ sessionStorage.setItem('sbm_qualified','1'); }catch(e){}
+      qshow('pass');
+    } else if(dfy){
+      if(window.fbq) fbq('track', 'Lead');
+      setTimeout(function(){ window.location.href = '/call.html'; }, 250);
+    } else {
+      setTimeout(function(){ window.location.href = '/not-yet.html'; }, 250);
+    }
+  }
+
+  qmask.querySelectorAll('[data-biz]').forEach(function(b){
+    b.addEventListener('click', function(){
+      qualifyState.biz = b.getAttribute('data-biz');
+      if(qualifyState.biz === 'none'){ qualifyState.rev = 'lt5k'; qshow('3'); }
+      else qshow('2');
+    });
+  });
+  qmask.querySelectorAll('[data-rev]').forEach(function(b){
+    b.addEventListener('click', function(){ qualifyState.rev = b.getAttribute('data-rev'); qshow('3'); });
+  });
+  qmask.querySelector('.qsubmit').addEventListener('click', function(){
+    var em = qmask.querySelector('.qemail').value.trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ qmask.querySelector('.qemail').style.borderColor = 'var(--accent)'; return; }
+    routeSubmit(em);
+  });
+  qmask.querySelector('.qcheckout').addEventListener('click', goCheckout);
+  qmask.querySelector('.qdfy').addEventListener('click', function(){
+    if(window.fbq) fbq('track', 'Lead');
+    if(window._cio) _cio.track('dfy_escape_clicked');
+  });
+
+  // CTA click → qualify modal (already-qualified sessions go straight to checkout)
   document.querySelectorAll('[data-cta]').forEach(function(a){
-    a.addEventListener('click', function(){
-      var sec = a.closest('section'); var where = sec && sec.id ? sec.id : (a.closest('.bar') ? 'stickybar' : 'hero');
-      clar('event', 'checkout_click');
-      clar('set', 'checkout_from', where);
-      if(window.fbq) fbq('track', 'InitiateCheckout', {value: 250, currency: 'USD', content_name: where});
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var sec = a.closest('section'); qualifyState.from = sec && sec.id ? sec.id : (a.closest('.bar') ? 'stickybar' : 'hero');
+      var done = false; try{ done = sessionStorage.getItem('sbm_qualified') === '1'; }catch(err){}
+      if(done){ goCheckout(); return; }
+      clar('event', 'qualify_opened'); clar('set', 'qualify_from', qualifyState.from);
+      if(window.fbq) fbq('trackCustom', 'QualifyStart', {from: qualifyState.from});
+      if(window._cio) _cio.track('qualify_started', {from: qualifyState.from});
+      qshow('1');
     });
   });
 

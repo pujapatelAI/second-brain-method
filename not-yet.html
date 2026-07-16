@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not the right room yet — Puja Patel</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --on-accent:#FBF7F1;
+    --font-display:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --ground:#241C17; --surface:#2C231D; --ink:#EFE7DC; --ink-soft:#A8998A; --line:#4A3C31; --accent:#E08A5A; --on-accent:#241C17; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.65}
+  .wrap{max-width:640px; margin:0 auto; padding:72px 24px 80px}
+  h1{font-family:var(--font-display); font-size:2.1rem; letter-spacing:-.015em; margin:0 0 14px}
+  p{color:var(--ink-soft)}
+  p b{color:var(--ink)}
+  .btn{display:inline-block; background:var(--accent); color:var(--on-accent); font-weight:700; font-size:1.05rem; padding:15px 26px; border-radius:10px; text-decoration:none; margin:18px 0 6px}
+  .note{font-size:.85rem; color:var(--ink-soft); margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Not the right room for you yet — and I'd rather tell you now than take your $250.</h1>
+  <p>The founding cohort is built for <b>service-business founders doing $10k–$30k/mo</b>. The method assumes there's already a running operation to map — that's what makes hour one work.</p>
+  <p>When you're there, this works. Until then: <b>join the free community.</b> Same teaching, real frameworks, no charge — and you'll be first to know when doors open again.</p>
+  <a class="btn" id="join" href="https://aios-with-puja-patel.circle.so/">Join the free space &rarr;</a>
+  <p class="note">I share the same operational teaching there — audits, systems, the map method. Come build.</p>
+</div>
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1358901016182853'); fbq('track', 'PageView');
+  var _cio = _cio || [];
+  (function(){var a,b,c;a=function(f){return function(){_cio.push([f].concat(
+  Array.prototype.slice.call(arguments,0)))}};b=["load","identify","sidentify","track","page","on","off"];
+  for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};var t=document.createElement('script'),
+  s=document.getElementsByTagName('script')[0];t.async=true;t.id='cio-tracker';
+  t.setAttribute('data-site-id','3f7f4e3fdaf9decb1c47');t.src='https://assets.customer.io/assets/track.js';
+  s.parentNode.insertBefore(t,s)})();
+  document.getElementById('join').addEventListener('click', function(){
+    if(window._cio) _cio.track('free_space_clicked');
+  });
+</script>
+</body>
+</html>
