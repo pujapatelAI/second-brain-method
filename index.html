@@ -787,6 +787,20 @@ RULE FOR ALL SURFACES: urgency is the real date and the real cap, stated flat â€
     });
   });
 
+  /* ---- Email-click identification: links in customer.io emails carry ?e={{customer.email}}.
+     Reading it identifies this browser session, so checkout clicks attach to the real profile
+     (enables behavior-triggered abandoned cart). ---- */
+  try{
+    var qp2 = new URLSearchParams(location.search);
+    var em = qp2.get('e') || qp2.get('cio_email');
+    if(em && /@/.test(em)){
+      em = em.trim().toLowerCase();
+      localStorage.setItem('sbm_email', em);
+    }
+    var known = localStorage.getItem('sbm_email');
+    if(known && window._cio){ _cio.identify({id: known, email: known}); }
+  }catch(e){}
+
   /* ---- First-touch UTM capture (for customer.io attribution once the qualify form ships) ---- */
   try{
     var qp = new URLSearchParams(location.search), utm = {};
