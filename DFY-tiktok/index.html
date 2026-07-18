@@ -1,0 +1,1178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- UNLISTED PAGE: not linked from puja-patel.com, excluded from search + AI crawlers -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+
+<title>The Operations Audit — Puja Patel</title>
+<meta name="description" content="You're past having a demand problem. Capacity is the problem now. Four weeks to map every process in your business and hand you the order to fix it.">
+
+<!-- Deliberately no og: tags. Unlisted pages shouldn't render rich previews when the link gets shared. -->
+
+<!-- Microsoft Clarity — project "Second Brain Method" (xni1glpbqz) -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];if(y&&y.parentNode){y.parentNode.insertBefore(t,y);}else{l.head.appendChild(t);}
+  })(window, document, "clarity", "script", "xni1glpbqz");
+</script>
+
+<!-- Meta Pixel — dataset "Puja Patel Web" (1358901016182853) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1358901016182853');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></noscript>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CONFIG — the only block you need to edit.
+     ══════════════════════════════════════════════════════════════════════ -->
+<script>
+window.DFY_CONFIG = {
+
+  /* ─── ROUTING ────────────────────────────────────────────────────────
+     under $15k        → Second Brain Method
+     $15k – $30k       → $6,000 audit, direct checkout   ← the sweet spot
+     over $30k         → book a call
+     ─────────────────────────────────────────────────────────────────── */
+
+  // LIVE — Stripe, "Business Operations + AI Audit", $6,000. Verified 2026-07-18.
+  // Affirm + Klarna are enabled on it, which is the installment option.
+  AUDIT_URL:   "https://buy.stripe.com/bJedR80rKgN532C70i3VC01",
+
+  // ▸ TODO — HIGHEST PRIORITY. Everyone over $30k/mo lands here, and that's
+  //   your best segment. Blank falls back to a pre-filled email.
+  BOOKING_URL: "",
+
+  // Where sub-$15k traffic goes.
+  DWY_URL:     "https://puja-patel.com/",
+
+  /* ─── LEAD CAPTURE ─────────────────────────────────────────────────── */
+
+  // ▸ IMPORTANT. While empty, every lead is discarded. Formspree / Zapier /
+  //   Make / n8n webhook. Gets a JSON POST of every submission before any
+  //   redirect — booked, bought, or neither.
+  LEAD_WEBHOOK_URL: "",
+
+  /* ─── OBJECTION VIDEOS ─────────────────────────────────────────────────
+     Each one renders inside its matching FAQ answer. Blank = skipped.
+     Format: https://www.tiktok.com/@pujap109/video/7534...
+     ───────────────────────────────────────────────────────────────────── */
+  VIDEOS: [
+    { faq: "chatgpt",  url: "" },   // "burned by courses / could get this from Google or Claude"
+    { faq: "hiring",   url: "" },   // "do this before hiring to double your revenue"
+    { faq: "fit",      url: "" },   // "COST OF BAD OPERATIONS"
+    { faq: "nothing",  url: "" },   // "THIS IS WHAT IS MISSING IN YOUR SOPs"
+    { faq: "tools",    url: "" },   // "more tools ≠ more organized"
+    { faq: "leads",    url: "" }    // "invest in marketing, your ops need to handle the results"
+  ],
+
+  /* ─── OTHER ────────────────────────────────────────────────────────── */
+
+  // Real scarcity only. The true number of audits you run at once.
+  // Leave null and no scarcity line renders.
+  AUDIT_SLOTS: null,
+
+  PRICE: "$6,000",
+  STACK_TOTAL: "$30,000",
+  SUPPORT_EMAIL: "info@puja-patel.com",
+  CREDIT_DAYS: 14
+};
+</script>
+
+<style>
+  html{scroll-behavior:smooth}
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --surface-2:#F5EDE3;
+    --ink:#2A2320; --ink-soft:#8A7C6E; --line:#DED3C4;
+    --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22;
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:Arial,Helvetica,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+  .narrow{max-width:740px; margin:0 auto}
+
+  h1,h2,h3{font-family:var(--serif); font-weight:normal; line-height:1.16; letter-spacing:-.01em; margin:0}
+  h1{font-size:clamp(33px,5.2vw,56px)}
+  h2{font-size:clamp(26px,3.6vw,38px)}
+  h3{font-size:clamp(18px,2vw,22px)}
+  p{margin:0 0 17px}
+  a{color:var(--accent)}
+
+  .eyebrow{font-family:var(--sans); font-size:12px; font-weight:bold;
+    letter-spacing:.17em; text-transform:uppercase; color:var(--accent-bright); margin:0 0 13px}
+  .lede{font-size:clamp(17.5px,2vw,20px); color:#4A3F37}
+  .muted{color:var(--ink-soft)}
+  .flat{font-family:var(--serif); font-size:clamp(21px,2.5vw,26px); line-height:1.36; color:var(--ink)}
+
+  section{padding:66px 0; border-top:1px solid var(--line)}
+  .alt{background:var(--surface)}
+  .alt2{background:var(--surface-2)}
+
+  header{padding:22px 0; border-bottom:1px solid var(--line)}
+  .mark{font-family:var(--serif); font-size:18px}
+  .mark span{display:block; font-family:var(--sans); font-size:10px;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin-top:3px}
+
+  .hero{padding:56px 0 62px; border-top:none}
+  .hero-grid{display:grid; grid-template-columns:1fr 300px; gap:52px; align-items:start}
+  .hero h1{margin-bottom:20px}
+  .hero .lede{max-width:600px}
+  .portrait{width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; object-position:center 35%;
+    border-radius:9px; display:block; border:1px solid var(--line)}
+  .portrait-cap{font-size:13px; color:var(--ink-soft); margin:11px 0 0; line-height:1.45}
+
+  .cta-block{margin-top:30px}
+  .guar-line{font-size:14.5px; color:var(--ink-soft); margin:13px 0 0}
+  .guar-line b{color:var(--ink)}
+
+  .stat-strip{display:flex; flex-wrap:wrap; gap:34px; margin-top:38px; padding-top:26px;
+    border-top:1px solid var(--line)}
+  .stat b{display:block; font-family:var(--serif); font-size:29px; color:var(--accent); line-height:1.1}
+  .stat span{font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft)}
+
+  .btn{display:inline-block; background:var(--accent-bright); color:var(--on-accent);
+    font-family:var(--sans); font-size:16.5px; font-weight:bold; text-decoration:none;
+    padding:17px 32px; border-radius:5px; border:none; cursor:pointer;
+    transition:background .15s ease; text-align:center}
+  .btn:hover{background:var(--accent)}
+  .btn-ghost{background:transparent; color:var(--accent); border:1.5px solid var(--accent)}
+  .btn-ghost:hover{background:var(--accent); color:var(--on-accent)}
+  .btn-wide{width:100%}
+
+  .rail{background:var(--surface-2); border:1px solid var(--line); border-radius:9px;
+    padding:26px 30px; margin-top:38px; display:flex; flex-wrap:wrap; gap:18px;
+    align-items:center; justify-content:space-between}
+  .rail p{margin:0; font-family:var(--serif); font-size:20px; line-height:1.34; max-width:430px}
+  .alt2 .rail{background:var(--ground)}
+
+  .week{display:grid; grid-template-columns:92px 1fr; gap:24px; padding:20px 0;
+    border-bottom:1px solid var(--line)}
+  .week:last-child{border-bottom:none}
+  .week-n{font-family:var(--serif); font-size:13.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--accent-bright); padding-top:4px}
+  .week h3{margin-bottom:5px}
+  .week p{margin-bottom:0; color:#4A3F37}
+
+  .symptoms{list-style:none; padding:0; margin:28px 0 0;
+    display:grid; grid-template-columns:1fr 1fr; gap:0 34px}
+  .symptoms li{padding:14px 0 14px 31px; position:relative; border-bottom:1px solid var(--line);
+    font-size:16.5px; line-height:1.45}
+  .symptoms li:before{content:""; position:absolute; left:0; top:18px; width:13px; height:13px;
+    border:1.5px solid var(--accent-bright); border-radius:3px}
+
+  ul.ticks{list-style:none; padding:0; margin:0}
+  ul.ticks li{padding:12px 0 12px 29px; border-bottom:1px solid var(--line); position:relative}
+  ul.ticks li:last-child{border-bottom:none}
+  ul.ticks li:before{content:"▸"; position:absolute; left:4px; color:var(--accent-bright); font-size:14px}
+
+  /* ── the stack ── */
+  .stack{border:1px solid var(--line); border-radius:9px; overflow:hidden; margin-top:28px}
+  .stack-row{display:grid; grid-template-columns:1fr 110px; gap:20px;
+    padding:19px 24px; border-bottom:1px solid var(--line); background:var(--surface)}
+  .alt .stack-row,.alt2 .stack-row{background:var(--ground)}
+  .stack-row b{font-family:var(--serif); font-size:18px; font-weight:normal; display:block; margin-bottom:4px}
+  .stack-row p{margin:0; font-size:15.5px; color:#4A3F37; line-height:1.5}
+  .stack-val{font-family:var(--serif); font-size:19px; color:var(--ink-soft);
+    text-align:right; padding-top:2px; white-space:nowrap}
+  .stack-total{display:grid; grid-template-columns:1fr 110px; gap:20px; padding:20px 24px;
+    background:var(--surface-2); border-bottom:1px solid var(--line)}
+  .alt2 .stack-total{background:var(--surface)}
+  .stack-total b{font-family:var(--serif); font-size:19px; font-weight:normal}
+  .stack-total .stack-val{color:var(--ink); font-size:21px}
+  .stack-foot{background:var(--footer-bg); color:var(--surface); padding:26px 24px; text-align:center}
+  .stack-foot .lbl{font-family:var(--sans); font-size:11.5px; letter-spacing:.18em;
+    text-transform:uppercase; color:#A2907E; margin:0 0 6px}
+  .stack-foot .big{font-family:var(--serif); font-size:clamp(40px,6vw,58px); line-height:1; margin:0}
+  .stack-foot .sub{color:#BCAB99; font-size:14.5px; margin:12px 0 0; line-height:1.55}
+
+  .guarantee{border:1.5px solid var(--accent-bright); border-radius:9px;
+    padding:28px 30px; margin-top:34px; background:var(--surface)}
+  .alt .guarantee,.alt2 .guarantee{background:var(--ground)}
+  .guarantee h3{color:var(--accent); margin-bottom:9px}
+  .guarantee p:last-child{margin-bottom:0}
+
+  .mapbox{background:var(--surface); border:1px solid var(--line); border-radius:9px;
+    padding:22px; margin-top:30px; overflow-x:auto}
+  .alt2 .mapbox{background:var(--ground)}
+  .mapbox svg{display:block; min-width:600px; width:100%; height:auto}
+  .mapcap{font-size:13px; color:var(--ink-soft); margin:14px 0 0; line-height:1.5}
+
+  .pattern{padding:24px 0; border-bottom:1px solid var(--line)}
+  .pattern:last-child{border-bottom:none}
+  .pattern .n{font-family:var(--serif); font-size:13px; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--accent-bright); margin-bottom:7px}
+  .pattern h3{margin-bottom:8px}
+  .pattern p{margin-bottom:0; color:#4A3F37}
+  .receipt{font-size:14.5px; color:var(--ink-soft); margin-top:10px; font-style:italic}
+
+  .case{border-left:3px solid var(--accent-bright); padding:3px 0 3px 22px; margin-bottom:26px}
+  .case:last-child{margin-bottom:0}
+  .case .who{font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--accent-bright); font-weight:bold; margin-bottom:6px}
+  .case p{margin-bottom:0}
+  .nums{display:flex; flex-wrap:wrap; gap:7px; margin-top:12px}
+  .chip{background:var(--surface-2); border:1px solid var(--line); border-radius:20px;
+    padding:5px 13px; font-size:13px; color:#4A3F37}
+  .alt .chip,.alt2 .chip{background:var(--ground)}
+
+  .qbox{background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:clamp(24px,4vw,40px)}
+  .alt2 .qbox{background:var(--ground)}
+  .field{margin-bottom:22px}
+  .field:last-of-type{margin-bottom:26px}
+  label{display:block; font-size:11.5px; font-weight:bold; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px}
+  input,select,textarea{width:100%; font-family:var(--sans); font-size:16px; color:var(--ink);
+    background:var(--surface-2); border:1px solid var(--line); border-radius:5px;
+    padding:13px 14px; appearance:none}
+  .alt2 .qbox input,.alt2 .qbox select,.alt2 .qbox textarea{background:var(--surface)}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent-bright); outline-offset:-1px}
+  select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%238A7C6E' stroke-width='1.6' fill='none'/></svg>");
+    background-repeat:no-repeat; background-position:right 14px center; background-size:12px; padding-right:38px}
+  textarea{min-height:80px; resize:vertical}
+  .row{display:grid; grid-template-columns:1fr 1fr; gap:17px}
+  .err{color:#9C3226; font-size:14px; margin-top:13px; display:none}
+
+  #result{display:none; scroll-margin-top:20px}
+  .verdict{border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface)}
+  .verdict-head{padding:clamp(24px,4vw,38px); border-bottom:1px solid var(--line)}
+  .verdict-head.pass{background:var(--accent-bright); color:var(--on-accent); border-bottom:none}
+  .verdict-head.pass .eyebrow{color:rgba(251,247,241,.74)}
+  .verdict-head.pass h2{color:var(--on-accent)}
+  .price{font-family:var(--serif); font-size:clamp(42px,6.5vw,64px); line-height:1; margin:15px 0 6px}
+  .price-sub{font-size:13.5px; letter-spacing:.1em; text-transform:uppercase; opacity:.85}
+  .verdict-body{padding:clamp(24px,4vw,38px)}
+  .math{background:var(--surface-2); border-left:3px solid var(--accent-bright);
+    padding:18px 22px; margin:22px 0; border-radius:0 5px 5px 0}
+  .math p{margin:0; font-size:16px; line-height:1.6; color:#4A3F37}
+  .math b{font-family:var(--serif); font-size:19px; color:var(--ink); display:block; margin-top:8px}
+
+  /* ── cost of inaction: stated finding ── */
+  .headline-math{margin-top:26px; border-top:1px solid var(--line)}
+  .hm-row{display:flex; justify-content:space-between; align-items:baseline; gap:18px;
+    padding:16px 0; border-bottom:1px solid var(--line)}
+  .hm-row span{font-size:12px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-soft)}
+  .hm-row b{font-family:var(--serif); font-size:clamp(22px,3.1vw,32px); font-weight:normal;
+    color:var(--ink); white-space:nowrap}
+  .hm-row.big b{color:var(--accent); font-size:clamp(28px,4.4vw,42px)}
+  .calc-lead{margin:44px 0 0; font-size:12px; font-weight:bold; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--ink-soft)}
+
+  /* ── cost-of-inaction calculator ── */
+  .calc{background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:clamp(24px,4vw,36px); margin-top:30px}
+  .alt .calc,.alt2 .calc{background:var(--ground)}
+  .calc-in{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+  .calc-in label{margin-bottom:8px}
+  .calc-in select{background:var(--surface-2)}
+  .alt2 .calc-in select{background:var(--surface)}
+  .ledger{margin-top:28px; border-top:1px solid var(--line)}
+  .ledger-row{display:flex; justify-content:space-between; align-items:baseline; gap:18px;
+    padding:15px 0; border-bottom:1px solid var(--line)}
+  .ledger-row span{font-size:12px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-soft)}
+  .ledger-row b{font-family:var(--serif); font-size:clamp(22px,3vw,30px); font-weight:normal;
+    color:var(--ink); white-space:nowrap}
+  .ledger-row.big{border-bottom:none; padding-bottom:0}
+  .ledger-row.big b{color:var(--accent); font-size:clamp(30px,4.5vw,44px)}
+  .calc-punch{font-family:var(--serif); font-size:clamp(19px,2.3vw,24px); line-height:1.4;
+    margin:26px 0 0; padding-top:22px; border-top:1px solid var(--line)}
+  .calc-note{font-size:14px; color:var(--ink-soft); margin:12px 0 0; line-height:1.55}
+  .cta-row{margin-top:24px}
+  .fineprint{font-size:14px; color:var(--ink-soft); margin:13px 0 0}
+
+  details{border-bottom:1px solid var(--line); padding:18px 0}
+  details:last-of-type{border-bottom:none}
+  summary{font-family:var(--serif); font-size:18.5px; cursor:pointer; list-style:none;
+    display:flex; justify-content:space-between; gap:16px; align-items:baseline}
+  summary::-webkit-details-marker{display:none}
+  summary:after{content:"+"; color:var(--accent-bright); font-family:var(--sans); font-size:21px}
+  details[open] summary:after{content:"–"}
+  details p{margin:13px 0 0; color:#4A3F37}
+  .faq-vid{margin-top:16px; max-width:340px}
+  .tiktok-embed{margin:0 !important; max-width:100% !important; min-width:0 !important}
+
+  .final{background:var(--footer-bg); color:#EFE4D6; text-align:center; border-top:none}
+  .final h2{color:var(--surface)}
+  .final p{color:#BCAB99}
+  .final .btn{margin-top:24px}
+
+  footer{background:var(--footer-bg); color:#D9CDBF; padding:40px 0; border-top:1px solid #4A3B2E}
+  footer .mark{color:var(--surface)}
+  footer .mark span{color:#A2907E}
+  footer p{font-size:13.5px; color:#A2907E; margin:18px 0 0}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr; gap:32px}
+    .hero-photo{max-width:230px}
+  }
+  @media (max-width:760px){
+    .symptoms,.row{grid-template-columns:1fr}
+    .week{grid-template-columns:1fr; gap:5px}
+    .stack-row,.stack-total{grid-template-columns:1fr; gap:6px}
+    .stack-val{text-align:left; padding-top:0}
+    .stat-strip{gap:24px}
+    section{padding:50px 0}
+    .rail{flex-direction:column; align-items:stretch}
+    .rail .btn{width:100%}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="mark">Puja Patel<span>Fractional COO &amp; AI Strategist</span></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">The Operations Audit</p>
+        <h1>You don't have a business.<br>You have a job you own.</h1>
+        <p class="lede">You have more work than you can take. You can't take it because everything routes through you. So you cap clients, or you hire and end up fixing their work at midnight.</p>
+        <p class="lede">That's not a hiring problem. It's a structure problem — and I map it, count it, and hand you the order to fix it. Then, if you want it built, I build it.</p>
+
+        <div class="cta-block">
+          <a href="#qualify" class="btn" data-cta="hero">See if this is for you →</a>
+          <p class="guar-line"><b>Guaranteed deliverables.</b> You get the work in four weeks or you don't pay.</p>
+        </div>
+
+        <div class="stat-strip">
+          <div class="stat"><b>132</b><span>Businesses mapped</span></div>
+          <div class="stat"><b>1,214</b><span>Tasks audited, one company</span></div>
+          <div class="stat"><b>0</b><span>Templates used</span></div>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <img src="/assets/puja.jpg" alt="Puja Patel" class="portrait" width="1000" height="1250" loading="eager">
+        <p class="portrait-cap">I'm Puja. I've spent seven years inside other people's operations. You work directly with me on this.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap narrow">
+    <p class="eyebrow">The take</p>
+    <h2>Most AI consultants are selling you a one-size-fits-all solution.</h2>
+    <p style="margin-top:20px">What you actually need is someone who understands YOUR operations — your business, your handoffs, the specific place your work stops moving. Not a framework someone else got results with.</p>
+    <p>Everyone's obsessed with agents right now. Honestly, 70% of them don't solve a problem anybody had. And here's the part nobody says out loud: AI just makes whatever you already have louder. Clean operation, AI makes it faster. Messy operation, AI makes the mess faster.</p>
+    <p class="flat">You will never out-hustle bad wiring.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <p class="eyebrow">Be honest</p>
+    <h2>You're the human router.</h2>
+    <ul class="symptoms">
+      <li>Every question and decision runs through you</li>
+      <li>You've capped clients to protect quality</li>
+      <li>You tried delegating. You took it back.</li>
+      <li>Revenue went up. Take-home didn't.</li>
+      <li>It's held together with duct tape and Slack DMs</li>
+      <li>A week off and things would stall</li>
+      <li>New clients feel like dread, not income</li>
+      <li>You can't find the SOP you wrote last month</li>
+    </ul>
+    <p class="flat" style="margin-top:32px">Three or more, and this is the right page.</p>
+    <p style="margin-top:18px">Here's what's underneath all eight of those. You wrote the SOPs. They transferred the <em>steps</em>. They didn't transfer your <em>judgment</em> — which is the actual product. So the second you step back, quality drops, and you step right back in.</p>
+    <p>Then you do the thing everyone does. Add a tool. Add a hire. Add a process doc. Nine times out of ten that makes it worse, because you're layering fixes onto a structure nobody has ever actually looked at.</p>
+    <p class="flat">You're past the point of having a demand problem. You've unlocked the next level of your business — where capacity is the problem.</p>
+    <p style="margin-top:18px">That's a good problem. It's also a completely different one, and every person selling to you right now is still selling more leads.</p>
+  </div>
+</section>
+
+<section class="alt2">
+  <div class="wrap narrow">
+    <p class="eyebrow">What you get to see</p>
+    <h2>Every process in your business, on one page.</h2>
+    <p class="lede" style="margin-top:15px">Not a task list. The actual flow — what triggers what, who touches it, and the exact point work stops moving. The bottleneck stops being a feeling. It becomes a box you can point at.</p>
+
+    <div class="mapbox">
+      <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="Process map of a client delivery workflow, showing four of eight steps waiting on the owner and a rework loop">
+        <defs>
+          <marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#8A7C6E"/>
+          </marker>
+          <marker id="ahd" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#A24A28"/>
+          </marker>
+          <style>
+            .bx{font:11px Arial,Helvetica,sans-serif; fill:#2A2320}
+            .bxw{font:11px Arial,Helvetica,sans-serif; fill:#FBF7F1}
+            .own{font:8.5px Arial,Helvetica,sans-serif; fill:#8A7C6E; letter-spacing:.07em}
+            .ownw{font:8.5px Arial,Helvetica,sans-serif; fill:#E8D5C8; letter-spacing:.07em}
+            .note{font:italic 11px Georgia,serif; fill:#A24A28}
+            .lbl{font:bold 9px Arial,Helvetica,sans-serif; fill:#8A7C6E; letter-spacing:.13em}
+          </style>
+        </defs>
+
+        <text x="18" y="16" class="lbl">CLIENT DELIVERY — CURRENT STATE</text>
+
+        <!-- ROW 1 -->
+        <rect x="18"  y="34" width="132" height="50" rx="4" fill="#DED3C4"/>
+        <text x="30" y="56" class="bx">Lead comes in</text><text x="30" y="72" class="own">AUTOMATED</text>
+
+        <rect x="182" y="34" width="132" height="50" rx="4" fill="#B0532F"/>
+        <text x="194" y="56" class="bxw">Qualify</text><text x="194" y="72" class="ownw">YOU</text>
+
+        <rect x="346" y="34" width="132" height="50" rx="4" fill="#B0532F"/>
+        <text x="358" y="56" class="bxw">Scope &amp; price</text><text x="358" y="72" class="ownw">YOU</text>
+
+        <rect x="510" y="34" width="132" height="50" rx="4" fill="#DED3C4"/>
+        <text x="522" y="56" class="bx">Build the work</text><text x="522" y="72" class="own">DELIVERY TEAM</text>
+
+        <line x1="150" y1="59" x2="176" y2="59" stroke="#8A7C6E" stroke-width="1.4" marker-end="url(#ah)"/>
+        <line x1="314" y1="59" x2="340" y2="59" stroke="#8A7C6E" stroke-width="1.4" marker-end="url(#ah)"/>
+        <line x1="478" y1="59" x2="504" y2="59" stroke="#8A7C6E" stroke-width="1.4" marker-end="url(#ah)"/>
+
+        <!-- down connector (offset left so the rework loop doesn't sit on top of it) -->
+        <path d="M550,84 L550,152" stroke="#8A7C6E" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+
+        <!-- ROW 2, right to left -->
+        <rect x="510" y="158" width="132" height="50" rx="4" fill="#B0532F"/>
+        <text x="522" y="180" class="bxw">Your review</text><text x="522" y="196" class="ownw">YOU — BOTTLENECK</text>
+
+        <rect x="346" y="158" width="132" height="50" rx="4" fill="#B0532F"/>
+        <text x="358" y="180" class="bxw">Client review</text><text x="358" y="196" class="ownw">YOU</text>
+
+        <rect x="182" y="158" width="132" height="50" rx="4" fill="#DED3C4"/>
+        <text x="194" y="180" class="bx">Revisions</text><text x="194" y="196" class="own">DELIVERY TEAM</text>
+
+        <rect x="18"  y="158" width="132" height="50" rx="4" fill="#DED3C4"/>
+        <text x="30" y="180" class="bx">Invoice &amp; close</text><text x="30" y="196" class="own">OPS</text>
+
+        <line x1="504" y1="183" x2="484" y2="183" stroke="#8A7C6E" stroke-width="1.4" marker-end="url(#ah)"/>
+        <line x1="340" y1="183" x2="320" y2="183" stroke="#8A7C6E" stroke-width="1.4" marker-end="url(#ah)"/>
+        <line x1="176" y1="183" x2="156" y2="183" stroke="#8A7C6E" stroke-width="1.4" marker-end="url(#ah)"/>
+
+        <!-- rework loop: revisions back up into build -->
+        <path d="M248,158 L248,116 L600,116 L600,88" stroke="#A24A28" stroke-width="1.3" fill="none"
+              stroke-dasharray="4 3" marker-end="url(#ahd)"/>
+        <text x="266" y="110" class="note">rework loop — every pass comes back through you</text>
+
+        <!-- bottleneck callout, elbowed across to a centred caption -->
+        <path d="M576,208 L576,230 L400,230 L400,246" stroke="#A24A28" stroke-width="1.3" fill="none"/>
+        <circle cx="400" cy="246" r="2.8" fill="#A24A28"/>
+        <text x="400" y="266" class="note" text-anchor="middle">Nothing moves past here until you look at it.</text>
+        <text x="400" y="282" class="note" text-anchor="middle">4 of the 8 steps wait on the owner — and the loop runs through you twice.</text>
+      </svg>
+    </div>
+    <p class="mapcap"><b>Illustrative.</b> Yours gets built from your real processes, your real owners, your real hour counts. That's the entire point.</p>
+
+    <p style="margin-top:28px"><b>The shift is small and it changes everything:</b></p>
+    <p class="flat" style="margin-top:10px">Before: every decision → you → the work.<br>After: every decision → a rule you wrote once → the work.</p>
+    <p style="margin-top:18px">You don't stop being involved. You stop being <em>required</em>.</p>
+
+    <div class="rail">
+      <p>Stop guessing where the hours go.</p>
+      <a href="#qualify" class="btn" data-cta="map">See if this is for you →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <p class="eyebrow">The four weeks</p>
+    <h2>Nothing gets sampled.</h2>
+    <p class="lede" style="margin-top:14px">Voice memos and interviews from your side. Synthesis from mine. Your team spends hours on this, not weeks — I'm not going to hand you another project to manage.</p>
+
+    <div style="margin-top:28px">
+      <div class="week"><div class="week-n">Week 01</div><div>
+        <h3>Discovery</h3><p>I talk to everyone who touches delivery. How the work actually moves — not what the org chart says.</p></div></div>
+      <div class="week"><div class="week-n">Week 02</div><div>
+        <h3>The map</h3><p>Every recurring task, written down: what sets it off, who owns it, what "done" actually means, hours a month. Most people have never seen this number. It's usually the whole conversation.</p></div></div>
+      <div class="week"><div class="week-n">Week 03</div><div>
+        <h3>Diagnosis</h3><p>Where the hours leak. What's duplicated. Which bottlenecks are structural and which are one person buried. And where AI genuinely removes load — plus where it's theater, which I'll tell you plainly.</p></div></div>
+      <div class="week"><div class="week-n">Week 04</div><div>
+        <h3>Delivery</h3><p>The written audit, the ranked solutions, the roadmap. We walk it through together. You own all of it.</p></div></div>
+      <div class="week"><div class="week-n">After</div><div>
+        <h3>You build it, or I do</h3><p>Plenty of people take the roadmap and run it with their own team — that's a completely fine outcome and the documents are built for it. If you'd rather I build it, that's what I do the rest of the time, and the audit fee comes off the cost.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap narrow">
+    <p class="eyebrow">What I keep finding</p>
+    <h2>132 businesses in. Same three things, almost every time.</h2>
+    <p class="muted" style="margin-top:13px; font-size:15px">Anonymized by industry and scale. Every number below is delivered work — not a projection.</p>
+
+    <div style="margin-top:26px">
+      <div class="pattern">
+        <div class="n">Pattern 01</div>
+        <h3>It's an allocation problem wearing a headcount problem's clothes.</h3>
+        <p>A team is convinced they need to hire. We count the hours instead, mapped task by task against every role. A chunk of the work is sitting with the wrong people. Move the work, hire no one. The math is what tells the two apart — and almost nobody does the math first.</p>
+        <p class="receipt">In one 150-person company: roughly a quarter of the operations department's tasks were actually several tasks wearing one name, and about 20 "tasks" turned out to be entire job descriptions.</p>
+      </div>
+      <div class="pattern">
+        <div class="n">Pattern 02</div>
+        <h3>Nobody can tell you what "done" means.</h3>
+        <p>Ask three people when a task is finished and you get three answers, or you get the task read back to you. That's not sloppiness. That's the reason work bounces back to you for approval — there's no written standard for it to be checked against, so you ARE the standard.</p>
+        <p class="receipt">Same company: around 96 completion conditions just restated the task itself.</p>
+      </div>
+      <div class="pattern">
+        <div class="n">Pattern 03</div>
+        <h3>The same work is being done twice in two places.</h3>
+        <p>Different departments, different names, same output. Neither team knows about the other. This one is invisible from the inside and obvious the moment everything is on one page — which is exactly why you can't read the label from inside the jar.</p>
+        <p class="receipt">A brokerage's records: 81 duplicate-pair listings reconciled down to 47 real ones.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:30px" class="flat">An effort problem gets better when you push harder. A structure problem gets worse.</p>
+
+    <div style="margin-top:34px">
+      <div class="case">
+        <div class="who">150-person multi-location retailer</div>
+        <p>CEO had no cross-department view — every question routed to him. Reviewed all 1,214 recurring tasks individually and rebuilt the operating structure underneath them.</p>
+        <div class="nums"><span class="chip">1,214 tasks reviewed</span><span class="chip">11 departments</span><span class="chip">373 stores modeled</span></div>
+      </div>
+      <div class="case">
+        <div class="who">Regulated brokerage firm</div>
+        <p>Their Director of Ops was losing 10 hours a week to re-keying data into a CRM the team had outgrown. Replaced it, migrated the full history, didn't lose a record.</p>
+        <div class="nums"><span class="chip">25,690 records migrated</span><span class="chip">100% match rate</span></div>
+      </div>
+      <div class="case">
+        <div class="who">Bilingual recruiting firm</div>
+        <p>Recruiters each carrying up to 30 open requisitions with no shared system. Built the operating system, automated the repetitive path end to end.</p>
+        <div class="nums"><span class="chip">9 automations</span><span class="chip">0% error rate</span><span class="chip">50+ verified runs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ THE STACK ═══════════════ -->
+<section>
+  <div class="wrap narrow">
+    <p class="eyebrow">What's included</p>
+    <h2>Eight things you keep.</h2>
+    <p class="lede" style="margin-top:14px">All of it in writing, all of it specific to your business, all of it yours whether or not we ever work together again.</p>
+
+    <div class="stack">
+      <div class="stack-row"><div><b>Process maps for every process in your business</b>
+        <p>Not a task list — the actual flows, end to end, with every owner and handoff marked. This is the artifact everything else is built on.</p></div>
+        <div class="stack-val">$10,000</div></div>
+
+      <div class="stack-row"><div><b>Tech stack audit</b>
+        <p>Every tool you pay for, what it's actually doing, what it's duplicating, and which ones don't hand work to each other.</p></div>
+        <div class="stack-val">$2,500</div></div>
+
+      <div class="stack-row"><div><b>The leak analysis</b>
+        <p>Where the hours and margin are going. Duplication, bounce-backs, rework loops, work sitting at the wrong level.</p></div>
+        <div class="stack-val">$3,500</div></div>
+
+      <div class="stack-row"><div><b>The exact solutions, ranked by impact and effort</b>
+        <p>Not a list of problems. The fixes, scored both ways, so you can see what's cheap and enormous versus expensive and marginal.</p></div>
+        <div class="stack-val">$4,000</div></div>
+
+      <div class="stack-row"><div><b>AI overview — where AI actually creates leverage</b>
+        <p>Where it removes real load in your stack, and where it would just be expensive. I won't pretend to know what to build until we map it. That's the whole point.</p></div>
+        <div class="stack-val">$3,000</div></div>
+
+      <div class="stack-row"><div><b>The phased roadmap</b>
+        <p>What to fix first, what it unlocks, what can wait. In order, with reasons.</p></div>
+        <div class="stack-val">$3,500</div></div>
+
+      <div class="stack-row"><div><b>The walkthrough</b>
+        <p>We go through all of it together and you get straight answers about what you're looking at.</p></div>
+        <div class="stack-val">$1,000</div></div>
+
+      <div class="stack-row"><div><b>A private Discord channel with me and the team</b>
+        <p>Your own channel, with everyone working on your account in it. Ask a question when it occurs to you and get an answer promptly — no waiting for a weekly call, no emailing into a void.</p></div>
+        <div class="stack-val">$2,500</div></div>
+
+      <div class="stack-total"><b>What this costs to buy piecemeal</b><div class="stack-val">$30,000</div></div>
+
+      <div class="stack-foot">
+        <p class="lbl">Your price</p>
+        <p class="big">$6,000</p>
+        <p class="sub">And the fee comes off the build. Move forward within <span data-credit-days>14</span> days and the full $6,000 is credited toward implementation — so if we keep going, the audit costs you nothing on top of it.</p>
+      </div>
+    </div>
+
+    <div class="guarantee">
+      <h3>The Deliverable Guarantee</h3>
+      <p>You get all eight inside four weeks, or you don't pay. Full stop.</p>
+      <p class="muted" style="margin-bottom:0; font-size:15.5px">I guarantee what I control — the work, on time, at that standard. I don't guarantee what I don't control, which is whether it gets implemented. Anyone promising you a revenue number off an audit is selling you something else.</p>
+    </div>
+
+    <h2 style="margin-top:52px">And then I build it.</h2>
+    <p style="margin-top:18px">This is the part people miss, so I'll be direct about it: the audit isn't where I stop. Building the systems is most of what I actually do — the portals, the integrations, the AI where it earns its place, the operating documents your team runs on.</p>
+    <p>The reason the audit is sold separately is that I don't want to be the person who diagnoses the problem and also happens to be the only cure. You can take the roadmap to your own team, to an ops hire, to another firm. Plenty do.</p>
+    <p class="flat">But if you want me to build it, that's the normal next step — and the $6,000 comes off the price.</p>
+    <p style="margin-top:18px" class="muted">Builds run in the order the roadmap sets, highest impact and lowest effort first, with sign-off at every phase. Nothing counts as done until it's live and working in your business. Not delivered — working.</p>
+
+    <div class="rail">
+      <p>Four weeks from now this is either mapped, or it's another quarter of the same.</p>
+      <a href="#qualify" class="btn" data-cta="stack">See if this is for you →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ COST OF INACTION ═══════════════ -->
+<section class="alt">
+  <div class="wrap narrow">
+    <p class="eyebrow">The cost of leaving it</p>
+    <h2>Waiting isn't free. It's just not invoiced.</h2>
+    <p class="lede" style="margin-top:14px">There's no countdown on this page and I'm not going to invent one. The only real urgency here is arithmetic.</p>
+
+    <p style="margin-top:22px">Across the businesses I map, I typically find <b>10 to 15 hours a week</b> of inefficiency — work being done twice, work sitting at the wrong level, work bouncing back because nobody wrote down what "done" means. Put your time at $200 an hour and that's:</p>
+
+    <div class="headline-math">
+      <div class="hm-row"><span>Every week</span><b>$2,000 – $3,000</b></div>
+      <div class="hm-row"><span>Every month</span><b>$8,700 – $13,000</b></div>
+      <div class="hm-row big"><span>Every year</span><b>$104,000 – $156,000</b></div>
+    </div>
+
+    <p class="flat" style="margin-top:30px">$6,000 to know exactly where your leaks are.</p>
+    <p style="margin-top:16px">And not just to get the hours back. To walk away with the operational foundation underneath them — so the systems you build next can actually carry the business to the level you're aiming at, instead of buckling the moment volume arrives.</p>
+
+    <p class="calc-lead">Or run it on your own numbers:</p>
+    <div class="calc">
+      <div class="calc-in">
+        <div>
+          <label for="c-hours">Hours a week on work someone else could do</label>
+          <select id="c-hours">
+            <option value="5">5 hours</option>
+            <option value="10">10 hours</option>
+            <option value="15" selected>15 hours</option>
+            <option value="20">20 hours</option>
+            <option value="30">30 hours</option>
+          </select>
+        </div>
+        <div>
+          <label for="c-rate">What an hour of your time is worth</label>
+          <select id="c-rate">
+            <option value="50">$50</option>
+            <option value="100">$100</option>
+            <option value="150">$150</option>
+            <option value="200" selected>$200</option>
+            <option value="350">$350</option>
+            <option value="500">$500</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="ledger">
+        <div class="ledger-row"><span>Every week</span><b id="c-wk">—</b></div>
+        <div class="ledger-row"><span>Every month</span><b id="c-mo">—</b></div>
+        <div class="ledger-row big"><span>Every year</span><b id="c-yr">—</b></div>
+      </div>
+
+      <p class="calc-punch" id="c-punch">—</p>
+      <p class="calc-note" id="c-note"></p>
+    </div>
+
+    <p class="flat" style="margin-top:34px">You're not saving money by waiting. You're financing the problem.</p>
+    <p style="margin-top:16px">And it doesn't hold steady — it compounds. Every client you add runs through the same bottleneck, so the leak gets wider at exactly the moment things are going well. That's why it usually gets addressed after something breaks instead of before.</p>
+
+    <div class="rail">
+      <p>The number above doesn't stop while you think about it.</p>
+      <a href="#qualify" class="btn" data-cta="coi">See if this is for you →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ QUALIFIER ═══════════════ -->
+<section id="qualify" class="alt2">
+  <div class="wrap narrow">
+    <p class="eyebrow">Check your fit</p>
+    <h2>Two minutes. Straight answer either way.</h2>
+    <p class="lede" style="margin-top:14px">This isn't right for every business, and I'd rather tell you here than take your money and find out in week two. Answer honestly and you'll get a real answer.</p>
+    <p class="muted" id="slots" style="display:none; margin-top:10px; font-size:15px"></p>
+
+    <form class="qbox" id="qform" style="margin-top:28px" novalidate>
+      <div class="row">
+        <div class="field"><label for="f-name">Your name</label>
+          <input type="text" id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-email">Email</label>
+          <input type="email" id="f-email" name="email" autocomplete="email" required></div>
+      </div>
+      <div class="field"><label for="f-company">Company</label>
+        <input type="text" id="f-company" name="company" autocomplete="organization" required></div>
+      <div class="field"><label for="f-rev">Monthly revenue</label>
+        <select id="f-rev" name="revenue" required>
+          <option value="">Select…</option>
+          <option value="0">Under $10k/mo</option>
+          <option value="1">$10k – $15k/mo</option>
+          <option value="2">$15k – $30k/mo</option>
+          <option value="3">$30k – $75k/mo</option>
+          <option value="4">$75k+/mo</option>
+        </select></div>
+      <div class="row">
+        <div class="field"><label for="f-team">Team size</label>
+          <select id="f-team" name="team" required>
+            <option value="">Select…</option>
+            <option value="solo">Just me</option>
+            <option value="2-9">2 – 9 people</option>
+            <option value="10-49">10 – 49 people</option>
+            <option value="50-199">50 – 199 people</option>
+            <option value="200+">200+ people</option>
+          </select></div>
+        <div class="field"><label for="f-hours">Hours a week on work someone else could do</label>
+          <select id="f-hours" name="hours" required>
+            <option value="">Select…</option>
+            <option value="5">Under 5</option>
+            <option value="5">5 – 10</option>
+            <option value="10">10 – 20</option>
+            <option value="20">20+</option>
+          </select></div>
+      </div>
+      <div class="field"><label for="f-industry">Industry</label>
+        <input type="text" id="f-industry" name="industry" placeholder="e.g. marketing agency" required></div>
+      <div class="field"><label for="f-pain">What breaks first when you step away for a week?</label>
+        <textarea id="f-pain" name="pain" placeholder="Be specific — this is what I look at first."></textarea></div>
+
+      <input type="text" name="website_url" id="f-hp" tabindex="-1" autocomplete="off"
+             aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+
+      <button type="submit" class="btn btn-wide" data-cta="qualify">Show me where I land →</button>
+      <p class="err" id="qerr">Fill in the required fields and I'll give you a straight answer.</p>
+    </form>
+
+    <div id="result" style="margin-top:28px"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ FAQ / OBJECTIONS ═══════════════ -->
+<section id="faq">
+  <div class="wrap narrow">
+    <p class="eyebrow">Before you ask</p>
+    <h2>Everything people ask me.</h2>
+    <div style="margin-top:24px">
+
+      <details data-faq="fit"><summary>Will this work for me?</summary>
+        <p>It works if you're founder-led, past roughly $15k a month, and the thing capping you is delivery rather than demand. If you're turning work away, re-doing your team's work, or you're the approval step on everything — yes.</p>
+        <p>It won't work if your problem is lead generation. This fixes capacity, not pipeline, and I'll tell you that on day one rather than take the money. It also won't work if you want someone to hand it to and never think about it again — this is the diagnosis, and you have to be willing to act on it.</p></details>
+
+      <details data-faq="nothing"><summary>What if you don't find anything?</summary>
+        <p>In 132 businesses that hasn't happened once — but here's the honest version of the answer. If I map your operation and the work genuinely is allocated correctly, you get the document that proves it, which is worth having the next time you're deciding whether to hire.</p>
+        <p>What I won't do is manufacture a problem to justify the invoice. If the finding is small, I'll say it's small.</p></details>
+
+      <details data-faq="chatgpt"><summary>How is this different from ChatGPT?</summary>
+        <p>You should ask that. Genuinely — if you can get a real answer for free, go get it.</p>
+        <p>Here's the only difference that matters. A model gives you an excellent generic answer. It has never seen your handoffs. It doesn't know your ops lead is quietly carrying two roles, or that work bounces back every time because one completion condition in week three was never defined. I've mapped 132 businesses and not one got a generic answer, because the finding is always in the specifics — and the specifics only exist inside your business.</p></details>
+
+      <details data-faq="hiring"><summary>Should I just hire an ops person instead?</summary>
+        <p>Maybe. But you'd be hiring them into the same undocumented mess, which is why the last one didn't work. Nine times out of ten "we need to hire" turns out to be "we've allocated the work wrong," and the math is what tells the two apart.</p>
+        <p>If you do need the hire, this tells you exactly which role, carrying which tasks, and what has to be written down before they start. That's a cheaper way to find out than a bad hire and six months.</p></details>
+
+      <details data-faq="tools"><summary>Won't a better tool fix this?</summary>
+        <p>Tools don't make you organized. They make whatever you already have louder. Most of the stacks I audit have three tools doing the same job and none of them handing work to each other — that's a wiring problem, and buying a fourth tool doesn't fix wiring.</p></details>
+
+      <details data-faq="leads"><summary>Shouldn't I be spending this on marketing?</summary>
+        <p>If you're not at capacity, yes — go get leads, this isn't for you yet.</p>
+        <p>If you're already turning work away, more leads make it worse. You'd be paying to increase the pressure on the exact part that's breaking. Get the delivery side able to absorb it, then spend on marketing and actually keep what it brings.</p></details>
+
+      <details data-faq="cost-after"><summary>What does it cost to continue after this?</summary>
+        <p>It depends entirely on what the roadmap says, and I won't quote you before I know. Some businesses walk away and implement it themselves for nothing. Some want a few weeks of focused build. Some want a longer engagement.</p>
+        <p>You'll get a real number at the walkthrough, once we both know what we're looking at — and the $6,000 comes off it if you move within <span data-credit-days>14</span> days.</p></details>
+
+      <details data-faq="build"><summary>Do you offer to build it?</summary>
+        <p>Yes — building is most of what I do. Portals, integrations, the operating documents your team runs on, AI where it actually earns its place. The audit is the front end of that, not a standalone product I sell and walk away from.</p>
+        <p>It's priced separately on purpose. I don't want to be the person who diagnoses the problem and also happens to be the only cure — you should be able to take the roadmap to your own team or another firm, and some people do. But if you want me to build it, that's the normal next step and the $6,000 comes off it.</p></details>
+
+      <details data-faq="build-how"><summary>How do the builds work?</summary>
+        <p>In the order the roadmap sets. Discovery is already done, so we start with the highest-impact, lowest-effort item and work down. You sign off on each phase before the next one starts.</p>
+        <p>Nothing is considered done until it's live and working in your business. Not delivered — working.</p></details>
+
+      <details data-faq="access"><summary>How do you get access to this data?</summary>
+        <p>Mostly by asking. Interviews with the people doing the work, voice memos your team records whenever it suits them, and read-only access to the systems you already use so I can see actual volumes instead of guesses.</p>
+        <p>I ask for the minimum I need, you can scope it, and I'll sign whatever your legal side wants signed. I've worked inside HIPAA-aligned environments — I'm not casual about this.</p></details>
+
+      <details data-faq="effort"><summary>What do I actually have to do?</summary>
+        <p>Hours, not weeks. One kickoff conversation, an intake questionnaire, point me at the right people and systems, and record voice memos when something occurs to you. Your team sits for interviews.</p>
+        <p>Then you show up to the walkthrough. I do the synthesis — you're not getting another project to manage, which would rather defeat the purpose.</p></details>
+
+      <details data-faq="timeline"><summary>Is the four weeks a fixed timeline?</summary>
+        <p>Yes, and that's what the guarantee is about — deliverables in four weeks or you don't pay.</p>
+        <p>One honest caveat: the clock assumes I can get interviews scheduled in week one. If your team can't make time, the timeline moves and I'll tell you immediately rather than quietly slip. That's the only thing that changes it.</p></details>
+
+      <details data-faq="guarantee"><summary>What does the guarantee cover?</summary>
+        <p>The deliverables. All eight, inside four weeks, or you don't pay. It doesn't cover outcomes I can't control — implementation is on you, and I'd rather say that plainly than dress it up as something bigger.</p></details>
+
+      <details data-faq="installments"><summary>Can I pay in installments?</summary>
+        <p>Yes. Affirm and Klarna are both on the checkout, so you can split it without any separate arrangement with me.</p>
+        <p>If you're running into errors at checkout, send an email to <a href="mailto:info@puja-patel.com">info@puja-patel.com</a> and we'll sort it out — don't just give up on it.</p></details>
+
+      <details data-faq="after-pay"><summary>What happens right after I pay?</summary>
+        <p>Intake questionnaire and a link to book kickoff. Discovery starts that week — nothing sits in a queue.</p></details>
+
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap narrow">
+    <h2>You've known this for months.</h2>
+    <p class="lede" style="color:#BCAB99; margin-top:16px">Four weeks from now it's either mapped and sequenced, or it's another quarter of being the thing the business can't run without. You're not saving money by waiting. You're financing the problem.</p>
+    <a href="#qualify" class="btn" data-cta="final">See if this is for you →</a>
+    <p style="font-size:14px; margin-top:16px">Deliverables guaranteed · Fee credited toward the build</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="mark">Puja Patel<span>Fractional COO &amp; AI Strategist</span></div>
+    <p>Puja Patel LLC · <a href="mailto:info@puja-patel.com" style="color:#D9CDBF">info@puja-patel.com</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var CFG = window.DFY_CONFIG;
+
+  [].forEach.call(document.querySelectorAll('[data-credit-days]'), function(el){
+    el.textContent = CFG.CREDIT_DAYS;
+  });
+
+  if (typeof CFG.AUDIT_SLOTS === 'number' && CFG.AUDIT_SLOTS > 0) {
+    var s = document.getElementById('slots');
+    s.textContent = 'I run ' + CFG.AUDIT_SLOTS + ' of these at a time. When they’re full the next start date is the following month.';
+    s.style.display = 'block';
+  }
+
+  /* ── objection videos, rendered inside their matching FAQ ── */
+  (function(){
+    var live = (CFG.VIDEOS || []).filter(function(v){ return v.url && v.url.trim(); });
+    if (!live.length) return;
+    var any = false;
+    live.forEach(function(v){
+      var host = document.querySelector('details[data-faq="' + v.faq + '"]');
+      if (!host) return;
+      any = true;
+      var id = (v.url.match(/\/video\/(\d+)/) || [])[1] || '';
+      var box = document.createElement('div');
+      box.className = 'faq-vid';
+      var bq = document.createElement('blockquote');
+      bq.className = 'tiktok-embed';
+      bq.setAttribute('cite', v.url);
+      if (id) bq.setAttribute('data-video-id', id);
+      bq.appendChild(document.createElement('section'));
+      var a = document.createElement('a');
+      a.href = v.url; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = 'Watch on TikTok';
+      bq.appendChild(a);
+      box.appendChild(bq);
+      host.appendChild(box);
+    });
+    if (!any) return;
+    var loaded = false;
+    function hydrate(){
+      if (loaded) return; loaded = true;
+      var s = document.createElement('script');
+      s.async = true; s.src = 'https://www.tiktok.com/embed.js';
+      document.body.appendChild(s);
+    }
+    var faq = document.getElementById('faq');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (e.isIntersecting) { hydrate(); io.disconnect(); } });
+      }, { rootMargin: '400px' });
+      io.observe(faq);
+    } else { hydrate(); }
+  })();
+
+  /* ── cost-of-inaction calculator: their numbers, their arithmetic ── */
+  (function(){
+    var hEl = document.getElementById('c-hours'),
+        rEl = document.getElementById('c-rate');
+    if (!hEl || !rEl) return;
+
+    var wkEl = document.getElementById('c-wk'),
+        moEl = document.getElementById('c-mo'),
+        yrEl = document.getElementById('c-yr'),
+        pEl  = document.getElementById('c-punch'),
+        nEl  = document.getElementById('c-note');
+
+    function money(n){ return '$' + Math.round(n).toLocaleString(); }
+
+    function render(){
+      var h = parseInt(hEl.value, 10), r = parseInt(rEl.value, 10);
+      var wk = h * r, mo = wk * 4.33, yr = wk * 52;
+      var weeksOfYou = Math.round((h * 52) / 40);
+
+      wkEl.textContent = money(wk);
+      moEl.textContent = money(mo);
+      yrEl.textContent = money(yr);
+
+      /* Payback measured in weeks of the leak — scale-free, so the comparison
+         holds at every input rather than only for big numbers. Strong framing
+         only when the fee really is small against the bleed. */
+      var wksToPay = 6000 / wk;
+      var punch, note;
+
+      if (wksToPay <= 13) {
+        punch = 'The audit is $6,000. At your numbers that’s about '
+          + (wksToPay < 1.5 ? 'one week' : Math.round(wksToPay) + ' weeks')
+          + ' of what you’re already losing.';
+        note = 'And ' + money(yr) + ' a year is ' + h + ' hours a week — roughly '
+          + weeksOfYou + ' working weeks of your own time, going to work that isn’t yours to do.';
+      } else {
+        punch = 'The audit is $6,000 — around ' + Math.round(wksToPay)
+          + ' weeks of this at your numbers.';
+        note = 'That’s a real chunk of the leak, so be honest about whether it’s worth it yet. '
+          + 'If the number above is small, fix the cheap things first and come back when it isn’t. '
+          + 'I’d rather say that than take the money.';
+      }
+      pEl.textContent = punch;
+      nEl.textContent = note;
+    }
+
+    hEl.addEventListener('change', render);
+    rEl.addEventListener('change', render);
+    render();
+  })();
+
+  try {
+    var p = new URLSearchParams(location.search), u = {};
+    ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){
+      if (p.get(k)) u[k] = p.get(k);
+    });
+    if (Object.keys(u).length) localStorage.setItem('dfy_utm', JSON.stringify(u));
+  } catch(e){}
+  function utms(){
+    try { return JSON.parse(localStorage.getItem('dfy_utm') || '{}'); } catch(e){ return {}; }
+  }
+
+  function pixel(ev, custom, data){
+    if (!window.fbq) return;
+    custom ? fbq('trackCustom', ev, data || {}) : fbq('track', ev, data || {});
+  }
+  function cio(ev, data){ if (window._cio && _cio.track) _cio.track(ev, data || {}); }
+
+  [].forEach.call(document.querySelectorAll('[data-cta]'), function(el){
+    if (el.getAttribute('data-cta') === 'qualify') return;
+    el.addEventListener('click', function(){
+      var loc = el.getAttribute('data-cta');
+      pixel('HeroCTA', true, { location: loc });
+      cio('cta_clicked', { location: loc });
+    });
+  });
+
+  try {
+    var seen = {};
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting && !seen[e.target.id]) {
+          seen[e.target.id] = 1;
+          pixel('Scroll_' + e.target.id, true);
+          cio('viewed_' + e.target.id);
+        }
+      });
+    }, { threshold: 0.4 });
+    ['qualify','faq'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) io2.observe(el);
+    });
+  } catch(e){}
+
+  var form   = document.getElementById('qform');
+  var errEl  = document.getElementById('qerr');
+  var result = document.getElementById('result');
+  var started = false;
+
+  form.addEventListener('focusin', function(){
+    if (started) return;
+    started = true;
+    pixel('QualifyStart', true);
+    cio('qualify_started', { page: 'dfy-tiktok' });
+  });
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c];
+    });
+  }
+
+  /* ── routing: <15k → DWY · 15–30k → buy · >30k → call ── */
+  function routeFor(band){
+    if (band <= 1) return 'dwy';
+    if (band === 2) return 'buy';
+    return 'call';
+  }
+
+  /* their own arithmetic, on their own number — never an invented rate */
+  function hoursMath(h){
+    var yearly = h * 52;
+    var weeks  = Math.round(yearly / 40);
+    return '<div class="math"><p>You said about ' + h + ' hours a week on work someone else could be doing. '
+      + 'Take that at face value — ' + h + ' &times; 52 weeks.'
+      + '<b>' + yearly.toLocaleString() + ' hours a year. Roughly ' + weeks + ' working weeks '
+      + 'you’re donating to being the middleman.</b></p></div>';
+  }
+
+  function saveLead(payload){
+    if (!CFG.LEAD_WEBHOOK_URL) {
+      if (window.console) console.warn('[DFY] LEAD_WEBHOOK_URL is empty — this lead was not saved.');
+      return;
+    }
+    try {
+      var body = JSON.stringify(payload);
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(CFG.LEAD_WEBHOOK_URL, new Blob([body], {type:'application/json'}));
+      } else {
+        fetch(CFG.LEAD_WEBHOOK_URL, { method:'POST', mode:'no-cors', keepalive:true,
+          headers:{'Content-Type':'application/json'}, body: body });
+      }
+    } catch(e){}
+  }
+
+  var STACK = '<ul class="ticks">'
+    + '<li>Process maps for every process in your business</li>'
+    + '<li>Tech stack audit</li>'
+    + '<li>The leak analysis</li>'
+    + '<li>The exact solutions, ranked by impact and effort</li>'
+    + '<li>AI overview — where AI actually creates leverage</li>'
+    + '<li>The phased roadmap</li>'
+    + '<li>The walkthrough</li>'
+    + '<li>A private Discord channel with me and the team</li></ul>';
+
+  function renderBuy(d){
+    return '<div class="verdict">'
+      + '<div class="verdict-head pass">'
+      +   '<p class="eyebrow">You’re a fit, ' + esc(d.name.split(' ')[0]) + '</p>'
+      +   '<h2>The Operations Audit</h2>'
+      +   '<div class="price">' + CFG.PRICE + '</div>'
+      +   '<div class="price-sub">Four weeks · Deliverables guaranteed · Credited toward the build</div>'
+      + '</div>'
+      + '<div class="verdict-body">'
+      +   '<p>At ' + esc(d.revenueLabel) + ' with ' + esc(d.teamLabel) + ', you’re right in the middle of where this works. Big enough that the structure is the constraint, small enough that fixing it moves everything.</p>'
+      +   hoursMath(d.hours)
+      +   STACK
+      +   '<div class="cta-row"><a href="' + CFG.AUDIT_URL + '" class="btn btn-wide" id="co">Book the audit — ' + CFG.PRICE + ' →</a></div>'
+      +   '<p class="fineprint">All eight delivered in four weeks or you don’t pay. Want it built after? That’s the normal next step — move forward within '
+      +     CFG.CREDIT_DAYS + ' days and the full fee comes off the build. Affirm and Klarna are on the checkout if you’d rather split it. Discovery starts the same week.</p>'
+      +   '<p class="fineprint">Running into errors at checkout? Email <a href="mailto:' + CFG.SUPPORT_EMAIL + '">'
+      +     CFG.SUPPORT_EMAIL + '</a> and we’ll sort it out.</p>'
+      + '</div></div>';
+  }
+
+  function renderCall(d){
+    var cta = CFG.BOOKING_URL
+      ? '<a href="' + CFG.BOOKING_URL + '" class="btn btn-wide" id="co">Book a scoping call →</a>'
+      : '<a href="mailto:info@puja-patel.com?subject=' + encodeURIComponent('Operations Audit — scoping')
+        + '" class="btn btn-wide" id="co">Email me to scope it →</a>';
+    return '<div class="verdict">'
+      + '<div class="verdict-head pass">'
+      +   '<p class="eyebrow">You’re past the standard audit, ' + esc(d.name.split(' ')[0]) + '</p>'
+      +   '<h2>Yours needs scoping first.</h2>'
+      + '</div>'
+      + '<div class="verdict-body">'
+      +   '<p>At ' + esc(d.revenueLabel) + ' with ' + esc(d.teamLabel) + ', there are more departments, more handoffs and more processes than the four-week version covers. Quoting you off a form would be guessing, and I’d rather not guess with your money.</p>'
+      +   '<p>Same method. Same deliverables. Scoped to what’s actually there — and we can talk about the build at the same time, since that’s usually where this goes.</p>'
+      +   hoursMath(d.hours)
+      +   STACK
+      +   '<div class="cta-row">' + cta + '</div>'
+      +   '<p class="fineprint">Short call, no deck. I’ll tell you what it would take, what it would cost, and whether it’s worth doing at all.</p>'
+      + '</div></div>';
+  }
+
+  function renderDwy(d){
+    return '<div class="verdict">'
+      + '<div class="verdict-head">'
+      +   '<p class="eyebrow">Straight answer</p>'
+      +   '<h2>The audit isn’t the right spend for you yet.</h2>'
+      + '</div>'
+      + '<div class="verdict-body">'
+      +   '<p>' + esc(d.name.split(' ')[0]) + ' — at ' + esc(d.revenueLabel) + ' this is too big a bite, and I’m not going to sell you one.</p>'
+      +   '<p>At your stage the constraint usually isn’t a hidden structural problem. It’s that everything lives in your head and nothing is pulling it out. Smaller problem. Cheaper fix.</p>'
+      +   hoursMath(d.hours)
+      +   '<ul class="ticks"><li>Your business mapped in the first hour, with your #1 bottleneck named</li>'
+      +   '<li>A 30-day plan built around one move — not twelve</li>'
+      +   '<li>A room of operators working on the same thing</li>'
+      +   '<li>A fresh map every 30 days as things change</li></ul>'
+      +   '<div class="cta-row"><a href="' + CFG.DWY_URL + '" class="btn btn-ghost btn-wide" id="co">See the Second Brain Method — $250/mo →</a></div>'
+      +   '<p class="fineprint">When you’re consistently past $15k/mo, come back to this page.</p>'
+      + '</div></div>';
+  }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var f = form.elements;
+    if (f['website_url'] && f['website_url'].value) return;
+
+    var d = {
+      name:     f['name'].value.trim(),
+      email:    f['email'].value.trim(),
+      company:  f['company'].value.trim(),
+      revenue:  f['revenue'].value,
+      team:     f['team'].value,
+      hours:    parseInt(f['hours'].value, 10),
+      industry: f['industry'].value.trim(),
+      pain:     f['pain'].value.trim()
+    };
+
+    var ok = d.name && d.company && d.revenue !== '' && d.team && f['hours'].value && d.industry
+             && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email);
+    if (!ok) { errEl.style.display = 'block'; return; }
+    errEl.style.display = 'none';
+
+    d.revenueLabel = f['revenue'].options[f['revenue'].selectedIndex].text.toLowerCase();
+    d.teamLabel    = f['team'].options[f['team'].selectedIndex].text.toLowerCase();
+
+    var route = routeFor(parseInt(d.revenue, 10));
+
+    var payload = {
+      email: d.email, name: d.name, company: d.company,
+      revenue_band: d.revenueLabel, team_size: d.teamLabel,
+      offload_hours_per_week: d.hours, industry: d.industry, pain: d.pain,
+      route: route, source_page: 'dfy-tiktok'
+    };
+    Object.keys(utms()).forEach(function(k){ payload[k] = utms()[k]; });
+
+    saveLead(payload);
+    if (window._cio && _cio.identify) _cio.identify(payload);
+    if (window.clarity) clarity('set', 'route', route);
+
+    if (route === 'buy') {
+      pixel('CompleteRegistration', false, { value: 6000, currency: 'USD' });
+      cio('qualified_audit', payload);
+      result.innerHTML = renderBuy(d);
+    } else if (route === 'call') {
+      pixel('Lead', false, { content_name: 'scoping_call' });
+      cio('qualified_call', payload);
+      result.innerHTML = renderCall(d);
+    } else {
+      pixel('NotFit', true, { revenue_band: d.revenueLabel });
+      cio('not_fit', payload);
+      result.innerHTML = renderDwy(d);
+    }
+    result.style.display = 'block';
+
+    var co = document.getElementById('co');
+    if (co) {
+      co.addEventListener('click', function(){
+        pixel('InitiateCheckout', false, { value: route === 'buy' ? 6000 : 0, currency: 'USD' });
+        cio('checkout_clicked', { route: route });
+      });
+    }
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
+
+</body>
+</html>
