@@ -998,17 +998,17 @@ window.DFY_CONFIG = {
   }
 
   /* ── routing ──────────────────────────────────────────────────────────
-     Self-serve checkout requires BOTH:
-       revenue $15–30k/mo  AND  fewer than 10 people.
-     Anything larger on either axis gets scoped on a call; anything
-     smaller on revenue goes to the Second Brain Method.
+     Under $15k/mo          → Second Brain Method
+     $15k+ and under 10     → $6,000 self-serve checkout
+     $15k+ and 10 or more   → scoping call
+     Above the revenue floor, headcount is the only gate: a lean team is
+     scopeable at a fixed price no matter how much revenue it does.
      ─────────────────────────────────────────────────────────────────── */
   var SMALL_TEAMS = { 'solo': 1, '2-9': 1 };
 
   function routeFor(band, team){
     if (band <= 1) return 'dwy';
-    if (band === 2 && SMALL_TEAMS[team]) return 'buy';
-    return 'call';
+    return SMALL_TEAMS[team] ? 'buy' : 'call';
   }
 
   function saveLead(payload){
@@ -1037,7 +1037,18 @@ window.DFY_CONFIG = {
     + '<li>The walkthrough</li>'
     + '<li>A private Discord channel with me and the team</li></ul>';
 
-  function renderBuy(d){
+  function renderBuy(d, band){
+    /* band 2 is the classic sweet spot; 3+ is a lean team doing serious
+       revenue, which is a different (and better) story to tell them */
+    var opener = (band >= 3)
+      ? 'At ' + esc(d.revenueLabel) + ' with ' + esc(d.teamLabel) + ', you’re running real revenue on '
+        + 'a small team. That’s leverage — and it also means anything routing through you is expensive, '
+        + 'because there’s nobody spare to absorb it. A team this lean is exactly what a fixed four-week '
+        + 'scope is built for.'
+      : 'At ' + esc(d.revenueLabel) + ' with ' + esc(d.teamLabel) + ', you’re right in the middle of '
+        + 'where this works. Big enough that the structure is the constraint, small enough that fixing '
+        + 'it moves everything.';
+
     return '<div class="verdict">'
       + '<div class="verdict-head pass">'
       +   '<p class="eyebrow">You’re a fit, ' + esc(d.name.split(' ')[0]) + '</p>'
@@ -1046,7 +1057,7 @@ window.DFY_CONFIG = {
       +   '<div class="price-sub">Four weeks · Deliverables guaranteed · Credited toward the build</div>'
       + '</div>'
       + '<div class="verdict-body">'
-      +   '<p>At ' + esc(d.revenueLabel) + ' with ' + esc(d.teamLabel) + ', you’re right in the middle of where this works. Big enough that the structure is the constraint, small enough that fixing it moves everything.</p>'
+      +   '<p>' + opener + '</p>'
       +   STACK
       +   '<div class="cta-row"><a href="' + CFG.AUDIT_URL + '" class="btn btn-wide" id="co">Book the audit — ' + CFG.PRICE + ' →</a></div>'
       +   '<p class="fineprint">All eight delivered in four weeks or you don’t pay. Want it built after? That’s the normal next step — move forward within '
@@ -1056,20 +1067,16 @@ window.DFY_CONFIG = {
       + '</div></div>';
   }
 
-  function renderCall(d, why){
+  function renderCall(d){
     var cta = CFG.BOOKING_URL
       ? '<a href="' + CFG.BOOKING_URL + '" class="btn btn-wide" id="co">Book a scoping call →</a>'
       : '<a href="mailto:info@puja-patel.com?subject=' + encodeURIComponent('Operations Audit — scoping')
         + '" class="btn btn-wide" id="co">Email me to scope it →</a>';
 
-    /* name the actual reason they landed here — headcount or revenue */
-    var opener = (why === 'team')
-      ? 'With ' + esc(d.teamLabel) + ', you have more roles and more handoffs between them than the '
-        + 'four-week version is built for. Every extra person is another set of hand-offs to map, and '
-        + 'quoting that off a form would be guessing.'
-      : 'At ' + esc(d.revenueLabel) + ' there’s more moving through the business than the four-week '
-        + 'version is built to cover — more processes, more handoffs, more places it can stall. '
-        + 'Quoting that off a form would be guessing, and I’d rather not guess with your money.';
+    /* headcount is the only route to this panel — revenue no longer sends anyone here */
+    var opener = 'With ' + esc(d.teamLabel) + ', you have more roles and more handoffs between them '
+      + 'than the four-week version is built for. Every extra person is another set of handoffs to '
+      + 'map, and quoting that off a form would be guessing.';
 
     return '<div class="verdict">'
       + '<div class="verdict-head pass">'
@@ -1127,14 +1134,11 @@ window.DFY_CONFIG = {
 
     var band  = parseInt(d.revenue, 10);
     var route = routeFor(band, d.team);
-    /* if they're in the revenue sweet spot, headcount is what sent them to a call */
-    var callReason = (band === 2) ? 'team' : 'revenue';
 
     var payload = {
       email: d.email, name: d.name, company: d.company,
       revenue_band: d.revenueLabel, team_size: d.teamLabel,
       industry: d.industry, route: route,
-      call_reason: route === 'call' ? callReason : null,
       source_page: 'dfy-tiktok'
     };
     Object.keys(utms()).forEach(function(k){ payload[k] = utms()[k]; });
@@ -1146,11 +1150,11 @@ window.DFY_CONFIG = {
     if (route === 'buy') {
       pixel('CompleteRegistration', false, { value: 6000, currency: 'USD' });
       cio('qualified_audit', payload);
-      result.innerHTML = renderBuy(d);
+      result.innerHTML = renderBuy(d, band);
     } else if (route === 'call') {
       pixel('Lead', false, { content_name: 'scoping_call' });
       cio('qualified_call', payload);
-      result.innerHTML = renderCall(d, callReason);
+      result.innerHTML = renderCall(d);
     } else {
       pixel('NotFit', true, { revenue_band: d.revenueLabel });
       cio('not_fit', payload);
