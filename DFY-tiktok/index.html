@@ -730,19 +730,9 @@ window.DFY_CONFIG = {
             <option value="50-199">50 – 199 people</option>
             <option value="200+">200+ people</option>
           </select></div>
-        <div class="field"><label for="f-hours">Hours a week on work someone else could do</label>
-          <select id="f-hours" name="hours" required>
-            <option value="">Select…</option>
-            <option value="5">Under 5</option>
-            <option value="5">5 – 10</option>
-            <option value="10">10 – 20</option>
-            <option value="20">20+</option>
-          </select></div>
+        <div class="field"><label for="f-industry">Industry</label>
+          <input type="text" id="f-industry" name="industry" placeholder="e.g. marketing agency" required></div>
       </div>
-      <div class="field"><label for="f-industry">Industry</label>
-        <input type="text" id="f-industry" name="industry" placeholder="e.g. marketing agency" required></div>
-      <div class="field"><label for="f-pain">What breaks first when you step away for a week?</label>
-        <textarea id="f-pain" name="pain" placeholder="Be specific — this is what I look at first."></textarea></div>
 
       <input type="text" name="website_url" id="f-hp" tabindex="-1" autocomplete="off"
              aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
@@ -1007,21 +997,18 @@ window.DFY_CONFIG = {
     });
   }
 
-  /* ── routing: <15k → DWY · 15–30k → buy · >30k → call ── */
-  function routeFor(band){
-    if (band <= 1) return 'dwy';
-    if (band === 2) return 'buy';
-    return 'call';
-  }
+  /* ── routing ──────────────────────────────────────────────────────────
+     Self-serve checkout requires BOTH:
+       revenue $15–30k/mo  AND  fewer than 10 people.
+     Anything larger on either axis gets scoped on a call; anything
+     smaller on revenue goes to the Second Brain Method.
+     ─────────────────────────────────────────────────────────────────── */
+  var SMALL_TEAMS = { 'solo': 1, '2-9': 1 };
 
-  /* their own arithmetic, on their own number — never an invented rate */
-  function hoursMath(h){
-    var yearly = h * 52;
-    var weeks  = Math.round(yearly / 40);
-    return '<div class="math"><p>You said about ' + h + ' hours a week on work someone else could be doing. '
-      + 'Take that at face value — ' + h + ' &times; 52 weeks.'
-      + '<b>' + yearly.toLocaleString() + ' hours a year. Roughly ' + weeks + ' working weeks '
-      + 'you’re donating to being the middleman.</b></p></div>';
+  function routeFor(band, team){
+    if (band <= 1) return 'dwy';
+    if (band === 2 && SMALL_TEAMS[team]) return 'buy';
+    return 'call';
   }
 
   function saveLead(payload){
@@ -1060,7 +1047,6 @@ window.DFY_CONFIG = {
       + '</div>'
       + '<div class="verdict-body">'
       +   '<p>At ' + esc(d.revenueLabel) + ' with ' + esc(d.teamLabel) + ', you’re right in the middle of where this works. Big enough that the structure is the constraint, small enough that fixing it moves everything.</p>'
-      +   hoursMath(d.hours)
       +   STACK
       +   '<div class="cta-row"><a href="' + CFG.AUDIT_URL + '" class="btn btn-wide" id="co">Book the audit — ' + CFG.PRICE + ' →</a></div>'
       +   '<p class="fineprint">All eight delivered in four weeks or you don’t pay. Want it built after? That’s the normal next step — move forward within '
@@ -1070,20 +1056,29 @@ window.DFY_CONFIG = {
       + '</div></div>';
   }
 
-  function renderCall(d){
+  function renderCall(d, why){
     var cta = CFG.BOOKING_URL
       ? '<a href="' + CFG.BOOKING_URL + '" class="btn btn-wide" id="co">Book a scoping call →</a>'
       : '<a href="mailto:info@puja-patel.com?subject=' + encodeURIComponent('Operations Audit — scoping')
         + '" class="btn btn-wide" id="co">Email me to scope it →</a>';
+
+    /* name the actual reason they landed here — headcount or revenue */
+    var opener = (why === 'team')
+      ? 'With ' + esc(d.teamLabel) + ', you have more roles and more handoffs between them than the '
+        + 'four-week version is built for. Every extra person is another set of hand-offs to map, and '
+        + 'quoting that off a form would be guessing.'
+      : 'At ' + esc(d.revenueLabel) + ' there’s more moving through the business than the four-week '
+        + 'version is built to cover — more processes, more handoffs, more places it can stall. '
+        + 'Quoting that off a form would be guessing, and I’d rather not guess with your money.';
+
     return '<div class="verdict">'
       + '<div class="verdict-head pass">'
       +   '<p class="eyebrow">You’re past the standard audit, ' + esc(d.name.split(' ')[0]) + '</p>'
       +   '<h2>Yours needs scoping first.</h2>'
       + '</div>'
       + '<div class="verdict-body">'
-      +   '<p>At ' + esc(d.revenueLabel) + ' with ' + esc(d.teamLabel) + ', there are more departments, more handoffs and more processes than the four-week version covers. Quoting you off a form would be guessing, and I’d rather not guess with your money.</p>'
+      +   '<p>' + opener + '</p>'
       +   '<p>Same method. Same deliverables. Scoped to what’s actually there — and we can talk about the build at the same time, since that’s usually where this goes.</p>'
-      +   hoursMath(d.hours)
       +   STACK
       +   '<div class="cta-row">' + cta + '</div>'
       +   '<p class="fineprint">Short call, no deck. I’ll tell you what it would take, what it would cost, and whether it’s worth doing at all.</p>'
@@ -1099,7 +1094,6 @@ window.DFY_CONFIG = {
       + '<div class="verdict-body">'
       +   '<p>' + esc(d.name.split(' ')[0]) + ' — at ' + esc(d.revenueLabel) + ' this is too big a bite, and I’m not going to sell you one.</p>'
       +   '<p>At your stage the constraint usually isn’t a hidden structural problem. It’s that everything lives in your head and nothing is pulling it out. Smaller problem. Cheaper fix.</p>'
-      +   hoursMath(d.hours)
       +   '<ul class="ticks"><li>Your business mapped in the first hour, with your #1 bottleneck named</li>'
       +   '<li>A 30-day plan built around one move — not twelve</li>'
       +   '<li>A room of operators working on the same thing</li>'
@@ -1120,12 +1114,10 @@ window.DFY_CONFIG = {
       company:  f['company'].value.trim(),
       revenue:  f['revenue'].value,
       team:     f['team'].value,
-      hours:    parseInt(f['hours'].value, 10),
-      industry: f['industry'].value.trim(),
-      pain:     f['pain'].value.trim()
+      industry: f['industry'].value.trim()
     };
 
-    var ok = d.name && d.company && d.revenue !== '' && d.team && f['hours'].value && d.industry
+    var ok = d.name && d.company && d.revenue !== '' && d.team && d.industry
              && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email);
     if (!ok) { errEl.style.display = 'block'; return; }
     errEl.style.display = 'none';
@@ -1133,13 +1125,17 @@ window.DFY_CONFIG = {
     d.revenueLabel = f['revenue'].options[f['revenue'].selectedIndex].text.toLowerCase();
     d.teamLabel    = f['team'].options[f['team'].selectedIndex].text.toLowerCase();
 
-    var route = routeFor(parseInt(d.revenue, 10));
+    var band  = parseInt(d.revenue, 10);
+    var route = routeFor(band, d.team);
+    /* if they're in the revenue sweet spot, headcount is what sent them to a call */
+    var callReason = (band === 2) ? 'team' : 'revenue';
 
     var payload = {
       email: d.email, name: d.name, company: d.company,
       revenue_band: d.revenueLabel, team_size: d.teamLabel,
-      offload_hours_per_week: d.hours, industry: d.industry, pain: d.pain,
-      route: route, source_page: 'dfy-tiktok'
+      industry: d.industry, route: route,
+      call_reason: route === 'call' ? callReason : null,
+      source_page: 'dfy-tiktok'
     };
     Object.keys(utms()).forEach(function(k){ payload[k] = utms()[k]; });
 
@@ -1154,7 +1150,7 @@ window.DFY_CONFIG = {
     } else if (route === 'call') {
       pixel('Lead', false, { content_name: 'scoping_call' });
       cio('qualified_call', payload);
-      result.innerHTML = renderCall(d);
+      result.innerHTML = renderCall(d, callReason);
     } else {
       pixel('NotFit', true, { revenue_band: d.revenueLabel });
       cio('not_fit', payload);
