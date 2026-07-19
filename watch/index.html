@@ -77,6 +77,20 @@ s.parentNode.insertBefore(t,s)})();
   </main>
 
 <script>
+  /* Email-click identification: links in customer.io emails carry ?e={{customer.email}}.
+     Without this every video event below lands on an anonymous profile and you cannot
+     tell who watched. Same pattern as index.html. */
+  try{
+    var qp = new URLSearchParams(location.search);
+    var em = qp.get('e') || qp.get('cio_email');
+    if(em && /@/.test(em)){
+      em = em.trim().toLowerCase();
+      localStorage.setItem('sbm_email', em);
+    }
+    var known = localStorage.getItem('sbm_email');
+    if(known && window._cio){ _cio.identify({id: known, email: known}); }
+  }catch(e){}
+
   // Lightweight engagement tracking (Clarity + Customer.io) — feeds the "engaged with the site" signal.
   (function(){
     var v=document.getElementById('sbvideo'), fired={};
