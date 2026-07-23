@@ -51,19 +51,22 @@ window.DFY_CONFIG = {
   // Affirm + Klarna are enabled on it, which is the installment option.
   AUDIT_URL:   "https://buy.stripe.com/bJedR80rKgN532C70i3VC01",
 
-  // ▸ TODO — HIGHEST PRIORITY. Everyone over $30k/mo lands here, and that's
-  //   your best segment. Blank falls back to a pre-filled email.
-  BOOKING_URL: "",
+  // LIVE — Calendly 30-min scoping call. Bigger teams (10+) route here; the
+  //   $6k audit panel also offers it as the primary CTA. Name + email are
+  //   pre-filled from the form via callUrl(). Blank = mailto fallback.
+  BOOKING_URL: "https://calendly.com/puja-patel-info/30min",
 
   // Where sub-$15k traffic goes.
   DWY_URL:     "https://puja-patel.com/",
 
   /* ─── LEAD CAPTURE ─────────────────────────────────────────────────── */
 
-  // ▸ IMPORTANT. While empty, every lead is discarded. Formspree / Zapier /
-  //   Make / n8n webhook. Gets a JSON POST of every submission before any
-  //   redirect — booked, bought, or neither.
-  LEAD_WEBHOOK_URL: "",
+  // LIVE — FormSubmit (free, no account). Every submission is POSTed as JSON
+  //   and emailed to info@puja-patel.com before any redirect — booked, bought,
+  //   or neither. The FIRST submission triggers a one-time activation email to
+  //   info@puja-patel.com; click "Activate" once and it stays on for good.
+  //   To swap to GHL/Formspree later, just replace this URL.
+  LEAD_WEBHOOK_URL: "https://formsubmit.co/ajax/info@puja-patel.com",
 
   /* ─── OBJECTION VIDEOS ─────────────────────────────────────────────────
      Each one renders inside its matching FAQ answer. Blank = skipped.
@@ -734,6 +737,18 @@ window.DFY_CONFIG = {
           <input type="text" id="f-industry" name="industry" placeholder="e.g. marketing agency" required></div>
       </div>
 
+      <div class="field"><label for="f-goal">What's the one thing you'd want fixed first?</label>
+        <textarea id="f-goal" name="goal" rows="2" placeholder="e.g. work bounces back to me before it ships — I'm the approval step on everything" required></textarea></div>
+
+      <div class="field"><label for="f-when">How soon are you trying to fix this?</label>
+        <select id="f-when" name="timeline">
+          <option value="">Select…</option>
+          <option value="asap">As soon as possible</option>
+          <option value="quarter">This quarter</option>
+          <option value="few-months">In the next few months</option>
+          <option value="exploring">Just exploring for now</option>
+        </select></div>
+
       <input type="text" name="website_url" id="f-hp" tabindex="-1" autocomplete="off"
              aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 
@@ -1016,15 +1031,19 @@ window.DFY_CONFIG = {
       if (window.console) console.warn('[DFY] LEAD_WEBHOOK_URL is empty — this lead was not saved.');
       return;
     }
+    var body = JSON.stringify(payload);
+    function beacon(){
+      try { if (navigator.sendBeacon) navigator.sendBeacon(CFG.LEAD_WEBHOOK_URL, new Blob([body], {type:'application/json'})); } catch(e){}
+    }
+    // Primary: CORS POST with JSON + Accept header — works with Formspree / Zapier / Make / GHL.
+    // Falls back to sendBeacon if the fetch is rejected (e.g. an endpoint without CORS).
     try {
-      var body = JSON.stringify(payload);
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(CFG.LEAD_WEBHOOK_URL, new Blob([body], {type:'application/json'}));
-      } else {
-        fetch(CFG.LEAD_WEBHOOK_URL, { method:'POST', mode:'no-cors', keepalive:true,
-          headers:{'Content-Type':'application/json'}, body: body });
-      }
-    } catch(e){}
+      fetch(CFG.LEAD_WEBHOOK_URL, {
+        method:'POST', keepalive:true,
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body: body
+      }).catch(beacon);
+    } catch(e){ beacon(); }
   }
 
   var STACK = '<ul class="ticks">'
@@ -1060,6 +1079,7 @@ window.DFY_CONFIG = {
       +   '<p>' + opener + '</p>'
       +   STACK
       +   '<div class="cta-row"><a href="' + CFG.AUDIT_URL + '" class="btn btn-wide" id="co">Book the audit — ' + CFG.PRICE + ' →</a></div>'
+      +   '<div class="cta-row"><a href="' + callUrl(d) + '" class="btn btn-ghost btn-wide" id="co2">Or book a call to scope it first →</a></div>'
       +   '<p class="fineprint">All eight delivered in four weeks or you don’t pay. Want it built after? That’s the normal next step — move forward within '
       +     CFG.CREDIT_DAYS + ' days and the full fee comes off the build. Affirm and Klarna are on the checkout if you’d rather split it. Discovery starts the same week.</p>'
       +   '<p class="fineprint">Running into errors at checkout? Email <a href="mailto:' + CFG.SUPPORT_EMAIL + '">'
@@ -1067,11 +1087,17 @@ window.DFY_CONFIG = {
       + '</div></div>';
   }
 
+  function callUrl(d){
+    if (!CFG.BOOKING_URL) {
+      return 'mailto:info@puja-patel.com?subject=' + encodeURIComponent('Operations Audit — scoping');
+    }
+    var sep = CFG.BOOKING_URL.indexOf('?') > -1 ? '&' : '?';
+    return CFG.BOOKING_URL + sep + 'name=' + encodeURIComponent(d.name || '')
+      + '&email=' + encodeURIComponent(d.email || '');
+  }
+
   function renderCall(d){
-    var cta = CFG.BOOKING_URL
-      ? '<a href="' + CFG.BOOKING_URL + '" class="btn btn-wide" id="co">Book a scoping call →</a>'
-      : '<a href="mailto:info@puja-patel.com?subject=' + encodeURIComponent('Operations Audit — scoping')
-        + '" class="btn btn-wide" id="co">Email me to scope it →</a>';
+    var cta = '<a href="' + callUrl(d) + '" class="btn btn-wide" id="co">Book a call to scope it →</a>';
 
     /* headcount is the only route to this panel — revenue no longer sends anyone here */
     var opener = 'With ' + esc(d.teamLabel) + ', you have more roles and more handoffs between them '
@@ -1121,10 +1147,12 @@ window.DFY_CONFIG = {
       company:  f['company'].value.trim(),
       revenue:  f['revenue'].value,
       team:     f['team'].value,
-      industry: f['industry'].value.trim()
+      industry: f['industry'].value.trim(),
+      goal:     f['goal'] ? f['goal'].value.trim() : '',
+      timeline: f['timeline'] ? f['timeline'].value : ''
     };
 
-    var ok = d.name && d.company && d.revenue !== '' && d.team && d.industry
+    var ok = d.name && d.company && d.revenue !== '' && d.team && d.industry && d.goal
              && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email);
     if (!ok) { errEl.style.display = 'block'; return; }
     errEl.style.display = 'none';
@@ -1138,8 +1166,8 @@ window.DFY_CONFIG = {
     var payload = {
       email: d.email, name: d.name, company: d.company,
       revenue_band: d.revenueLabel, team_size: d.teamLabel,
-      industry: d.industry, route: route,
-      source_page: 'dfy-tiktok'
+      industry: d.industry, goal: d.goal, timeline: d.timeline,
+      route: route, source_page: 'dfy-tiktok'
     };
     Object.keys(utms()).forEach(function(k){ payload[k] = utms()[k]; });
 
@@ -1167,6 +1195,13 @@ window.DFY_CONFIG = {
       co.addEventListener('click', function(){
         pixel('InitiateCheckout', false, { value: route === 'buy' ? 6000 : 0, currency: 'USD' });
         cio('checkout_clicked', { route: route });
+      });
+    }
+    var co2 = document.getElementById('co2');
+    if (co2) {
+      co2.addEventListener('click', function(){
+        pixel('Lead', false, { content_name: 'scoping_call' });
+        cio('call_clicked', { route: route });
       });
     }
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
