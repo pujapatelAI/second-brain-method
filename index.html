@@ -768,10 +768,12 @@ urgency block, FAQ, final CTA, CLOSE_TS — plus call.html, watch/, bottleneck/.
 1. [RESOLVED 7/25] Close moment is a fixed instant: CLOSE_TS = 2026-07-31 18:00 UTC
    (2:00 pm EDT). The countdown no longer depends on the visitor's local timezone, and the
    old Math.ceil off-by-one (read one day high) is fixed.
-2. STILL OPEN — post-close behavior: after CLOSE_TS the countdown reads "doors closed" but
-   every data-cta button still opens live checkout, so the page keeps selling founding spots
-   after the close. THIS ALREADY HAPPENED between Jul 24 and Jul 25.
-   [PUJA: POST-CLOSE STATE — waitlist link, "doors closed" notice, or page down?]
+2. [RESOLVED 7/25] Post-close behavior: after CLOSE_TS (or with ?preview_closed=1) every
+   data-cta now points to the free community instead of checkout, a "doors closed" banner is
+   injected at the top, the sticky-bar price flips to "The founding cohort is closed," and the
+   checkout tracking fires 'doors_closed_click' instead of InitiateCheckout. The page can no
+   longer sell a founding spot after the close. Preview it live: ?preview_closed=1
+   (that flag can only close early — it can never hold the page open past CLOSE_TS).
 3. STILL OPEN — sold-out-before-date: the 20-spot hard cap has no live counter. If spots sell
    out before Jul 31, same problem. [PUJA: SOLD-OUT-BEFORE-DATE PLAN.]
 4. STILL OPEN — off-page surfaces: [PUJA: CONFIRM the Circle checkout page + any scheduled
@@ -782,8 +784,41 @@ RULE FOR ALL SURFACES: urgency is the real date and the real cap, stated flat �
 <script>
 (function(){
   var CHECKOUT_URL = "https://aios-with-puja-patel.circle.so/checkout/the-second-brain-method";
-  if(CHECKOUT_URL && CHECKOUT_URL !== "#claim"){
-    document.querySelectorAll('[data-cta]').forEach(function(a){ a.setAttribute('href', CHECKOUT_URL); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener'); });
+  // Post-close destination: the FREE community root (the same place not-yet.html sends people).
+  // Deliberately NOT the checkout, and NOT not-yet.html (its "you're not big enough yet" framing
+  // is wrong for a late-but-qualified buyer). This is the de-facto waitlist — "join the free space,
+  // be first to know when doors reopen." [PUJA: swap for a dedicated waitlist form if you'd rather
+  // capture emails directly.]
+  var CLOSED_URL = "https://aios-with-puja-patel.circle.so/";
+
+  // ── POST-CLOSE GATE (added 2026-07-25) ───────────────────────────────────────────────
+  // Doors close Friday, July 31 2026 at 2:00 pm EDT — a single fixed instant (18:00 UTC),
+  // NOT 23:59 in the visitor's local timezone.
+  var CLOSE_TS = Date.UTC(2026, 6, 31, 18, 0, 0);
+  // Preview the closed state before the date with ?preview_closed=1. This can only CLOSE the page
+  // early for that one visitor — it can NEVER hold the page open past CLOSE_TS for anyone.
+  var forceClosed = /[?&]preview_closed=1(&|$)/.test(location.search);
+  var DOORS_OPEN = !forceClosed && (Date.now() < CLOSE_TS);
+
+  // Wire every CTA. OPEN → Circle checkout (new tab). CLOSED → the free community (new tab), so
+  // the page can never sell a founding spot after the close — that is the whole point of this gate.
+  document.querySelectorAll('[data-cta]').forEach(function(a){
+    a.setAttribute('href', DOORS_OPEN ? CHECKOUT_URL : CLOSED_URL);
+    a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+  });
+
+  // When closed, say so plainly: a banner up top + the sticky-bar price line flips. Every CTA
+  // already routes to the free space, so we don't rewrite each section — but the page must not
+  // still read as an open sale with live urgency.
+  if(!DOORS_OPEN){
+    document.documentElement.setAttribute('data-doors','closed');
+    document.querySelectorAll('.bar-price').forEach(function(el){ el.textContent = 'The founding cohort is closed'; });
+    var banner = document.createElement('div');
+    banner.setAttribute('role','status');
+    banner.style.cssText = 'background:#392C22;color:#EFE8DE;font:600 14px/1.45 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;text-align:center;padding:11px 16px';
+    banner.innerHTML = 'The founding cohort is closed. <a href="' + CLOSED_URL + '" target="_blank" rel="noopener" style="color:#E7A984;text-decoration:underline">Join the free space</a> — you’ll be first to know when doors reopen.';
+    if(document.body.firstChild) document.body.insertBefore(banner, document.body.firstChild);
+    else document.body.appendChild(banner);
   }
 
   /* ---- Clarity custom events: section reach + CTA clicks ----
@@ -794,6 +829,7 @@ RULE FOR ALL SURFACES: urgency is the real date and the real cap, stated flat �
   document.querySelectorAll('[data-cta]').forEach(function(a){
     a.addEventListener('click', function(){
       var sec = a.closest('section'); var where = sec && sec.id ? sec.id : (a.closest('.bar') ? 'stickybar' : 'hero');
+      if(!DOORS_OPEN){ clar('event', 'doors_closed_click'); clar('set', 'doors_closed_from', where); return; }
       clar('event', 'checkout_click');
       clar('set', 'checkout_from', where);
       if(window.fbq) fbq('track', 'InitiateCheckout', {value: 250, currency: 'USD', content_name: where});
@@ -843,13 +879,11 @@ RULE FOR ALL SURFACES: urgency is the real date and the real cap, stated flat �
   setTimeout(function(){ clar('event', 'engaged_5min'); clar('set', 'lead_quality', 'engaged_5min'); }, 300000);
   setTimeout(function(){ clar('event', 'engaged_2min'); }, 120000);
 
-  // Doors close Friday, July 31 2026 at 2:00 pm EDT — a single fixed instant (18:00 UTC),
-  // NOT 23:59 in the visitor's local timezone. See the integrator checklist above.
-  var CLOSE_TS = Date.UTC(2026, 6, 31, 18, 0, 0);
+  // CLOSE_TS + DOORS_OPEN are defined at the top of this IIFE (the post-close gate).
   function setCd(id, closedLabel){
     var el=document.getElementById(id); if(!el)return;
     var ms = CLOSE_TS - Date.now();
-    if(ms <= 0){ el.textContent = closedLabel; return; }
+    if(!DOORS_OPEN || ms <= 0){ el.textContent = closedLabel; return; }
     var n = Math.floor(ms/86400000);
     if(n>1) el.textContent=n+" days left";
     else if(n===1) el.textContent="1 day left";
