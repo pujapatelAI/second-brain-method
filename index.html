@@ -434,42 +434,15 @@ s.parentNode.insertBefore(t,s)})();
         </div>
       </div>
       <div class="method-foot">Not a course · Not a template · Your business, one bottleneck at a time</div>
-      <div><a class="next-step" href="#proof">What the map surfaces — real numbers <span class="dn">↓</span></a></div>
+      <div><a class="next-step" href="#different">Why this is different <span class="dn">↓</span></a></div>
     </div>
   </section>
 
-  <section id="proof">
-    <div class="wrap">
-      <div class="mono lead-label">The receipts</div>
-      <div class="stat-strip">
-        <div class="stat-num">100+</div>
-        <div class="stat-txt">businesses mapped in under an hour. Here's what the mapping actually surfaced — real engagements, names removed.</div>
-      </div>
-      <div class="metrics two">
-        <div class="metric"><div class="mn">$60–80K</div><div class="ml">a year in labor savings identified for one firm — off a single map</div></div>
-        <div class="metric"><div class="mn">9.5 hrs/day</div><div class="ml">one task was quietly eating from one person — invisible until it was mapped</div></div>
-      </div>
-      <div class="cases">
-        <div class="case">
-          <div class="ct">Brokerage · regulated, high-value deals</div>
-          <div class="ba"><span class="lb b">Before</span>Data scattered across 11+ disconnected tools; the ops lead losing 8–10 hrs/week to manual entry alone.</div>
-          <div class="ba"><span class="lb a">After the map</span>A phased roadmap tied to ROI: $60–80K/yr in labor savings, $10–15K in software cut, 15% faster closings.</div>
-        </div>
-        <div class="case">
-          <div class="ct">Retail operation · 150 people, 11 departments</div>
-          <div class="ba"><span class="lb b">Before</span>The CEO had zero cross-department visibility — couldn't see how the company actually ran.</div>
-          <div class="ba"><span class="lb a">After the map</span>A full view of all 11 departments — plus a hidden task burning 9.5 hrs/day of one person's time, finally exposed.</div>
-        </div>
-        <div class="case">
-          <div class="ct">Recruiting firm · bilingual, high-volume</div>
-          <div class="ba"><span class="lb b">Before</span>Recruiters juggling 18–30 open reqs each, no central system, every message written from scratch.</div>
-          <div class="ba"><span class="lb a">After the map</span>A live capacity dashboard + 9 deployed automations running at 0% error across 50+ verified executions.</div>
-        </div>
-      </div>
-      <div class="live-it"><b>And I don't just teach it — I live it.</b> I run my whole business on a second brain. I'm not handing you theory; I'm handing you what I actually use.</div>
-      <a class="next-step" href="#different">Why this is different <span class="dn">↓</span></a>
-    </div>
-  </section>
+  <!-- The `proof`/"receipts" section was removed 2026-07-25 per Puja. Its case studies were all
+       large-operation B2B engagements (150-person retail, brokerage, recruiting firm) — proof built
+       for the old "Marcus" avatar that works against the current beginner/coach/EA buyer. The "100+
+       businesses mapped" stat survives in the hero and the `who` section, so that proof point stays.
+       Testimonials (moved up to right after `who`) now carry the social proof. -->
 
   <section id="different">
     <div class="wrap">
@@ -862,7 +835,7 @@ RULE FOR ALL SURFACES: urgency is the real date and the real cap, stated flat �
     var seen = {};
     // DOM order as of 2026-07-25. `reframe`/`vision` deleted; `testimonials` moved up after `who`;
     // `safety` added; `method` now tracked too (it never was, so the who→proof gap was invisible).
-    var keySections = ['problem','who','testimonials','method','proof','different','included','guarantee','first-hour','fit','urgency','faq','claim'];
+    var keySections = ['problem','who','testimonials','method','different','included','guarantee','first-hour','fit','urgency','faq','claim'];
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if(en.isIntersecting && !seen[en.target.id]){
