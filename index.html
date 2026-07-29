@@ -332,6 +332,31 @@ s.parentNode.insertBefore(t,s)})();
     </div>
   </header>
 
+  <!-- ============================================================
+       "NEW HERE?" — organic-content detour to TikTok  (added 2026-07-29)
+       For cold FB/IG-ad visitors who want to vet Puja via organic content
+       BEFORE the pitch. Compact, optional band right after the hero.
+       Link-only per Puja 7/29 (no embeds → keeps the page fast in the FB
+       in-app browser). Opens in a new tab so the landing page stays open
+       behind it; the click fires Clarity + Meta custom events so the
+       "watch first" path is measurable. Deliberately NOT in the
+       .next-step narrative chain or the journey IntersectionObserver —
+       it's a side door, not a funnel step. Ghost button so it never
+       competes with the primary "Claim a founding spot" CTA. -->
+  <section id="watch-first" style="padding:32px 0">
+    <div class="wrap">
+      <div style="display:flex; align-items:center; gap:24px; justify-content:space-between; flex-wrap:wrap; border:1px solid var(--line); border-radius:4px; background:var(--surface); padding:22px 26px">
+        <div style="flex:1; min-width:240px">
+          <div class="mono lead-label" style="margin-bottom:8px">New here?</div>
+          <p style="font-size:1.05rem; line-height:1.45; color:var(--ink); max-width:58ch">Want to see how I actually work before you read a word?</p>
+        </div>
+        <a class="btn ghost" href="https://www.tiktok.com/@pujap109" target="_blank" rel="noopener" data-tiktok>
+          Watch on TikTok · @pujap109 <span class="arw">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Rewritten 2026-07-25 from the 7/24 customer call + Clarity funnel (96_LANDING_PAGE_CRO_HANDOFF.md).
        `reframe` and `vision` sections DELETED here — they restated one idea across 11% of the page at
        the exact point where half the audience left (problem 199 sessions → who 100). Their one load-bearing
@@ -851,6 +876,13 @@ RULE FOR ALL SURFACES: urgency is the real date and the real cap, stated flat �
   // Qualified-lead signal: 5+ minutes on page (the "good lead" threshold)
   setTimeout(function(){ clar('event', 'engaged_5min'); clar('set', 'lead_quality', 'engaged_5min'); }, 300000);
   setTimeout(function(){ clar('event', 'engaged_2min'); }, 120000);
+
+  // "New here?" → TikTok: measure how many cold visitors take the organic-content detour
+  var _tk=document.querySelector('[data-tiktok]');
+  if(_tk) _tk.addEventListener('click', function(){
+    clar('event', 'tiktok_click'); clar('set', 'clicked_tiktok', 'true');
+    if(window.fbq) fbq('trackCustom', 'TikTok_Click');
+  });
 
   // CLOSE_TS + DOORS_OPEN are defined at the top of this IIFE (the post-close gate).
   function setCd(id, closedLabel){
