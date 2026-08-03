@@ -1,0 +1,89 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Puja Patel//30-Day Brain Extract//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:The 30-Day Brain Extract — Live Q&A
+X-WR-TIMEZONE:America/New_York
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:c30-qa-week1-20260806@puja-patel.com
+DTSTAMP:20260803T150000Z
+DTSTART;TZID=America/New_York:20260806T140000
+DTEND;TZID=America/New_York:20260806T150000
+SUMMARY:The 30-Day Brain Extract — Live Q&A (Week 1)
+DESCRIPTION:Bring the system you're stuck on — we sort it live.\nJoin:
+  https://meet.google.com/ech-pqtq-hhz (google meet — same link every week)
+LOCATION:https://meet.google.com/ech-pqtq-hhz
+URL:https://meet.google.com/ech-pqtq-hhz
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Live Q&A starts in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c30-qa-week2-20260813@puja-patel.com
+DTSTAMP:20260803T150000Z
+DTSTART;TZID=America/New_York:20260813T140000
+DTEND;TZID=America/New_York:20260813T150000
+SUMMARY:The 30-Day Brain Extract — Live Q&A (Week 2)
+DESCRIPTION:Bring the system you're stuck on — we sort it live.\nJoin:
+  https://meet.google.com/ech-pqtq-hhz (google meet — same link every week)
+LOCATION:https://meet.google.com/ech-pqtq-hhz
+URL:https://meet.google.com/ech-pqtq-hhz
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Live Q&A starts in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c30-qa-week3-20260820@puja-patel.com
+DTSTAMP:20260803T150000Z
+DTSTART;TZID=America/New_York:20260820T140000
+DTEND;TZID=America/New_York:20260820T150000
+SUMMARY:The 30-Day Brain Extract — Live Q&A (Week 3)
+DESCRIPTION:Bring the system you're stuck on — we sort it live.\nJoin:
+  https://meet.google.com/ech-pqtq-hhz (google meet — same link every week)
+LOCATION:https://meet.google.com/ech-pqtq-hhz
+URL:https://meet.google.com/ech-pqtq-hhz
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Live Q&A starts in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c30-qa-week4-20260827@puja-patel.com
+DTSTAMP:20260803T150000Z
+DTSTART;TZID=America/New_York:20260827T140000
+DTEND;TZID=America/New_York:20260827T150000
+SUMMARY:The 30-Day Brain Extract — Live Q&A (Week 4)
+DESCRIPTION:Bring the system you're stuck on — we sort it live.\nJoin:
+  https://meet.google.com/ech-pqtq-hhz (google meet — same link every week)
+LOCATION:https://meet.google.com/ech-pqtq-hhz
+URL:https://meet.google.com/ech-pqtq-hhz
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Live Q&A starts in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
