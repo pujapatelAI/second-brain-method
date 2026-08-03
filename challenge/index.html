@@ -36,9 +36,33 @@
   .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
   .foot .wrap{padding:26px 20px 30px}
   .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  /* members gate */
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25}
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit;box-sizing:border-box}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — taking you to the challenge ($7)…</p>
+  <p class="muted" style="font-size:14px;margin-top:14px;">not a member yet? <a href="https://stan.store/PujaPatel">join the 30-day challenge — $7 →</a></p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
 
 <div class="wrap">
   <div class="eyebrow">The 30-Day Brain Extract</div>
@@ -60,5 +84,6 @@
   <p>Puja Patel · The 30-Day Brain Extract</p>
 </div></div>
 
+<script src="/challenge/gate.js" defer></script>
 </body>
 </html>
