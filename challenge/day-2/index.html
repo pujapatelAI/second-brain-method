@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 2 — Lead Qualification &amp; Triage · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px)}
+  .door{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line);align-items:baseline}
+  .door:first-of-type{border-top:none}
+  .door .L{flex:none;font-family:Georgia,serif;font-weight:700;font-size:22px;color:var(--accent);width:28px}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:14px;
+    font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:16px;line-height:1.6}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — taking you to the challenge ($17)…</p>
+  <p class="muted" style="font-size:14px;margin-top:14px;">not a member yet? <a href="https://stan.store/PujaPatel">join the 30-day challenge — $17 →</a></p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 2 · Phase 1 — Getting Clients</div>
+  <h1>lead qualification &amp; triage</h1>
+  <p class="lead">deciding who's worth a call before you spend one — and where everyone else should go instead. yesterday's output (a logged lead with the basics) is today's input. that's your first two systems connecting.</p>
+
+  <!-- VIDEO EMBEDS: swap the profile buttons for the two day-2 embeds when Puja
+       sends the links. -->
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">two short ones — the system, then the mistakes people make with it. dropping on @pujap109 today.</p>
+    <a class="btn" href="https://www.tiktok.com/@pujap109" target="_blank" rel="noopener">watch: qualification &amp; triage →</a>
+    <a class="btn ghost" href="https://www.tiktok.com/@pujap109" target="_blank" rel="noopener">watch: the common mistakes →</a>
+  </section>
+
+  <section>
+    <h2>the five questions — put a real number on each</h2>
+    <div class="q"><div class="n">1</div><div><b>of your last 10 leads, how many ended up on a call?</b><span class="num">number: count them.</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>how many of those calls were never going to buy?</b> wrong budget, wrong problem, wrong person in the room.<span class="num">number: that count × your call length = hours you donated.</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>your ICP in one sentence:</b> <em>[who] with [what problem] who can invest [range]</em>.<span class="num">can you write it without pausing? if not — this is today's real assignment. everything else derives from it.</span></div></div>
+    <div class="q"><div class="n">4</div><div><b>your three must-clears, pulled from that sentence.</b><span class="num">three, not ten — a 10-point checklist kills intake (yesterday's lesson cuts both ways).</span></div></div>
+    <div class="q"><div class="n">5</div><div><b>what happens to a "not this offer" lead right now?</b> routed somewhere — or silence?<span class="num">silence is lost revenue AND lost referrals.</span></div></div>
+  </section>
+
+  <section>
+    <h2>what qualification actually checks</h2>
+    <p>the criteria aren't invented — they fall out of your ICP sentence. the usual suspects:</p>
+    <p><b>budget / revenue level</b> · <b>industry or niche</b> · <b>the problem they name</b> (is it one you've solved before?) · <b>timeline &amp; urgency</b> · <b>who actually decides</b> (authority = can say yes to money — a manager who "has to run it up" doesn't clear) · <b>team size or stage</b> · <b>the red flags you've learned the hard way</b> ("quick call to pick your brain," discount-openers, scope-creepers).</p>
+    <p class="muted">pick the three that protect your calendar most. write them down. that's your bar — and once it's written, the rule takes the heat instead of you.</p>
+  </section>
+
+  <section>
+    <h2>the triage tree — routing, not rejecting</h2>
+    <div class="step"><span class="tag">trigger</span><span>a logged lead with the basics (yesterday's output)</span></div>
+    <div class="step"><span class="tag">process</span><span>score against your three must-clears</span></div>
+    <div class="step"><span class="tag">output</span><span>one of four doors:</span></div>
+    <div class="door"><span class="L">1</span><div><b>clears all three → the call / your main offer.</b> booking link, no deliberation. this is the whole point — yes should be automatic.</div></div>
+    <div class="door"><span class="L">2</span><div><b>right person, smaller budget → your lower offer.</b> a group program, a smaller package, a digital product. not a rejection — a different door.</div></div>
+    <div class="door"><span class="L">3</span><div><b>right budget, wrong problem → a referral out.</b> with a real reason. the goodwill outlives the lead.</div></div>
+    <div class="door"><span class="L">4</span><div><b>can't score it → one clarifying question first.</b> unknown is not failed — plenty of great leads don't lead with numbers. ask, never guess-score.</div></div>
+    <p class="callout" style="margin-top:14px;"><b>mine, as a live example:</b> needs the full operations build → we get on a call. wants the system, smaller budget → my monthly program. just curious how this works → this challenge. same intake, three doors.</p>
+  </section>
+
+  <section>
+    <h2>the one nuance that saves good leads</h2>
+    <p>a lead that misses <b>exactly one</b> criterion is the interesting pile — the perfect-fit problem with a small budget, the referral from a past client, the dream industry that can't pay full rate yet. those deserve a two-minute human look, not an auto-decline. a lead that misses <b>two or more</b> can be routed mechanically.</p>
+    <p>and when the answer is a true no, use a template so it never gets skipped out of awkwardness:</p>
+    <div class="tmpl">"thanks for reaching out. based on what you've described, I don't think we're the right fit — [one specific honest reason]. if that changes, or if it'd help, happy to point you toward someone who works in that range."</div>
+    <p class="muted">name the actual reason. vague declines generate a "why?" reply — which puts the interruption right back on your desk.</p>
+  </section>
+
+  <section>
+    <h2>the three mistakes almost everyone makes</h2>
+    <p><b>1 — qualifying on the call.</b> paying 45 minutes to learn what one intake question would have told you. yesterday's system collects the basics; today's rules read them <em>before</em> the calendar opens.</p>
+    <p><b>2 — no written ICP, so the bar lives in your gut.</b> you re-decide every lead from scratch, which means the answer depends on your week and how empty your calendar looks. write the sentence once. let the rule take the heat.</p>
+    <p><b>3 — treating triage as yes/no.</b> a "not a fit for this offer" lead is often a customer for a different one. if every almost-fit gets declined — or worse, silence — you're filtering out your own revenue.</p>
+  </section>
+
+  <section>
+    <h2>how to hand it to claude</h2>
+    <p>give claude three things: your ICP sentence, your three must-clears, and your last 10 leads with how each turned out. have it draft your triage tree and a response for each door.</p>
+    <p>then the daily workflow: paste a new lead's intake row → claude scores it, names the door, and drafts the reply. you approve and send.</p>
+    <p class="muted">the guardrails stay yours: unknowns get the clarifying question, never a guessed score · a lead that misses exactly one criterion always lands on your desk · referrals from past clients always reach you, regardless of score.</p>
+  </section>
+
+  <section class="flag">
+    <h2>the weekly live q&amp;a</h2>
+    <p><b>first one is this thursday (aug 6) at 2:00pm ET.</b> bring your ICP sentence and your three must-clears — we'll pressure-test them live. google meet, same link every week.</p>
+    <a class="btn" href="https://meet.google.com/ech-pqtq-hhz" target="_blank" rel="noopener">join on google meet →</a>
+    <a class="btn ghost" href="../qa_calls_august.ics" download>add all 4 to your calendar (.ics)</a>
+  </section>
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #3 — discovery-call prep. walking into every call already knowing their world.</p>
+  <p style="margin-bottom:34px;"><a href="../">← all days</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel · The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
