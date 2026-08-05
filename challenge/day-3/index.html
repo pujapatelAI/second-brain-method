@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 3 — Discovery-Call Prep · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:74px;text-align:center}
+  .door{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line);align-items:baseline}
+  .door:first-of-type{border-top:none}
+  .door .L{flex:none;font-family:Georgia,serif;font-weight:700;font-size:22px;color:var(--accent);width:28px}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:14px;
+    font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:16px;line-height:1.6}
+  ul.bank{list-style:none;margin:0 0 14px}
+  ul.bank li{padding:9px 0 9px 22px;border-top:1px solid var(--line);position:relative}
+  ul.bank li:first-child{border-top:none}
+  ul.bank li:before{content:"“";position:absolute;left:0;color:var(--accent);font-family:Georgia,serif;font-weight:700;font-size:20px;line-height:1}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — taking you to the challenge ($17)…</p>
+  <p class="muted" style="font-size:14px;margin-top:14px;">not a member yet? <a href="https://stan.store/PujaPatel">join the 30-day challenge — $17 →</a></p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 3 · Phase 1 — Getting Clients</div>
+  <h1>discovery-call prep</h1>
+  <p class="lead">the whole goal of a discovery call is one question, asked both ways: <em>is this client a good fit for me, and am i a good fit for them?</em> prep is how you walk in already knowing most of the answer — so the call is calm, in your control, and pointed at the outcome. today you build that prep structure. (this is the prep — running the call itself is day 4.)</p>
+
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">three short ones — how to build the prep, the mistakes in the system, and how to run it with AI once the system exists.</p>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;">
+      <div>
+        <iframe src="https://www.tiktok.com/embed/v2/7670590332458781966" style="width:325px;height:745px;border:0;border-radius:8px;max-width:100%;" allow="fullscreen" title="how to prep for a discovery call"></iframe>
+        <p class="muted" style="font-size:13.5px;margin-top:6px;"><a href="https://www.tiktok.com/@pujap109/video/7670590332458781966" target="_blank" rel="noopener">open on tiktok →</a></p>
+      </div>
+      <div>
+        <iframe src="https://www.tiktok.com/embed/v2/7670589239603629326" style="width:325px;height:745px;border:0;border-radius:8px;max-width:100%;" allow="fullscreen" title="the common mistakes"></iframe>
+        <p class="muted" style="font-size:13.5px;margin-top:6px;"><a href="https://www.tiktok.com/@pujap109/video/7670589239603629326" target="_blank" rel="noopener">open on tiktok →</a></p>
+      </div>
+      <div>
+        <iframe src="https://www.tiktok.com/embed/v2/7670594771160763661" style="width:325px;height:745px;border:0;border-radius:8px;max-width:100%;" allow="fullscreen" title="prep it with AI"></iframe>
+        <p class="muted" style="font-size:13.5px;margin-top:6px;"><a href="https://www.tiktok.com/@pujap109/video/7670594771160763661" target="_blank" rel="noopener">open on tiktok →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>the three questions that build your prep</h2>
+    <div class="q"><div class="n">1</div><div><b>what makes someone your <em>ideal</em> client — deeper than qualification?</b> day 2 was the surface read: are they worth a call at all? this goes deeper — it's about whether to take them on. their <b>mindset and beliefs</b>, <b>how the problem actually shows up</b> for them, and <b>what they're willing to do to fix it</b>.<span class="num">a coaching client who won't do the work won't work. a service client who won't change anything about their operations won't work. get clear on how your ideal client behaves and what change they're open to.</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>what questions get them to rant about the problem you solve?</b> in a good discovery call, they talk more than you. prep the questions that make them <b>hyper-aware of how the problem is showing up</b> — the symptoms.<span class="num">mine, since i do operations: "how organized is that right now?" / "where do you feel most overwhelmed?" — both are symptoms of bad operations. the right questions create urgency, because <em>they</em> say the cost out loud.</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>what do you already have on them?</b> their linkedin, their website, past conversations, and — the big one — <b>where they came from as a lead</b>.<span class="num">lead source is the tell: a specific ad, a specific video, the offer they filled out a form for. it already points at the problem on their mind and the solution they're reaching for. pull it before you dial.</span></div></div>
+  </section>
+
+  <section>
+    <h2>what you walk in with</h2>
+    <p>do those three and you don't walk in blank — you walk in with a <b>structure and a goal</b>: who your ideal client is, whether this person fits, the problem they're most likely facing, and the questions that will confirm it.</p>
+    <p>and here's why prep matters more than people think: <b>not every offer needs a proposal, so a discovery call often becomes the sales call</b> — especially if there's nothing to send afterward. the more due diligence you've done, the more you can show them you genuinely understand their business — and that you're the right person to fix it. <span class="muted">feeling understood is what builds the trust that gets someone to buy.</span></p>
+  </section>
+
+  <section>
+    <h2>a call structure you can steal</h2>
+    <p class="muted">prep produces a plan for the call. here's the shape most of mine take:</p>
+    <div class="step"><span class="tag">frame</span><span>set it up: "this call is for us to figure out if we're a fit — both ways." lowers the pressure, puts you in control.</span></div>
+    <div class="step"><span class="tag">surface</span><span>ask the symptom questions. let them rant. listen more than you talk.</span></div>
+    <div class="step"><span class="tag">confirm</span><span>test the hypothesis you prepped — "sounds like the real issue is X, is that fair?" you're confirming, not fishing.</span></div>
+    <div class="step"><span class="tag">position</span><span>show how you solve <em>that exact</em> problem. now you're the obvious fit, not a pitch.</span></div>
+    <div class="step"><span class="tag">next step</span><span>book the build, or — if there's no proposal to send — close here. always leave with a defined next step.</span></div>
+  </section>
+
+  <section>
+    <h2>symptom questions to steal</h2>
+    <p class="muted">adapt these to what you solve — the point is they make the cost of the problem obvious, without you pitching:</p>
+    <ul class="bank">
+      <li>walk me through how [that process] works right now — start to finish.</li>
+      <li>where does it break most often?</li>
+      <li>what happens when you step away for a week?</li>
+      <li>how much time a week does that eat?</li>
+      <li>what have you already tried, and why didn't it stick?</li>
+      <li>if this were fixed, what would change for you?</li>
+    </ul>
+    <p class="muted">none of these pitch. the urgency comes from <em>them</em> answering — which is the whole point.</p>
+  </section>
+
+  <section>
+    <h2>the intel checklist — and what each source tells you</h2>
+    <div class="door"><span class="L">·</span><div><b>their website</b> → what they do, rough size, how they talk about themselves.</div></div>
+    <div class="door"><span class="L">·</span><div><b>their linkedin</b> → role, authority, tenure, how they frame their work.</div></div>
+    <div class="door"><span class="L">·</span><div><b>past conversations</b> (email / DMs) → what they've already told you — don't ask it again.</div></div>
+    <div class="door"><span class="L">·</span><div><b>lead source</b> → the ad / video / offer they came from = the problem already on their mind.</div></div>
+    <div class="door"><span class="L">·</span><div><b>reviews &amp; public info</b> → where they're strong, where it likely hurts.</div></div>
+    <p class="callout" style="margin-top:14px;">turn it into one line before the call: <em>"this is [who], they came from [source], their likely problem is [X], and i'll confirm it by asking [question]."</em> that one line is your whole prep.</p>
+  </section>
+
+  <section>
+    <h2>the three mistakes in the system</h2>
+    <p><b>1 — you prep your pitch instead of your questions.</b> you get your offer, your deck, all the reasons you can help — but not the questions that get them into "these are real problems, and they matter." the right questions create the urgency. prep the questions, not the pitch.</p>
+    <p><b>2 — you don't pull the intel you already have.</b> most people go in blind — no prep, no due diligence. but if you understand who you're talking to <em>before</em> you talk to them, they feel understood → they trust you → they buy.</p>
+    <p><b>3 — you go in with no hypothesis, so you're fishing.</b> if you prepped right, you already have a read on their problem — from their business, industry, revenue level, and what they've told you. on the call you're <em>confirming</em>, not diagnosing from zero. be in control: know why you're there and how you help.</p>
+  </section>
+
+  <section>
+    <h2>run the whole prep with claude</h2>
+    <p>prep gets time-consuming at volume. so once your system exists, you turn it into a routine claude runs for you. mine:</p>
+    <div class="door"><span class="L">·</span><div>goes through my <b>google calendar</b> and finds external people i'm meeting who aren't already clients</div></div>
+    <div class="door"><span class="L">·</span><div>matches them to the <b>lead intake + qualification</b> from days 1–2 (including the offer they were triaged into)</div></div>
+    <div class="door"><span class="L">·</span><div>runs the <b>due diligence</b> — past conversations, their website, their linkedin, everything</div></div>
+    <div class="door"><span class="L">·</span><div>knows the <b>problem hypothesis + the offer</b> we're framing toward</div></div>
+    <div class="door"><span class="L">·</span><div>writes a <b>one-page brief</b> — the exact questions to ask and the structure for the call</div></div>
+    <div class="door"><span class="L">·</span><div><b>emails it to me an hour before</b> every call, so i'm not digging through seven tools</div></div>
+    <p class="callout" style="margin-top:14px;"><b>but this only works if the system exists first</b> — the ideal-client definition, the questions, the intel you pull, the intake + qualification from days 1–2. every system builds on the last. that's the whole point of doing them in order.</p>
+  </section>
+
+  <section class="flag">
+    <h2>the weekly live q&amp;a</h2>
+    <p><b>first one is this thursday (aug 6) at 2:00pm ET.</b> bring a real upcoming call — we'll build the prep for it live. google meet, same link every week.</p>
+    <a class="btn" href="https://meet.google.com/ech-pqtq-hhz" target="_blank" rel="noopener">join on google meet →</a>
+    <a class="btn ghost" href="../qa_calls_august.ics" download>add all 4 to your calendar (.ics)</a>
+  </section>
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #4 — discovery → proposal. turning the call into a scoped proposal, same day.</p>
+  <p style="margin-bottom:34px;"><a href="../">← all days</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel · The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
