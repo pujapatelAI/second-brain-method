@@ -46,6 +46,12 @@
   ul.bank li{padding:9px 0 9px 22px;border-top:1px solid var(--line);position:relative}
   ul.bank li:first-child{border-top:none}
   ul.bank li:before{content:"“";position:absolute;left:0;color:var(--accent);font-family:Georgia,serif;font-weight:700;font-size:20px;line-height:1}
+  /* video strip — swipeable row so 3 vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
   .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
   .foot .wrap{padding:26px 20px 30px}
   .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
@@ -85,20 +91,20 @@
 
   <section class="flag">
     <h2>today's videos</h2>
-    <p class="muted">three short ones — how to build the prep, the mistakes in the system, and how to run it with AI once the system exists.</p>
-    <div style="display:flex;gap:18px;flex-wrap:wrap;">
-      <div>
-        <iframe src="https://www.tiktok.com/embed/v2/7670590332458781966" style="width:325px;height:745px;border:0;border-radius:8px;max-width:100%;" allow="fullscreen" title="how to prep for a discovery call"></iframe>
-        <p class="muted" style="font-size:13.5px;margin-top:6px;"><a href="https://www.tiktok.com/@pujap109/video/7670590332458781966" target="_blank" rel="noopener">open on tiktok →</a></p>
-      </div>
-      <div>
-        <iframe src="https://www.tiktok.com/embed/v2/7670589239603629326" style="width:325px;height:745px;border:0;border-radius:8px;max-width:100%;" allow="fullscreen" title="the common mistakes"></iframe>
-        <p class="muted" style="font-size:13.5px;margin-top:6px;"><a href="https://www.tiktok.com/@pujap109/video/7670589239603629326" target="_blank" rel="noopener">open on tiktok →</a></p>
-      </div>
-      <div>
-        <iframe src="https://www.tiktok.com/embed/v2/7670594771160763661" style="width:325px;height:745px;border:0;border-radius:8px;max-width:100%;" allow="fullscreen" title="prep it with AI"></iframe>
-        <p class="muted" style="font-size:13.5px;margin-top:6px;"><a href="https://www.tiktok.com/@pujap109/video/7670594771160763661" target="_blank" rel="noopener">open on tiktok →</a></p>
-      </div>
+    <p class="muted">three short ones — how to build the prep, the mistakes in the system, and how to run it with AI. <span style="color:var(--accent)">swipe →</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7670590332458781966" allow="fullscreen" title="how to prep for a discovery call" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 · how to prep</b> — <a href="https://www.tiktok.com/@pujap109/video/7670590332458781966" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7670589239603629326" allow="fullscreen" title="the common mistakes" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 · common mistakes</b> — <a href="https://www.tiktok.com/@pujap109/video/7670589239603629326" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7670594771160763661" allow="fullscreen" title="prep it with AI" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">3 · prep it with AI</b> — <a href="https://www.tiktok.com/@pujap109/video/7670594771160763661" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
     </div>
   </section>
 
