@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 4 — Discovery → Proposal · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q .n.b{background:var(--ground);color:var(--accent);border:1.5px solid var(--accent)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:82px;text-align:center}
+  .door{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line);align-items:baseline}
+  .door:first-of-type{border-top:none}
+  .door .L{flex:none;font-family:Georgia,serif;font-weight:700;font-size:22px;color:var(--accent);width:28px}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:14px;
+    font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:16px;line-height:1.7}
+  .tmpl .k{color:var(--accent);font-weight:700}
+  /* video strip — swipeable row so 3 vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — taking you to the challenge ($17)…</p>
+  <p class="muted" style="font-size:14px;margin-top:14px;">not a member yet? <a href="https://stan.store/PujaPatel">join the 30-day challenge — $17 →</a></p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 4 · Phase 1 — Getting Clients</div>
+  <h1>discovery → proposal</h1>
+  <p class="lead">day 3 was prepping the call. today is what happens after it: turning that call into a <em>scoped</em> proposal — same day, while the problem is still loud in their head. but more than the proposal itself, today is about making it a <b>system</b> — the same path every time, so it stops living in your head.</p>
+
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">three short ones — the questions that build the system, the common mistakes, and how to hand it to AI. <span style="color:var(--accent)">swipe →</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7670924297816296717" allow="fullscreen" title="the questions for the system" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 · the questions</b> — <a href="https://www.tiktok.com/@pujap109/video/7670924297816296717" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7670929090165214477" allow="fullscreen" title="the common mistakes" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 · common mistakes</b> — <a href="https://www.tiktok.com/@pujap109/video/7670929090165214477" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7670938183906938125" allow="fullscreen" title="do it with AI" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">3 · do it with AI</b> — <a href="https://www.tiktok.com/@pujap109/video/7670938183906938125" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>the system: discovery → proposal</h2>
+    <p>a proposal you write from a blank doc every time isn't a system — it's a decision you keep re-making. a <b>system</b> is the same path every time. these questions turn "how i sometimes do it" into <em>yours</em>.</p>
+    <div class="q"><div class="n">1</div><div><b>where do your call notes live — and do you record your meetings?</b> the whole point of systems is getting the work out of your head, so your notes can't be scribbles. give the call your full attention and let an AI notetaker capture the transcript.<span class="num">your last 5 calls — how many do you have a transcript of? ___</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>what does your proposal need to answer for the client?</b> the handful of questions someone needs answered before they'll commit to pay.<span class="num">for example: the problem in their words · the outcome they want · the scope of the work · the terms (price / timeline / next step). yours may differ — these are a starting point, not a rule.</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>do your last 3 proposals share a structure — or do you rebuild each one?</b> this is where operations start: you can templatize. upload your last 3–10 proposals to claude and ask what structure they share.<span class="num">last 3 proposals — one skeleton, or 3 rebuilds? ___</span></div></div>
+    <div class="q"><div class="n b">+</div><div><b>bonus: how many hours from end of discovery call to proposal sent?</b> this is where <b>standards</b> live — a target that protects quality every time. and the faster it goes out, the more likely you close.<span class="num">last proposal — call-end → sent = ___ hours  ·  target: same day.</span></div></div>
+    <p class="muted" style="margin-top:8px;">transcript tools: i use Otter; Granola and Fathom are great too — any works. comment on the video if you want a rec.</p>
+  </section>
+
+  <section>
+    <h2>the system on one line</h2>
+    <p class="muted">same path every time — that's what makes it a system instead of a scramble:</p>
+    <div class="step"><span class="tag">trigger</span><span>the discovery call ends. that's the start of the clock — not "when i get to it."</span></div>
+    <div class="step"><span class="tag">input</span><span>the recording / transcript + your offer menu + a past proposal that closed.</span></div>
+    <div class="step"><span class="tag">process</span><span>capture the 4 answers → draft the scoped proposal.</span></div>
+    <div class="step"><span class="tag">output</span><span>one scoped proposal, the same structure every time — a template, not a blank page.</span></div>
+    <div class="step"><span class="tag">standard</span><span>sent the same day, scoped to one problem, written in their words.</span></div>
+  </section>
+  <section>
+    <h2>the 3 mistakes in the system</h2>
+    <p><b>1 — you don't record the meeting.</b> your memory only goes so far, and the whole point of good operations is getting everything out of your brain. don't reduce the call to a few scribbled lines — give it your full attention and let an AI notetaker capture the transcript. <span class="muted">no transcript = nothing to turn into a proposal.</span></p>
+    <p><b>2 — there's no fixed output.</b> you start from a blank document every time instead of templating what you've already been doing. that's exactly when a proposal comes out slow, bloated, and different every time.</p>
+    <p><b>3 — no discovery structure, so you ask the wrong questions</b> (this is why day 3 comes first). the result: the proposal ends up being only what <em>you'll</em> do — your deliverables, hours, and money — instead of their problem, how you solve it, and what's in and out of scope. by the time they read it you're not in front of them, so the proposal has to re-run the whole sale on its own.</p>
+    <p class="callout">fix these three, establish the <b>manual</b> system first — then you can delegate it to AI. that's the next video.</p>
+  </section>
+
+  <section>
+    <h2>hand the system to AI</h2>
+    <p><b>this only works if you've actually built the system above</b> — you need the pieces in place before you delegate. once they are, you connect it up and let claude run it:</p>
+    <div class="door"><span class="L">·</span><div>connect your <b>meeting-transcript app</b> so it can read the calls</div></div>
+    <div class="door"><span class="L">·</span><div>connect your <b>calendar</b> so it knows who you met and when</div></div>
+    <div class="door"><span class="L">·</span><div>save your structure once — <em>"make this the structured output for all future proposals, and remember it"</em> → it lives as a <b>.md file in your second brain</b></div></div>
+    <p>now it has your structure, your meetings, and your voice. so you just say:</p>
+    <div class="tmpl" style="text-align:center;"><span class="k">"draft a proposal for [name]."</span></div>
+    <p>it finds them, pulls what you talked about, and drafts in your structure and voice — a proposal that took hours, down to about <b>two minutes</b>.</p>
+    <div class="callout"><b>one step further — it doesn't wait for you to ask.</b> connected to your calendar, it can spot a <b>discovery call</b> on its own, and about <b>30 minutes after the call ends</b> — transcript ready — <b>trigger itself</b> and draft the proposal automatically. the call ending is the trigger; the system runs without you.</div>
+    <p class="muted">but skip the earlier steps and it breaks: no transcript → it doesn't know what you discussed; no saved structure → it comes out different every time; no past proposals → it won't sound like you. the AI is only as good as the system underneath it.</p>
+  </section>
+
+  <section class="flag">
+    <h2>the weekly live q&amp;a</h2>
+    <p><b>today — thursday, aug 6 — at 2:00pm ET.</b> an open q&amp;a on the systems — bring your questions about any system in the challenge and we'll work through them together. google meet, same link every week.</p>
+    <a class="btn" href="https://meet.google.com/ech-pqtq-hhz" target="_blank" rel="noopener">join on google meet →</a>
+    <a class="btn ghost" href="../qa_calls_august.ics" download>add all 4 to your calendar (.ics)</a>
+  </section>
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #5 — proposal &amp; quote generation. on-brand proposals in minutes, not hours.</p>
+  <p style="margin-bottom:34px;"><a href="../">← all days</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel · The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
