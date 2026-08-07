@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AI Operations for Mortgage Professionals — a done-with-you program to double your closings on the team you already have. Fix your operational systems and put them on AI, guided by Puja Patel.">
+<meta property="og:title" content="AI Operations for Mortgage Professionals — Puja Patel">
+<meta property="og:description" content="Double your closings on the team you already have. Done-with-you, not done-for-you.">
+<title>AI Operations for Mortgage Professionals — Puja Patel</title>
+<style>
+  :root {
+    --ground:#EFE8DE; --surface:#FBF7F1; --surface-2:#F5EDE3;
+    --ink:#2A2320; --ink-soft:#8A7C6E; --ink-faint:#A99A8B; --line:#DED3C4; --line-strong:#C9BAA6;
+    --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1; --accent-tint:#EDE0D2;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE; --footer-soft:#A99A8B;
+
+    --font-display:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+    --font-label:-apple-system,"Helvetica Neue",Arial,sans-serif;
+
+    --maxw:1080px; --readw:66ch;
+    --step--1:clamp(0.78rem,0.75rem + 0.12vw,0.85rem);
+    --step-0:clamp(1.02rem,0.98rem + 0.2vw,1.14rem);
+    --step-1:clamp(1.2rem,1.1rem + 0.5vw,1.45rem);
+    --step-2:clamp(1.5rem,1.3rem + 0.9vw,2.05rem);
+    --step-3:clamp(2rem,1.6rem + 1.9vw,3.05rem);
+    --step-4:clamp(2.5rem,1.9rem + 3vw,4.1rem);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:#241C17; --surface:#2C231D; --surface-2:#332821;
+      --ink:#EFE7DC; --ink-soft:#A8998A; --ink-faint:#8E8073; --line:#4A3C31; --line-strong:#5A4A3C;
+      --accent:#E08A5A; --accent-bright:#C96A3C; --on-accent:#241A14; --accent-tint:#33261D;
+      --footer-bg:#1C1511; --footer-ink:#D9CEC1; --footer-soft:#8E8073;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground:#EFE8DE; --surface:#FBF7F1; --surface-2:#F5EDE3;
+    --ink:#2A2320; --ink-soft:#8A7C6E; --ink-faint:#A99A8B; --line:#DED3C4; --line-strong:#C9BAA6;
+    --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1; --accent-tint:#EDE0D2;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE; --footer-soft:#A99A8B;
+  }
+  :root[data-theme="dark"] {
+    --ground:#241C17; --surface:#2C231D; --surface-2:#332821;
+    --ink:#EFE7DC; --ink-soft:#A8998A; --ink-faint:#8E8073; --line:#4A3C31; --line-strong:#5A4A3C;
+    --accent:#E08A5A; --accent-bright:#C96A3C; --on-accent:#241A14; --accent-tint:#33261D;
+    --footer-bg:#1C1511; --footer-ink:#D9CEC1; --footer-soft:#8E8073;
+  }
+
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:var(--step-0); line-height:1.62; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  .wrap { max-width:var(--maxw); margin:0 auto; padding:0 clamp(1.2rem,5vw,3rem); }
+
+  h1,h2,h3 { font-family:var(--font-display); font-weight:400; line-height:1.1; text-wrap:balance; margin:0; letter-spacing:-.01em; }
+  h1 { font-size:var(--step-4); }
+  h2 { font-size:var(--step-3); }
+  h3 { font-size:var(--step-1); }
+  p { margin:0; max-width:var(--readw); }
+  strong { font-weight:700; color:var(--ink); }
+  a { color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px; }
+
+  .eyebrow { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.13em; text-transform:uppercase; color:var(--accent); font-weight:600; display:inline-flex; align-items:center; gap:.7em; }
+  .eyebrow::before { content:""; width:1.7em; height:1px; background:var(--accent); opacity:.55; }
+
+  section { padding-block:clamp(3.4rem,8vw,5.8rem); border-top:1px solid var(--line); }
+  .lede { font-size:var(--step-1); color:var(--ink-soft); line-height:1.5; max-width:60ch; }
+
+  .btn { display:inline-flex; align-items:center; gap:.55em; font-family:var(--font-body); font-weight:600; font-size:var(--step-0); padding:.85em 1.5em; border-radius:4px; cursor:pointer; text-decoration:none; border:1px solid transparent; transition:transform .14s ease, background .14s ease; }
+  .btn--primary { background:var(--accent); color:var(--on-accent); }
+  .btn--primary:hover { background:var(--accent-bright); transform:translateY(-1px); }
+  .btn--ghost { background:transparent; color:var(--ink); border-color:var(--line-strong); }
+  .btn--ghost:hover { border-color:var(--accent); color:var(--accent); }
+  .btn .arw { font-weight:400; }
+  a:focus-visible, .btn:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+
+  header.site { position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--ground) 90%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .site .wrap { display:flex; align-items:center; justify-content:space-between; padding-block:.85rem; }
+  .brand { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.11em; text-transform:uppercase; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:.6em; font-weight:600; }
+  .brand .mark { width:22px; height:22px; border-radius:50%; background:var(--accent); display:inline-block; flex:none; }
+  .brand span { color:var(--ink-faint); font-weight:500; }
+  .site .btn { padding:.55em 1.1em; font-size:var(--step--1); }
+
+  .hero { border-top:none; padding-top:clamp(3rem,7vw,5.2rem); }
+  .hero .tag { margin-bottom:1.5rem; }
+  .hero h1 { max-width:15ch; margin-bottom:1.4rem; }
+  .hero .sub { font-size:var(--step-1); color:var(--ink-soft); max-width:52ch; line-height:1.45; }
+  .hero .cta-row { display:flex; flex-wrap:wrap; gap:.9rem; align-items:center; margin-top:2.1rem; }
+  .hero .micro { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.04em; text-transform:uppercase; color:var(--ink-faint); margin-top:1.5rem; }
+  .hero .micro b { color:var(--accent); font-weight:700; }
+
+  .stat-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:3.3rem; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; }
+  .stat { background:var(--surface); padding:1.3rem 1.4rem; }
+  .stat .n { font-family:var(--font-display); font-size:var(--step-2); color:var(--accent); font-variant-numeric:tabular-nums; letter-spacing:-.02em; }
+  .stat .l { font-size:var(--step--1); color:var(--ink-soft); margin-top:.4rem; line-height:1.4; }
+
+  .head-block { display:flex; flex-direction:column; gap:1.05rem; margin-bottom:2.5rem; }
+  .pains { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; margin-top:.4rem; }
+  .pain { background:var(--surface); padding:1.4rem 1.5rem; display:flex; flex-direction:column; gap:.5rem; }
+  .pain .k { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.09em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  .pain p { font-size:var(--step-0); color:var(--ink); }
+  .quote-line { font-family:var(--font-display); font-size:var(--step-1); font-style:italic; color:var(--ink-soft); border-left:2px solid var(--accent); padding-left:1.2rem; margin-top:2.4rem; max-width:58ch; }
+  .quote-line em { color:var(--accent); font-style:italic; }
+
+  .insight { background:var(--surface); }
+  .insight .big { font-family:var(--font-display); font-size:var(--step-2); line-height:1.24; max-width:23ch; margin-bottom:1.5rem; }
+  .insight .big em { font-style:italic; color:var(--accent); }
+  .order { display:flex; flex-wrap:wrap; align-items:center; gap:.7rem; margin-top:2rem; font-family:var(--font-label); font-size:var(--step--1); text-transform:uppercase; letter-spacing:.08em; font-weight:600; }
+  .order .chip { border:1px solid var(--line-strong); border-radius:4px; padding:.55em .9em; background:var(--ground); color:var(--ink-soft); }
+  .order .chip.on { background:var(--accent); color:var(--on-accent); border-color:var(--accent); }
+  .order .sep { color:var(--ink-faint); }
+
+  /* Two roads: DFY vs DWY */
+  .roads { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:.4rem; }
+  .road { border:1px solid var(--line); border-radius:4px; padding:1.7rem 1.8rem; background:var(--surface); display:flex; flex-direction:column; gap:.9rem; }
+  .road.pick { border-color:var(--accent); background:var(--accent-tint); }
+  .road .r-tag { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--ink-faint); display:flex; justify-content:space-between; align-items:baseline; gap:1rem; }
+  .road.pick .r-tag { color:var(--accent); }
+  .road .r-tag .pill { font-family:var(--font-label); font-size:.7rem; padding:.25em .6em; border-radius:999px; background:var(--accent); color:var(--on-accent); letter-spacing:.05em; }
+  .road h3 { font-size:var(--step-1); }
+  .road p { font-size:var(--step-0); color:var(--ink-soft); }
+  .road .r-cost { font-family:var(--font-display); font-size:var(--step-0); color:var(--ink); border-top:1px solid var(--line); padding-top:.9rem; margin-top:auto; }
+  .road.pick .r-cost { border-color:color-mix(in srgb, var(--accent) 30%, transparent); }
+  .same { font-family:var(--font-display); font-style:italic; font-size:var(--step-1); color:var(--ink-soft); text-align:center; margin-top:2rem; }
+
+  .pipe { position:relative; margin-top:1rem; padding-left:2.2rem; }
+  .pipe::before { content:""; position:absolute; left:7px; top:.6rem; bottom:.6rem; width:2px; background:linear-gradient(var(--accent),var(--line)); }
+  .phase { position:relative; padding-bottom:2.5rem; }
+  .phase:last-child { padding-bottom:0; }
+  .phase .dot { position:absolute; left:calc(-2.2rem + 1px); top:.4rem; width:14px; height:14px; border-radius:50%; background:var(--ground); border:2px solid var(--accent); }
+  .phase .mo { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.1em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  .phase h3 { margin:.3rem 0 .5rem; }
+  .phase p { color:var(--ink-soft); font-size:var(--step-0); }
+  .weeks { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.9rem; }
+  .weeks span { font-family:var(--font-label); font-size:.76rem; letter-spacing:.02em; color:var(--ink-soft); background:var(--surface-2); border:1px solid var(--line); border-radius:4px; padding:.4em .7em; }
+
+  /* Leverage beat */
+  .lev { background:var(--surface); }
+  .lev .big { font-family:var(--font-display); font-size:var(--step-2); line-height:1.24; max-width:26ch; margin-bottom:1.4rem; }
+  .lev .big em { font-style:italic; color:var(--accent); }
+  .lev-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:1.8rem; }
+  .lev-col h3 { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.1em; text-transform:uppercase; margin-bottom:1rem; font-weight:600; }
+  .lev-col.low h3 { color:var(--ink-faint); }
+  .lev-col.high h3 { color:var(--accent); }
+  .lev-col ul { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:.6rem; }
+  .lev-col li { font-size:var(--step-0); color:var(--ink-soft); display:flex; gap:.6rem; }
+  .lev-col.low li { text-decoration:line-through; text-decoration-color:var(--line-strong); }
+  .lev-col.low li::before { content:"—"; color:var(--ink-faint); flex:none; text-decoration:none; }
+  .lev-col.high li { color:var(--ink); }
+  .lev-col.high li::before { content:"→"; color:var(--accent); flex:none; }
+
+  .own { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; margin-top:.4rem; }
+  .own .c { display:flex; flex-direction:column; gap:.6rem; padding-top:1.1rem; border-top:2px solid var(--accent); }
+  .own .c .t { font-family:var(--font-display); font-size:var(--step-1); }
+  .own .c p { font-size:var(--step-0); color:var(--ink-soft); }
+
+  .fit { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:.4rem; }
+  .fit .box { border:1px solid var(--line); border-radius:4px; padding:1.5rem 1.6rem; background:var(--surface); }
+  .fit .box h3 { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.1em; text-transform:uppercase; margin-bottom:1rem; font-weight:600; }
+  .fit .box.yes h3 { color:var(--accent); }
+  .fit .box.no h3 { color:var(--ink-faint); }
+  .fit ul { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:.7rem; }
+  .fit li { display:flex; gap:.6rem; font-size:var(--step-0); line-height:1.4; }
+  .fit .yes li::before { content:"✓"; color:var(--accent); font-weight:700; flex:none; }
+  .fit .no li::before { content:"×"; color:var(--ink-faint); font-weight:700; flex:none; }
+
+  .story p + p { margin-top:1.2rem; }
+  .voc { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; margin-top:2.5rem; }
+  .voc blockquote { margin:0; background:var(--surface); border:1px solid var(--line); border-top:2px solid var(--accent); border-radius:4px; padding:1.4rem; display:flex; flex-direction:column; gap:.9rem; }
+  .voc q { font-family:var(--font-display); font-style:italic; font-size:var(--step-0); line-height:1.45; color:var(--ink); }
+  .voc cite { font-family:var(--font-label); font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); font-style:normal; }
+
+  .stack { display:grid; grid-template-columns:1fr 1fr; gap:1.7rem 2.4rem; margin-top:.4rem; }
+  .stack-group { display:flex; flex-direction:column; gap:1rem; }
+  .stack-group h3 { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.1em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  .stack-group ul { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:.7rem; }
+  .stack-group li { display:flex; gap:.6rem; font-size:var(--step-0); line-height:1.4; color:var(--ink); }
+  .stack-group li::before { content:"✓"; color:var(--accent); font-weight:700; flex:none; }
+
+  .offer { background:var(--surface); }
+  .offer-card { border:1px solid var(--line-strong); border-radius:4px; overflow:hidden; background:var(--ground); margin-top:.4rem; }
+  .offer-top { padding:1.9rem; border-bottom:1px dashed var(--line-strong); }
+  .offer-top .anchor { font-size:var(--step-0); color:var(--ink-soft); max-width:56ch; }
+  .offer-top .anchor b { color:var(--ink); }
+  .prices { display:grid; grid-template-columns:1fr 1fr; }
+  .price { padding:1.7rem 1.9rem; }
+  .price + .price { border-left:1px dashed var(--line-strong); }
+  .price .cap { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); font-weight:600; }
+  .price .amt { font-family:var(--font-display); font-size:var(--step-3); letter-spacing:-.02em; font-variant-numeric:tabular-nums; margin:.4rem 0 .2rem; color:var(--ink); }
+  .price.pif .amt { color:var(--accent); }
+  .price .amt small { font-size:var(--step-0); color:var(--ink-faint); }
+  .price .note { font-size:var(--step--1); color:var(--ink-soft); }
+  .price .save { display:inline-block; font-family:var(--font-label); font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; font-weight:600; color:var(--on-accent); background:var(--accent); border-radius:4px; padding:.25em .6em; margin-top:.6rem; }
+  .offer-foot { padding:1.5rem 1.9rem; display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; background:var(--surface-2); }
+  .offer-foot .deadline { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); font-weight:500; }
+  .offer-foot .deadline b { color:var(--accent); }
+
+  details { border-top:1px solid var(--line); }
+  details:last-of-type { border-bottom:1px solid var(--line); }
+  summary { cursor:pointer; list-style:none; padding:1.3rem 0; display:flex; align-items:baseline; justify-content:space-between; gap:1rem; font-family:var(--font-display); font-size:var(--step-1); }
+  summary::-webkit-details-marker { display:none; }
+  summary .mk { font-size:1.4rem; color:var(--accent); transition:transform .2s ease; flex:none; line-height:1; }
+  details[open] summary .mk { transform:rotate(45deg); }
+  details .ans { padding:0 0 1.4rem; color:var(--ink-soft); font-size:var(--step-0); max-width:64ch; }
+
+  .final { text-align:left; }
+  .final h2 { max-width:18ch; margin-bottom:1.2rem; }
+  .final .cta-row { display:flex; flex-wrap:wrap; gap:.9rem; margin-top:1.8rem; }
+
+  footer.site-f { background:var(--footer-bg); color:var(--footer-soft); padding-block:2.4rem; border-top:1px solid var(--line); }
+  footer.site-f .wrap { display:flex; flex-wrap:wrap; gap:.6rem 1.5rem; align-items:center; justify-content:space-between; }
+  footer.site-f .b { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.06em; text-transform:uppercase; }
+  footer.site-f .b.strong { color:var(--footer-ink); }
+
+  .rv { opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+  .rv.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity:1; transform:none; transition:none; } .btn { transition:none; } }
+
+  @media (max-width:760px) {
+    .stat-strip,.pains,.roads,.lev-grid,.own,.fit,.voc,.prices,.stack { grid-template-columns:1fr; }
+    .price + .price { border-left:none; border-top:1px dashed var(--line-strong); }
+    .brand span { display:none; }
+  }
+</style>
+</head>
+<body>
+
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark"></span>AIOS with Puja Patel <span>· AI through Operations</span></a>
+    <a class="btn btn--primary" href="https://aios-with-puja-patel.circle.so/checkout/ai-operations-for-mortgage-professionals" target="_blank" rel="noopener">Sign up <span class="arw">→</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="tag"><span class="eyebrow">AI Operations for Mortgage Professionals · shops of 5 or fewer</span></div>
+      <h1>Double your closings on the team you already have.</h1>
+      <p class="sub">A 4-month done-with-you program that fixes your operational systems and puts them on AI — you build it, guided by me. Not another AI course. Not done-for-you. Yours to keep.</p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href="https://aios-with-puja-patel.circle.so/checkout/ai-operations-for-mortgage-professionals" target="_blank" rel="noopener">Sign up <span class="arw">→</span></a>
+        <a class="btn btn--ghost" href="#how">See how it works</a>
+      </div>
+      <p class="micro">This rate is open through <b>Aug 14</b> — it goes up after.</p>
+
+      <div class="stat-strip rv">
+        <div class="stat"><div class="n">10–12</div><div class="l">loans/mo where most small shops hit the wall — and it breaks above that</div></div>
+        <div class="stat"><div class="n">2×</div><div class="l">the closings target, on your current headcount — no new hires</div></div>
+        <div class="stat"><div class="n">4</div><div class="l">months, one weekly deep-dive at a time</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="problem">
+    <div class="wrap">
+      <div class="head-block">
+        <span class="eyebrow">The wall</span>
+        <h2>Your team maxes out around a dozen loans a month.</h2>
+        <p class="lede">Going from 12 to 15 doesn't mean a few more files — it's four times the applications. So you can't grow without hiring into chaos, and you're the one holding it all together.</p>
+      </div>
+      <div class="pains">
+        <div class="pain"><span class="k">Document chase</span><p>Your processor (or you) spends the day chasing borrowers for conditions and re-checking files.</p></div>
+        <div class="pain"><span class="k">Leads slipping</span><p>Pre-approvals fall through the cracks because you're buried processing the files you already have.</p></div>
+        <div class="pain"><span class="k">The middleman</span><p>Every deal, you're relaying status between the borrower, the realtor, and the attorney.</p></div>
+        <div class="pain"><span class="k">You're the bottleneck</span><p>Underwriting back-and-forth lands on your desk because delegating it means it won't get done right.</p></div>
+      </div>
+      <p class="quote-line">You've tried to figure the AI part out yourself — weekends on YouTube, an AI class, maybe a cheap overseas hire. You don't doubt it works. You're just stuck at “okay, but how do I point it at <em>my</em> business?”</p>
+    </div>
+  </section>
+
+  <section class="insight">
+    <div class="wrap">
+      <span class="eyebrow">The difference</span>
+      <p class="big">Most people will sell you AI tools. That's half the answer — if your operation is messy, AI just automates the <em>mess</em> faster.</p>
+      <p class="lede">So we do it in the right order: fix the operational system first, then run it on AI. Operations, then automation — not the other way around.</p>
+      <div class="order">
+        <span class="chip on">Fix the operation</span><span class="sep">→</span>
+        <span class="chip on">Run it on AI</span><span class="sep">→</span>
+        <span class="chip">Double the ceiling</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="roads">
+    <div class="wrap">
+      <div class="head-block">
+        <span class="eyebrow">Two roads, one destination</span>
+        <h2>Whether I build it or you do, we're fixing the same thing.</h2>
+        <p class="lede">Your operation is capped and you're the bottleneck. That problem doesn't change based on who's holding the wrench — only the road you take to fix it does.</p>
+      </div>
+      <div class="roads">
+        <div class="road">
+          <div class="r-tag"><span>Done for you</span><span class="pill" style="background:transparent;color:var(--ink-soft);border:1px solid var(--line-strong)">Running now</span></div>
+          <h3>I build it for you.</h3>
+          <p>My done-for-you build is live and delivering the full system for shops ready to invest — fast and hands-off. The audit alone is $6,000, and the full build runs into five figures.</p>
+          <div class="r-cost">The premium track · for shops ready now</div>
+        </div>
+        <div class="road pick">
+          <div class="r-tag"><span>Done with you</span><span class="pill">This program</span></div>
+          <h3>You build it, I guide every step.</h3>
+          <p>It takes your time — but you build the entire system on your own files, keep the skill for good, and get the whole fix for a fraction of the done-for-you cost.</p>
+          <div class="r-cost">The complete fix · yours to keep, forever</div>
+        </div>
+      </div>
+      <p class="same">Same destination, two roads. The done-for-you track is running and delivering — but plenty of brokers would rather learn to drive it themselves, or aren't ready for that investment yet. This is the road for them.</p>
+    </div>
+  </section>
+
+  <section class="lev">
+    <div class="wrap">
+      <span class="eyebrow">The point of all of it</span>
+      <p class="big">Take the <em>low-leverage</em> work off everyone — so the whole team spends its time on <em>high-leverage</em> work.</p>
+      <p class="lede">Every hour spent chasing a document or copy-pasting a status update is an hour not spent closing a loan. The systems you build hand the grunt work to AI, so you and your team are freed to do the work that actually makes money.</p>
+      <div class="lev-grid">
+        <div class="lev-col low">
+          <h3>Off your team's plate</h3>
+          <ul><li>Chasing borrowers for docs</li><li>Copy-pasting status updates</li><li>Re-keying data between systems</li><li>Manual lead follow-up</li></ul>
+        </div>
+        <div class="lev-col high">
+          <h3>Where their time goes instead</h3>
+          <ul><li>Structuring and closing deals</li><li>Realtor and referral relationships</li><li>The next loan in the door</li><li>Actually growing the shop</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="head-block">
+        <span class="eyebrow">How it works · 4 months, guided</span>
+        <h2>We build it in the order a loan actually moves.</h2>
+      </div>
+      <div class="pipe rv">
+        <div class="phase"><span class="dot"></span><div class="mo">Month 01</div><h3>Build the company brain</h3><p>Map how a loan moves through your shop, lead to funding — then get fluent in Claude and feed it your business so it actually knows how you work.</p><div class="weeks"><span>Map the operation</span><span>Claude fluency</span><span>Your company brain</span><span>First win: faster prequal</span></div></div>
+        <div class="phase"><span class="dot"></span><div class="mo">Month 02</div><h3>Kill the time leaks</h3><p>The doc chase, the follow-ups that slip, the status updates — systematized first, then automated on top so they run without you.</p><div class="weeks"><span>End the doc chase</span><span>Work leads in your GHL</span><span>Automated follow-up</span><span>Stop being the middleman</span></div></div>
+        <div class="phase"><span class="dot"></span><div class="mo">Month 03</div><h3>Get out of the bottleneck</h3><p>The parts only you can do today — underwriting prep, delegation — turned into a system your whole team can run.</p><div class="weeks"><span>Underwriting prep</span><span>Delegation guardrails</span><span>Team playbook</span><span>Pipeline command</span></div></div>
+        <div class="phase"><span class="dot"></span><div class="mo">Month 04</div><h3>Double the ceiling</h3><p>Assemble the full system, stress-test it at twice your volume, and set the systems-before-hires foundation so growth stays seamless.</p><div class="weeks"><span>Full assembly</span><span>Stress-test at 2×</span><span>Scale foundation</span><span>Your next-30-days map</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="own">
+    <div class="wrap">
+      <div class="head-block"><span class="eyebrow">Done with you — not for you</span><h2>You build it. I guide you. You own it.</h2></div>
+      <div class="own">
+        <div class="c"><span class="t">You build it</span><p>Every system is built by you, on your real files — so you actually understand it and it fits how your shop runs.</p></div>
+        <div class="c"><span class="t">I guide you</span><p>Weekly deep-dives and support the whole way. When you get stuck, you're not stuck alone on a weekend.</p></div>
+        <div class="c"><span class="t">You own it</span><p>At the end it's yours — the systems and the skill. No vendor to depend on, no black box you can't run.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fit">
+    <div class="wrap">
+      <div class="head-block"><span class="eyebrow">Fit</span><h2>Built for a specific kind of shop.</h2></div>
+      <div class="fit">
+        <div class="box yes"><h3>This is for you if</h3><ul><li>You run a shop of 5 people or fewer and you're still in the weeds</li><li>You'd rather learn to run this yourself than hand it to a vendor</li><li>Your bottleneck is capacity and ops, not leads</li><li>You want to grow without adding headcount</li></ul></div>
+        <div class="box no"><h3>Not the fit if</h3><ul><li>You want it fully done-for-you (that's a separate track)</li><li>You're a large shop with a full ops team already</li><li>Your problem is lead volume, not throughput</li><li>You're looking to hire a person, not build a system</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="story">
+    <div class="wrap">
+      <div class="head-block"><span class="eyebrow">Why this exists</span><h2>The brokers kept telling me the same thing.</h2></div>
+      <p class="lede">I run a done-for-you build for mortgage shops, and it works. But over and over on those calls, I heard the same two things: some brokers would rather learn to do it themselves, and some just aren't ready for a five-figure build yet. So I opened the same method up as a done-with-you program — with you, not for you. The done-for-you track is still running for shops ready for it.</p>
+      <div class="voc">
+        <blockquote><q>At some point you only have so much bandwidth to continue doing documentation.</q><cite>broker · team of 11 · 40 loans/mo</cite></blockquote>
+        <blockquote><q>Leads come in that I can't follow up on because I've been too busy processing my own files.</q><cite>broker · mostly part-time team</cite></blockquote>
+        <blockquote><q>My day was not structured well. Too many fires. This is the tipping point for me.</q><cite>broker · team of 7</cite></blockquote>
+      </div>
+      <!-- FOUNDING-COHORT RESULTS: swap the anonymized quotes above for real, named results once the first cohort delivers. Do not fabricate. -->
+    </div>
+  </section>
+
+  <section id="keep">
+    <div class="wrap">
+      <div class="head-block">
+        <span class="eyebrow">What you keep</span>
+        <h2>Everything you walk away with.</h2>
+        <p class="lede">Not promises — assets. Here's what you'll have built and get to keep at the end of the four months.</p>
+      </div>
+      <div class="stack">
+        <div class="stack-group">
+          <h3>The systems you build and own</h3>
+          <ul>
+            <li>A live map of your entire loan operation, lead to funding — that updates as your shop changes</li>
+            <li>Your company brain — a Claude setup that knows your business, your process, your files</li>
+            <li>A document-collection + chase system that gathers and follows up on borrower conditions</li>
+            <li>A lead-follow-up engine wired into your GHL so no pre-approval slips through the cracks</li>
+            <li>A status-update system that keeps borrower, realtor, and attorney in the loop without you relaying every message</li>
+            <li>An underwriting-prep system that assembles clean files so the back-and-forth stops landing on your desk</li>
+            <li>A pipeline command view where every loan's stage is visible and nothing gets lost</li>
+          </ul>
+        </div>
+        <div class="stack-group">
+          <h3>The skill you keep — no more vendor dependency</h3>
+          <ul>
+            <li>Claude fluency — you can run this yourself, not just watch someone do it</li>
+            <li>The ability to build new systems yourself whenever a new bottleneck shows up</li>
+            <li>Your own library of prompts and workflows, built for your loan process</li>
+          </ul>
+        </div>
+        <div class="stack-group">
+          <h3>The documents</h3>
+          <ul>
+            <li>A team playbook and SOPs so your whole shop runs the systems, not just you</li>
+            <li>A scale plan — your systems-before-hires roadmap for the next 30/60/90 days</li>
+          </ul>
+        </div>
+        <div class="stack-group">
+          <h3>The room</h3>
+          <ul>
+            <li>Access to the community — other brokers building the same thing</li>
+            <li>Ongoing map refreshes as your business grows</li>
+          </ul>
+        </div>
+      </div>
+      <p class="same">If I built all of this for you, it's a five-figure done-for-you engagement. You build it with me — and keep every piece — for $6,000.</p>
+    </div>
+  </section>
+
+  <section id="signup" class="offer">
+    <div class="wrap">
+      <div class="head-block"><span class="eyebrow">The investment</span><h2>The audit alone was $6,000. This is the entire fix.</h2></div>
+      <div class="offer-card">
+        <div class="offer-top">
+          <p class="anchor">When brokers hire me done-for-you, the <b>audit</b> — just finding what's broken and mapping it — is <b>$6,000</b>, and the full build on top runs into five figures. This program gives you the <b>whole system, built</b> — not a diagnosis, the cure — because you're the one building it, guided by me. Your effort instead of five figures, and you own it forever.</p>
+        </div>
+        <div class="prices">
+          <div class="price pif"><div class="cap">Pay in full</div><div class="amt">$5,000</div><div class="note">One payment, start to finish.</div><span class="save">Save $1,000</span></div>
+          <div class="price"><div class="cap">Monthly</div><div class="amt">$1,500<small>/mo</small></div><div class="note">Four payments, auto-pay. $6,000 total.</div></div>
+        </div>
+        <div class="offer-foot">
+          <span class="deadline">This rate is open through <b>Aug 14</b> — it goes up after.</span>
+          <a class="btn btn--primary" href="https://aios-with-puja-patel.circle.so/checkout/ai-operations-for-mortgage-professionals" target="_blank" rel="noopener">Sign up <span class="arw">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="head-block"><span class="eyebrow">Straight answers</span><h2>Before you sign up.</h2></div>
+      <details><summary>Can't I just figure this out myself? <span class="mk">+</span></summary><div class="ans">You're already trying — that's the point. This is the guided version so you actually finish, instead of losing another six months of weekends to YouTube. You do the building; I make sure you don't get stuck.</div></details>
+      <details><summary>Is this software, or are you hiring people for me? <span class="mk">+</span></summary><div class="ans">Neither. You're not buying a tool or a headcount. You're building operational systems that run on AI, and you own them at the end. No new seat, no monthly software you have to learn cold.</div></details>
+      <details><summary>Will it work with my GHL and current stack? <span class="mk">+</span></summary><div class="ans">Yes — we build on top of what you already use, including GoHighLevel. The goal is your existing pipeline running smoother, not a rip-and-replace.</div></details>
+      <details><summary>How much time does it take? <span class="mk">+</span></summary><div class="ans">One deep-dive a week. You're building on your own real files, so the time you put in is work you'd have to do anyway — just done once, properly.</div></details>
+      <details><summary>Why is this the same $6,000 as the audit? <span class="mk">+</span></summary><div class="ans">Because the audit was only the diagnosis — done for you. This is the entire fix, built with you. You're trading your effort for a five-figure build, and you walk away owning the systems and the skill. One doubled month of closings covers it several times over.</div></details>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <span class="eyebrow">Rate goes up after Aug 14</span>
+      <h2>Stop DIY-ing it on weekends. Build the system that doubles your closings.</h2>
+      <p class="lede">Fix the operation, run it on AI, take the low-leverage work off your whole team — in four guided months, and you own every bit of it.</p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href="https://aios-with-puja-patel.circle.so/checkout/ai-operations-for-mortgage-professionals" target="_blank" rel="noopener">Sign up <span class="arw">→</span></a>
+        <a class="btn btn--ghost" href="#how">Re-read how it works</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-f">
+  <div class="wrap">
+    <span class="b strong">AIOS with Puja Patel — AI through Operations</span>
+    <span class="b">AI Operations for Mortgage Professionals</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.rv');
+    if (reduce || !('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.14 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+
+</body>
+</html>
