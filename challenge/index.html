@@ -27,6 +27,14 @@
   .day b{font-size:17px}
   .day .phase{display:block;font-size:13px;color:var(--ink-soft);margin-top:2px}
   .day.locked{opacity:.55;pointer-events:none}
+  .mapcard{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:16px 20px;margin:8px 0 20px;
+    text-decoration:none;color:var(--ink)}
+  .mapcard:hover{border-color:var(--accent)}
+  .mapcard .mi{font-size:24px;flex:none;line-height:1}
+  .mapcard b{font-size:17px}
+  .mapcard .ms{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:2px}
+  .mapcard .ma{margin-left:auto;color:var(--accent);font-weight:700;flex:none;font-size:18px}
   .qa{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent-bright);
     border-radius:6px;padding:22px 22px 12px;margin:26px 0}
   .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15px;
@@ -69,6 +77,12 @@
   <h1>the day archive</h1>
   <p class="lead">one system a day for 30 days. the short version lands in your inbox each morning — the full version (videos, worksheets, frameworks) unlocks here.</p>
   <p class="muted">joined mid-challenge? start on <b>today's</b> system. the archive is for catching up — not for falling behind.</p>
+
+  <a class="mapcard" href="map/">
+    <span class="mi">🗺</span>
+    <span><b>the systems map</b><span class="ms">see how every day connects into one process — grows daily</span></span>
+    <span class="ma">→</span>
+  </a>
 
   <a class="day" href="day-1/"><span class="n">day 1</span><span><b>lead intake &amp; capture</b><span class="phase">phase 1 — getting clients</span></span></a>
   <a class="day" href="day-2/"><span class="n">day 2</span><span><b>lead qualification &amp; triage</b><span class="phase">phase 1 — getting clients</span></span></a>
