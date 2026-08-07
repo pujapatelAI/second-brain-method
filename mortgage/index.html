@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="AI Operations for Mortgage Professionals — a done-with-you program to double your closings on the team you already have. Fix your operational systems and put them on AI, guided by Puja Patel.">
+<meta name="description" content="AI Operations for Mortgage Professionals — a done-with-you program to double your closings on the team you already have.">
 <meta property="og:title" content="AI Operations for Mortgage Professionals — Puja Patel">
 <meta property="og:description" content="Double your closings on the team you already have. Done-with-you, not done-for-you.">
 <title>AI Operations for Mortgage Professionals — Puja Patel</title>
@@ -169,6 +169,11 @@
   .voc q { font-family:var(--font-display); font-style:italic; font-size:var(--step-0); line-height:1.45; color:var(--ink); }
   .voc cite { font-family:var(--font-label); font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); font-style:normal; }
 
+  .pq { display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; margin-top:2.4rem; }
+  .pq blockquote { margin:0; background:var(--surface); border:1px solid var(--line); border-top:2px solid var(--accent); border-radius:4px; padding:1.3rem; display:flex; flex-direction:column; gap:.8rem; }
+  .pq q { font-family:var(--font-display); font-style:italic; font-size:var(--step-0); line-height:1.45; color:var(--ink); }
+  .pq cite { font-family:var(--font-label); font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); font-style:normal; }
+
   .stack { display:grid; grid-template-columns:1fr 1fr; gap:1.7rem 2.4rem; margin-top:.4rem; }
   .stack-group { display:flex; flex-direction:column; gap:1rem; }
   .stack-group h3 { font-family:var(--font-label); font-size:var(--step--1); letter-spacing:.1em; text-transform:uppercase; color:var(--accent); font-weight:600; }
@@ -216,7 +221,7 @@
   @media (prefers-reduced-motion: reduce) { .rv { opacity:1; transform:none; transition:none; } .btn { transition:none; } }
 
   @media (max-width:760px) {
-    .stat-strip,.pains,.roads,.lev-grid,.own,.fit,.voc,.prices,.stack { grid-template-columns:1fr; }
+    .stat-strip,.pains,.roads,.lev-grid,.own,.fit,.voc,.prices,.stack,.pq { grid-template-columns:1fr; }
     .price + .price { border-left:none; border-top:1px dashed var(--line-strong); }
     .brand span { display:none; }
   }
@@ -264,6 +269,10 @@
         <div class="pain"><span class="k">Leads slipping</span><p>Pre-approvals fall through the cracks because you're buried processing the files you already have.</p></div>
         <div class="pain"><span class="k">The middleman</span><p>Every deal, you're relaying status between the borrower, the realtor, and the attorney.</p></div>
         <div class="pain"><span class="k">You're the bottleneck</span><p>Underwriting back-and-forth lands on your desk because delegating it means it won't get done right.</p></div>
+      </div>
+      <div class="pq">
+        <blockquote><q>It's just a pain doing all that — chasing docs. And when a processor quits, whoever's left is just copying and pasting.</q><cite>broker · 4-person team</cite></blockquote>
+        <blockquote><q>I'm stuck going back and forth with underwriting on every file — because if I hand it off, it won't get done to my standard.</q><cite>broker · 2-person team</cite></blockquote>
       </div>
       <p class="quote-line">You've tried to figure the AI part out yourself — weekends on YouTube, an AI class, maybe a cheap overseas hire. You don't doubt it works. You're just stuck at “okay, but how do I point it at <em>my</em> business?”</p>
     </div>
@@ -333,7 +342,7 @@
       </div>
       <div class="pipe rv">
         <div class="phase"><span class="dot"></span><div class="mo">Month 01</div><h3>Build the company brain</h3><p>Map how a loan moves through your shop, lead to funding — then get fluent in Claude and feed it your business so it actually knows how you work.</p><div class="weeks"><span>Map the operation</span><span>Claude fluency</span><span>Your company brain</span><span>First win: faster prequal</span></div></div>
-        <div class="phase"><span class="dot"></span><div class="mo">Month 02</div><h3>Kill the time leaks</h3><p>The doc chase, the follow-ups that slip, the status updates — systematized first, then automated on top so they run without you.</p><div class="weeks"><span>End the doc chase</span><span>Work leads in your GHL</span><span>Automated follow-up</span><span>Stop being the middleman</span></div></div>
+        <div class="phase"><span class="dot"></span><div class="mo">Month 02</div><h3>Kill the time leaks</h3><p>The doc chase, the follow-ups that slip, the status updates — systematized first, then automated on top so they run without you.</p><div class="weeks"><span>End the doc chase</span><span>Work your un-worked leads</span><span>Automated follow-up</span><span>Stop being the middleman</span></div></div>
         <div class="phase"><span class="dot"></span><div class="mo">Month 03</div><h3>Get out of the bottleneck</h3><p>The parts only you can do today — underwriting prep, delegation — turned into a system your whole team can run.</p><div class="weeks"><span>Underwriting prep</span><span>Delegation guardrails</span><span>Team playbook</span><span>Pipeline command</span></div></div>
         <div class="phase"><span class="dot"></span><div class="mo">Month 04</div><h3>Double the ceiling</h3><p>Assemble the full system, stress-test it at twice your volume, and set the systems-before-hires foundation so growth stays seamless.</p><div class="weeks"><span>Full assembly</span><span>Stress-test at 2×</span><span>Scale foundation</span><span>Your next-30-days map</span></div></div>
       </div>
@@ -385,13 +394,13 @@
         <div class="stack-group">
           <h3>The systems you build and own</h3>
           <ul>
-            <li>A live map of your entire loan operation, lead to funding — that updates as your shop changes</li>
+            <li>A live map of your entire operation, lead to funding, that updates as your shop changes</li>
             <li>Your company brain — a Claude setup that knows your business, your process, your files</li>
-            <li>A document-collection + chase system that gathers and follows up on borrower conditions</li>
-            <li>A lead-follow-up engine wired into your GHL so no pre-approval slips through the cracks</li>
-            <li>A status-update system that keeps borrower, realtor, and attorney in the loop without you relaying every message</li>
-            <li>An underwriting-prep system that assembles clean files so the back-and-forth stops landing on your desk</li>
-            <li>A pipeline command view where every loan's stage is visible and nothing gets lost</li>
+            <li>Automated document collection and chasing, so nothing you're waiting on stalls a file</li>
+            <li>Follow-up that runs on its own, so no pre-approval or lead slips through the cracks</li>
+            <li>Communication that keeps the borrower, realtor, and attorney in the loop without you relaying every message</li>
+            <li>File prep and hand-offs that stop bouncing back to your desk</li>
+            <li>Full visibility into every deal, so nothing gets lost</li>
           </ul>
         </div>
         <div class="stack-group">
@@ -445,7 +454,7 @@
       <div class="head-block"><span class="eyebrow">Straight answers</span><h2>Before you sign up.</h2></div>
       <details><summary>Can't I just figure this out myself? <span class="mk">+</span></summary><div class="ans">You're already trying — that's the point. This is the guided version so you actually finish, instead of losing another six months of weekends to YouTube. You do the building; I make sure you don't get stuck.</div></details>
       <details><summary>Is this software, or are you hiring people for me? <span class="mk">+</span></summary><div class="ans">Neither. You're not buying a tool or a headcount. You're building operational systems that run on AI, and you own them at the end. No new seat, no monthly software you have to learn cold.</div></details>
-      <details><summary>Will it work with my GHL and current stack? <span class="mk">+</span></summary><div class="ans">Yes — we build on top of what you already use, including GoHighLevel. The goal is your existing pipeline running smoother, not a rip-and-replace.</div></details>
+      <details><summary>Will it work with my current stack? <span class="mk">+</span></summary><div class="ans">Yes — we build on top of the tools you already use, not a rip-and-replace. The goal is your existing pipeline running smoother.</div></details>
       <details><summary>How much time does it take? <span class="mk">+</span></summary><div class="ans">One deep-dive a week. You're building on your own real files, so the time you put in is work you'd have to do anyway — just done once, properly.</div></details>
       <details><summary>Why is this the same $6,000 as the audit? <span class="mk">+</span></summary><div class="ans">Because the audit was only the diagnosis — done for you. This is the entire fix, built with you. You're trading your effort for a five-figure build, and you walk away owning the systems and the skill. One doubled month of closings covers it several times over.</div></details>
     </div>
