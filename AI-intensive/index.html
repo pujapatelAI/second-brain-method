@@ -117,6 +117,18 @@ var _cio = _cio || [];
   .chips .n{font-family:var(--font-display);font-weight:700;font-size:1.25rem;color:var(--accent);flex:none;min-width:2.4ch}
   .chips .t{font-size:1.02rem;color:var(--ink)}
 
+  /* Who it's for */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+  @media(max-width:640px){.cols{grid-template-columns:1fr}}
+  .col{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px 22px 24px}
+  .col.for{border-left:3px solid var(--accent-bright)}
+  .col h3{font-family:var(--font-display);font-weight:700;font-size:1.2rem;margin-bottom:14px;color:var(--ink)}
+  .col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+  .col li{font-size:1.04rem;color:var(--ink-soft);display:flex;gap:11px;line-height:1.4}
+  .col li .mk{flex:none;font-weight:700}
+  .col.for li .mk{color:var(--accent)}
+  .col.not li .mk{color:var(--ink-soft)}
+
   /* Testimonial marquee */
   .marquee{margin-top:10px;display:flex;flex-direction:column;gap:14px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
   .mq-track{display:flex;gap:14px;width:max-content;animation:mq 64s linear infinite}
@@ -222,28 +234,28 @@ var _cio = _cio || [];
   </div>
   <div class="marquee" style="margin-top:26px" aria-label="Workshop reactions">
     <div class="mq-track">
-      <div class="tcard"><p>"This operating map is a continuation of how I think."</p><p class="who">Business coach</p></div>
-      <div class="tcard"><p>"The mind-blowing potential this has."</p><p class="who">Event planner</p></div>
+      <div class="tcard"><p>"This operating map is a continuation of how I think."</p><p class="who">Real estate agent</p></div>
+      <div class="tcard"><p>"The mind-blowing potential this has."</p><p class="who">Mortgage broker</p></div>
       <div class="tcard"><p>"It would collapse time — and give my clients a report they'll actually look at."</p><p class="who">Marketing consultant</p></div>
-      <div class="tcard"><p>"I love when you showed that. That's all they need — folders."</p><p class="who">Solo founder</p></div>
-      <div class="tcard"><p>"No, actually — this is amazing."</p><p class="who">Wedding &amp; events planner</p></div>
-      <div class="tcard"><p>"This operating map is a continuation of how I think."</p><p class="who">Business coach</p></div>
-      <div class="tcard"><p>"The mind-blowing potential this has."</p><p class="who">Event planner</p></div>
+      <div class="tcard"><p>"I love when you showed that. That's all they need — folders."</p><p class="who">Law firm owner</p></div>
+      <div class="tcard"><p>"No, actually — this is amazing."</p><p class="who">Event planner</p></div>
+      <div class="tcard"><p>"This operating map is a continuation of how I think."</p><p class="who">Real estate agent</p></div>
+      <div class="tcard"><p>"The mind-blowing potential this has."</p><p class="who">Mortgage broker</p></div>
       <div class="tcard"><p>"It would collapse time — and give my clients a report they'll actually look at."</p><p class="who">Marketing consultant</p></div>
-      <div class="tcard"><p>"I love when you showed that. That's all they need — folders."</p><p class="who">Solo founder</p></div>
-      <div class="tcard"><p>"No, actually — this is amazing."</p><p class="who">Wedding &amp; events planner</p></div>
+      <div class="tcard"><p>"I love when you showed that. That's all they need — folders."</p><p class="who">Law firm owner</p></div>
+      <div class="tcard"><p>"No, actually — this is amazing."</p><p class="who">Event planner</p></div>
     </div>
     <div class="mq-track rev">
-      <div class="tcard"><p>"That's what I want. I want my clients to receive this."</p><p class="who">Marketing consultant</p></div>
-      <div class="tcard"><p>"Okay, this was really helpful."</p><p class="who">Event planning company</p></div>
-      <div class="tcard"><p>"That's amazing, Puja."</p><p class="who">Wedding planner</p></div>
-      <div class="tcard"><p>"I'm geeking out because I'm excited."</p><p class="who">Business coach</p></div>
-      <div class="tcard"><p>"I've got work to do — and it's exciting."</p><p class="who">Consultant · Tampa</p></div>
-      <div class="tcard"><p>"That's what I want. I want my clients to receive this."</p><p class="who">Marketing consultant</p></div>
-      <div class="tcard"><p>"Okay, this was really helpful."</p><p class="who">Event planning company</p></div>
-      <div class="tcard"><p>"That's amazing, Puja."</p><p class="who">Wedding planner</p></div>
-      <div class="tcard"><p>"I'm geeking out because I'm excited."</p><p class="who">Business coach</p></div>
-      <div class="tcard"><p>"I've got work to do — and it's exciting."</p><p class="who">Consultant · Tampa</p></div>
+      <div class="tcard"><p>"That's what I want. I want my clients to receive this."</p><p class="who">Meta ads agency</p></div>
+      <div class="tcard"><p>"Okay, this was really helpful."</p><p class="who">HR firm owner</p></div>
+      <div class="tcard"><p>"That's amazing, Puja."</p><p class="who">PR agency</p></div>
+      <div class="tcard"><p>"I'm geeking out because I'm excited."</p><p class="who">Financial firm owner</p></div>
+      <div class="tcard"><p>"I've got work to do — and it's exciting."</p><p class="who">Real estate agent</p></div>
+      <div class="tcard"><p>"That's what I want. I want my clients to receive this."</p><p class="who">Meta ads agency</p></div>
+      <div class="tcard"><p>"Okay, this was really helpful."</p><p class="who">HR firm owner</p></div>
+      <div class="tcard"><p>"That's amazing, Puja."</p><p class="who">PR agency</p></div>
+      <div class="tcard"><p>"I'm geeking out because I'm excited."</p><p class="who">Financial firm owner</p></div>
+      <div class="tcard"><p>"I've got work to do — and it's exciting."</p><p class="who">Real estate agent</p></div>
     </div>
   </div>
   </section>
@@ -260,6 +272,33 @@ var _cio = _cio || [];
           <li><span class="n">✦</span><span class="t">Built AI operating systems for a real-estate brokerage, a 150-person retailer, and more</span></li>
           <li><span class="n">✦</span><span class="t">Run live workshops teaching owners to put AI on top of their business</span></li>
           <li><span class="n">✦</span><span class="t">Run my own consulting practice, product, and community entirely this way</span></li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- WHO IT'S FOR -->
+  <section><div class="wrap reveal">
+    <div class="mono lead-label">Be honest with yourself</div>
+    <h2 class="h2">Who this is for.</h2>
+    <div class="cols">
+      <div class="col for">
+        <h3>This is for you if…</h3>
+        <ul>
+          <li><span class="mk">+</span>You're the bottleneck, and you know it.</li>
+          <li><span class="mk">+</span>Your business lives in your head.</li>
+          <li><span class="mk">+</span>You've tried AI and it felt generic.</li>
+          <li><span class="mk">+</span>You'll do the work in the room, on your real business.</li>
+          <li><span class="mk">+</span>Non-technical — that's expected.</li>
+        </ul>
+      </div>
+      <div class="col not">
+        <h3>This isn't for you if…</h3>
+        <ul>
+          <li><span class="mk">–</span>You want it done for you while you watch.</li>
+          <li><span class="mk">–</span>You want another course to save and never open.</li>
+          <li><span class="mk">–</span>You want a magic button, not a system.</li>
+          <li><span class="mk">–</span>You're not ready to look at how your business really runs.</li>
         </ul>
       </div>
     </div>
