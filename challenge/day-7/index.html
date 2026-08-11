@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 7 — Contract → Kickoff Handoff · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q .n.b{background:var(--ground);color:var(--accent);border:1.5px solid var(--accent)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:82px;text-align:center}
+  .door{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line);align-items:baseline}
+  .door:first-of-type{border-top:none}
+  .door .L{flex:none;font-family:Georgia,serif;font-weight:700;font-size:22px;color:var(--accent);width:28px}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:14px;
+    font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:16px;line-height:1.7}
+  .tmpl .k{color:var(--accent);font-weight:700}
+  .tmpl .lbl{display:block;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+    font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  /* video strip — swipeable row so 3 vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — taking you to the challenge ($17)…</p>
+  <p class="muted" style="font-size:14px;margin-top:14px;">not a member yet? <a href="https://stan.store/PujaPatel">join the 30-day challenge — $17 →</a></p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 7 · Phase 1 — Getting Clients</div>
+  <h1>contract → kickoff handoff</h1>
+  <p class="lead">day 6 kept your warm leads alive. today one of them says <em>yes</em> — and this is the moment most people fumble: the handoff from <b>signed</b> to <b>started</b>. treat "yes" as the finish line and you leak momentum and trust at the exact peak of their excitement. make it a system and the same clean kickoff runs every time — so a new client's first week feels like proof they chose right, not a scramble. this is the last system in getting clients; after today, we're delivering the work.</p>
+
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">three today — the system, the mistakes that make a fresh <em>yes</em> feel shaky, and Claude running the whole kickoff (at two speeds). <span style="color:var(--accent)">swipe →</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7672800361484274957" allow="fullscreen" title="the signed-to-started handoff as a system" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 · the system</b> — <a href="https://www.tiktok.com/@pujap109/video/7672800361484274957" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7672805485833178381" allow="fullscreen" title="the handoff mistakes that make a yes feel shaky" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 · common mistakes</b> — <a href="https://www.tiktok.com/@pujap109/video/7672805485833178381" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7672809188195568910" allow="fullscreen" title="claude running the whole kickoff, two speeds" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">3 · Claude, two speeds</b> — <a href="https://www.tiktok.com/@pujap109/video/7672809188195568910" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>the system: contract → kickoff handoff</h2>
+    <p>closing the sale isn't the finish line — it's a handoff. a <b>system</b> is the same path from <em>signed</em> to <em>started</em>, every time, so it never depends on you remembering the steps at 9pm. these questions turn "however i onboarded the last one" into <em>yours</em> — put a real number on each, and the gaps show themselves.</p>
+    <div class="q"><div class="n">1</div><div><b>the second they say yes — what locks it in, and how fast?</b> contract signed and deposit paid, right then, while certainty is at its peak. a lag here is exactly where cold feet and "let me check with my partner" creep back in.<span class="num">last "yes" — hours from yes to signed + deposit collected? ___</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>what do you need FROM them to start — one intake, or a chase?</b> access, logins, assets, the answers only they have. gathered in one kickoff intake, or dragged out of them over a week of one-off emails?<span class="num">to fully onboard your last client, how many separate asks did it take? ___</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>what do they hear from you right after signing?</b> a welcome that sets what's next, the timeline, and how to reach you — so <em>yes</em> becomes confidence instead of silence.<span class="num">last client — hours from signed to your first welcome message? ___</span></div></div>
+    <div class="q"><div class="n">4</div><div><b>is the kickoff call booked in the same motion?</b> or is it a separate "let me find a time" thread that adds days before anything actually starts?<span class="num">signed → kickoff call actually on the calendar: ___ days</span></div></div>
+    <div class="q"><div class="n b">+</div><div><b>bonus: where does the project live on day one?</b> is it set up — folder, tracker, the plan — the moment they start, or do you scramble to build it after?<span class="num">signed → project actually set up: same day / ___ days later</span></div></div>
+  </section>
+
+  <section>
+    <h2>the system on one line</h2>
+    <p class="muted">same path every time — that's what turns a scramble into a kickoff:</p>
+    <div class="step"><span class="tag">trigger</span><span>the client says yes — signs and/or pays the deposit.</span></div>
+    <div class="step"><span class="tag">input</span><span>your contract + deposit link, your kickoff intake, your welcome template, your project template.</span></div>
+    <div class="step"><span class="tag">process</span><span>lock it in (contract + deposit) → send the welcome (what's next + timeline) → send the one intake → book the kickoff call → set up the project.</span></div>
+    <div class="step"><span class="tag">output</span><span><em>signed</em> becomes <em>started</em> — client onboarded, everything gathered, momentum intact, nothing dropped.</span></div>
+    <div class="step"><span class="tag">standard</span><span>every new client goes from yes to fully kicked off the same way — ideally the same day.</span></div>
+  </section>
+
+  <section>
+    <h2>the 3 mistakes in the system</h2>
+    <p><b>1 — the gap between "yes" and "signed."</b> you don't have the contract and deposit ready to fire the second they say yes, so there's a lag — you go find the template, customize it, send it that evening. but certainty is highest at <em>yes</em> and it decays by the hour. that gap is where "let me check with my partner" and cold feet live. the fix isn't being faster — it's having it ready to send in the moment.</p>
+    <p><b>2 — death by a thousand asks.</b> you collect what you need to start piecemeal — logins today, brand assets next week, that one answer whenever you remember. so the project stalls in intake limbo and you look disorganized before you've done any real work. one kickoff intake that gathers <em>everything</em> at once fixes it.</p>
+    <p><b>3 — the post-yes silence.</b> right after the most excited moment in the whole relationship, the client hears… nothing, while you "get set up behind the scenes." silence right after yes is exactly where buyer's remorse grows. the handoff has to <em>include</em> an immediate welcome — what's next, the timeline, how to reach you — not leave a vacuum.</p>
+    <p class="callout">fix these three — lock it in the moment they say yes, gather everything in one intake, welcome them right away — and the handoff stops being a scramble and becomes the reason they're glad they picked you.</p>
+  </section>
+
+  <section>
+    <h2>build your kickoff kit</h2>
+    <p>two assets that make every future kickoff run itself. first, the <b>one intake</b> that collects everything you need to start — so you never chase it piecemeal again. the four buckets:</p>
+    <div class="door"><span class="L">·</span><div><b>access &amp; logins</b> — accounts, tools, platforms you'll need in</div></div>
+    <div class="door"><span class="L">·</span><div><b>assets &amp; brand</b> — files, logos, docs, examples, anything they already have</div></div>
+    <div class="door"><span class="L">·</span><div><b>the answers only they have</b> — goals, deadlines, decision-makers, must-knows</div></div>
+    <div class="door"><span class="L">·</span><div><b>points of contact</b> — who you talk to, for what, and how</div></div>
+    <p style="margin-top:16px;">then the <b>welcome</b> — sent the moment they sign, so the excitement never hits silence:</p>
+    <div class="tmpl">
+      <span class="lbl">the kickoff welcome</span>
+      welcome aboard, <span class="k">[name]</span> — genuinely glad we're doing this. here's exactly what happens next: <span class="k">[step 1]</span> by <span class="k">[date]</span>, then <span class="k">[step 2]</span>. your kickoff call is <span class="k">[when]</span> — <span class="k">[link]</span>. i've also sent a quick intake to grab what i need to hit the ground running; fill it whenever you get a sec. anything at all, just reply here — you've got me directly.
+    </div>
+    <p class="callout">build these two once — the intake and the welcome — and the handoff runs on templates, not memory.</p>
+  </section>
+
+  <section class="flag">
+    <h2>do it with Claude — two speeds</h2>
+    <p>this is the video-3 payoff: once the kit exists (the intake, the welcome, the project template), Claude can run the whole handoff <em>for</em> you — at whichever speed you're ready for.</p>
+    <p><b>speed one — you're still driving.</b> you tell Claude <em>"[client] just signed — kick them off."</em> from that one line it writes the welcome in your voice, builds the intake, drops the kickoff call link, and sets up the project. you skim, approve, send. signed to fully onboarded in under a minute.</p>
+    <p><b>speed two — you don't even see it.</b> once you trust it, the moment a deal gets marked <em>closed</em> the whole kickoff fires on its own — contract confirmed, welcome out, intake sent, call booked, project created. you find out it worked when the client replies <em>"this is the most organized onboarding i've ever seen."</em></p>
+    <p class="callout">Claude runs the kickoff you built — it doesn't invent it. the kit is what makes the automation safe. build it first (the questions above), hand it over second.</p>
+  </section>
+
+  <section class="flag">
+    <h2>the weekly live q&amp;a</h2>
+    <p><b>every thursday at 2:00pm ET through august</b> (aug 13, 20, 27 remaining). an open q&amp;a on the systems — bring the kickoff you're building and we'll tighten it live, or ask about any system in the challenge. google meet, same link every week.</p>
+    <a class="btn" href="https://meet.google.com/ech-pqtq-hhz" target="_blank" rel="noopener">join on google meet →</a>
+    <a class="btn ghost" href="../qa_calls_august.ics" download>add all 4 to your calendar (.ics)</a>
+  </section>
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #8 — client onboarding. we move into phase 2 — delivering the work.</p>
+  <p style="margin-bottom:34px;"><a href="../">← all days</a> &nbsp;&middot;&nbsp; <a href="../map/">🗺 the systems map</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel · The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
