@@ -3,6 +3,17 @@
    the gate. Manual visitors enter the email they bought with; it's hashed
    (salted SHA-256) in the browser and checked against /challenge/members.json.
    Non-members are routed to the Stan store. Funnel gate, not DRM. */
+
+/* Microsoft Clarity — challenge-page analytics (project xni1glpbqz).
+   Loads on every /challenge/ page (day pages, map, archive) via this shared
+   script, so challenge engagement is finally tracked. Site home already runs
+   this same project; the challenge section was previously untracked. */
+(function (c, l, a, r, i, t, y) {
+  c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+  t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+  y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+})(window, document, "clarity", "script", "xni1glpbqz");
+
 (function () {
   var SALT = "c30-brain-extract-2026";
   var STAN = "https://stan.store/PujaPatel";
