@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 9 — The Kickoff Brief · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q .n.b{background:var(--ground);color:var(--accent);border:1.5px solid var(--accent)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:82px;text-align:center}
+  .door{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line);align-items:baseline}
+  .door:first-of-type{border-top:none}
+  .door .L{flex:none;font-family:Georgia,serif;font-weight:700;font-size:22px;color:var(--accent);width:28px}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:14px;
+    font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:16px;line-height:1.7}
+  .tmpl .k{color:var(--accent);font-weight:700}
+  .tmpl .lbl{display:block;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+    font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  /* video strip — swipeable row so vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos .soon{width:258px;height:592px;max-width:80vw;border:1.5px dashed var(--line);border-radius:8px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink-soft);
+    font-size:15px;padding:24px;background:var(--ground)}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — taking you to the challenge ($17)…</p>
+  <p class="muted" style="font-size:14px;margin-top:14px;">not a member yet? <a href="https://stan.store/PujaPatel">join the 30-day challenge — $17 →</a></p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 9 · Phase 2 — Delivering the Work</div>
+  <h1>the kickoff brief</h1>
+  <p class="lead">day 8 got everyone set up. today — before you build a single thing — you write the one doc that says exactly what you're delivering: the <b>kickoff brief</b>. it's <em>not</em> the proposal (that sold the deal), and it's <em>not</em> the contract (that's legal cover) — it's the working source of truth you, your team, and your AI actually build from. and you don't fill it top to bottom. you <b>work backwards from the goal</b>.</p>
+
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">the system, and the mistakes that wreck a project before any work happens. (video 3 — Claude building the brief for you — drops shortly.) <span style="color:var(--accent)">swipe →</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7673553670436392205" allow="fullscreen" title="the kickoff brief as a system — work backwards from the goal" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 · the system</b> — <a href="https://www.tiktok.com/@pujap109/video/7673553670436392205" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7673557933103287566" allow="fullscreen" title="3 mistakes that wreck a project before it starts" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 · common mistakes</b> — <a href="https://www.tiktok.com/@pujap109/video/7673557933103287566" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+      <figure>
+        <div class="soon"><b style="color:var(--ink);font-size:16px;">3 · Claude builds it</b><br><span style="margin-top:8px;display:block;">dropping shortly</span></div>
+        <figcaption><b style="color:var(--ink)">3 · Claude demo</b> — coming</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>first — what a brief is <em>not</em></h2>
+    <p>three docs get confused all the time. each has a different job:</p>
+    <div class="step"><span class="tag">proposal</span><span>written to <b>win</b> the deal — the sales doc, before <em>yes</em>. <span class="muted">(day 4)</span></span></div>
+    <div class="step"><span class="tag">contract</span><span>written to <b>protect</b> both of you — the legal terms, at <em>yes</em>. <span class="muted">(day 7)</span></span></div>
+    <div class="step"><span class="tag">brief</span><span>written to <b>build</b> it — your working spec, after onboarding. <span class="muted">(today)</span></span></div>
+    <p style="margin-top:18px;">and a brief points at whoever needs to be aligned:</p>
+    <div class="door"><span class="L">·</span><div><b>internal</b> — aligns your team on the <em>work</em> (tasks, who does what). you need it the moment you're more than just you.</div></div>
+    <div class="door"><span class="L">·</span><div><b>external</b> — aligns the client on the <em>deliverables</em> (what they get, when).</div></div>
+    <div class="door"><span class="L">·</span><div><b>often both</b> — same brief, one copy pointed each way.</div></div>
+    <p class="callout" style="margin-top:16px;">and it's <b>not the project plan</b> (that's tomorrow): the brief <em>aligns</em> everyone at a high level — the plan is the detailed schedule you execute against.</p>
+  </section>
+
+  <section>
+    <h2>the system: work backwards from the goal</h2>
+    <p>you don't write a brief top to bottom — you start at the goal and let it decide everything else. answer these five and the brief writes itself. put a real number where you can; the gaps show themselves.</p>
+    <div class="q"><div class="n">1</div><div><b>who needs to be on the same page before you start — just you, your team, or the client too?</b> that decides which brief you need: a team → an <em>internal</em> brief (align on the work); a client → an <em>external</em> one (agree on the deliverables); solo + simple → a few lines in your notes is enough.<span class="num">people building this besides you: ___ → 0 = keep it light · 1+ = write it down</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>what's the one goal everyone's aligning on — in their words?</b> the real outcome they're paying for, concrete enough that you'll both know when it's hit. this is the anchor; everything below works backwards from it.<span class="num">can you say the goal in one sentence they'd nod at? write it: ___</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>what's in scope to reach it — and what's explicitly OUT?</b> internally that's the work; externally it's the deliverables. the "out" list is your scope-creep wall — the line you point to when they ask for "one quick extra."<span class="num">things written under "out of scope": ___ (if it's 0, you have no wall)</span></div></div>
+    <div class="q"><div class="n">4</div><div><b>who owns what — and who makes the call?</b> everyone's lane, plus the one person who decides when there's a fork. this is what keeps decisions from stalling mid-project.<span class="num">name the decision-maker for this project: ___</span></div></div>
+    <div class="q"><div class="n">5</div><div><b>how will you all stay synced — the checkpoints, and how you'll share progress?</b> agree the rhythm now (how often, in what form) so alignment holds past day one. the full schedule is tomorrow; this is just the heartbeat.<span class="num">you'll send an update every ___ , via ___</span></div></div>
+  </section>
+
+  <section>
+    <h2>the system on one line</h2>
+    <p class="muted">start at the goal, and let it build the rest:</p>
+    <div class="step"><span class="tag">trigger</span><span>they're onboarded — before any real work starts.</span></div>
+    <div class="step"><span class="tag">input</span><span>the signed proposal + what you learned onboarding + the goal in their words.</span></div>
+    <div class="step"><span class="tag">process</span><span>who needs aligning? (team / client / both) → set the goal → derive scope (in + out) → name roles + the decider → set the sync rhythm.</span></div>
+    <div class="step"><span class="tag">output</span><span>one brief everyone builds from — no drift, no scope creep, no "wait, what were we doing?"</span></div>
+    <div class="step"><span class="tag">standard</span><span>every project starts from a brief, sized to who's involved — a few lines solo, a shared doc with a team.</span></div>
+  </section>
+
+  <section>
+    <h2>the 3 mistakes in the system</h2>
+    <p><b>1 — you assume the proposal and contract have it covered.</b> they signed, so you've got a proposal and a contract — and you just start building. but the proposal was written to <em>sell</em>, before you'd even seen inside; the contract is legal cover. neither one tells you what to actually build. start from those and you're building off a sales pitch.</p>
+    <p><b>2 — the goal is vague, or it's <em>your</em> words, not theirs.</b> "build them a lead system" isn't a goal — it's a task. if the outcome isn't written the way <em>they'd</em> say it out loud, you've aimed at the wrong target. and since the whole brief works backwards from the goal, a fuzzy goal throws off everything under it.</p>
+    <p><b>3 — you name what's IN, but never what's OUT.</b> you list every deliverable and stop there. so when they ask for "one quick extra," there's no wall to point to. that one "here's what's <em>not</em> included" line is what saves you from months of unpaid scope creep.</p>
+    <p class="callout">fix these three — build from a real brief, nail the goal in <em>their</em> words, and draw the out-of-scope line — and the project stays pointed at what they actually paid for, start to finish.</p>
+  </section>
+
+  <section>
+    <h2>steal the template</h2>
+    <p>one page, built backwards from the goal. keep it as light as the project needs — a few lines when it's just you, a shared doc when there's a team or a client to align.</p>
+    <div class="tmpl">
+      <span class="lbl">the kickoff brief</span>
+      <b class="k">goal:</b> <span class="k">[the outcome, in their words — concrete enough you'll both know it's done]</span><br>
+      <b class="k">in scope:</b> <span class="k">[what you're delivering]</span> &nbsp;·&nbsp; <b class="k">out of scope:</b> <span class="k">[what you're not]</span><br>
+      <b class="k">milestones:</b> <span class="k">[the key dates at a glance — full schedule comes tomorrow]</span><br>
+      <b class="k">roles:</b> <span class="k">[who owns what · who makes the call]</span><br>
+      <b class="k">sync:</b> <span class="k">[how often you'll update · where]</span>
+    </div>
+    <p class="callout">internal or external? same skeleton — point it at your team (lean on <em>roles + work</em>) or at the client (lean on <em>deliverables + milestones</em>).</p>
+  </section>
+
+  <section class="flag">
+    <h2>do it with Claude</h2>
+    <p>you've already got the raw material — the signed proposal and everything you gathered onboarding. so Claude can draft the brief <em>for</em> you, backwards from the goal.</p>
+    <p>you give Claude the goal in their words and hand it the proposal + your onboarding intake. it drafts the brief — scope in and out, roles, milestones, the sync rhythm — pulled from what's already there. you edit the two things only <em>you</em> can judge: the goal, and the out-of-scope line. approve, and you've got your source of truth in a couple of minutes.</p>
+    <p class="callout">Claude fills the brief from what you already have — but you own the goal and the scope line. those two are the whole ballgame. <span class="muted">(full walkthrough in video 3 — dropping shortly.)</span></p>
+  </section>
+
+  <section class="flag">
+    <h2>the weekly live q&amp;a</h2>
+    <p><b>every thursday at 2:00pm ET through august</b> (aug 20 &amp; 27 remaining). an open q&amp;a on the systems — bring the brief you're writing and we'll tighten the goal + scope live, or ask about any system in the challenge. google meet, same link every week.</p>
+    <a class="btn" href="https://meet.google.com/ech-pqtq-hhz" target="_blank" rel="noopener">join on google meet →</a>
+    <a class="btn ghost" href="../qa_calls_august.ics" download>add all 4 to your calendar (.ics)</a>
+  </section>
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #10 — the project plan &amp; timeline. the brief says <em>what</em> and <em>who</em>; the plan says <em>how</em> and <em>when</em>.</p>
+  <p style="margin-bottom:34px;"><a href="../">← all days</a> &nbsp;&middot;&nbsp; <a href="../map/">🗺 the systems map</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel · The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
