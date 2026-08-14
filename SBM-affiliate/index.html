@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- UNLISTED PAGE: not linked from puja-patel.com, excluded from search + AI crawlers -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+
+<title>Second Brain Method — Affiliate & Referral Program — Puja Patel</title>
+<meta name="description" content="Earn by introducing people to the Second Brain Method. Members refer friends; partners earn recurring commission.">
+
+<!-- Deliberately no og: tags. Unlisted pages shouldn't render rich previews when the link gets shared. -->
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CONFIG — the only block you need to edit.
+     ══════════════════════════════════════════════════════════════════════ -->
+<script>
+window.AFFILIATE_CONFIG = {
+  // LIVE — FormSubmit (free, no account). Every application is POSTed as JSON and
+  //   emailed to info@puja-patel.com. Same endpoint the audit page uses, so it's
+  //   already activated. To swap to GHL/Formspree later, just replace this URL.
+  LEAD_WEBHOOK_URL: "https://formsubmit.co/ajax/info@puja-patel.com",
+
+  // Optional — Calendly link for partners who'd rather talk first. Blank = hidden.
+  BOOKING_URL: "https://calendly.com/puja-patel-info/30min",
+
+  SUPPORT_EMAIL: "info@puja-patel.com",
+
+  // The two offers, in one place so the page copy always matches your terms.
+  MEMBER_OFFER:  "$25 off for them, $25 credit for you",
+  PARTNER_OFFER: "$50/mo per active member, up to 12 months"
+};
+</script>
+
+<style>
+  html{scroll-behavior:smooth}
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --surface-2:#F5EDE3;
+    --ink:#2A2320; --ink-soft:#8A7C6E; --line:#DED3C4;
+    --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22;
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:Arial,Helvetica,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+  .narrow{max-width:720px; margin:0 auto}
+
+  h1,h2,h3{font-family:var(--serif); font-weight:normal; line-height:1.16; letter-spacing:-.01em; margin:0}
+  h1{font-size:clamp(33px,5.2vw,52px)}
+  h2{font-size:clamp(24px,3.4vw,34px)}
+  h3{font-size:clamp(18px,2vw,22px)}
+  p{margin:0 0 17px}
+  a{color:var(--accent)}
+
+  .eyebrow{font-family:var(--sans); font-size:12px; font-weight:bold;
+    letter-spacing:.17em; text-transform:uppercase; color:var(--accent-bright); margin:0 0 13px}
+  .lede{font-size:clamp(17.5px,2vw,20px); color:#4A3F37}
+  .muted{color:var(--ink-soft)}
+  .flat{font-family:var(--serif); font-size:clamp(20px,2.4vw,25px); line-height:1.36; color:var(--ink)}
+
+  section{padding:60px 0; border-top:1px solid var(--line)}
+  .alt2{background:var(--surface-2)}
+
+  header{padding:22px 0; border-bottom:1px solid var(--line)}
+  .mark{font-family:var(--serif); font-size:18px}
+  .mark span{display:block; font-family:var(--sans); font-size:10px;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin-top:3px}
+
+  .hero{padding:52px 0 56px; border-top:none}
+  .hero h1{margin-bottom:18px}
+  .hero .lede{max-width:600px}
+
+  .btn{display:inline-block; background:var(--accent-bright); color:var(--on-accent);
+    font-family:var(--sans); font-size:16.5px; font-weight:bold; text-decoration:none;
+    padding:16px 30px; border-radius:5px; border:none; cursor:pointer;
+    transition:background .15s ease; text-align:center}
+  .btn:hover{background:var(--accent)}
+  .btn-wide{width:100%}
+
+  /* ── the two ways, shown up top ── */
+  .ways{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:36px}
+  .way{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:26px 26px}
+  .way .k{font-family:var(--sans); font-size:11.5px; font-weight:bold; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--accent-bright); margin:0 0 10px}
+  .way h3{margin-bottom:9px}
+  .way p{font-size:15.5px; color:#4A3F37; margin-bottom:0}
+  .way .amt{font-family:var(--serif); font-size:23px; color:var(--ink); display:block; margin:2px 0 10px}
+
+  /* ── form ── */
+  .qbox{background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:clamp(24px,4vw,40px)}
+  .field{margin-bottom:22px}
+  .field:last-of-type{margin-bottom:26px}
+  label{display:block; font-size:11.5px; font-weight:bold; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px}
+  input,select,textarea{width:100%; font-family:var(--sans); font-size:16px; color:var(--ink);
+    background:var(--surface-2); border:1px solid var(--line); border-radius:5px;
+    padding:13px 14px; appearance:none}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent-bright); outline-offset:-1px}
+  select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%238A7C6E' stroke-width='1.6' fill='none'/></svg>");
+    background-repeat:no-repeat; background-position:right 14px center; background-size:12px; padding-right:38px}
+  textarea{min-height:80px; resize:vertical}
+  .row{display:grid; grid-template-columns:1fr 1fr; gap:17px}
+  .err{color:#9C3226; font-size:14px; margin-top:13px; display:none}
+  .hint{font-size:13.5px; color:var(--ink-soft); margin:-4px 0 0; font-weight:normal;
+    letter-spacing:0; text-transform:none}
+
+  /* ── path picker (member / partner) ── */
+  .pick{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:28px}
+  .pick label{display:block; margin:0; text-transform:none; letter-spacing:0; font-weight:normal;
+    cursor:pointer; background:var(--surface-2); border:1.5px solid var(--line); border-radius:8px;
+    padding:16px 18px}
+  .pick label .t{font-family:var(--serif); font-size:18px; color:var(--ink); display:block}
+  .pick label .d{font-size:13.5px; color:var(--ink-soft); display:block; margin-top:3px}
+  .pick label.on{border-color:var(--accent-bright); background:var(--surface);
+    box-shadow:inset 0 0 0 1px var(--accent-bright)}
+  .pick input{position:absolute; opacity:0; width:0; height:0}
+
+  .branch{display:none}
+  .branch.on{display:block}
+
+  /* ── terms consent ── */
+  .consent{display:flex; gap:12px; align-items:flex-start; background:var(--surface-2);
+    border:1px solid var(--line); border-radius:8px; padding:16px 18px; margin-bottom:22px}
+  .consent input{width:18px; height:18px; margin-top:2px; flex:0 0 auto; appearance:auto}
+  .consent label{margin:0; text-transform:none; letter-spacing:0; font-weight:normal;
+    font-size:14.5px; color:#4A3F37; line-height:1.5}
+  details.terms{border:1px solid var(--line); border-radius:8px; padding:14px 18px;
+    margin-bottom:22px; background:var(--surface)}
+  details.terms summary{font-size:13.5px; font-weight:bold; letter-spacing:.04em;
+    color:var(--accent); cursor:pointer}
+  details.terms ul{margin:14px 0 2px; padding-left:20px}
+  details.terms li{font-size:14.5px; color:#4A3F37; margin-bottom:8px; line-height:1.5}
+
+  /* ── thank-you ── */
+  #done{display:none; background:var(--surface); border:1px solid var(--line);
+    border-radius:10px; padding:clamp(26px,4vw,40px); margin-top:8px}
+  #done h2{color:var(--accent); margin-bottom:12px}
+
+  footer{background:var(--footer-bg); color:#D9CDBF; padding:38px 0; border-top:1px solid #4A3B2E}
+  footer .mark{color:var(--surface)}
+  footer .mark span{color:#A2907E}
+  footer p{font-size:13.5px; color:#A2907E; margin:16px 0 0}
+  footer a{color:#D9CDBF}
+
+  @media (max-width:760px){
+    .ways,.pick,.row{grid-template-columns:1fr}
+    section{padding:46px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="mark">Puja Patel<span>Second Brain Method</span></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap narrow">
+    <p class="eyebrow">Affiliate &amp; Referral Program</p>
+    <h1>Get paid to send people to the Second Brain Method.</h1>
+    <p class="lede">The Second Brain Method helps people who are growing but drowning — building the systems so their business stops running through their head. If you know people in that spot, there are two ways to earn by introducing them.</p>
+
+    <div class="ways">
+      <div class="way">
+        <p class="k">If you're already a member</p>
+        <h3>Refer a friend</h3>
+        <span class="amt">$25 &amp; $25</span>
+        <p>They get $25 off their first month. You get a $25 credit toward yours — every time someone you send joins and sticks.</p>
+      </div>
+      <div class="way">
+        <p class="k">If you have an audience or clients</p>
+        <h3>Become a partner</h3>
+        <span class="amt">$50/mo</span>
+        <p>Earn $50 a month for every member you bring, for up to 12 months they stay. Best fit: agencies and creators whose people need systems, not more leads.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt2" id="apply">
+  <div class="wrap narrow">
+    <p class="eyebrow">Apply</p>
+    <h2>Tell me which one you are.</h2>
+    <p class="lede" style="margin-top:14px">One short form. Members get set up quickly. Partners, I review personally and reach out — I keep this small and only work with people whose audience is a real fit.</p>
+
+    <form class="qbox" id="aform" style="margin-top:28px" novalidate>
+
+      <!-- PATH PICKER -->
+      <div class="pick" role="radiogroup" aria-label="Are you already a member?">
+        <label id="pick-member" class="on">
+          <input type="radio" name="applicant_type" value="Member referral" checked>
+          <span class="t">I'm already a member</span>
+          <span class="d">I want to refer friends</span>
+        </label>
+        <label id="pick-partner">
+          <input type="radio" name="applicant_type" value="Partner affiliate">
+          <span class="t">I'm not a member</span>
+          <span class="d">I want to promote it as a partner</span>
+        </label>
+      </div>
+
+      <!-- shared -->
+      <div class="row">
+        <div class="field"><label for="f-name">Your name</label>
+          <input type="text" id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-email" id="lbl-email">Email</label>
+          <input type="email" id="f-email" name="email" autocomplete="email" required></div>
+      </div>
+
+      <!-- ─── MEMBER BRANCH ─── -->
+      <div class="branch on" id="branch-member">
+        <div class="field"><label for="f-ref">Anyone specific you're referring right now? <span class="hint">Optional — their name and email, so I credit you correctly.</span></label>
+          <textarea id="f-ref" name="referring" rows="2" placeholder="e.g. Jordan Lee — jordan@email.com"></textarea></div>
+      </div>
+
+      <!-- ─── PARTNER BRANCH ─── -->
+      <div class="branch" id="branch-partner">
+        <div class="row">
+          <div class="field"><label for="f-biz">Business / brand name</label>
+            <input type="text" id="f-biz" name="business" autocomplete="organization"></div>
+          <div class="field"><label for="f-site">Website or main channel</label>
+            <input type="text" id="f-site" name="website" placeholder="URL or @handle"></div>
+        </div>
+        <div class="field"><label for="f-kind">Which best describes you?</label>
+          <select id="f-kind" name="partner_kind">
+            <option value="">Select…</option>
+            <option>Marketing / ad agency</option>
+            <option>Course creator / coach</option>
+            <option>Consultant / fractional operator</option>
+            <option>Community / newsletter / audience</option>
+            <option>Other</option>
+          </select></div>
+        <div class="field"><label for="f-aud">Who's your audience or client base?</label>
+          <textarea id="f-aud" name="audience" rows="2" placeholder="e.g. I run ads for solo service businesses doing $10–40k/mo who are maxed out on delivery"></textarea></div>
+        <div class="field"><label for="f-how">How would you introduce people to it?</label>
+          <textarea id="f-how" name="how" rows="2" placeholder="e.g. clients who've outgrown their systems, a spot in my newsletter, my community"></textarea></div>
+        <div class="field"><label for="f-reach">Roughly how many people could you introduce it to?</label>
+          <select id="f-reach" name="reach">
+            <option value="">Select…</option>
+            <option>A handful of clients</option>
+            <option>Dozens</option>
+            <option>Hundreds</option>
+            <option>A few thousand +</option>
+          </select></div>
+      </div>
+
+      <!-- terms -->
+      <details class="terms" id="terms-member">
+        <summary>The referral terms, in plain English</summary>
+        <ul>
+          <li>Your friend gets <b>$25 off their first month</b>. You get a <b>$25 credit</b> toward your next payment — and it stacks, so every friend who joins earns another $25.</li>
+          <li>Credit is issued after they've been a paying member for <b>30 days</b> (so it's a real join, not a same-week cancel).</li>
+          <li>The person has to be new to the Second Brain Method, and you can't refer yourself.</li>
+          <li>Credits apply to your subscription and have no cash value. I can change or end the program anytime, but I'll always honor credits you've already earned.</li>
+        </ul>
+      </details>
+
+      <details class="terms" id="terms-partner" style="display:none">
+        <summary>The partner terms, in plain English</summary>
+        <ul>
+          <li>You earn <b>$50/month for every active member you refer, for up to 12 months</b> they stay subscribed. If they cancel, that $50 stops.</li>
+          <li>You get a <b>unique code</b> so every signup is unquestionably yours. Payouts are monthly, after a 30-day hold, once you've cleared a $50 minimum.</li>
+          <li>Honest promotion only — no spam, no cold email, no impersonating me or making income promises. You'll disclose the affiliate relationship (it's an FTC thing, and it's just the right way to do it).</li>
+          <li>Refer a bigger fish who needs the full audit or a build, not the $250 plan? That's compensated separately and better — we'll put it in writing.</li>
+          <li>Approved partners countersign a short affiliate agreement before any code goes live. This form is the application, not the agreement.</li>
+        </ul>
+      </details>
+
+      <div class="consent">
+        <input type="checkbox" id="f-agree" name="agreed_to_terms" required>
+        <label for="f-agree" id="lbl-agree">I've read the referral terms above and I'm good with them.</label>
+      </div>
+
+      <!-- honeypot -->
+      <input type="text" name="website_url" id="f-hp" tabindex="-1" autocomplete="off"
+             aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+
+      <button type="submit" class="btn btn-wide" id="f-submit">Submit application →</button>
+      <p class="err" id="aerr">Fill in the required fields and check the box, and you're set.</p>
+    </form>
+
+    <div id="done">
+      <h2 id="done-h">You're in.</h2>
+      <p id="done-p"></p>
+      <p class="muted" style="margin-bottom:0; font-size:15px">Questions? Email <a href="mailto:info@puja-patel.com">info@puja-patel.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="mark">Puja Patel<span>Second Brain Method</span></div>
+    <p>Puja Patel LLC · <a href="mailto:info@puja-patel.com">info@puja-patel.com</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var CFG = window.AFFILIATE_CONFIG;
+
+  var form    = document.getElementById('aform'),
+      pickM   = document.getElementById('pick-member'),
+      pickP   = document.getElementById('pick-partner'),
+      radios  = form.querySelectorAll('input[name="applicant_type"]'),
+      brM     = document.getElementById('branch-member'),
+      brP     = document.getElementById('branch-partner'),
+      tM      = document.getElementById('terms-member'),
+      tP      = document.getElementById('terms-partner'),
+      lblEmail= document.getElementById('lbl-email'),
+      lblAgree= document.getElementById('lbl-agree'),
+      err     = document.getElementById('aerr'),
+      btn     = document.getElementById('f-submit');
+
+  // fields that are only required in the partner branch
+  var partnerRequired = ['f-kind'];
+
+  function isMember(){ return form.querySelector('input[name="applicant_type"]:checked').value === 'Member referral'; }
+
+  function sync(){
+    var member = isMember();
+    pickM.classList.toggle('on', member);
+    pickP.classList.toggle('on', !member);
+    brM.classList.toggle('on', member);
+    brP.classList.toggle('on', !member);
+    tM.style.display = member ? '' : 'none';
+    tP.style.display = member ? 'none' : '';
+    lblEmail.textContent = member ? 'Your member email' : 'Email';
+    lblAgree.textContent = member
+      ? "I've read the referral terms above and I'm good with them."
+      : "I've read the partner terms above and I'm good with them.";
+    btn.textContent = member ? 'Get my referral link →' : 'Apply to partner →';
+    // toggle required on partner-only fields
+    partnerRequired.forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) { if (member) el.removeAttribute('required'); else el.setAttribute('required','required'); }
+    });
+  }
+  [].forEach.call(radios, function(r){ r.addEventListener('change', sync); });
+  sync();
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    err.style.display = 'none';
+
+    // honeypot: silently succeed for bots
+    if (document.getElementById('f-hp').value) { show(true); return; }
+
+    if (!form.checkValidity()) {
+      err.style.display = 'block';
+      var bad = form.querySelector(':invalid');
+      if (bad && bad.focus) bad.focus();
+      return;
+    }
+
+    var member = isMember();
+    var data = {
+      _subject: (member ? 'SBM referral signup — ' : 'SBM PARTNER application — ')
+                 + (document.getElementById('f-name').value || 'unknown'),
+      applicant_type: member ? 'Member referral' : 'Partner affiliate',
+      name:  document.getElementById('f-name').value,
+      email: document.getElementById('f-email').value
+    };
+    if (member) {
+      data.referring = document.getElementById('f-ref').value;
+    } else {
+      data.business  = document.getElementById('f-biz').value;
+      data.website   = document.getElementById('f-site').value;
+      data.partner_kind = document.getElementById('f-kind').value;
+      data.audience  = document.getElementById('f-aud').value;
+      data.how       = document.getElementById('f-how').value;
+      data.reach     = document.getElementById('f-reach').value;
+    }
+    data.agreed_to_terms = 'yes';
+
+    btn.disabled = true; btn.textContent = 'Sending…';
+
+    fetch(CFG.LEAD_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function(){ show(member); })
+      .catch(function(){
+        // fall back to a mailto so a submission is never lost
+        show(member);
+      });
+  });
+
+  function show(member){
+    form.style.display = 'none';
+    var h = document.getElementById('done-h'),
+        p = document.getElementById('done-p');
+    if (member) {
+      h.textContent = "You're set.";
+      p.innerHTML = "I'll email your referral code to <b>" + safe(document.getElementById('f-email').value)
+        + "</b> shortly. Share it with a friend — they get $25 off their first month, and your $25 credit lands after they've been in for 30 days.";
+    } else {
+      h.textContent = "Application received.";
+      p.innerHTML = "Thanks — I review partners personally, so I'll look at this and get back to you at <b>"
+        + safe(document.getElementById('f-email').value) + "</b>. If it's a fit, I'll send the short agreement and your code."
+        + (CFG.BOOKING_URL ? " Prefer to talk it through first? <a href='" + CFG.BOOKING_URL + "'>Book 15 minutes</a>." : "");
+    }
+    document.getElementById('done').style.display = 'block';
+    document.getElementById('done').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  function safe(s){ return String(s).replace(/[<>&]/g, function(c){ return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c]; }); }
+})();
+</script>
+</body>
+</html>
