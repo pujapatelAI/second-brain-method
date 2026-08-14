@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 10 — Project Plan &amp; Timeline · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q .n.b{background:var(--ground);color:var(--accent);border:1.5px solid var(--accent)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:82px;text-align:center}
+  .door{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line);align-items:baseline}
+  .door:first-of-type{border-top:none}
+  .door .L{flex:none;font-family:Georgia,serif;font-weight:700;font-size:22px;color:var(--accent);width:28px}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:14px;
+    font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:16px;line-height:1.7}
+  .tmpl .k{color:var(--accent);font-weight:700}
+  .tmpl .lbl{display:block;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+    font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  /* video strip — swipeable row so vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos .soon{width:258px;height:592px;max-width:80vw;border:1.5px dashed var(--line);border-radius:8px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink-soft);
+    font-size:15px;padding:24px;background:var(--ground)}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — taking you to the challenge ($17)…</p>
+  <p class="muted" style="font-size:14px;margin-top:14px;">not a member yet? <a href="https://stan.store/PujaPatel">join the 30-day challenge — $17 →</a></p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 10 · Phase 2 — Delivering the Work</div>
+  <h1>the project plan &amp; timeline</h1>
+  <p class="lead">day 9 gave you the brief — <em>what</em> you're building and what "done" means. today you turn it into a plan you can actually run: <em>when</em>, and in what order. because a <b>deadline isn't a plan</b> — a real timeline lets you tell, <em>today</em>, whether you're going to make it. you build it by walking each milestone down to dated, sorted tasks.</p>
+
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">the system, and the mistakes that quietly make you late. (video 3 — Claude building the whole plan from your brief — drops shortly.) <span style="color:var(--accent)">swipe →</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7673970623323835661" allow="fullscreen" title="the project plan and timeline as a system" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 · the system</b> — <a href="https://www.tiktok.com/@pujap109/video/7673970623323835661" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7673979159193898253" allow="fullscreen" title="3 project-timeline mistakes that make you late" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 · common mistakes</b> — <a href="https://www.tiktok.com/@pujap109/video/7673979159193898253" target="_blank" rel="noopener">open on tiktok →</a></figcaption>
+      </figure>
+      <figure>
+        <div class="soon"><b style="color:var(--ink);font-size:16px;">3 · Claude builds it</b><br><span style="margin-top:8px;display:block;">dropping shortly</span></div>
+        <figcaption><b style="color:var(--ink)">3 · Claude demo</b> — coming</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>first — a plan is not a to-do list</h2>
+    <p>three things get muddled — each does a different job:</p>
+    <div class="step"><span class="tag">brief</span><span>says <b>what</b> you're building + who + what "done" means. <span class="muted">(day 9)</span></span></div>
+    <div class="step"><span class="tag">plan</span><span>says <b>when</b> + in what order — the schedule you run against. <span class="muted">(today)</span></span></div>
+    <div class="step"><span class="tag">to-do list</span><span>tasks with no order and no dates — <b>not a plan</b>. it keeps you busy; it can't tell you if you'll make the deadline.</span></div>
+    <p class="callout" style="margin-top:16px;">your milestones already live in the brief. today you take each one and break it down to dated, sorted tasks — so you can tell, <em>today</em>, whether you'll hit it.</p>
+  </section>
+
+  <section>
+    <h2>the system: milestones down to dated tasks</h2>
+    <p>take each milestone, break it into tasks, sort them, and date them. put a real number where you can — the gaps show themselves.</p>
+    <div class="q"><div class="n">1</div><div><b>what are your milestone deadlines?</b> break the project into milestones and put a deadline on each. if you did day 9, they're already sitting in your kickoff brief.<span class="num">milestones written, each with a date: ___</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>what are the literal tasks — with verbs — to hit each milestone?</b> say the milestone is <em>launch ads</em>: write the scripts, client films them, edit the videos. and of those, which can run at the same time vs which have to go in order? <span class="muted">(write the scripts + set up the account together; you can't edit until the videos exist; you can't film until the scripts are done.)</span><span class="num">tasks for your next milestone: ___ · how many can run in parallel? ___</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>which of those tasks need client input?</b> the ones where the client has to do something or hand something over — that's where the timeline leaves your hands, so you flag it now.<span class="num">tasks waiting on the client: ___</span></div></div>
+    <div class="q"><div class="n">4</div><div><b>by when does each piece have to land — with buffer?</b> back-time from the client's deadline and leave yourself room, because something always comes up. <span class="muted">(they expect it Nov 17 → your plan lands it before then.)</span><span class="num">buffer days between your finish and their deadline: ___</span></div></div>
+  </section>
+
+  <section>
+    <h2>the system on one line</h2>
+    <p class="muted">take the brief's milestones and turn them into a timeline:</p>
+    <div class="step"><span class="tag">trigger</span><span>a project's starting — you've got the brief.</span></div>
+    <div class="step"><span class="tag">input</span><span>the milestones + deadlines already in your kickoff brief.</span></div>
+    <div class="step"><span class="tag">process</span><span>break each milestone into tactical tasks → sort them side-by-side vs in-order → flag what needs the client → back-time every piece with buffer.</span></div>
+    <div class="step"><span class="tag">output</span><span>a timeline you can look at <em>today</em> and know you'll hit — buffer and all.</span></div>
+    <div class="step"><span class="tag">standard</span><span>every project runs off a plan built this way; you're never guessing whether you're on track.</span></div>
+  </section>
+
+  <section>
+    <h2>the 3 mistakes in the system</h2>
+    <p><b>1 — a to-do list is not a plan.</b> a list of everything you have to do isn't a timeline — no finish line, no order, just a pile. you stay busy, but you can't tell if you're on track until the deadline is right on top of you.</p>
+    <p><b>2 — you line everything up back-to-back.</b> you treat every task like it has to wait for the one before it, so the project drags on way longer than it needs to — when half of it could've run at the same time. <em>(or the flip: you assume it can all happen at once, and the one thing you needed first holds up everything behind it.)</em> a real plan knows which is which.</p>
+    <p><b>3 — you plan like you're the only one in it.</b> your timeline only has <em>your</em> tasks on it — nothing for what you need from the client and by when. so the first time they're slow, the whole thing slips, and from the outside it looks like <em>you</em> missed the deadline.</p>
+    <p class="callout">fix these three — give it a finish line and an order, sort what runs side-by-side vs what waits, and put the client's deadlines on the plan too — and a slip shows up while there's still time to catch it.</p>
+  </section>
+
+  <section class="flag">
+    <h2>do it with Claude</h2>
+    <p>your milestones and deadlines already live in the brief — so Claude can build the whole plan <em>for</em> you.</p>
+    <p>it breaks each milestone into the tactical tasks, sorts what can run at the same time vs what has to wait, flags every task that needs the client, and back-times the dates from the deadline with buffer built in. then it hands you the plan one day at a time — the three things that actually move it forward — and because it's reading your emails and meeting notes, when a date moves it updates the plan, the deadlines, and your priorities on its own. you never rebuild it.</p>
+    <p class="callout">you don't keep a project-management tool in sync — your second brain does. <span class="muted">(full walkthrough in video 3 — dropping shortly.)</span></p>
+  </section>
+
+  <section class="flag">
+    <h2>the weekly live q&amp;a</h2>
+    <p><b>every thursday at 2:00pm ET through august</b> (aug 20 &amp; 27 remaining). an open q&amp;a on the systems — bring a project you're planning and we'll build its timeline live, or ask about any system in the challenge. google meet, same link every week.</p>
+    <a class="btn" href="https://meet.google.com/ech-pqtq-hhz" target="_blank" rel="noopener">join on google meet →</a>
+    <a class="btn ghost" href="../qa_calls_august.ics" download>add all 4 to your calendar (.ics)</a>
+  </section>
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #11 — task breakdown &amp; assignment. the plan says <em>what happens</em> and <em>when</em>; day 11 is <em>who owns</em> each task and how you track it.</p>
+  <p style="margin-bottom:34px;"><a href="../">← all days</a> &nbsp;&middot;&nbsp; <a href="../map/">🗺 the systems map</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel · The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
