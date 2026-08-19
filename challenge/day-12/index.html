@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 12 — Weekly Status Update · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:82px;text-align:center}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px;font-size:16px;line-height:1.72}
+  .tmpl .subj{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:17px;font-weight:700;margin-bottom:10px}
+  .tmpl .row{padding:7px 0;border-top:1px solid var(--line)}
+  .tmpl .row:first-of-type{border-top:none}
+  .tmpl .lbl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);min-width:118px}
+  .tmpl .ask{background:var(--surface);border-left:3px solid var(--accent-bright);padding:10px 14px;margin-top:12px;border-radius:0 4px 4px 0}
+  /* video strip — swipeable row so vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — taking you to the challenge ($17)…</p>
+  <p class="muted" style="font-size:14px;margin-top:14px;">not a member yet? <a href="https://stan.store/PujaPatel">join the 30-day challenge — $17 →</a></p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 12 · Phase 2 — Delivering the Work</div>
+  <h1>the weekly status update</h1>
+  <p class="lead">for four days the work has faced inward — the brief, the plan, the tasks, who owns each piece. today it turns outward. the one note your client gets every week, so they never have to ask where things stand — and never go quiet long enough to wonder if they made a mistake hiring you.</p>
+
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">the system, the 3 mistakes that keep clients chasing you, and the whole thing written on claude every friday morning. <span style="color:var(--accent)">swipe &rarr;</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7675748826543656205" allow="fullscreen" title="the weekly status update as a system" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 &middot; the system</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7675748826543656205" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7675755100966620430" allow="fullscreen" title="3 reasons your clients keep asking for updates" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 &middot; common mistakes</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7675755100966620430" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7675759562514894094" allow="fullscreen" title="how i use claude to write weekly client updates" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">3 &middot; how i run this with claude</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7675759562514894094" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>you don't send it because there's news</h2>
+    <p>the mistake underneath every late, skipped, or over-long update is thinking the update is <em>for reporting progress</em>. it isn't. you send it because they're wondering — and one note a week is what buys you an uninterrupted week.</p>
+    <p class="callout">clients almost never leave over a date that moved. they leave over the three weeks they didn't hear from you and started guessing. <b>silence is the only thing a client reads as failure.</b></p>
+    <p>which is why the rule that makes this system work is the one that feels pointless: <b>you send it on the boring weeks too.</b> "here's what moved, here's what didn't, here's why" is a completely normal update — and it's the one that keeps them calm.</p>
+  </section>
+
+  <section>
+    <h2>the system: three questions</h2>
+    <p>the whole update comes out of three questions. answer them once and you have a note you can send every friday without thinking. write your answers in.</p>
+    <div class="q"><div class="n">1</div><div><b>what does your client actually need to know every week?</b> four things, and only four: what got finished, what's next, what's sitting with <em>them</em>, and whether anything moved the date. not everything you did — <em>where things stand</em>.<span class="num">your last update — how many of the four did it actually answer? ___ / 4</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>when does it go out — and does it still go out in a week where nothing exciting happened?</b> same day, same time, every week. the boring weeks matter most; that's exactly when they'd otherwise start guessing.<span class="num">your slot: same day + time, every week? ___</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>where do the facts come from?</b> from where your tasks already live — not from you scrolling back through a week of messages trying to remember. and end with the one thing you need from them, or a plain "nothing needed this week."<span class="num">how long does writing it take you now? ___ (over 15 min = a day-11 problem, not a status problem)</span></div></div>
+  </section>
+
+  <section>
+    <h2>the system on one line</h2>
+    <p class="muted">take yesterday's tracker and turn it into the note they've been waiting on:</p>
+    <div class="step"><span class="tag">trigger</span><span>it's your day, the project's live.</span></div>
+    <div class="step"><span class="tag">input</span><span>the owned, dated tasks already sitting in your day-11 tracker.</span></div>
+    <div class="step"><span class="tag">process</span><span>pull from the tracker &rarr; sort into done / next / waiting on you / anything that changed the date &rarr; say plainly whether you're on track &rarr; end with the one ask.</span></div>
+    <div class="step"><span class="tag">output</span><span>a client who never has to check in — and a written record of every week the project was sitting on <em>their</em> side.</span></div>
+    <div class="step"><span class="tag">standard</span><span>it goes out on the slow weeks too. no update is "nothing to report" — "nothing moved, here's why" is the update.</span></div>
+  </section>
+
+  <section>
+    <h2>what it looks like finished</h2>
+    <p>the friday note for the same project you planned on day 10 and assigned on day 11 — <em>Riverside Lending</em>, paid-social launch, due nov 17. four sections, one ask, forty seconds to read:</p>
+    <div class="tmpl">
+      <div class="subj">Riverside — week of Oct 3</div>
+      <div class="row"><span class="lbl">on track?</span> yes, on track for the nov 17 launch. here's where things stand.</div>
+      <div class="row"><span class="lbl">done</span> all six videos edited and back from review.</div>
+      <div class="row"><span class="lbl">next up</span> building the campaign and running it against the QA checklist.</div>
+      <div class="row"><span class="lbl">waiting on you</span> final go on the ad-account access — still showing pending.</div>
+      <div class="row"><span class="lbl">timeline</span> on track for nov 17, as long as access lands this week.</div>
+      <div class="ask"><b>this week:</b> can you confirm the ad-account access by friday? that's the one thing holding the build.</div>
+    </div>
+    <p class="muted">notice what they can tell in one read: whether you're on track, what's on your plate, what's on theirs, and the one thing to do — without a single follow-up question. that's the whole output of this system.</p>
+  </section>
+
+  <section>
+    <h2>the 3 mistakes in the system</h2>
+    <p><b>1 &mdash; you only send one when there's good news.</b> so your client learns that hearing from you means progress, and silence means something's wrong. now every quiet week costs you trust you didn't know you were spending. send it in the slow weeks <em>especially</em> — the boring update is the one that keeps them calm.</p>
+    <p><b>2 &mdash; it's a list of what you did, not where things stand.</b> nobody hired you for an activity log. they have one question — <em>are we still on track for the date</em> — and if your update doesn't answer it in the first line, they'll ask you anyway, which is the whole thing you were trying to avoid.</p>
+    <p><b>3 &mdash; it ends with nothing for them to do.</b> no ask, and no flag on what's been sitting on their side for two weeks — so the ball quietly rolls back to you, and when the date slips it looks like <em>you</em> were slow. name what you need and when you need it, every single week.</p>
+    <p class="callout">fix these three and "any updates?" just stops arriving.</p>
+  </section>
+
+  <section class="flag">
+    <h2>do it with Claude</h2>
+    <p>the facts already exist from yesterday — owners, dates, what's done. so the writing is the easy part to hand over.</p>
+    <p>friday morning you say one thing: "write this week's client updates." it reads the tracker, your email threads, and your meeting notes — pulls what actually got finished, what's next, what's been sitting on the client's side, and whether anything moved the date. then it writes one short note per client, in your voice, the same four sections every week, ending with the one thing you need from each of them. you skim, fix a sentence, approve.</p>
+    <p class="callout">one to keep a hand on, though: <b>a status update is a promise in writing.</b> read it before it goes. this is exactly the kind of thing that's worth the two minutes — the point isn't to remove you, it's to remove the hour of assembling it. <span class="muted">(video 3 above walks the whole friday-morning pass.)</span></p>
+  </section>
+
+  <section class="flag">
+    <h2>the weekly live q&amp;a</h2>
+    <p><b>every thursday at 2:00pm ET through august</b> (aug 20 &amp; 27 remaining). an open q&amp;a on the systems &mdash; bring a client you've gone quiet on and we'll write the update together, or ask about any system in the challenge. google meet, same link every week.</p>
+    <a class="btn" href="https://meet.google.com/ech-pqtq-hhz" target="_blank" rel="noopener">join on google meet &rarr;</a>
+    <a class="btn ghost" href="../qa_calls_august.ics" download>add all 4 to your calendar (.ics)</a>
+  </section>
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #13 &mdash; meeting prep &amp; agendas. the weekly note keeps them from having to ask; day 13 makes the meetings you do have worth the time.</p>
+  <p style="margin-bottom:34px;"><a href="../">&larr; all days</a> &nbsp;&middot;&nbsp; <a href="../map/">&#128506; the systems map</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel &middot; The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
