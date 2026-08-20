@@ -1,19 +1,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Second Brain Method — Get Your Business Out of Your Head</title>
-<meta name="description" content="Everything your business knows is scattered across fifty places. We map how it actually runs, connect what you already own, and put AI on top. No prior AI experience needed. Founding cohort: 20 spots.">
+<meta name="description" content="Everything your business knows is scattered across fifty places. Learn to put AI to work on your actual business — software maps how it runs, then shows you what to build first. No prior AI experience needed. Limited to 20 members.">
 <link rel="canonical" href="https://puja-patel.com/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://puja-patel.com/">
 <meta property="og:title" content="The Second Brain Method — Get Your Business Out of Your Head">
-<meta property="og:description" content="Map your business in your first hour. Your #1 bottleneck, named — and a 30-day plan. Founding cohort: 20 spots at $250/mo locked for life.">
+<meta property="og:description" content="Map your business in your first hour. Your #1 bottleneck, named — and a 30-day plan. Limited to 20 members at $250/mo, locked for life.">
 <meta property="og:image" content="https://puja-patel.com/assets/og_card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Second Brain Method — Get Your Business Out of Your Head">
-<meta name="twitter:description" content="Map your business in your first hour. 20 founding spots.">
+<meta name="twitter:description" content="Map your business in your first hour. Limited to 20 members.">
 <meta name="twitter:image" content="https://puja-patel.com/assets/og_card.jpg">
 <!-- Microsoft Clarity — project "Second Brain Method" (xni1glpbqz) -->
 <script type="text/javascript">
@@ -153,6 +153,10 @@ s.parentNode.insertBefore(t,s)})();
   .step h3 .sub{color:var(--ink); display:block; font-weight:700}
   .step p{color:var(--ink-soft); font-size:1rem; line-height:1.55}
   .method-foot{margin-top:22px; font-family:var(--font-mono); font-size:.74rem; letter-spacing:.05em; color:var(--ink-soft); text-transform:uppercase; font-weight:600}
+
+  /* four-layer grid (2×2 on desktop, stacks on mobile) — cards reuse .step styling */
+  .layers{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; margin-top:30px}
+  @media(max-width:760px){.layers{grid-template-columns:1fr}}
 
   .stack{margin-top:32px; border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--surface)}
   .row{display:grid; grid-template-columns:1fr auto; gap:20px; padding:18px 24px; border-bottom:1px solid var(--line); align-items:start}
@@ -307,7 +311,7 @@ s.parentNode.insertBefore(t,s)})();
     <div class="bar-in">
       <div class="brand">The Second&nbsp;<b>Brain</b>&nbsp;Method</div>
       <div class="bar-right">
-        <span class="bar-price">$250/mo · 20 founding spots</span>
+        <span class="bar-price">$250/mo · limited to 20 members</span>
         <a class="btn sm" href="#claim" data-cta>Claim a spot</a>
       </div>
     </div>
@@ -316,13 +320,13 @@ s.parentNode.insertBefore(t,s)})();
   <header class="hero" id="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="dot"></span><span class="mono">Founding cohort — 20 spots</span></div>
+        <div class="eyebrow"><span class="dot"></span><span class="mono">Limited to 20 members</span></div>
         <h1>Your business is scattered across fifty places.</h1>
-        <p class="hero-sub">Real clients, real reputation, <b>$10–20k months</b> — and you've rebuilt the same document five hundred times. We <b>map how your business actually runs</b>, connect what you already own, and put AI on top — so the business holds its own context instead of living in your head. <b>No prior AI experience needed.</b></p>
+        <p class="hero-sub" style="max-width:46ch">You've built a business up to <b>$10–20k months</b> — and even though you're just getting started, you're now also getting overwhelmed. You find yourself not having as much time, and not sure how you can make it to the next level while operating like this. This is where you <b>learn to put AI to work on your business</b> — and learn exactly what good operations look like. <b>No prior AI experience needed.</b></p>
         <div class="hero-cta">
-          <a class="btn" href="#claim" data-cta>Claim a founding spot <span class="arw">→</span></a>
+          <a class="btn" href="#claim" data-cta>Claim your spot <span class="arw">→</span></a>
           <a class="btn ghost" href="#problem">See how it works <span class="arw">↓</span></a>
-          <div class="trust">100+ businesses mapped<br>Founding rate locked for life · Hard cap 20</div>
+          <div class="trust">100+ businesses mapped<br>Rate locked for life · Limited to 20 members</div>
         </div>
       </div>
       <div class="canvas-panel">
@@ -342,7 +346,7 @@ s.parentNode.insertBefore(t,s)})();
        "watch first" path is measurable. Deliberately NOT in the
        .next-step narrative chain or the journey IntersectionObserver —
        it's a side door, not a funnel step. Ghost button so it never
-       competes with the primary "Claim a founding spot" CTA. -->
+       competes with the primary "Claim your spot" CTA. -->
   <section id="watch-first" style="padding:32px 0">
     <div class="wrap">
       <div style="display:flex; align-items:center; gap:24px; justify-content:space-between; flex-wrap:wrap; border:1px solid var(--line); border-radius:4px; background:var(--surface); padding:22px 26px">
@@ -366,11 +370,10 @@ s.parentNode.insertBefore(t,s)})();
   <section id="problem">
     <div class="wrap">
       <div class="mono lead-label">The problem</div>
-      <h2 class="h2">You don't have a demand problem. Your business is scattered.</h2>
+      <h2 class="h2">You want to do more — and you know you can. But where do you start?</h2>
       <div class="body" style="margin-top:22px">
-        <p>You built something that works — real clients, real reputation, <b>$10–20k months</b>. And somehow you've built the same document <b>five hundred times</b>. Your processes live in one place, your client notes in another, years of recorded calls in a third — and <b>none of it is connected</b>. Every new client, every new hire, every new offer means starting from memory again, because nothing you've already made is where you can find it.</p>
-        <p class="body">It isn't a discipline problem, and it isn't a tools problem — you have plenty of tools. Everything your business knows is <b>already there</b>, sitting in pockets: the drive folders, the sheets, the recordings, your head. It just isn't connected, so <b>none of it is working for you</b>. Nothing you build compounds. You keep paying for the same thinking twice.</p>
-        <p class="body">What's missing is one place that holds how your business actually runs — <b>a second brain</b>. Not another tool to learn. One place to harvest what you already own, so the business stops living in fifty pockets and starts holding its own context. <b>And I live it</b> — I run my entire business on one, and I'll show you mine.</p>
+        <p>You've got <b>500 saved AI videos</b> and so many ideas — and honestly, all of it is the exact reason you <em>haven't</em> started. Your data's scattered, you don't have systems, and the idea of fixing all of that just to make AI work is so daunting.</p>
+        <p class="body">But what if you didn't have to be the one to do all that? All you have to do is <b>map out your business as it stands today</b> and create a company brain — that's enough for AI to understand what you need, and how to get you there.</p>
       </div>
       <a class="next-step" href="#who">Who's leading this <span class="dn">↓</span></a>
     </div>
@@ -390,7 +393,7 @@ s.parentNode.insertBefore(t,s)})();
         </div>
         <div>
           <div class="body">
-            <p>I map how businesses actually run — <b>over 100 of them so far</b>. A 150-person retail operation where the CEO couldn't see across his own 11 departments. A brokerage losing 8–10 hours a week to manual entry across 11 disconnected tools. A recruiting firm where every message was written from scratch. Different industries, same finding: <b>the whole thing was running on one person's head.</b></p>
+            <p>Over 100 businesses have mapped how they actually run with this — and I've studied every kind. A 150-person retail operation where the CEO couldn't see across his own 11 departments. A brokerage losing 8–10 hours a week to manual entry across 11 disconnected tools. A recruiting firm where every message was written from scratch. Different industries, same finding: <b>the whole thing was running on one person's head.</b></p>
             <p class="body"><b>And I live it.</b> My own business — clients, pipeline, content, cash flow — runs on a second brain I built for myself first. That's the system I'll walk you through inside. Not theory I packaged. <b>The thing I actually use, every day.</b></p>
           </div>
         </div>
@@ -461,7 +464,7 @@ s.parentNode.insertBefore(t,s)})();
         <div class="step">
           <div class="step-n">STEP 01</div>
           <h3>See it.<span class="sub">Map your operations.</span></h3>
-          <p>In your first hour, we map how your business actually runs and where the bottlenecks are. Clarity, on paper, out of your head.</p>
+          <p>In your first hour, the software maps how your business actually runs and where the bottlenecks are — you just answer plain questions. Clarity, out of your head.</p>
         </div>
         <div class="step">
           <div class="step-n">STEP 02</div>
@@ -471,10 +474,13 @@ s.parentNode.insertBefore(t,s)})();
         <div class="step">
           <div class="step-n">STEP 03</div>
           <h3>Scale it.<span class="sub">Put AI on top.</span></h3>
-          <p>We put AI to work on your operations, so your business holds its own context and runs without you re-explaining everything.</p>
+          <p>This is where the AI you came for gets built — assistants and agents on top of how your business <em>actually</em> runs, so they hold real context instead of impressing no one. Your business runs without you re-explaining everything.</p>
         </div>
       </div>
       <div class="method-foot">Not a course · Not a template · Your business, one bottleneck at a time</div>
+      <div class="live-it">
+        <b>And you're never doing it alone.</b> This isn't one hour, then you're on your own. Every month you get <b>me on your map</b>, <b>two live sessions</b> — one to learn the skill, one where you build your next move live, with me right there — and <b>me by message</b> whenever you hit a wall in between.
+      </div>
       <div><a class="next-step" href="#different">Why this is different <span class="dn">↓</span></a></div>
     </div>
   </section>
@@ -487,27 +493,31 @@ s.parentNode.insertBefore(t,s)})();
 
   <section id="different">
     <div class="wrap">
-      <div class="mono lead-label">Why this is different</div>
-      <h2 class="h2">You've seen a hundred AI communities. So have I.</h2>
+      <div class="mono lead-label">The four layers</div>
+      <h2 class="h2">I didn't want to build another course or community.</h2>
       <div class="body" style="margin-top:22px">
-        <p>Most of them are one of three things: a video library, a piece of software, or a group chat. You get the one thing, and the rest is on you. That's why they don't stick — <b>a course can't see your business, a tool can't tell you what to fix first, and a chat can't build anything.</b></p>
-        <p class="body">This is all three, on purpose. Here's exactly what's underneath:</p>
+        <p>So this isn't one thing — it's <b>four layers</b>, working together. Most AI programs hand you one and leave the rest to you: a course with no one in it, a tool that can't teach, a group chat that can't build. Here, each layer covers what the others can't.</p>
       </div>
-      <div class="steps" style="margin-top:30px">
+      <div class="layers">
         <div class="step">
-          <div class="step-n">01 · A LIVE ARCHITECT</div>
-          <h3>Me, on your map.<span class="sub">Not a video library.</span></h3>
-          <p>Every month I map <b>your</b> business — where the work actually sits, what moved, what's still stuck. There's no "lesson 4 of module 2." There's your operation, on the table, with someone who's mapped 100+ of them looking at it with you.</p>
+          <div class="step-n">01 · SOFTWARE</div>
+          <h3>It sees your business.<span class="sub">Personalized, not generic.</span></h3>
+          <p>I built this to help more people than I can one-on-one — so it's trained on <b>exactly how I run my consulting clients</b>. It analyzes <b>your</b> business — your skillset, your tech stack, your real problems — and shows you what <em>you</em> need next, starting with a map of how your business actually runs. Personalized, not a roadmap everyone gets — and it gets us both to results faster.</p>
         </div>
         <div class="step">
-          <div class="step-n">02 · A MAP THAT STAYS LIVE</div>
-          <h3>You watch it change.<span class="sub">Not a whiteboard that dies after the call.</span></h3>
-          <p>Your operating map isn't a one-time exercise — it stays live in the tool I built and run my own business on, and every 30 days we re-run it. <b>Month one, a bottleneck comes off the map. Month two, the next one.</b> You literally watch your business stop depending on you, on one screen.</p>
+          <div class="step-n">02 · COMMUNITY</div>
+          <h3>You're not doing it alone.<span class="sub">Small and early — you're in first.</span></h3>
+          <p>A group of people working on their business, learning as they go. I'll be straight: it's small right now — and that's the upside. You get in while it's intimate, people actually know what you're working on, and you help shape the room instead of getting lost in a feed.</p>
         </div>
         <div class="step">
-          <div class="step-n">03 · THE ROOM</div>
-          <h3>Operators at your stage.<span class="sub">Building the same thing.</span></h3>
-          <p>Twenty owners with the same scattered business, building the same thing. Bought-and-never-used is the only way this fails, so the room exists to prevent exactly that.</p>
+          <div class="step-n">03 · EDUCATION</div>
+          <h3>You get good at AI.<span class="sub">The real skills, not just the basics.</span></h3>
+          <p>Not only the AI basics and best practices — the skills no course teaches: how to <b>say what you actually want</b> from AI, when to hand work to a person versus a machine, and how to filter the hype from what genuinely works.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">04 · SUPPORT</div>
+          <h3>Me, in your corner.<span class="sub">Message me the moment you're stuck.</span></h3>
+          <p>Every step of the way — reachable by message whenever you hit a wall. You're never left spinning, wondering if you're doing it right. This is the layer that makes the other three actually happen.</p>
         </div>
       </div>
       <!-- HIDDEN until a real operating-map screenshot exists — remove `hidden` and swap the
@@ -531,11 +541,11 @@ s.parentNode.insertBefore(t,s)})();
       <h2 class="h2">What you get, every month.</h2>
       <div class="stack">
         <div class="row">
-          <div><div class="rt">The monthly cycle</div><div class="rd">Hour-one operating map of your business → your #1 bottleneck, named → a 30-day one-move plan → implementation training → the room of operators → a fresh map every 30 days showing exactly what moved.</div></div>
+          <div><div class="rt">The monthly cycle</div><div class="rd">Your operating map in hour one → your #1 bottleneck, named → a 30-day one-move plan → two live sessions with me to learn it and build it → me by message when you're stuck → a fresh map every 30 days showing what moved.</div></div>
           <div class="rv">$2,000/mo value</div>
         </div>
         <div class="row">
-          <div><div class="rt">🎟 Live Second Brain Workshop</div><div class="rd">Build your first Claude-powered second-brain asset live with me. Founding members only.</div></div>
+          <div><div class="rt">🎟 Live Second Brain Workshop</div><div class="rd">Build your first Claude-powered second-brain asset live, with me guiding. Members only.</div></div>
           <div class="rv">$500</div>
         </div>
         <div class="row">
@@ -550,7 +560,7 @@ s.parentNode.insertBefore(t,s)})();
              $400 — [PUJA: re-price if you want; two live sessions listed below a $500 one-time workshop
              reads a little low, but I won't touch the anchor math without you.] -->
         <div class="row">
-          <div><div class="rt">🔧 Two live sessions a month</div><div class="rd">A monthly deep-dive workshop <b>plus</b> a live working session — one to go deep on the skill, one to build your move together. You leave each month with the next piece of your second brain actually done, not just planned.</div></div>
+          <div><div class="rt">🔧 Two live sessions a month</div><div class="rd">A monthly deep-dive workshop <b>plus</b> a live working session — one to go deep on the skill, one where you build your move with me guiding. You leave each month with the next piece of your second brain actually done, not just planned.</div></div>
           <div class="rv">$400</div>
         </div>
         <div class="row">
@@ -558,7 +568,7 @@ s.parentNode.insertBefore(t,s)})();
           <div class="rv">$300</div>
         </div>
         <div class="row">
-          <div><div class="rt">Founding rate <span class="badge-lock">locked for life</span></div><div class="rd">The first 20 never pay more, ever.</div></div>
+          <div><div class="rt">Your rate <span class="badge-lock">locked for life</span></div><div class="rd">Only 20 members — your $250 never goes up, ever.</div></div>
           <div class="rv">the incentive</div>
         </div>
         <div class="row total">
@@ -568,9 +578,9 @@ s.parentNode.insertBefore(t,s)})();
       </div>
       <div class="price-line">
         <div class="price-big">$250<span>/mo</span></div>
-        <div class="price-note">Founding rate — first 20 only</div>
+        <div class="price-note">Rate locked for life — only 20 members</div>
       </div>
-      <div style="margin-top:26px"><a class="btn" href="#claim" data-cta>Claim a founding spot <span class="arw">→</span></a></div>
+      <div style="margin-top:26px"><a class="btn" href="#claim" data-cta>Claim your spot <span class="arw">→</span></a></div>
       <!-- TODO(Puja): when the walkthrough video exists, retarget this stepper back to #walkthrough
            with label "Watch before you decide" and remove `hidden` from the #walkthrough section. -->
       <div><a class="next-step" href="#guarantee">The guarantee behind it <span class="dn">↓</span></a></div>
@@ -606,7 +616,7 @@ s.parentNode.insertBefore(t,s)})();
         <div class="ph-slot" style="position:absolute; inset:6px">[PUJA: WALKTHROUGH VIDEO EMBED]<br>8–10 min walkthrough · Loom / unlisted YouTube / Circle native</div>
       </div>
       <div class="mono" style="margin-top:14px">≈9 min · Recorded once, unedited · What you're getting, start to finish</div>
-      <div style="margin-top:26px"><a class="btn" href="#claim" data-cta>Claim a founding spot <span class="arw">→</span></a></div>
+      <div style="margin-top:26px"><a class="btn" href="#claim" data-cta>Claim your spot <span class="arw">→</span></a></div>
       <div><a class="next-step" href="#guarantee">The guarantee behind it <span class="dn">↓</span></a></div>
     </div>
   </section>
@@ -640,7 +650,7 @@ s.parentNode.insertBefore(t,s)})();
       <div class="timeline">
         <div class="tl-row">
           <div class="tl-t">Minute 0</div>
-          <div><div class="rt">You claim your spot.</div><div class="rd">Checkout runs through Circle — <b>$250/mo at the founding rate, locked for life.</b> Your confirmation email lands with your login. That's the whole signup.</div></div>
+          <div><div class="rt">You claim your spot.</div><div class="rd">Checkout runs through Circle — <b>$250/mo, locked for life.</b> Your confirmation email lands with your login. That's the whole signup.</div></div>
         </div>
         <div class="tl-row">
           <div class="tl-t">Minute 2</div>
@@ -652,7 +662,7 @@ s.parentNode.insertBefore(t,s)})();
         </div>
         <div class="tl-row">
           <div class="tl-t">~ Minute 50</div>
-          <div><div class="rt">Your operation, on one screen.</div><div class="rd">Every function, every handoff, every place the work waits on <b>you</b>. I've run this 100+ times — there's almost always something in the first look you've felt for years but couldn't point to.</div></div>
+          <div><div class="rt">Your operation, on one screen.</div><div class="rd">Every function, every handoff, every place the work waits on <b>you</b>. I've seen this run 100+ times — there's almost always something in the first look you've felt for years but couldn't point to.</div></div>
         </div>
         <div class="tl-row">
           <div class="tl-t">Hour one, done</div>
@@ -662,16 +672,16 @@ s.parentNode.insertBefore(t,s)})();
 
       <div class="mono" style="margin-top:34px; color:var(--accent)">Then, every 30 days</div>
       <div class="cadence">
-        <div class="cad"><div class="ct">Day 1 of each cycle</div><div class="cx"><b>A fresh map.</b> We re-map and you see what actually moved since last month — and what didn't. The count doesn't flatter you. That's the point.</div></div>
+        <div class="cad"><div class="ct">Day 1 of each cycle</div><div class="cx"><b>A fresh map.</b> You re-run the map and see what actually moved since last month — and what didn't. The count doesn't flatter you. That's the point.</div></div>
         <div class="cad"><div class="ct">The next move</div><div class="cx"><b>Your next bottleneck, your next 30-day plan.</b> One bottleneck a month, in order of what it's costing you — not in order of what's trendy to automate.</div></div>
         <!-- Cadence resolved 2026-07-25 (Puja): TWO live sessions a month — a deep-dive workshop
              plus a working session. Also reflected in the `included` row below. -->
         <div class="cad"><div class="ct">The deep-dive workshop</div><div class="cx"><b>Once a month, we go deep on one thing</b> — the skill or system behind your next move, taught live so you can actually build it, not just nod along.</div></div>
-        <div class="cad"><div class="ct">The live working session</div><div class="cx"><b>The other session each month, we build together</b> — your move, on the table, live. You leave with the piece done, not planned. Both slots are scheduled with the founding 20 in week one.</div></div>
-        <div class="cad"><div class="ct">The room, all month</div><div class="cx"><b>Founding operators, between sessions.</b> Post your map, ask the question, steal what's working for someone two moves ahead of you.</div></div>
+        <div class="cad"><div class="ct">The live working session</div><div class="cx"><b>The other session each month, we build together</b> — your move, on the table, live. You leave with the piece done, not planned. Both slots are scheduled with the group your first week.</div></div>
+        <div class="cad"><div class="ct">Me, between sessions</div><div class="cx"><b>Reachable by message when you're stuck.</b> Plus a small room of members working alongside you — early and growing, so you're in first.</div></div>
       </div>
       <p class="body" style="margin-top:24px"><b>Ninety days in</b>, three bottlenecks that used to route through you are mapped, systematized, and running without you — not because you learned more, but because there are fewer things only you can do. The business holds its own context, and you get your head back.</p>
-      <p class="body" style="margin-top:24px">And for the founding 20 only — <b>the live Second Brain Workshop:</b> you build your first Claude-powered second-brain asset with me, live.<!-- [PUJA: RECORDING POLICY — add a sentence here once decided: what happens if a founding member can't attend live.] --></p>
+      <p class="body" style="margin-top:24px">And every member gets <b>the live Second Brain Workshop:</b> you build your first Claude-powered second-brain asset live, with me guiding.<!-- [PUJA: RECORDING POLICY — add a sentence here once decided: what happens if a member can't attend live.] --></p>
       <a class="next-step" href="#fit">Who this is for — honestly <span class="dn">↓</span></a>
     </div>
   </section>
@@ -699,20 +709,26 @@ s.parentNode.insertBefore(t,s)})();
         </div>
       </div>
       <p class="body" style="margin-top:22px">This is done <b>with</b> you. It works if you do.</p>
-      <a class="next-step" href="#urgency">The one number that matters <span class="dn">↓</span></a>
+      <a class="next-step" href="#urgency">Why now — the next workshop <span class="dn">↓</span></a>
     </div>
   </section>
 
+  <!-- URGENCY = the next live workshop date. Aug 31 2026 as of this edit (2026-08-20).
+       ⚠️ DATED SURFACE — this is the ONLY hardcoded workshop date on the page (kept to one spot on
+       purpose, per the close-date-staleness lesson). After Aug 31 passes, update `.when` + `.what`
+       below to the next workshop date, or the page advertises a past event. -->
   <section id="urgency">
     <div class="wrap">
-      <h2 class="h2">One number that matters.</h2>
+      <div class="mono lead-label">Why now</div>
+      <h2 class="h2">The next live workshop is August 31.</h2>
       <div class="deadlines one">
         <div class="dl">
-          <div class="when">20 founding spots</div>
-          <div class="what">The founding cohort is capped at 20 members — join and lock the founding rate for life. When the 20 spots are gone, they're gone.</div>
+          <div class="when">Aug 31 · Live Second Brain Workshop</div>
+          <div class="what">We build your first Claude-powered second-brain asset together, live. You'll get the most out of it walking in with your map already done — so the sooner you start, the more you build on the day. Join now, map this week, build on the 31st.</div>
         </div>
       </div>
-      <div class="cap-line"><span class="k">Hard cap:</span> only 20 founding members — the rate is locked for life.</div>
+      <div class="cap-line"><span class="k">And after:</span> the program is limited to 20 members, $250 locked for life.</div>
+      <div style="margin-top:22px"><a class="btn" href="#claim" data-cta>Claim your spot <span class="arw">→</span></a></div>
       <a class="next-step" href="#faq">Straight answers to what you're thinking <span class="dn">↓</span></a>
     </div>
   </section>
@@ -722,8 +738,11 @@ s.parentNode.insertBefore(t,s)})();
       <div class="mono lead-label">Straight answers</div>
       <h2 class="h2">The questions you're already asking.</h2>
       <div class="faq">
-        <div class="qa"><div class="q">Isn't this just another course?</div><div class="a">No. Nothing here is generic — every single month starts with a map of <em>your</em> business, not a video library everyone gets.</div></div>
-        <div class="qa"><div class="q">Will I actually use it?</div><div class="a">That's what the room and the 30-day one-move plan are for. And the First-Hour Guarantee means you get a real result on day one or it's free.</div></div>
+        <div class="qa"><div class="q">Isn't this just another course?</div><div class="a">No. A course hands you videos and disappears. Every month here starts with a map of <em>your</em> business, and one of your two live sessions is you building your next move live, with me guiding it. The difference is a person on the other end.</div></div>
+        <div class="qa"><div class="q">What if I get stuck building it on my own?</div><div class="a">You won't be on your own — that's the whole design. Stuck at 9pm? <b>Message me</b> — support is me, in your corner, reachable when you hit a wall. Every month one of your two live sessions is you building your move on the call with me guiding it live, and there's a small room of members working alongside you between sessions. &ldquo;Figure it out alone&rdquo; is the one thing this isn't.</div></div>
+        <div class="qa"><div class="q">So you just hand me a plan and leave me to it?</div><div class="a">No. The plan is step one, not the finish line — a plan you can't build is just homework. So every month we don't only plan the move — you <em>build</em> it in your live session with me guiding, and I'm reachable by message in between. You leave each month with the next piece of your second brain actually done, not just written down.</div></div>
+        <div class="qa"><div class="q">I came here to build AI agents / learn AI — is that what this is?</div><div class="a">Yes — that's exactly where this goes. But an agent is only as smart as the operation under it: build one on a business that lives in your head and you get a clever demo that breaks in a week. So we map first, then put AI on top — and you build real agents on <em>your</em> operation, ones that stick. You learn AI by using it on your own business, not on toy examples. The live workshop is your first hands-on build.</div></div>
+        <div class="qa"><div class="q">Will I actually use it?</div><div class="a">That's what the 30-day one-move plan, the live sessions, and me checking in are for. And the First-Hour Guarantee means you get a real result on day one or it's free.</div></div>
         <div class="qa"><div class="q">Is $250 worth it?</div><div class="a">You're already paying more than that — in the hours lost to rework and the growth you're capping. This plugs the leak.</div></div>
         <div class="qa"><div class="q">Do I need to be technical?</div><div class="a">No. I architect the AI; you implement the one next move. If you can follow a plan, you can do this.</div></div>
         <!-- ADDED 2026-07-25 from the 7/24 customer call. Beginner-anxiety and offer-confusion were
@@ -731,28 +750,28 @@ s.parentNode.insertBefore(t,s)})();
         <div class="qa"><div class="q">I'm a complete beginner. Am I too far behind for this?</div><div class="a">You're exactly who this is built for. Step one is a map of how your business runs, and that needs nothing but you and an hour — no tools, no setup, no prior AI experience. There's no prompting formula to learn and <em>there's no such thing as asking it the wrong question</em>. If you can describe your business out loud, you can do this.</div></div>
         <div class="qa"><div class="q">Is my data safe? I don't want to give AI access to everything.</div><div class="a">You don't have to — and the instinct is the right one. You decide what it sees, <b>one thing at a time</b>: nothing is visible unless you deliberately point at it, there's no "connect your whole account" step, and your first hour needs no connections at all. Start with one folder you're comfortable with and widen it only when you want to. Financials? You don't upload anything — you point at the sheet you already have and the file never moves. For exactly how Claude handles what you share, Anthropic publishes it here: <a href="https://trust.anthropic.com/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline">trust.anthropic.com</a>.</div></div>
         <div class="qa"><div class="q">Is the map a one-time thing, or does it stay current?</div><div class="a">It's a living document. Built once, then it keeps growing — as you add context, clients, offers, and decisions, it updates with you. That's the whole point: the business holds its own context instead of you re-creating the same document for the five hundredth time.</div></div>
-        <div class="qa"><div class="q">You have a few different offers — which one is this?</div><div class="a">This is the Second Brain Method: $250/mo, your map plus the room plus the how. It's separate from my community for people building a business like mine, and separate again from high-ticket 1:1 consulting, which is a different conversation entirely. You don't need more than one. If you're here to get your own business out of your head, <b>this is the one</b>.</div></div>
-        <div class="qa"><div class="q">How much time does this take per week?</div><div class="a">One hour up front — that's the map. After that, the plan is one move per month, not a curriculum: plan on a few focused hours a week to implement it, at your pace. And honestly — if you can't find a few hours a week to get yourself out of the bottleneck, that's not a time problem. That <em>is</em> the bottleneck.</div></div>
+        <div class="qa"><div class="q">You have a few different offers — which one is this?</div><div class="a">This is the Second Brain Method: $250/mo — your map, the room, and me guiding your build. It's separate from my community for people building a business like mine, and separate again from high-ticket 1:1 consulting, which is a different conversation entirely. You don't need more than one. If you're here to get your own business out of your head, <b>this is the one</b>.</div></div>
+        <div class="qa"><div class="q">How much time does this take per week?</div><div class="a">One hour up front — that's the map. After that, aim for about <b>30 minutes a day</b> spent working <em>on</em> your business instead of <em>in</em> it. That's it. Small steps, taken daily, that compound — a little each morning beats a big push you never start. You're not adding a second job; you're spending half an hour a day getting yourself out of the bottleneck.</div></div>
         <!-- [PUJA: BLOCKED FAQ — "What does this cost beyond the $250?" was asked on the 7/24 call and
              is NOT answered anywhere on this page. Needs the current Claude plan requirement + what
              happens at the usage limit. Deliberately not drafted: I don't have the real numbers and
              guessing at pricing on a sales page is worse than silence. ] -->
-        <div class="qa"><div class="q">What happens at the live workshop?</div><div class="a">The live Second Brain Workshop — founding members only. You build your first Claude-powered second-brain asset with me, live — you leave with it working, not with notes.<!-- [PUJA: RECORDING POLICY — add once decided: answer for members who can't attend live.] --></div></div>
+        <div class="qa"><div class="q">What happens at the live workshop?</div><div class="a">The live Second Brain Workshop — members only. You build your first Claude-powered second-brain asset live, with me guiding — you leave with it working, not with notes.<!-- [PUJA: RECORDING POLICY — add once decided: answer for members who can't attend live.] --></div></div>
         <div class="qa"><div class="q">I'm not on Claude — I don't have any AI set up yet. Can I still start?</div><div class="a">Yes — and it doesn't matter yet. Step 1 is the map, and that needs nothing but you and an hour. AI doesn't enter until your operations are on paper, because AI amplifies whatever you already have — clean operation, faster; mess, faster mess. When you reach the build, the Starter Kit walks you through the exact setup I use. A Claude account by your first build — that's the only tool requirement.</div></div>
         <div class="qa"><div class="q">What if it's not for me?</div><div class="a">The First-Hour Guarantee. Zero risk to find out.</div></div>
       </div>
-      <a class="next-step" href="#claim">Claim your founding spot <span class="dn">↓</span></a>
+      <a class="next-step" href="#claim">Claim your spot <span class="dn">↓</span></a>
     </div>
   </section>
 
   <section class="final" id="claim">
     <div class="wrap">
-      <div class="mono lead-label" style="justify-content:center; text-align:center">The founding 20</div>
-      <h2>The first 20 build it at the founding rate. Then it's gone.</h2>
-      <p class="body">Your map, your bottleneck, your 30-day plan, the room, and the how — every month. Locked at $250 for life.</p>
+      <div class="mono lead-label" style="justify-content:center; text-align:center">Join the program</div>
+      <h2>Only twenty in the room. Then it's full.</h2>
+      <p class="body">Your map, your bottleneck, your 30-day plan, the room, and me in your corner as you build — every month. Locked at $250 for life.</p>
       <div class="final-cta">
-        <a class="btn" href="#claim" data-cta>Claim a founding spot → $250/mo</a>
-        <div class="kw">Hard cap <b>20</b> · Founding rate locked for life</div>
+        <a class="btn" href="#claim" data-cta>Claim your spot → $250/mo</a>
+        <div class="kw">Limited to <b>20</b> members · Rate locked for life</div>
       </div>
     </div>
   </section>
@@ -769,7 +788,7 @@ s.parentNode.insertBefore(t,s)})();
 <!-- ═══ URGENCY CONSISTENCY — INTEGRATOR CHECKLIST (pre-publish) ═══
 CANON: EVERGREEN — no close date. Confirmed by Puja 2026-08-04, the day after the Aug 3
 close passed: doors stay open regardless of the date, every data-cta always points to
-checkout, and the only urgency is real scarcity — the 20-spot founding cap + the rate
+checkout, and the urgency is the Aug 31 workshop date + the 20-member cap + the rate
 locked for life. All "doors close <date>" copy was stripped from: 3 meta tags, sticky bar,
 hero trust line, included row, urgency block, FAQ, final CTA — plus call.html, watch/,
 bottleneck/. If a close date ever comes back, reinstate the date gate from git history
@@ -804,7 +823,7 @@ no fake countdowns, no invented dates. -->
   var DOORS_OPEN = !forceClosed;
 
   // Wire every CTA. OPEN → Circle checkout (new tab). CLOSED → the free community (new tab), so
-  // the page can never sell a founding spot after the close — that is the whole point of this gate.
+  // the page can never sell a spot after the close — that is the whole point of this gate.
   document.querySelectorAll('[data-cta]').forEach(function(a){
     a.setAttribute('href', DOORS_OPEN ? CHECKOUT_URL : CLOSED_URL);
     a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
@@ -815,11 +834,11 @@ no fake countdowns, no invented dates. -->
   // still read as an open sale with live urgency.
   if(!DOORS_OPEN){
     document.documentElement.setAttribute('data-doors','closed');
-    document.querySelectorAll('.bar-price').forEach(function(el){ el.textContent = 'The founding cohort is closed'; });
+    document.querySelectorAll('.bar-price').forEach(function(el){ el.textContent = 'The program is full'; });
     var banner = document.createElement('div');
     banner.setAttribute('role','status');
     banner.style.cssText = 'background:#392C22;color:#EFE8DE;font:600 14px/1.45 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;text-align:center;padding:11px 16px';
-    banner.innerHTML = 'The founding cohort is closed. <a href="' + CLOSED_URL + '" target="_blank" rel="noopener" style="color:#E7A984;text-decoration:underline">Join the free space</a> — you’ll be first to know when doors reopen.';
+    banner.innerHTML = 'The program is full. <a href="' + CLOSED_URL + '" target="_blank" rel="noopener" style="color:#E7A984;text-decoration:underline">Join the free space</a> — you’ll be first to know when a spot opens.';
     if(document.body.firstChild) document.body.insertBefore(banner, document.body.firstChild);
     else document.body.appendChild(banner);
   }
