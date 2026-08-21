@@ -350,6 +350,33 @@ s.parentNode.insertBefore(t,s)})();
   </header>
 
   <!-- ============================================================
+       FREE MASTERCLASS — hero registration band  (added 2026-08-21)
+       Weekly Wednesday intro session. Sits directly under the hero so it
+       gets full traffic, but as a bordered band rather than a third hero
+       button — it should read as a parallel door, not compete with
+       "Claim your spot". Placed above #watch-first because it's the more
+       important side door. source= tags which page/placement produced
+       the lead. This page had no form before, so styles are inline to
+       match the #watch-first band convention. ==================== -->
+  <section id="masterclass" style="padding:32px 0 8px">
+    <div class="wrap">
+      <div style="border:1px dashed color-mix(in srgb,var(--accent) 40%, var(--line)); border-radius:4px; background:var(--surface); padding:26px">
+        <div class="mono lead-label" style="margin-bottom:8px">Free live masterclass · Wednesdays 2:00 PM ET</div>
+        <h3 style="font-size:1.2rem; margin:0 0 8px">Where to actually start with AI in your business</h3>
+        <p style="color:var(--ink-soft); font-size:1.02rem; line-height:1.5; max-width:56ch; margin-bottom:16px">What systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain.</p>
+        <form id="masterclass-form" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST"
+              style="display:flex; gap:10px; flex-wrap:wrap; max-width:520px">
+          <input type="hidden" name="_subject" value="Masterclass registration — organic hero">
+          <input type="hidden" name="source" value="masterclass_organic_hero">
+          <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address"
+                 style="flex:1; min-width:220px; padding:.72em .9em; border:1px solid var(--line); border-radius:2px; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:.95rem">
+          <button class="btn" type="submit">Save my seat <span class="arw">→</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        "NEW HERE?" — organic-content detour to TikTok  (added 2026-07-29)
        For cold FB/IG-ad visitors who want to vet Puja via organic content
        BEFORE the pitch. Compact, optional band right after the hero.
@@ -1061,3 +1088,35 @@ no fake countdowns, no invented dates. -->
   window.addEventListener('resize', syncPad);
 })();
 </script>
+
+<!-- ============================================================
+     MASTERCLASS → CUSTOMER.IO  (added 2026-08-21)
+     Registrations post to FormSubmit (Puja's inbox, unchanged) AND
+     identify the person in Customer.io so the confirmation / calendar /
+     reminder / replay campaign can fire.
+     ⚠️ Attribute is `mc_source`, NEVER `source` — a bare `source` attr
+     auto-pulls people into dynamic segment #15 "SBM Leads".
+     The form always submits even if Customer.io fails or is blocked. ==== -->
+<script>
+/* Tracker is already installed in <head> on this page — do not re-install. */
+
+document.addEventListener('submit', function (e) {
+  var f = e.target;
+  if (!f || !f.hasAttribute || !f.hasAttribute('data-mc-form')) return;
+  var el = f.querySelector('input[type=email]');
+  var email = el && el.value ? el.value.trim() : '';
+  if (!email) return;                     // let native validation run
+  e.preventDefault();
+  var srcEl = f.querySelector('input[name=source]');
+  try {
+    _cio.identify({
+      id: email,
+      email: email,
+      masterclass_registered: true,
+      mc_source: srcEl ? srcEl.value : 'unknown'
+    });
+  } catch (err) { /* never block the registration */ }
+  setTimeout(function () { f.submit(); }, 350);   // .submit() skips this handler
+});
+</script>
+

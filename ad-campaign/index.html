@@ -233,6 +233,25 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
       <div class="trust">100+ businesses mapped · Built for complete beginners · You keep your map</div>
 
       <!-- ============================================================
+           FREE MASTERCLASS — hero registration band (added 2026-08-21)
+           Parallel offer for cold traffic not ready to start today. Runs
+           weekly on Wednesdays. Deliberately styled as a bordered band, not
+           a third hero button, so it reads as a separate door rather than
+           competing with the primary "Start free" CTA above it.
+           source= tags the lead so we can tell hero vs end-of-page. ======= -->
+      <div class="capture" style="margin-top:26px">
+        <div class="mono" style="margin-bottom:8px">Free live masterclass · Wednesdays 2:00 PM ET</div>
+        <h3>Where to actually start with AI in your business</h3>
+        <p>What systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain.</p>
+        <form id="masterclass-form-hero" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST">
+          <input type="hidden" name="_subject" value="Masterclass registration — ad-campaign hero">
+          <input type="hidden" name="source" value="masterclass_ad_hero">
+          <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address">
+          <button class="btn" type="submit">Save my seat <span class="arw">→</span></button>
+        </form>
+      </div>
+
+      <!-- ============================================================
            HERO VIDEO — the conversion lever for cold traffic.
            Swap the placeholder for your ad/walkthrough video:
              <video style="position:absolute;inset:0;width:100%;height:100%" controls
@@ -449,13 +468,14 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
   <section id="capture">
     <div class="wrap">
       <div class="capture">
+        <div class="mono" style="margin-bottom:8px">Free live masterclass · Wednesdays 2:00 PM ET</div>
         <h3>Not ready to start today?</h3>
-        <p>Get the free 5-minute teardown — I'll show you the #1 place work quietly gets stuck in businesses like yours, and how the map surfaces it.</p>
-        <form id="lead-form" action="https://formsubmit.co/info@puja-patel.com" method="POST">
-          <input type="hidden" name="_subject" value="SBM landing — free teardown request">
-          <input type="hidden" name="source" value="sbm_trial_landing">
+        <p>Come to the free masterclass instead — what systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain. Live, no pitch until the end.</p>
+        <form id="lead-form" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST">
+          <input type="hidden" name="_subject" value="Masterclass registration — ad-campaign end">
+          <input type="hidden" name="source" value="masterclass_ad_end">
           <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address">
-          <button class="btn" type="submit">Send it to me <span class="arw">→</span></button>
+          <button class="btn" type="submit">Save my seat <span class="arw">→</span></button>
         </form>
       </div>
     </div>
@@ -527,5 +547,48 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
     keySections.forEach(function(id){ var el=document.getElementById(id); if(el) io.observe(el); });
   }
 </script>
+
+<!-- ============================================================
+     MASTERCLASS → CUSTOMER.IO  (added 2026-08-21)
+     Registrations post to FormSubmit (Puja's inbox, unchanged) AND
+     identify the person in Customer.io so the confirmation / calendar /
+     reminder / replay campaign can fire.
+     ⚠️ Attribute is `mc_source`, NEVER `source` — a bare `source` attr
+     auto-pulls people into dynamic segment #15 "SBM Leads".
+     The form always submits even if Customer.io fails or is blocked. ==== -->
+<script>
+var _cio = _cio || [];
+(function () {
+  var a, b, c;
+  a = function (f) { return function () { _cio.push([f].concat(Array.prototype.slice.call(arguments, 0))); }; };
+  b = ["load","identify","sidentify","track","page","on","off"];
+  for (c = 0; c < b.length; c++) { _cio[b[c]] = a(b[c]); }
+  var t = document.createElement('script'), s = document.getElementsByTagName('script')[0];
+  t.async = true; t.id = 'cio-tracker';
+  t.setAttribute('data-site-id', '3f7f4e3fdaf9decb1c47');
+  t.src = 'https://assets.customer.io/assets/track.js';
+  s.parentNode.insertBefore(t, s);
+})();
+
+document.addEventListener('submit', function (e) {
+  var f = e.target;
+  if (!f || !f.hasAttribute || !f.hasAttribute('data-mc-form')) return;
+  var el = f.querySelector('input[type=email]');
+  var email = el && el.value ? el.value.trim() : '';
+  if (!email) return;                     // let native validation run
+  e.preventDefault();
+  var srcEl = f.querySelector('input[name=source]');
+  try {
+    _cio.identify({
+      id: email,
+      email: email,
+      masterclass_registered: true,
+      mc_source: srcEl ? srcEl.value : 'unknown'
+    });
+  } catch (err) { /* never block the registration */ }
+  setTimeout(function () { f.submit(); }, 350);   // .submit() skips this handler
+});
+</script>
+
 </body>
 </html>
