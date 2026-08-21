@@ -267,6 +267,29 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
     </div>
   </header>
 
+  <!-- ============================================================
+       "NEW HERE?" — organic-content detour to TikTok  (moved here 2026-08-21)
+       For cold FB/IG-ad visitors who want to vet Puja via organic content
+       BEFORE the pitch. Compact, optional band right after the hero.
+       Link-only (no embeds → keeps the page fast in the FB in-app browser).
+       Opens in a new tab so the landing page stays open behind it; the click
+       fires Clarity + Meta custom events so the "watch first" path is
+       measurable. Deliberately NOT a funnel step — a side door. Ghost button
+       so it never competes with the primary "Claim your spot" CTA. -->
+  <section id="watch-first" style="padding:32px 0">
+    <div class="wrap">
+      <div style="display:flex; align-items:center; gap:24px; justify-content:space-between; flex-wrap:wrap; border:1px solid var(--line); border-radius:4px; background:var(--surface); padding:22px 26px">
+        <div style="flex:1; min-width:240px">
+          <div class="mono lead-label" style="margin-bottom:8px">New here?</div>
+          <p style="font-size:1.05rem; line-height:1.45; color:var(--ink); max-width:58ch">Want to see how I actually work before you read a word?</p>
+        </div>
+        <a class="btn ghost" href="https://www.tiktok.com/@pujap109" target="_blank" rel="noopener" data-tiktok>
+          Watch on TikTok · @pujap109 <span class="arw">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section id="problem">
     <div class="wrap">
       <div class="mono lead-label">The problem</div>
@@ -523,6 +546,13 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
       try{ clarity('event','checkout_click'); }catch(e){}
     });
   });
+
+  // "New here?" → TikTok: measure how many cold visitors take the organic-content detour.
+  var _tk = document.querySelector('[data-tiktok]');
+  if(_tk){ _tk.addEventListener('click', function(){
+    try{ fbq('trackCustom','TikTok_Click'); }catch(e){}
+    try{ clarity('event','tiktok_click'); }catch(e){}
+  }); }
 
   // Email capture → Meta Lead (fires before the form POSTs).
   var lf = document.getElementById('lead-form');
