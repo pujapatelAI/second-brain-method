@@ -748,19 +748,19 @@ s.parentNode.insertBefore(t,s)})();
           <div class="step-n">EVERY THURSDAY · 2PM ET</div>
           <h3>Open Q&amp;A + working session</h3>
           <p>Bring whatever you're stuck on and build it with me on the call — every single week.</p>
-          <div class="sched-dates">Sep 3 · 10 · 17 · 24</div>
+          <div class="sched-dates" data-ws-slot="thursday">Sep 3 · 10 · 17 · 24</div>
         </div>
         <div class="step">
           <div class="step-n">MONDAYS · 2PM ET</div>
           <h3>Second Brain Workshop</h3>
           <p>Build a Claude-powered second-brain asset live, with me guiding. Miss one, catch the next.</p>
-          <div class="sched-dates">Aug 31 · Sep 7 · Sep 28</div>
+          <div class="sched-dates" data-ws-slot="workshop">Aug 31 · Sep 7 · 28</div>
         </div>
         <div class="step">
           <div class="step-n">MONDAY · 2PM ET</div>
           <h3>Deep Dive</h3>
           <p>One skill or system, in depth — picking the right tool, filtering the AI hype, whatever the room needs next.</p>
-          <div class="sched-dates">Sep 14</div>
+          <div class="sched-dates" data-ws-slot="deepdive">Sep 14</div>
         </div>
       </div>
       <div class="deadlines one" style="margin-top:22px">
@@ -1037,7 +1037,9 @@ no fake countdowns, no invented dates. -->
   // the Circle calendar — same upkeep as the #urgency dates. Second Brain Workshops only
   // (not the Thursday Q&A or the Deep Dive).
   var WORKSHOPS = [
+    /* WS-DATES:START (auto-managed by apps/command/sbm_landing_dates_sync.py — do not hand-edit) */
     '2026-08-31T18:00:00Z','2026-09-07T18:00:00Z','2026-09-28T18:00:00Z'
+    /* WS-DATES:END */
   ].map(function(s){ return new Date(s).getTime(); });
   var strip = document.getElementById('wsStrip'), clock = document.getElementById('wsClock');
   if(!strip || !clock) return;
