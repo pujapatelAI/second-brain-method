@@ -578,14 +578,41 @@ document.addEventListener('submit', function (e) {
   if (!email) return;                     // let native validation run
   e.preventDefault();
   var srcEl = f.querySelector('input[name=source]');
+  var mcSrc = srcEl ? srcEl.value : 'unknown';
+
+  /* Customer.io — drives the confirmation / reminder campaign.
+     NOTE: this lands as the STRING "true", not a boolean. The campaign
+     trigger must match the string or it silently never fires. */
   try {
     _cio.identify({
       id: email,
       email: email,
       masterclass_registered: true,
-      mc_source: srcEl ? srcEl.value : 'unknown'
+      mc_source: mcSrc
     });
   } catch (err) { /* never block the registration */ }
+
+  /* Meta — CompleteRegistration is a standard, optimizable event. This is a
+     far better optimization target than InitiateCheckout: real intent, and
+     enough volume to actually train delivery. */
+  try {
+    if (window.fbq) {
+      fbq('track', 'CompleteRegistration', {
+        content_name: 'Masterclass',
+        content_category: mcSrc
+      });
+    }
+  } catch (err) {}
+
+  /* Clarity — tag the session so registrant recordings can be filtered,
+     and fire a custom event for the dashboard. */
+  try {
+    if (window.clarity) {
+      clarity('set', 'masterclass_registered', 'true');
+      clarity('set', 'mc_source', mcSrc);
+      clarity('event', 'masterclass_register');
+    }
+  } catch (err) {}
   setTimeout(function () { f.submit(); }, 350);   // .submit() skips this handler
 });
 </script>
