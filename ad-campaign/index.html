@@ -244,7 +244,7 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
         <h3>Where to actually start with AI in your business</h3>
         <p>What systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain.</p>
         <form id="masterclass-form-hero" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST">
-          <input type="hidden" name="_subject" value="Masterclass registration — ad-campaign hero">
+          <input type="hidden" name="_subject" value="Masterclass registration: ad-campaign hero">
           <input type="hidden" name="source" value="masterclass_ad_hero">
           <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address">
           <button class="btn" type="submit">Save my seat <span class="arw">→</span></button>
@@ -472,7 +472,7 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
         <h3>Not ready to start today?</h3>
         <p>Come to the free masterclass instead — what systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain. Live, no pitch until the end.</p>
         <form id="lead-form" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST">
-          <input type="hidden" name="_subject" value="Masterclass registration — ad-campaign end">
+          <input type="hidden" name="_subject" value="Masterclass registration: ad-campaign end">
           <input type="hidden" name="source" value="masterclass_ad_end">
           <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address">
           <button class="btn" type="submit">Save my seat <span class="arw">→</span></button>
@@ -613,7 +613,28 @@ document.addEventListener('submit', function (e) {
       clarity('event', 'masterclass_register');
     }
   } catch (err) {}
-  setTimeout(function () { f.submit(); }, 350);   // .submit() skips this handler
+  /* FormSubmit as a background inbox copy, via their AJAX endpoint so the
+     visitor is never redirected offsite. NOTE: FormSubmit activation is
+     PER PAGE URL. /ad-campaign/ and / are not activated, so this currently
+     no-ops silently. Customer.io is the system of record either way. */
+  try {
+    var fd = new FormData(f);
+    fetch('https://formsubmit.co/ajax/info@puja-patel.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: fd
+    }).catch(function () {});
+  } catch (err) {}
+
+  /* Inline confirmation. Replaces the redirect to formsubmit.co. */
+  try {
+    f.innerHTML = '<p style="margin:0; font-family:inherit; font-size:1rem; ' +
+      'line-height:1.5; color:var(--ink);"><strong>You are in.</strong> ' +
+      'Check your inbox for the details and the calendar invite. ' +
+      'Wednesdays at 2:00 PM ET.</p>';
+  } catch (err) {
+    setTimeout(function () { f.submit(); }, 350);   // fallback: original behaviour
+  }
 });
 </script>
 

@@ -366,7 +366,7 @@ s.parentNode.insertBefore(t,s)})();
         <p style="color:var(--ink-soft); font-size:1.02rem; line-height:1.5; max-width:56ch; margin-bottom:16px">What systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain.</p>
         <form id="masterclass-form" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST"
               style="display:flex; gap:10px; flex-wrap:wrap; max-width:520px">
-          <input type="hidden" name="_subject" value="Masterclass registration — organic hero">
+          <input type="hidden" name="_subject" value="Masterclass registration: organic hero">
           <input type="hidden" name="source" value="masterclass_organic_hero">
           <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address"
                  style="flex:1; min-width:220px; padding:.72em .9em; border:1px solid var(--line); border-radius:2px; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:.95rem">
@@ -1143,7 +1143,28 @@ document.addEventListener('submit', function (e) {
       clarity('event', 'masterclass_register');
     }
   } catch (err) {}
-  setTimeout(function () { f.submit(); }, 350);   // .submit() skips this handler
+  /* FormSubmit as a background inbox copy, via their AJAX endpoint so the
+     visitor is never redirected offsite. NOTE: FormSubmit activation is
+     PER PAGE URL. /ad-campaign/ and / are not activated, so this currently
+     no-ops silently. Customer.io is the system of record either way. */
+  try {
+    var fd = new FormData(f);
+    fetch('https://formsubmit.co/ajax/info@puja-patel.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: fd
+    }).catch(function () {});
+  } catch (err) {}
+
+  /* Inline confirmation. Replaces the redirect to formsubmit.co. */
+  try {
+    f.innerHTML = '<p style="margin:0; font-family:inherit; font-size:1rem; ' +
+      'line-height:1.5; color:var(--ink);"><strong>You are in.</strong> ' +
+      'Check your inbox for the details and the calendar invite. ' +
+      'Wednesdays at 2:00 PM ET.</p>';
+  } catch (err) {
+    setTimeout(function () { f.submit(); }, 350);   // fallback: original behaviour
+  }
 });
 </script>
 
