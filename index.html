@@ -105,6 +105,14 @@ s.parentNode.insertBefore(t,s)})();
   .bar-right{display:flex; align-items:center; gap:16px}
   .bar-price{font-family:var(--font-mono); font-size:.74rem; color:var(--ink-soft)}
   @media(max-width:620px){.bar-price{display:none}}
+  .ws-strip{max-width:var(--maxw); margin:0 auto; padding:8px 24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; border-top:1px solid var(--line); font-family:var(--font-mono); font-size:.72rem; letter-spacing:.03em; color:var(--ink-soft); line-height:1.3}
+  .ws-strip .ws-clock{color:var(--accent-bright); font-weight:700; letter-spacing:.04em; font-variant-numeric:tabular-nums}
+  .ws-strip .ws-cta{color:var(--accent); font-weight:700; text-decoration:underline; text-underline-offset:2px; white-space:nowrap}
+  .ws-strip .ws-mob{display:none}
+  .ws-strip .ws-dot{width:6px; height:6px; border-radius:50%; background:var(--accent-bright); flex:none; animation:wspulse 2s infinite}
+  @keyframes wspulse{0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--accent-bright) 55%, transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  @media (prefers-reduced-motion:reduce){.ws-strip .ws-dot{animation:none}}
+  @media(max-width:620px){.ws-strip{font-size:.68rem; padding:7px 16px; gap:6px} .ws-strip .ws-full{display:none} .ws-strip .ws-mob{display:inline}}
 
   .btn{
     display:inline-flex; align-items:center; gap:.5em;
@@ -315,6 +323,10 @@ s.parentNode.insertBefore(t,s)})();
         <span class="bar-price">$250/mo · rate locked for life</span>
         <a class="btn sm" href="#claim" data-cta>Claim a spot</a>
       </div>
+    </div>
+    <div class="ws-strip" id="wsStrip" hidden>
+      <span class="ws-dot" aria-hidden="true"></span>
+      <span class="ws-full">Next Second Brain Workshop in </span><span class="ws-mob">Next workshop in </span><span class="ws-clock" id="wsClock">&mdash;</span><span class="ws-full"> &mdash; your map is required to attend, so </span><span class="ws-mob"> &mdash; </span><a class="ws-cta" href="#claim" data-cta>sign up today <span class="arw">&rarr;</span></a>
     </div>
   </div>
 
@@ -753,8 +765,8 @@ s.parentNode.insertBefore(t,s)})();
       </div>
       <div class="deadlines one" style="margin-top:22px">
         <div class="dl">
-          <div class="when">New here? Start with your map.</div>
-          <div class="what">You build the most walking into a workshop with your map already done — so <b>join now, map this week, and build at the very next one.</b></div>
+          <div class="when">Your map is your ticket in.</div>
+          <div class="what">The workshop builds on the map you make in your first hour — it's a prerequisite, not a nice-to-have. <b>Sign up today, map this week, and you'll be ready to build live at the next workshop.</b></div>
         </div>
       </div>
       <div class="cap-line"><span class="k">Your rate:</span> $250/mo, locked for life.</div>
@@ -1014,5 +1026,36 @@ no fake countdowns, no invented dates. -->
   window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ resize(); draw(); },150); });
   new MutationObserver(function(){ draw(); }).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){ draw(); });
+})();
+</script>
+
+<script>
+(function(){
+  // Next Second Brain Workshop countdown (top-bar strip). Auto-rolls to the next date and
+  // HIDES when the list is exhausted — never shows a stale/negative clock. Times are 2PM ET
+  // (= 18:00 UTC while ET is on EDT, through early Nov 2026). ⚠️ TOP UP this list monthly from
+  // the Circle calendar — same upkeep as the #urgency dates. Second Brain Workshops only
+  // (not the Thursday Q&A or the Deep Dive).
+  var WORKSHOPS = [
+    '2026-08-31T18:00:00Z','2026-09-07T18:00:00Z','2026-09-28T18:00:00Z'
+  ].map(function(s){ return new Date(s).getTime(); });
+  var strip = document.getElementById('wsStrip'), clock = document.getElementById('wsClock');
+  if(!strip || !clock) return;
+  var bar = document.querySelector('.bar');
+  function syncPad(){ if(bar) document.documentElement.style.scrollPaddingTop = (bar.offsetHeight + 12) + 'px'; }
+  function nextTs(){ var now = Date.now(); for(var i=0;i<WORKSHOPS.length;i++){ if(WORKSHOPS[i] > now) return WORKSHOPS[i]; } return null; }
+  function pad(n){ return (n<10?'0':'') + n; }
+  function tick(){
+    var t = nextTs();
+    if(t === null){ if(!strip.hidden){ strip.hidden = true; syncPad(); } return; }
+    var d = t - Date.now(); if(d < 0) d = 0;
+    var days = Math.floor(d/864e5), hrs = Math.floor(d%864e5/36e5), mins = Math.floor(d%36e5/6e4), secs = Math.floor(d%6e4/1e3);
+    clock.textContent = days + 'd ' + pad(hrs) + 'h ' + pad(mins) + 'm ' + pad(secs) + 's';
+    if(strip.hidden){ strip.hidden = false; }
+    syncPad();
+  }
+  tick();
+  setInterval(tick, 1000);
+  window.addEventListener('resize', syncPad);
 })();
 </script>
