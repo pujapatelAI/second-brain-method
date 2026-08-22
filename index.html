@@ -1076,64 +1076,84 @@ document.addEventListener('submit', function (e) {
   var email = el && el.value ? el.value.trim() : '';
   if (!email) return;                     // let native validation run
   e.preventDefault();
+  if (f.getAttribute('data-mc-busy')) return;   // ignore rapid double-submits
+  f.setAttribute('data-mc-busy', '1');
+  var btn = f.querySelector('button[type=submit]'); if (btn) btn.disabled = true;
   var srcEl = f.querySelector('input[name=source]');
   var mcSrc = srcEl ? srcEl.value : 'unknown';
 
-  /* Customer.io — drives the confirmation / reminder campaign.
-     NOTE: this lands as the STRING "true", not a boolean. The campaign
-     trigger must match the string or it silently never fires. */
-  try {
-    _cio.identify({
-      id: email,
-      email: email,
-      masterclass_registered: true,
-      mc_source: mcSrc
-    });
-  } catch (err) { /* never block the registration */ }
+  /* -----------------------------------------------------------------
+     BEST-EFFORT signals. These never gate success and never block. If
+     the visitor's browser blocks a third-party script (an ad blocker,
+     the Instagram/Facebook in-app browser, Safari ITP, a VPN) they
+     quietly no-op — so they are NOT trusted as proof of capture. */
+  try { _cio.identify({ id: email, email: email, masterclass_registered: true, mc_source: mcSrc }); } catch (err) {}
+  try { if (window.fbq) fbq('track', 'CompleteRegistration', { content_name: 'Masterclass', content_category: mcSrc }); } catch (err) {}
+  try { if (window.clarity) { clarity('set', 'masterclass_registered', 'true'); clarity('set', 'mc_source', mcSrc); clarity('event', 'masterclass_register'); } } catch (err) {}
 
-  /* Meta — CompleteRegistration is a standard, optimizable event. This is a
-     far better optimization target than InitiateCheckout: real intent, and
-     enough volume to actually train delivery. */
-  try {
-    if (window.fbq) {
-      fbq('track', 'CompleteRegistration', {
-        content_name: 'Masterclass',
-        content_category: mcSrc
-      });
-    }
-  } catch (err) {}
-
-  /* Clarity — tag the session so registrant recordings can be filtered,
-     and fire a custom event for the dashboard. */
-  try {
-    if (window.clarity) {
-      clarity('set', 'masterclass_registered', 'true');
-      clarity('set', 'mc_source', mcSrc);
-      clarity('event', 'masterclass_register');
-    }
-  } catch (err) {}
-  /* FormSubmit as a background inbox copy, via their AJAX endpoint so the
-     visitor is never redirected offsite. NOTE: FormSubmit activation is
-     PER PAGE URL. /ad-campaign/ and / are not activated, so this currently
-     no-ops silently. Customer.io is the system of record either way. */
-  try {
-    var fd = new FormData(f);
-    fetch('https://formsubmit.co/ajax/info@puja-patel.com', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: fd
-    }).catch(function () {});
-  } catch (err) {}
-
-  /* Inline confirmation. Replaces the redirect to formsubmit.co. */
-  try {
-    f.innerHTML = '<p style="margin:0; font-family:inherit; font-size:1rem; ' +
-      'line-height:1.5; color:var(--ink);"><strong>You are in.</strong> ' +
-      'Check your inbox for the details and the calendar invite. ' +
-      'Wednesdays at 2:00 PM ET.</p>';
-  } catch (err) {
-    setTimeout(function () { f.submit(); }, 350);   // fallback: original behaviour
+  /* -----------------------------------------------------------------
+     RELIABLE capture. We only show "you're in" once a durable channel
+     CONFIRMS it took the email. If every channel fails we fall back to
+     a plain full-page form POST, which survives blocked fetch/XHR/CORS
+     and blocked third-party scripts. No silent "success" ever again. */
+  function showConfirmed() {
+    try {
+      f.innerHTML = '<p style="margin:0; font-family:inherit; font-size:1rem; line-height:1.5; color:var(--ink);"><strong>You are in.</strong> Check your inbox for the details and the calendar invite. Wednesdays at 2:00 PM ET.</p>';
+    } catch (err) {}
   }
+  function showError() {
+    try {
+      f.innerHTML = '<p style="margin:0; font-family:inherit; font-size:1rem; line-height:1.5; color:var(--ink);">That did not go through. Please email <a href="mailto:info@puja-patel.com?subject=Masterclass" style="color:#B0532F; text-decoration:underline;">info@puja-patel.com</a> and we will save your seat for Wednesday.</p>';
+    } catch (err) {}
+  }
+  function nativeFallback() {
+    /* Last resort: a normal browser form POST to FormSubmit — no fetch,
+       no CORS, no JS libraries: the most block-resistant path there is.
+       _next returns the visitor to this page with ?registered=1. */
+    try {
+      if (!f.querySelector('input[name=_next]')) {
+        var nx = document.createElement('input'); nx.type = 'hidden'; nx.name = '_next';
+        nx.value = location.origin + location.pathname + '?registered=1'; f.appendChild(nx);
+      }
+      if (!f.querySelector('input[name=_captcha]')) {
+        var cap = document.createElement('input'); cap.type = 'hidden'; cap.name = '_captcha'; cap.value = 'false'; f.appendChild(cap);
+      }
+      f.submit();     // programmatic submit does NOT re-fire this handler
+    } catch (err) { showError(); }
+  }
+
+  /* First-party store (Fix #2). Not a known tracker domain, so ad
+     blockers and in-app browsers leave it alone. Resolves true only on
+     a confirmed write. No-ops harmlessly until mcFirstPartyCapture is
+     defined (see the first-party capture script block). */
+  var firstParty = (typeof mcFirstPartyCapture === 'function')
+    ? Promise.resolve().then(function () { return mcFirstPartyCapture(email, mcSrc); }).catch(function () { return false; })
+    : Promise.resolve(false);
+
+  /* FormSubmit AJAX → info@puja-patel.com. Verified active; the current
+     confirming channel. We now READ the response instead of ignoring it. */
+  var fd = new FormData(f);
+  var inbox = fetch('https://formsubmit.co/ajax/info@puja-patel.com', {
+      method: 'POST', headers: { 'Accept': 'application/json' }, body: fd
+    })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { return !!(j && (j.success === 'true' || j.success === true)); })
+    .catch(function () { return false; });
+
+  Promise.allSettled([firstParty, inbox]).then(function (res) {
+    var ok = res.some(function (x) { return x.status === 'fulfilled' && x.value === true; });
+    if (ok) showConfirmed(); else nativeFallback();
+  });
 });
+
+/* If FormSubmit's no-JS fallback bounced the visitor back here, honour it. */
+(function () {
+  try {
+    if (/[?&]registered=1/.test(location.search)) {
+      var box = document.querySelector('form[data-mc-form]');
+      if (box) box.innerHTML = '<p style="margin:0; font-family:inherit; font-size:1rem; line-height:1.5; color:var(--ink);"><strong>You are in.</strong> Check your inbox for the details and the calendar invite. Wednesdays at 2:00 PM ET.</p>';
+    }
+  } catch (err) {}
+})();
 </script>
 
