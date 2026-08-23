@@ -899,7 +899,8 @@ no fake countdowns, no invented dates. -->
       if(!DOORS_OPEN){ clar('event', 'doors_closed_click'); clar('set', 'doors_closed_from', where); return; }
       clar('event', 'checkout_click');
       clar('set', 'checkout_from', where);
-      if(window.fbq) fbq('track', 'InitiateCheckout', {value: 250, currency: 'USD', content_name: where});
+      // Custom intent event. InitiateCheckout fires Circle-side on actual /checkout/ arrival.
+      if(window.fbq) fbq('trackCustom', 'CheckoutClick', {value: 250, currency: 'USD', content_name: where});
       if(window._cio) _cio.track('checkout_clicked', {from: where});
     });
   });

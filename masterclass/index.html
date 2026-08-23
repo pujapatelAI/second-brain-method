@@ -406,10 +406,12 @@ var _cio = _cio || [];
     });
   });
 
-  // ── Secondary checkout link → InitiateCheckout (kept separate from registration). ──
+  // ── Secondary checkout link → custom CheckoutClick (kept separate from registration).
+  //    InitiateCheckout now fires Circle-side on actual /checkout/ arrival, so the
+  //    click only records intent and the two don't double-count. ──
   document.querySelectorAll('[data-checkout]').forEach(function(a){
     a.addEventListener('click', function(){
-      try{ fbq('track','InitiateCheckout'); }catch(e){}
+      try{ fbq('trackCustom','CheckoutClick'); }catch(e){}
       try{ clarity('event','checkout_click'); }catch(e){}
     });
   });
