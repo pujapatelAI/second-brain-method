@@ -724,32 +724,85 @@ document.addEventListener('submit', function (e) {
 })();
 </script>
 
-<!-- ═══ EXIT-INTENT TRIGGER (added 2026-08-22) ══════════════════════════
-     Only opens/closes the modal. Capture is handled by the shared
-     data-mc-form submit handler above — no duplicate capture logic here. -->
+<!-- ═══ EXIT-INTENT TRIGGERS — desktop + mobile (updated 2026-08-22) ══════
+     Opens the modal on genuine "leaving" signals; capture is handled by the
+     shared data-mc-form handler above. Shows at most ONCE per session
+     (mc_exit_shown) and NEVER after a register (mc_exit_done).
+       Desktop : cursor leaves the top of the window
+       All     : returned from a checkout CTA without buying
+       Mobile  : fast scroll back to the top  +  first Back-button press -->
 <script>
 (function(){
   var modal = document.getElementById('exit-modal');
   if(!modal) return;
-  function isDone(){ try{ return sessionStorage.getItem('mc_exit_done')==='1'; }catch(e){ return false; } }
-  function open(){ modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
-    try{ if(window.clarity) clarity('event','exit_popup_shown'); }catch(e){} }
+  var isMobile = window.matchMedia('(max-width: 768px)').matches
+              || window.matchMedia('(pointer: coarse)').matches;
+
+  function ss(k){ try{ return sessionStorage.getItem(k); }catch(e){ return null; } }
+  function ssSet(k,v){ try{ sessionStorage.setItem(k,v); }catch(e){} }
+  function ssDel(k){ try{ sessionStorage.removeItem(k); }catch(e){} }
+  function canShow(){ return ss('mc_exit_shown')!=='1' && ss('mc_exit_done')!=='1'; }
+
+  function open(reason){
+    if(!canShow()) return;
+    ssSet('mc_exit_shown','1');
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+    try{ if(window.clarity) clarity('event','exit_popup_'+(reason||'shown')); }catch(e){}
+    try{ if(window.fbq) fbq('trackCustom','exit_popup_shown',{trigger:reason}); }catch(e){}
+  }
   function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
 
   modal.querySelectorAll('[data-modal-close]').forEach(function(b){ b.addEventListener('click', close); });
   modal.addEventListener('click', function(e){ if(e.target===modal) close(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
 
-  // Once they register from the popup, don't pop it again this session.
+  // Registered from the popup → never pop again this session.
   var f = document.getElementById('masterclass-form-exit');
-  if(f){ f.addEventListener('submit', function(){ try{ sessionStorage.setItem('mc_exit_done','1'); }catch(e){} }); }
+  if(f){ f.addEventListener('submit', function(){ ssSet('mc_exit_done','1'); }); }
 
-  // Desktop exit-intent: cursor leaves through the top of the window, once.
-  var fired = false;
+  // Desktop: cursor leaves through the top of the window.
   document.addEventListener('mouseout', function(e){
-    if(fired || isDone()) return;
-    if(e.clientY<=0 && !e.relatedTarget){ fired=true; open(); }
+    if(e.clientY<=0 && !e.relatedTarget) open('desktop');
   });
+
+  // Returned from a checkout CTA without buying (all devices): tag the click,
+  // and offer the free masterclass as a recovery when they come back.
+  document.querySelectorAll('[data-cta]').forEach(function(a){
+    a.addEventListener('click', function(){ ssSet('mc_checkout_click','1'); });
+  });
+  window.addEventListener('pageshow', function(){
+    if(ss('mc_checkout_click')==='1'){
+      ssDel('mc_checkout_click');
+      if(canShow()) setTimeout(function(){ open('return_checkout'); }, 500);
+    }
+  });
+
+  // Mobile-only signals.
+  if(isMobile){
+    // Fast scroll back toward the top after engaging = "I'm leaving".
+    var lastY = window.pageYOffset||0, maxY = lastY;
+    window.addEventListener('scroll', function(){
+      var y = window.pageYOffset||0;
+      if(y>maxY) maxY=y;
+      if(canShow() && y < lastY && maxY > 600 && y < 140) open('scrollup');
+      lastY = y;
+    }, {passive:true});
+
+    // Back-button intercept: the first Back opens the popup instead of leaving.
+    // Armed after a short delay so an instant bounce just leaves. The
+    // e.state.mcExit guard means an in-page #anchor Back is ignored (not an exit).
+    var armed = false;
+    setTimeout(function(){ try{ history.pushState({mcExit:1}, ''); armed = true; }catch(e){} }, 1500);
+    window.addEventListener('popstate', function(e){
+      if(!armed) return;
+      if(e.state && e.state.mcExit) return;               // un-did an in-page anchor, not an exit
+      if(canShow()){
+        open('back');
+        try{ history.pushState({mcExit:1}, ''); }catch(err){}   // keep them here this once
+      }
+      // else already shown/registered → let Back proceed and they leave
+    });
+  }
 })();
 </script>
 
