@@ -438,7 +438,10 @@ var _cio = _cio || [];
         // 2) Customer.io — identify + trigger the confirmation/nurture.
         try{
           if(window._cio){
-            _cio.identify({ id: email, email: email, masterclass_lead: true });
+            // Set BOTH attributes: masterclass_lead (for segments) and
+            // masterclass_registered=true — the exact attribute Campaign 13's
+            // trigger looks for, so the confirmation + reminders fire.
+            _cio.identify({ id: email, email: email, masterclass_lead: true, masterclass_registered: true });
             _cio.track('masterclass_registered', { page: 'masterclass', from: (form.querySelector('[name=form_source]')||{}).value || 'masterclass' });
           }
         }catch(err){}
