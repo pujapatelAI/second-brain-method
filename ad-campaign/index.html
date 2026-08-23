@@ -573,13 +573,12 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
   })();
 
   // ── Conversion tracking ──────────────────────────────────────────────
-  // CTA click fires a custom CheckoutClick (intent), then navigates to Circle.
-  // InitiateCheckout itself is fired Circle-side by the paywall tracking
-  // script when the visitor actually lands on /checkout/ — keeping the two
-  // separate so they don't double-count.
+  // Every checkout CTA fires InitiateCheckout, then navigates to Circle.
+  // (Circle can't fire your rich pixel on its domain — this is where the
+  // retargetable signal is captured.)
   document.querySelectorAll('[data-cta]').forEach(function(a){
     a.addEventListener('click', function(){
-      try{ fbq('trackCustom','CheckoutClick'); }catch(e){}
+      try{ fbq('track','InitiateCheckout'); }catch(e){}
       try{ clarity('event','checkout_click'); }catch(e){}
     });
   });
