@@ -590,13 +590,6 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
     try{ clarity('event','tiktok_click'); }catch(e){}
   }); }
 
-  // Email capture → Meta Lead (fires before the form POSTs).
-  var lf = document.getElementById('lead-form');
-  if(lf){ lf.addEventListener('submit', function(){
-    try{ fbq('track','Lead'); }catch(e){}
-    try{ clarity('event','lead_submit'); }catch(e){}
-  }); }
-
   // Section-reached events → retargeting + a funnel you can actually read.
   var keySections = ['problem','map','proof','how','deeper','safety','who','faq','capture','claim'];
   if('IntersectionObserver' in window){
