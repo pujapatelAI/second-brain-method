@@ -201,6 +201,22 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
     .final{padding:52px 0}
   }
   @media (prefers-reduced-motion:reduce){.btn,.btn .arw{transition:none} html{scroll-behavior:auto}}
+
+  /* ── Exit-intent popup ─────────────────────────────────────────────── */
+  .modal{position:fixed; inset:0; z-index:50; display:none; align-items:center; justify-content:center; padding:1.5rem; background:rgba(30,20,14,.55); backdrop-filter:blur(5px)}
+  .modal.open{display:flex}
+  .modal-card{position:relative; width:100%; max-width:29rem; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:6px; padding:2.3rem 2rem 2rem; box-shadow:0 24px 60px rgba(0,0,0,.28)}
+  .modal-card .lead-label{margin-bottom:10px}
+  .modal-card h3{font-family:var(--font-display); font-weight:700; font-size:1.7rem; line-height:1.1; margin-bottom:.6rem; color:var(--ink)}
+  .modal-card .m-body{color:var(--ink-soft); font-size:1.02rem; line-height:1.5; margin:.4rem 0 1.2rem}
+  .modal-card form{display:flex; gap:10px; flex-wrap:wrap}
+  .modal-card input[type=email]{flex:1; min-width:200px; padding:.72em .9em; border:1px solid var(--line); border-radius:2px; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:.95rem}
+  .modal-card input[type=email]:focus{outline:2px solid var(--accent); outline-offset:1px}
+  .modal-close{position:absolute; top:.7rem; right:.85rem; width:2rem; height:2rem; background:none; border:none; color:var(--ink-soft); font-size:1.5rem; cursor:pointer; line-height:1}
+  .modal-close:hover{color:var(--ink)}
+  .modal-sub{margin-top:16px; font-family:var(--font-mono); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; font-weight:600; color:var(--ink-soft)}
+  .modal-sub a{color:var(--accent); text-decoration:none}
+  .modal-sub a:hover{text-decoration:underline}
 </style>
 </head>
 
@@ -523,6 +539,26 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
     </div>
   </footer>
 
+  <!-- ═══ EXIT-INTENT POPUP — masterclass (added 2026-08-22) ═══════════════
+       Recovers the bounce. Uses the shared data-mc-form handler below, so it
+       captures exactly like the hero/end bands (CIO mc_source + FormSubmit
+       AJAX → info@ + first-party + inline confirm). source=masterclass_ad_exit. -->
+  <div class="modal" id="exit-modal" role="dialog" aria-modal="true" aria-labelledby="exit-title" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" data-modal-close aria-label="Close">&times;</button>
+      <div class="mono lead-label accent">Before you go</div>
+      <h3 id="exit-title">Not ready? Start with the free masterclass.</h3>
+      <p class="m-body">This Wednesday at 2pm ET I walk through where to actually start with AI in your business — what systems are, what Claude Code is, and how to build your second brain. No experience needed. Drop your email and I'll save you a seat.</p>
+      <form id="masterclass-form-exit" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST">
+        <input type="hidden" name="_subject" value="Masterclass registration: ad-campaign exit popup">
+        <input type="hidden" name="source" value="masterclass_ad_exit">
+        <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address">
+        <button class="btn" type="submit">Save my seat <span class="arw">→</span></button>
+      </form>
+      <p class="modal-sub">Ready now? <a href="https://aios-with-puja-patel.circle.so/checkout/systems-ai-for-business" data-cta>Start free — map your business →</a></p>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -685,6 +721,35 @@ document.addEventListener('submit', function (e) {
       if (box) box.innerHTML = '<p style="margin:0; font-family:inherit; font-size:1rem; line-height:1.5; color:var(--ink);"><strong>You are in.</strong> Check your inbox for the details and the calendar invite. Wednesdays at 2:00 PM ET.</p>';
     }
   } catch (err) {}
+})();
+</script>
+
+<!-- ═══ EXIT-INTENT TRIGGER (added 2026-08-22) ══════════════════════════
+     Only opens/closes the modal. Capture is handled by the shared
+     data-mc-form submit handler above — no duplicate capture logic here. -->
+<script>
+(function(){
+  var modal = document.getElementById('exit-modal');
+  if(!modal) return;
+  function isDone(){ try{ return sessionStorage.getItem('mc_exit_done')==='1'; }catch(e){ return false; } }
+  function open(){ modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+    try{ if(window.clarity) clarity('event','exit_popup_shown'); }catch(e){} }
+  function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+
+  modal.querySelectorAll('[data-modal-close]').forEach(function(b){ b.addEventListener('click', close); });
+  modal.addEventListener('click', function(e){ if(e.target===modal) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+
+  // Once they register from the popup, don't pop it again this session.
+  var f = document.getElementById('masterclass-form-exit');
+  if(f){ f.addEventListener('submit', function(){ try{ sessionStorage.setItem('mc_exit_done','1'); }catch(e){} }); }
+
+  // Desktop exit-intent: cursor leaves through the top of the window, once.
+  var fired = false;
+  document.addEventListener('mouseout', function(e){
+    if(fired || isDone()) return;
+    if(e.clientY<=0 && !e.relatedTarget){ fired=true; open(); }
+  });
 })();
 </script>
 
