@@ -183,6 +183,13 @@ var _cio = _cio || [];
   .modal-close{position:absolute; top:.7rem; right:.85rem; width:2rem; height:2rem; background:none; border:none; color:var(--ink-soft); font-size:1.5rem; cursor:pointer; line-height:1}
   .modal-close:hover{color:var(--ink)}
   .modal-msg{margin-top:12px; font-size:.9rem; color:var(--accent); font-weight:600; min-height:1em}
+
+/* REG-PAUSE:START — temporary signup pause. To reopen: delete this block and the two .reg-paused notes. */
+.reg-head, .reg-note, .reg-form, .reg-fine { display:none !important; }
+#exit-modal { display:none !important; }
+.reg-paused { margin:6px 0 4px; font-size:15.5px; line-height:1.65; color:#2A2320; }
+.reg-paused b { color:#A24A28; }
+/* REG-PAUSE:END */
 </style>
 </head>
 
@@ -218,6 +225,7 @@ var _cio = _cio || [];
 
       <!-- ═══ PRIMARY ACTION — the whole page exists for this ═══ -->
       <div class="reg" id="register">
+        <div class="reg-paused"><b>Registration is paused for today’s session.</b> Check back soon — the next masterclass will open right here.</div>
         <div class="reg-head">Save your seat — it's free.</div>
         <div class="reg-note">Drop your email and I'll send you the Google Meet link and the details. Built for complete beginners — no experience, no jargon, no setup.</div>
         <form class="reg-form" action="https://formsubmit.co/info@puja-patel.com" method="POST" novalidate>
@@ -352,6 +360,7 @@ var _cio = _cio || [];
       <h2>An hour that finally tells you where to start.</h2>
       <p class="body">Free, live, Wednesday at 2pm ET on Google Meet. Bring your business and your questions.</p>
       <div class="reg" id="register-2">
+        <div class="reg-paused"><b>Registration is paused for today’s session.</b> Check back soon — the next masterclass will open right here.</div>
         <div class="reg-head">Send me the Meet link.</div>
         <div class="reg-note">One email — I'll save your seat and send the details.</div>
         <form class="reg-form" action="https://formsubmit.co/info@puja-patel.com" method="POST" novalidate>
