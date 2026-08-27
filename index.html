@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Second Brain Method — Get Your Business Out of Your Head</title>
-<meta name="description" content="Everything your business knows is scattered across fifty places. Learn to put AI to work on your actual business — software maps how it runs, then shows you what to build first. No prior AI experience needed.">
+<meta name="description" content="Your whole business lives in your head — and that's what's capping your growth. The Second Brain Method gets it into systems AI can actually run: your operating map, your #1 bottleneck, and a 30-day plan. No prior AI experience needed.">
 <link rel="canonical" href="https://puja-patel.com/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
 <meta property="og:type" content="website">
@@ -131,7 +131,7 @@ s.parentNode.insertBefore(t,s)})();
   .btn:hover .arw{transform:translateX(3px)}
 
   .hero{padding:66px 0 40px}
-  .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:44px; align-items:center}
+  .hero-grid{display:grid; grid-template-columns:minmax(0,780px); gap:44px; align-items:center}
   @media(max-width:860px){.hero-grid{grid-template-columns:1fr; gap:28px}}
   .eyebrow{display:flex; align-items:center; gap:10px; margin-bottom:22px}
   .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--accent-bright); box-shadow:0 0 0 4px color-mix(in srgb,var(--accent-bright) 20%, transparent)}
@@ -141,10 +141,6 @@ s.parentNode.insertBefore(t,s)})();
   .hero-cta{margin-top:30px; display:flex; align-items:center; gap:18px; flex-wrap:wrap}
   .trust{font-family:var(--font-mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); line-height:1.7; font-weight:600}
 
-  .canvas-panel{position:relative; border:1px solid var(--line); border-radius:4px; background:var(--surface); aspect-ratio:1/1; overflow:hidden}
-  .canvas-panel canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
-  .canvas-tag{position:absolute; left:14px; bottom:12px; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-soft); font-weight:600}
-  .canvas-tag .t2{color:var(--accent)}
 
   section{padding:56px 0; border-top:1px solid var(--line)}
   .lead-label{margin-bottom:18px; color:var(--accent)}
@@ -341,10 +337,6 @@ s.parentNode.insertBefore(t,s)})();
           <a class="btn ghost" href="#problem">See how it works <span class="arw">↓</span></a>
           <div class="trust">100+ businesses mapped<br>Cancel anytime</div>
         </div>
-      </div>
-      <div class="canvas-panel">
-        <canvas id="brainmap" aria-hidden="true"></canvas>
-        <div class="canvas-tag">In your head <span class="t2">→ mapped</span></div>
       </div>
     </div>
   </header>
@@ -991,82 +983,7 @@ no fake countdowns, no invented dates. -->
   setTimeout(function(){ clar('event', 'engaged_5min'); clar('set', 'lead_quality', 'engaged_5min'); }, 300000);
   setTimeout(function(){ clar('event', 'engaged_2min'); }, 120000);
 
-  var canvas=document.getElementById('brainmap');
-  if(!canvas) return;
-  var ctx=canvas.getContext('2d');
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
-  var N=13, nodes=[], edges=[];
-  function buildTargets(){
-    nodes=[];
-    var cols=[0.2,0.5,0.8], perCol=[4,5,4], idx=0;
-    for(var c=0;c<3;c++){
-      var cnt=perCol[c];
-      for(var r=0;r<cnt;r++){
-        nodes.push({ox:cols[c], oy:(r+1)/(cnt+1),
-          cx:0.5+(Math.random()-0.5)*0.5, cy:0.5+(Math.random()-0.5)*0.5, col:c});
-        idx++; if(idx>=N)break;
-      }
-      if(idx>=N)break;
-    }
-  }
-  function buildEdges(){
-    edges=[]; var byCol=[[],[],[]];
-    nodes.forEach(function(n,i){ byCol[n.col].push(i); });
-    for(var c=0;c<2;c++){
-      byCol[c].forEach(function(a){
-        var next=byCol[c+1], k=1+Math.floor(Math.random()*2);
-        for(var j=0;j<k;j++){ var b=next[Math.floor(Math.random()*next.length)]; if(b!=null) edges.push([a,b]); }
-      });
-    }
-  }
-  function resize(){
-    var r=canvas.getBoundingClientRect(); W=r.width; H=r.height;
-    canvas.width=W*DPR; canvas.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
-  }
-  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
-  var t=0, start=null, DUR=2600;
-  function ease(x){ return 1-Math.pow(1-x,3); }
-  function pos(n,tt){ return { x:( n.cx+(n.ox-n.cx)*tt )*W, y:( n.cy+(n.oy-n.cy)*tt )*H }; }
-  function frame(ts){
-    if(start===null) start=ts;
-    var p=Math.min((ts-start)/DUR,1); t=ease(p); draw();
-    if(p<1) requestAnimationFrame(frame); else draw();
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    var accent=css('--accent-bright')||'#B0532F';
-    var dim=css('--graph-dim')||'#D6C9B8';
-    var node=css('--node')||accent;
-    edges.forEach(function(e){
-      var a=pos(nodes[e[0]],t), b=pos(nodes[e[1]],t);
-      ctx.beginPath();
-      if(t<0.98){
-        var mx=(a.x+b.x)/2, my=(a.y+b.y)/2, wob=(1-t)*40;
-        ctx.moveTo(a.x,a.y);
-        ctx.quadraticCurveTo(mx+wob*Math.sin(e[0]+e[1]), my-wob*Math.cos(e[0]-e[1]), b.x,b.y);
-      } else { ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); }
-      ctx.strokeStyle=dim; ctx.globalAlpha=0.4+0.4*t; ctx.lineWidth=1; ctx.stroke();
-    });
-    ctx.globalAlpha=1;
-    nodes.forEach(function(n){
-      var p=pos(n,t), rad=3.2+2.8*t;
-      ctx.beginPath(); ctx.arc(p.x,p.y,rad+3,0,Math.PI*2);
-      ctx.fillStyle=accent; ctx.globalAlpha=0.10+0.12*t; ctx.fill();
-      ctx.beginPath(); ctx.arc(p.x,p.y,rad,0,Math.PI*2);
-      ctx.globalAlpha=1; ctx.fillStyle= t>0.5 ? node : dim; ctx.fill();
-    });
-    ctx.globalAlpha=1;
-  }
-  function init(){
-    resize(); buildTargets(); buildEdges();
-    if(reduce){ t=1; draw(); } else { start=null; requestAnimationFrame(frame); }
-  }
-  init();
-  var rt;
-  window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ resize(); draw(); },150); });
-  new MutationObserver(function(){ draw(); }).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){ draw(); });
+  // hero "brainmap" node-graph canvas removed 2026-08-27 (graphic cut per Puja)
 })();
 </script>
 
