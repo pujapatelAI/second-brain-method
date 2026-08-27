@@ -134,15 +134,28 @@ s.parentNode.insertBefore(t,s)})();
      the fold at 100% zoom on a laptop (~810px viewport) — the whole card + "Save my
      seat" now sits above the fold without scrolling. */
   .hero{padding:24px 0 12px}
-  .hero-grid{display:grid; grid-template-columns:minmax(0,780px); gap:44px; align-items:center}
+  .hero-grid{display:grid; grid-template-columns:minmax(0,1fr); gap:44px; align-items:center}
   @media(max-width:860px){.hero-grid{grid-template-columns:1fr; gap:28px}}
   .eyebrow{display:flex; align-items:center; gap:10px; margin-bottom:14px}
   .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--accent-bright); box-shadow:0 0 0 4px color-mix(in srgb,var(--accent-bright) 20%, transparent)}
   h1{font-size:clamp(2.6rem,4.6vw,3.35rem); letter-spacing:-.02em; line-height:1}
+  /* fill the hero width instead of balancing the headline into a narrow block */
+  .hero-copy h1{text-wrap:pretty}
   .hero-sub{margin-top:14px; font-size:1.06rem; line-height:1.46; color:var(--ink-soft); max-width:32ch}
   .hero-sub b{color:var(--ink); font-weight:600}
   .hero-cta{margin-top:16px; display:flex; align-items:center; gap:18px; flex-wrap:wrap}
   .trust{font-family:var(--font-mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); line-height:1.7; font-weight:600}
+
+  /* Free-masterclass registration band — two columns (copy | form) so it fills
+     the full width; stacks on narrow screens. (added 2026-08-27) */
+  .mc-band{display:grid; grid-template-columns:1fr minmax(300px,400px); gap:32px; align-items:center;
+           border:1px dashed color-mix(in srgb,var(--accent) 40%, var(--line)); border-radius:4px;
+           background:var(--surface); padding:22px 26px}
+  .mc-copy h3{font-size:1.2rem; margin:0 0 6px}
+  .mc-copy p{color:var(--ink-soft); font-size:1.02rem; line-height:1.5; margin:0; max-width:56ch}
+  .mc-band form{display:flex; gap:10px; flex-wrap:wrap; width:100%}
+  .mc-band input[type=email]{flex:1; min-width:200px; padding:.72em .9em; border:1px solid var(--line); border-radius:2px; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:.95rem}
+  @media(max-width:760px){.mc-band{grid-template-columns:1fr; gap:16px}}
 
 
   section{padding:56px 0; border-top:1px solid var(--line)}
@@ -334,7 +347,7 @@ s.parentNode.insertBefore(t,s)})();
       <div class="hero-copy">
         <div class="eyebrow"><span class="dot"></span><span class="mono">Done with you, not for you</span></div>
         <h1>Your whole business lives in your head, and that's what's capping your growth.</h1>
-        <p class="hero-sub" style="max-width:52ch">Let's get it into <b>systems AI can actually run</b>, so you can grow without being the bottleneck. You've built to <b>$10–20k months</b>, and now you're overwhelmed: not enough time, and no clear path to the next level while everything runs through you. This is where you learn to put AI to work on your business, and what good operations actually look like. <b>No prior AI experience needed.</b></p>
+        <p class="hero-sub" style="max-width:68ch">You've built to <b>$10–20k months</b>, but everything still runs through you. Let's get it into <b>systems AI can actually run</b>, so you can grow without being the bottleneck. <b>No prior AI experience needed.</b></p>
         <div class="hero-cta">
           <a class="btn" href="#claim" data-cta>Start mapping <span class="arw">→</span></a>
           <a class="btn ghost" href="#problem">See how it works <span class="arw">↓</span></a>
@@ -355,16 +368,16 @@ s.parentNode.insertBefore(t,s)})();
        lives on /ad-campaign, moved 2026-08-21.) ==================== -->
   <section id="masterclass" style="padding:12px 0 8px">
     <div class="wrap">
-      <div style="border:1px dashed color-mix(in srgb,var(--accent) 40%, var(--line)); border-radius:4px; background:var(--surface); padding:20px 22px">
-        <div class="mono lead-label" style="margin-bottom:8px">Free live masterclass · Wednesday, September 2 · 2:00 PM ET</div>
-        <h3 style="font-size:1.2rem; margin:0 0 6px">Where to actually start with AI in your business</h3>
-        <p style="color:var(--ink-soft); font-size:1.02rem; line-height:1.5; max-width:56ch; margin-bottom:12px">What systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain.</p>
-        <form id="masterclass-form" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST"
-              style="display:flex; gap:10px; flex-wrap:wrap; max-width:520px">
+      <div class="mc-band">
+        <div class="mc-copy">
+          <div class="mono lead-label" style="margin-bottom:8px">Free live masterclass · Wednesday, September 2 · 2:00 PM ET</div>
+          <h3>Where to actually start with AI in your business</h3>
+          <p>What systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain.</p>
+        </div>
+        <form id="masterclass-form" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST">
           <input type="hidden" name="_subject" value="Masterclass registration: organic hero">
           <input type="hidden" name="source" value="masterclass_organic_hero">
-          <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address"
-                 style="flex:1; min-width:220px; padding:.72em .9em; border:1px solid var(--line); border-radius:2px; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:.95rem">
+          <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address">
           <button class="btn" type="submit">Save my seat <span class="arw">→</span></button>
         </form>
       </div>
