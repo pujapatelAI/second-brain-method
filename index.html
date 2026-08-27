@@ -130,15 +130,18 @@ s.parentNode.insertBefore(t,s)})();
   .btn .arw{transition:transform .15s ease}
   .btn:hover .arw{transform:translateX(3px)}
 
-  .hero{padding:66px 0 40px}
+  /* Hero rhythm tightened 2026-08-27 so the masterclass registration band clears
+     the fold at 100% zoom on a laptop (~810px viewport) — the whole card + "Save my
+     seat" now sits above the fold without scrolling. */
+  .hero{padding:24px 0 12px}
   .hero-grid{display:grid; grid-template-columns:minmax(0,780px); gap:44px; align-items:center}
   @media(max-width:860px){.hero-grid{grid-template-columns:1fr; gap:28px}}
-  .eyebrow{display:flex; align-items:center; gap:10px; margin-bottom:22px}
+  .eyebrow{display:flex; align-items:center; gap:10px; margin-bottom:14px}
   .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--accent-bright); box-shadow:0 0 0 4px color-mix(in srgb,var(--accent-bright) 20%, transparent)}
-  h1{font-size:clamp(2.6rem,6vw,4.5rem); letter-spacing:-.02em; line-height:1}
-  .hero-sub{margin-top:24px; font-size:1.18rem; line-height:1.5; color:var(--ink-soft); max-width:32ch}
+  h1{font-size:clamp(2.6rem,4.6vw,3.35rem); letter-spacing:-.02em; line-height:1}
+  .hero-sub{margin-top:14px; font-size:1.06rem; line-height:1.46; color:var(--ink-soft); max-width:32ch}
   .hero-sub b{color:var(--ink); font-weight:600}
-  .hero-cta{margin-top:30px; display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+  .hero-cta{margin-top:16px; display:flex; align-items:center; gap:18px; flex-wrap:wrap}
   .trust{font-family:var(--font-mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); line-height:1.7; font-weight:600}
 
 
@@ -350,12 +353,12 @@ s.parentNode.insertBefore(t,s)})();
        the lead. This page had no form before, so styles are inline.
        (The "New here? → TikTok" band that used to sit below this now
        lives on /ad-campaign, moved 2026-08-21.) ==================== -->
-  <section id="masterclass" style="padding:32px 0 8px">
+  <section id="masterclass" style="padding:12px 0 8px">
     <div class="wrap">
-      <div style="border:1px dashed color-mix(in srgb,var(--accent) 40%, var(--line)); border-radius:4px; background:var(--surface); padding:26px">
+      <div style="border:1px dashed color-mix(in srgb,var(--accent) 40%, var(--line)); border-radius:4px; background:var(--surface); padding:20px 22px">
         <div class="mono lead-label" style="margin-bottom:8px">Free live masterclass · Wednesday, September 2 · 2:00 PM ET</div>
-        <h3 style="font-size:1.2rem; margin:0 0 8px">Where to actually start with AI in your business</h3>
-        <p style="color:var(--ink-soft); font-size:1.02rem; line-height:1.5; max-width:56ch; margin-bottom:16px">What systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain.</p>
+        <h3 style="font-size:1.2rem; margin:0 0 6px">Where to actually start with AI in your business</h3>
+        <p style="color:var(--ink-soft); font-size:1.02rem; line-height:1.5; max-width:56ch; margin-bottom:12px">What systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain.</p>
         <form id="masterclass-form" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST"
               style="display:flex; gap:10px; flex-wrap:wrap; max-width:520px">
           <input type="hidden" name="_subject" value="Masterclass registration: organic hero">
