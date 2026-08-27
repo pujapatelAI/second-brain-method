@@ -514,27 +514,73 @@ s.parentNode.insertBefore(t,s)})();
       <div class="body" style="margin-top:22px">
         <p>So this isn't one thing — it's <b>four layers</b>, working together. Most AI programs hand you one and leave the rest to you: a course with no one in it, a tool that can't teach, a group chat that can't build. Here, each layer covers what the others can't.</p>
       </div>
-      <div class="layers">
-        <div class="step">
-          <div class="step-n">01 · SOFTWARE</div>
-          <h3>It sees your business.<span class="sub">Personalized, not generic.</span></h3>
-          <p>I built this to help more people than I can one-on-one — so it's trained on <b>exactly how I run my consulting clients</b>. It analyzes <b>your</b> business — your skillset, your tech stack, your real problems — and shows you what <em>you</em> need next, starting with a map of how your business actually runs. Personalized, not a roadmap everyone gets — and it gets us both to results faster.</p>
+      <style>
+        .fl{ --l1:#8F3F20; --l2:#A24A28; --l3:#B45D34; --l4:#C47447; }
+        @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .fl{ --l1:#C4703F; --l2:#D2703F; --l3:#B45D34; --l4:#8F3F20; } }
+        :root[data-theme="dark"] .fl{ --l1:#C4703F; --l2:#D2703F; --l3:#B45D34; --l4:#8F3F20; }
+        .fl-fig{width:100%; max-width:660px; height:auto; display:block; margin:26px auto 0}
+        .fl-fig .wedges path{stroke:var(--ground); stroke-width:3}
+        .fl-fig .w1{fill:var(--l1)} .fl-fig .w2{fill:var(--l2)} .fl-fig .w3{fill:var(--l3)} .fl-fig .w4{fill:var(--l4)}
+        .fl-fig .wlabel{fill:var(--on-accent); font-family:var(--font-mono); font-weight:700}
+        .fl-fig .hub{fill:var(--ink); font-family:var(--font-mono); font-weight:700}
+        .fl-cards{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:24px}
+        @media (max-width:760px){ .fl-cards{grid-template-columns:repeat(2,1fr)} }
+        @media (max-width:440px){ .fl-cards{grid-template-columns:1fr} }
+        .fl-card{background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--c); border-radius:12px; padding:16px 16px 18px}
+        .fl-card .fl-n{font-family:var(--font-mono); font-size:.68rem; letter-spacing:.12em; color:var(--c); font-weight:700; text-transform:uppercase}
+        .fl-card h3{font-family:var(--font-display); font-weight:700; font-size:1.1rem; margin:.35rem 0 .5rem; letter-spacing:-.01em; line-height:1.15}
+        .fl-card p{margin:0; color:var(--ink-soft); font-size:.92rem; line-height:1.5}
+        .fl-tag{display:inline-block; margin-top:10px; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); background:color-mix(in srgb, var(--accent) 12%, transparent); padding:3px 8px; border-radius:20px}
+        .fl-roi{margin:26px auto 0; max-width:62ch; text-align:center; font-family:var(--font-display); font-style:italic; font-size:1.12rem; line-height:1.5; color:var(--ink)}
+        .fl-roi b{font-style:normal}
+      </style>
+      <div class="fl">
+        <svg class="fl-fig" viewBox="0 0 720 430" role="img" aria-label="Four layers arranged in a semicircle around your business: Personalized Map, Community, Education, Workshops">
+          <g class="wedges">
+            <path class="w1" d="M142.74 165.12 A300 300 0 0 0 60.09 364.67 L256.03 369.46 A104 104 0 0 1 284.68 300.28 Z"/>
+            <path class="w2" d="M352.67 72.09 A300 300 0 0 0 153.12 154.74 L288.28 296.68 A104 104 0 0 1 357.46 268.03 Z"/>
+            <path class="w3" d="M566.88 154.74 A300 300 0 0 0 367.33 72.09 L362.54 268.03 A104 104 0 0 1 431.72 296.68 Z"/>
+            <path class="w4" d="M659.91 364.67 A300 300 0 0 0 577.26 165.12 L435.32 300.28 A104 104 0 0 1 463.97 369.46 Z"/>
+          </g>
+          <g class="wlabel" text-anchor="middle">
+            <text x="165.99" y="285.64" font-size="13" letter-spacing="1" opacity=".85">01</text>
+            <text x="165.99" y="304.64" font-size="14.5" letter-spacing="1.5">MAP</text>
+            <text x="279.64" y="171.99" font-size="13" letter-spacing="1" opacity=".85">02</text>
+            <text x="279.64" y="190.99" font-size="14.5" letter-spacing="1.5">COMMUNITY</text>
+            <text x="440.36" y="171.99" font-size="13" letter-spacing="1" opacity=".85">03</text>
+            <text x="440.36" y="190.99" font-size="14.5" letter-spacing="1.5">EDUCATION</text>
+            <text x="554.01" y="285.64" font-size="13" letter-spacing="1" opacity=".85">04</text>
+            <text x="554.01" y="304.64" font-size="14.5" letter-spacing="1.5">WORKSHOPS</text>
+          </g>
+          <g class="hub" text-anchor="middle">
+            <text x="360" y="352" font-size="15" letter-spacing="2">YOUR</text>
+            <text x="360" y="374" font-size="15" letter-spacing="2">BUSINESS</text>
+          </g>
+        </svg>
+        <div class="fl-cards">
+          <div class="fl-card" style="--c:var(--l1)">
+            <div class="fl-n">01 · Personalized Map</div>
+            <h3>See the whole thing.</h3>
+            <p>Built around your business — your bottlenecks, the gap between where you are and your ideal reality, and a click-by-click roadmap to close it.</p>
+          </div>
+          <div class="fl-card" style="--c:var(--l2)">
+            <div class="fl-n">02 · Community</div>
+            <h3>You're not doing it alone.</h3>
+            <p>Live working sessions whenever you get stuck putting your own roadmap into practice — so you're never stuck alone.</p>
+          </div>
+          <div class="fl-card" style="--c:var(--l3)">
+            <div class="fl-n">03 · Education</div>
+            <h3>Get fluent in AI.</h3>
+            <p>The non-technical skills to navigate the AI world: how to articulate what you actually want, the anatomy of a system, and filtering noise from what genuinely works.</p>
+          </div>
+          <div class="fl-card" style="--c:var(--l4)">
+            <div class="fl-n">04 · Workshops</div>
+            <h3>Build it, live.</h3>
+            <p>Build your second brain with us — no matter when you join. A new build every month.</p>
+            <span class="fl-tag">September · your Telegram bot assistant</span>
+          </div>
         </div>
-        <div class="step">
-          <div class="step-n">02 · COMMUNITY</div>
-          <h3>You're not doing it alone.<span class="sub">Small and early — you're in first.</span></h3>
-          <p>A group of people working on their business, learning as they go. I'll be straight: it's small right now — and that's the upside. You get in while it's intimate, people actually know what you're working on, and you help shape the room instead of getting lost in a feed.</p>
-        </div>
-        <div class="step">
-          <div class="step-n">03 · EDUCATION</div>
-          <h3>You get good at AI.<span class="sub">The real skills, not just the basics.</span></h3>
-          <p>Not only the AI basics and best practices — the skills no course teaches: how to <b>say what you actually want</b> from AI, when to hand work to a person versus a machine, and how to filter the hype from what genuinely works.</p>
-        </div>
-        <div class="step">
-          <div class="step-n">04 · SUPPORT</div>
-          <h3>Me, in your corner.<span class="sub">Message me the moment you're stuck.</span></h3>
-          <p>Every step of the way — reachable by message whenever you hit a wall. You're never left spinning, wondering if you're doing it right. This is the layer that makes the other three actually happen.</p>
-        </div>
+        <p class="fl-roi">You'd get your money's worth from <b>any one layer alone</b> — the live support or the workshops would each cover the $250.</p>
       </div>
       <!-- HIDDEN until a real operating-map screenshot exists — remove `hidden` and swap the
            placeholder per the comment inside. -->
