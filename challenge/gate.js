@@ -2,7 +2,8 @@
    Buyers arriving from a challenge email carry a #e= fragment and never see
    the gate. Manual visitors enter the email they bought with; it's hashed
    (salted SHA-256) in the browser and checked against /challenge/members.json.
-   Non-members are routed to the Stan store. Funnel gate, not DRM. */
+   Non-members just see a "not on the list" message — the $17 listing is closed,
+   so there's nowhere to route them. Funnel gate, not DRM. */
 
 /* Microsoft Clarity — challenge-page analytics (project xni1glpbqz).
    Loads on every /challenge/ page (day pages, map, archive) via this shared
@@ -16,7 +17,6 @@
 
 (function () {
   var SALT = "c30-brain-extract-2026";
-  var STAN = "https://stan.store/PujaPatel";
   var KEY = "c30_email";
 
   function show() {
@@ -68,7 +68,6 @@
         show();
       } else {
         msg.style.display = "block";
-        setTimeout(function () { location.href = STAN; }, 2800);
       }
     });
   });
