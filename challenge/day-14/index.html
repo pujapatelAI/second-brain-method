@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 14 — Meeting Notes &rarr; Action Items · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:82px;text-align:center}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px;font-size:16px;line-height:1.72}
+  .tmpl .subj{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:17px;font-weight:700;margin-bottom:4px}
+  .tmpl .meta{font-size:13px;color:var(--ink-soft);margin-bottom:10px}
+  .tmpl .row{padding:8px 0;border-top:1px solid var(--line)}
+  .tmpl .row:first-of-type{border-top:none}
+  .tmpl .lbl{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--on-accent);background:var(--accent-bright);border-radius:2px;padding:2px 7px;margin-right:8px;vertical-align:1px}
+  .tmpl .lbl.ask{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .tmpl .close{background:var(--surface);border-left:3px solid var(--accent-bright);padding:10px 14px;margin-top:12px;border-radius:0 4px 4px 0}
+  /* video strip — swipeable row so vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos .soon{width:258px;height:592px;max-width:80vw;border:1.5px dashed var(--line);border-radius:8px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    color:var(--ink-soft);background:var(--ground);padding:16px}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — check it's the one you joined with, or reply to any challenge email and i'll help.</p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 14 · Phase 2 — Delivering the Work</div>
+  <h1>meeting notes &rarr; action items</h1>
+  <p class="lead">yesterday's agenda made the meeting worth having — you walked <em>in</em> with the decisions that had to get made. today is the other half: walking <em>out</em> with them captured. because a meeting isn't done when you hang up. it's done when every decision and every next step is written down and owned — otherwise the best call of your week quietly evaporates by friday, and you spend more time figuring out what you were supposed to do than actually doing it.</p>
+
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">the system, the 3 things that make nothing happen after your meetings, and how to teach Claude to turn a call into decisions + owned action items on its own. <span style="color:var(--accent)">swipe &rarr;</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7679095356575026446" allow="fullscreen" title="turning meeting notes into action items as a system" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 &middot; the system</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7679095356575026446" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7679102633872854286" allow="fullscreen" title="3 reasons nothing gets done after your meetings" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 &middot; common mistakes</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7679102633872854286" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7679104770874903821" allow="fullscreen" title="how to teach claude to turn meetings into action items" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">3 &middot; how i run this with claude</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7679104770874903821" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>notes are a receipt. action items are the work.</h2>
+    <p>here's the trap: you have a genuinely good meeting — aligned, decisions made, everyone nodding — and a week later nothing's moved. it's not your memory. the meeting <em>produced</em> something, and nobody caught it.</p>
+    <p class="callout">everybody bought an AI notetaker to fix this, and nothing changed — because notes were never the bottleneck. a wall of transcript is a <b>receipt</b> that the meeting happened. it is not a <b>record</b> of what has to happen next. the whole job is pulling the few real decisions and the owned next steps <em>out</em> of the talk.</p>
+    <p>which gives you the one rule this system runs on: <b>capture decisions and owned actions — never the conversation.</b> a decision nobody wrote down gets re-litigated next week like it never happened; a next step with no owner and no date isn't an action, it's a wish. the meeting's whole value is the 5% you extract and route somewhere real.</p>
+  </section>
+
+  <section>
+    <h2>the system: three questions</h2>
+    <p>the whole capture comes out of three questions. answer them the moment a meeting ends and nothing decided in it disappears. write your answers in.</p>
+    <div class="q"><div class="n">1</div><div><b>where do your meeting notes actually live?</b> in your head, a scattered doc, or a transcript you never reopen? if the meeting only lives somewhere you'll never look at again, it might as well not have been captured. pick one findable place — that's the whole difference between a system and a graveyard.<span class="num">your last meeting — where are its notes right now? could you find the decisions in 30 seconds? ___</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>what actually got decided?</b> not everything that was said — the decisions. "we're moving the launch to the 17th," "we're going with option B." capture the decision, not the discussion, so nobody reopens a settled call next week.<span class="num">name one decision from your last call — is it written anywhere, or only in your memory? ___</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>which action items are you actually doing — and once you decide, who owns each one, by when, and where does it land?</b> of everything floated, commit to the few that are real. then every one gets an owner (a <em>seat</em>, not just a name — you, your team, the client, or AI, from day 11), a date, and a place it lands: where your tasks already live.<span class="num">your last meeting created how many "someone should…" items — how many have a name and a date on them today? ___</span></div></div>
+  </section>
+
+  <section>
+    <h2>the system on one line</h2>
+    <p class="muted">turn a finished conversation into work that's already moving:</p>
+    <div class="step"><span class="tag">trigger</span><span>the meeting ends.</span></div>
+    <div class="step"><span class="tag">input</span><span>the recording or your notes — plus last meeting's open items, so you can check what actually got done.</span></div>
+    <div class="step"><span class="tag">process</span><span>pull the decisions &rarr; commit to the real action items &rarr; put an owner and a date on each &rarr; route them where your work lives (day 11) &rarr; send a short recap to the room.</span></div>
+    <div class="step"><span class="tag">output</span><span>nothing decided gets re-litigated, nothing agreed-to falls on the floor, and a written record of who owns what by when.</span></div>
+    <div class="step"><span class="tag">standard</span><span>every meeting ends with a recap sent and the actions in your tracker — before the next thing starts. no recap, and the meeting may as well not have happened.</span></div>
+  </section>
+
+  <section>
+    <h2>what it looks like finished</h2>
+    <p>the recap from the same <em>Riverside Lending</em> check-in you built the agenda for yesterday — sent within the hour, straight off the call. notice it's three things, not a transcript: what got <b>decided</b>, who owns what <b>by when</b>, and what's still <b>open</b>. and it closes the exact loop the agenda opened — "confirm who's sending the access and by when" now has a name and a date on it.</p>
+    <div class="tmpl">
+      <div class="subj">Riverside — check-in recap (Oct 9)</div>
+      <div class="meta">sent 20 min after the call · action items already in the tracker</div>
+      <div class="row"><span class="lbl">decided</span> the 6 edited videos are approved as-is — no changes. the build can start monday.</div>
+      <div class="row"><span class="lbl">decided</span> ad-account access is unblocked — granted live on the call after 2 weeks pending.</div>
+      <div class="row"><span class="lbl">action</span> <b>you (Riverside)</b> — send the ad-account admin invite to me by <b>fri oct 10</b>.</div>
+      <div class="row"><span class="lbl">action</span> <b>me</b> — start the paid-social build <b>mon oct 13</b>; first ad set live by <b>oct 20</b>.</div>
+      <div class="row"><span class="lbl ask">still open</span> nov 17 launch still on track — we revisit the timeline next check-in if filming slips.</div>
+      <div class="close">every line here is either a decision (so it's not reopened) or an action with a name and a date (so it moves). it's in the tracker before i've left my chair — and Riverside knows the one thing they owe me and when.</div>
+    </div>
+    <p class="muted">that recap took two minutes and closed the loop yesterday's agenda opened. nothing from the call is sitting in anyone's memory.</p>
+  </section>
+
+  <section>
+    <h2>the 3 mistakes in the system</h2>
+    <p><b>1 &mdash; you capture notes, not decisions and actions.</b> you (or your notetaker) save a wall of everything that was said — and a transcript nobody rereads is a receipt, not a record. next week nobody scrolls it. pull the decisions and the owned next steps <em>out</em>; that's the 5% the meeting was actually for.</p>
+    <p><b>2 &mdash; the next steps leave with no owner and no date.</b> "someone should follow up on that" — everyone nods, no name, no day, and it dies in the hallway. every action gets a person, a date, and a place it lands <em>before</em> the call ends, or it isn't an action — it's a wish.</p>
+    <p><b>3 &mdash; the capture never leaves the notes doc.</b> you wrote it down perfectly… into a document that isn't where your work lives, so it's invisible until it's already overdue. it only counts if it lands in your tracker and the room gets the recap — otherwise you did the work of remembering and got none of the benefit.</p>
+    <p class="callout">fix these three and you stop having the same meeting twice — what gets decided gets done, and you stop spending more time figuring out what to do than doing it.</p>
+  </section>
+
+  <section class="flag">
+    <h2>do it with Claude — teach it once, then let it run</h2>
+    <p>we've all had the day of back-to-back meetings where every call spits out action items — and you don't have time to do them, let alone figure out which ones are even worth your time. that's the whole premise of this challenge: <b>you work the system by hand first, until you know exactly what "right" looks like — then you teach it to AI so it runs on your behalf while you're still in your next meeting.</b> here's the build, the way i do it in Claude Code with a second brain. use whatever you use.</p>
+    <div class="q"><div class="n">1</div><div><b>connect your source.</b> you can't extract action items from a meeting your AI can't see. from the earlier days you already record every call and keep a transcript — <em>Otter, Granola, whatever you use</em>. go into Claude Code and connect that tool, so it reads every meeting on its own without you pasting anything in.</div></div>
+    <div class="q"><div class="n">2</div><div><b>teach it how to extract — manually, the first few times.</b> don't reach for automation yet. talk to it: <em>"this is exactly what i want pulled from a meeting, and this is how i want it formatted."</em> read what it gives back, correct it, and iterate until the output is something you'd actually use. you're not writing a clever prompt — you're teaching it your standard until it nails it every time.</div></div>
+    <div class="q"><div class="n">3</div><div><b>ask it what it needs from you — to <em>execute</em>, not just list.</b> here's the shift most people miss: the goal isn't to get a list of action items. it's to get them done. so try: <em>"i just got off a meeting — identify the action items, then tell me exactly what you need from me to execute on them."</em> now it's not reporting; it's naming the one or two things only you can give it so it can actually carry them out.</div></div>
+    <div class="q"><div class="n">4</div><div><b>turn it into a routine.</b> once you're happy with all of it, make it a routine — something that runs on a scheduled cadence, or watches for a trigger across your apps. mine watches for a meeting to end and runs 30 minutes later, on its own. <b>be crystal clear on the trigger:</b> the exact event that starts it, and exactly what it does when it fires. that's the line between a thing you have to remember to run and a system that just runs.</div></div>
+    <p class="callout">the goal was never a list of action items — <b>anyone's notetaker can tell you what they are. yours does them.</b> you worked it by hand, taught it your standard, and set the trigger — so now every meeting turns itself into done action items while you're already in the next one. that's the whole challenge, in one system.</p>
+    <p class="muted">one to keep a hand on: it's acting on your behalf now — a recap or anything it sends is a written record people act on, so read it before it goes, especially the first few weeks. <span>(video 3 above walks the whole run.)</span></p>
+  </section>
+
+  <section class="flag">
+    <h2>the weekly live q&amp;a</h2>
+    <p><b>thursdays at 2:00pm ET.</b> an open q&amp;a on the systems — bring a meeting you never captured well and we'll turn it into owned action items together, or ask about any system in the challenge. google meet, same link every week.</p>
+    <a class="btn" href="https://meet.google.com/ech-pqtq-hhz" target="_blank" rel="noopener">join on google meet &rarr;</a>
+    <a class="btn ghost" href="../qa_calls_august.ics" download>add to your calendar (.ics)</a>
+  </section>
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #15 &mdash; deliverable drafting. the meeting turned into owned actions; day 15 is doing the actual work those actions point to — faster, and to your standard.</p>
+  <p style="margin-bottom:34px;"><a href="../">&larr; all days</a> &nbsp;&middot;&nbsp; <a href="../map/">&#128506; the systems map</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel &middot; The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
