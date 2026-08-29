@@ -459,7 +459,7 @@ s.parentNode.insertBefore(t,s)})();
         <div class="fit-col">
           <h3><span class="mark">☎</span> Book a 15-minute fit call</h3>
           <p class="fit-lead">Rather talk it through? Grab 15 minutes and we'll figure out if this is right for you — no pressure.</p>
-          <a class="btn ghost" href="https://calendar.app.google/jMWA7bZTLnKjxMmKA" target="_blank" rel="noopener">Book a 15-min call <span class="arw">→</span></a>
+          <a class="btn ghost" href="https://calendar.app.google/jMWA7bZTLnKjxMmKA" data-book-call data-tier="member" target="_blank" rel="noopener">Book a 15-min call <span class="arw">→</span></a>
         </div>
       </div>
     </div>
@@ -495,6 +495,14 @@ s.parentNode.insertBefore(t,s)})();
       try{ if(window.fbq) fbq('track','InitiateCheckout',{value:val, currency:'USD', content_name:tier}); }catch(e){}
       try{ if(window.clarity){ clarity('event','checkout_click'); clarity('set','checkout_tier',tier); } }catch(e){}
       try{ if(window._cio) _cio.track('checkout_clicked',{tier:tier, value:val}); }catch(e){}
+    });
+  });
+  document.querySelectorAll('[data-book-call]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var tier = a.getAttribute('data-tier') || 'unknown';
+      try{ if(window.clarity){ clarity('event','book_call_click'); clarity('set','book_call_tier',tier); } }catch(e){}
+      try{ if(window.fbq) fbq('trackCustom','BookCallClick',{content_name:tier}); }catch(e){}
+      try{ if(window._cio) _cio.track('book_call_clicked',{tier:tier}); }catch(e){}
     });
   });
   try{
