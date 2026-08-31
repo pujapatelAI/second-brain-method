@@ -143,6 +143,17 @@ var _cio = _cio || [];
   .notthis{margin-top:1.3rem;color:var(--ink-soft);max-width:60ch}
   .notthis b{color:var(--ink)}
 
+  /* one surface — diagram + benefits */
+  .figure{margin:2rem 0 0;border:1px solid var(--line);border-radius:.8rem;background:var(--surface);padding:1.6rem 1.3rem;box-shadow:var(--shadow)}
+  .figure svg{display:block;width:100%;height:auto;max-width:760px;margin:0 auto}
+  .figure figcaption{margin:1.1rem auto 0;text-align:center;color:var(--ink-soft);font-size:.9rem;max-width:56ch}
+  .bpayoff{font-family:"Fraunces",serif;font-weight:600;font-size:1.25rem;margin:2.4rem 0 0;color:var(--ink)}
+  .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.1rem}
+  @media(max-width:760px){.benefits{grid-template-columns:1fr}}
+  .bcard{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--teal);border-radius:.6rem;padding:1.25rem 1.3rem}
+  .bcard .bt{font-family:"Fraunces",serif;font-weight:600;font-size:1.12rem;margin:0 0 .35rem;color:var(--ink)}
+  .bcard p{margin:0;color:var(--ink-soft);font-size:.93rem}
+
   /* day in the life */
   .daygrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.2rem}
   @media (max-width:720px){.daygrid{grid-template-columns:1fr}}
@@ -324,6 +335,50 @@ var _cio = _cio || [];
       <div class="glabel s">07 · 08 — The surface: where everyone starts, and why it fails</div>
       <div class="layer s"><div class="i">07</div><div><p class="nm">Agents</p><p class="ds">Workflows that run on their own — reliably, because the base is built.</p></div></div>
       <div class="layer s"><div class="i">08</div><div><p class="nm">Apps</p><p class="ds">The polished tools. Great — once there's something underneath them.</p></div></div>
+    </div>
+  </section>
+
+  <section id="surface">
+    <div class="sec-eyebrow eyebrow">One surface, everything connected</div>
+    <h2>Your team stops tab-hopping. One tool, open all day.</h2>
+    <p class="lead">No more fifteen tabs and copy-paste between them. The second brain runs in one place — Claude Code — connected to everything your business already uses. Your team works from it; the AI acts across all of it.</p>
+    <figure class="figure">
+      <svg role="img" aria-label="Claude Code at the center, connected to email, calendar, documents and files, clients and CRM, project management, data and sheets, proposals, and team knowledge" viewBox="0 0 820 500" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="var(--teal)" stroke-opacity=".45" stroke-width="1.6">
+          <line x1="410" y1="250" x2="410" y2="46"/>
+          <line x1="410" y1="250" x2="670" y2="110"/>
+          <line x1="410" y1="250" x2="740" y2="250"/>
+          <line x1="410" y1="250" x2="670" y2="390"/>
+          <line x1="410" y1="250" x2="410" y2="454"/>
+          <line x1="410" y1="250" x2="150" y2="390"/>
+          <line x1="410" y1="250" x2="80" y2="250"/>
+          <line x1="410" y1="250" x2="150" y2="110"/>
+        </g>
+        <g font-family="IBM Plex Sans, sans-serif" font-size="12.5">
+          <g><rect x="340" y="24" width="140" height="44" rx="8" fill="var(--panel)" stroke="var(--teal-edge)"/><text x="410" y="50" text-anchor="middle" fill="var(--ink)">Email</text></g>
+          <g><rect x="600" y="88" width="140" height="44" rx="8" fill="var(--panel)" stroke="var(--teal-edge)"/><text x="670" y="114" text-anchor="middle" fill="var(--ink)">Calendar</text></g>
+          <g><rect x="670" y="228" width="140" height="44" rx="8" fill="var(--panel)" stroke="var(--teal-edge)"/><text x="740" y="254" text-anchor="middle" fill="var(--ink)">Docs &amp; files</text></g>
+          <g><rect x="600" y="368" width="140" height="44" rx="8" fill="var(--panel)" stroke="var(--teal-edge)"/><text x="670" y="394" text-anchor="middle" fill="var(--ink)">Clients / CRM</text></g>
+          <g><rect x="340" y="432" width="140" height="44" rx="8" fill="var(--panel)" stroke="var(--teal-edge)"/><text x="410" y="458" text-anchor="middle" fill="var(--ink)">Project mgmt</text></g>
+          <g><rect x="80" y="368" width="140" height="44" rx="8" fill="var(--panel)" stroke="var(--teal-edge)"/><text x="150" y="394" text-anchor="middle" fill="var(--ink)">Data &amp; sheets</text></g>
+          <g><rect x="10" y="228" width="140" height="44" rx="8" fill="var(--panel)" stroke="var(--teal-edge)"/><text x="80" y="254" text-anchor="middle" fill="var(--ink)">Proposals</text></g>
+          <g><rect x="80" y="88" width="140" height="44" rx="8" fill="var(--panel)" stroke="var(--teal-edge)"/><text x="150" y="114" text-anchor="middle" fill="var(--ink)">Team knowledge</text></g>
+        </g>
+        <rect x="310" y="212" width="200" height="76" rx="12" fill="var(--teal)"/>
+        <text x="410" y="244" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="19" font-weight="600" fill="var(--on-accent)">Claude Code</text>
+        <text x="410" y="267" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5" fill="var(--on-accent)" opacity=".85">YOUR SECOND BRAIN</text>
+      </svg>
+      <figcaption>One tool open. Everything your business runs on connects to it — so the AI reads your real context and does the work <em>across</em> all of it, instead of guessing in a silo.</figcaption>
+    </figure>
+
+    <p class="bpayoff">And the payoff isn't just time.</p>
+    <div class="benefits">
+      <div class="bcard"><p class="bt">Time</p><p>Hours back. The work that used to eat the week runs in the background.</p></div>
+      <div class="bcard"><p class="bt">Accuracy</p><p>Grounded in your real data and standards — right the first time, not confidently wrong.</p></div>
+      <div class="bcard"><p class="bt">Connectivity</p><p>One surface, everything linked. No tab-switching, no copy-paste, no silos.</p></div>
+      <div class="bcard"><p class="bt">Consistency</p><p>The same standard every time — whoever happens to be doing the work.</p></div>
+      <div class="bcard"><p class="bt">Continuity</p><p>Knowledge stops walking out the door. New hires onboard to a system, not a person.</p></div>
+      <div class="bcard"><p class="bt">Control</p><p>Governed and data-isolated — you decide exactly what it can touch.</p></div>
     </div>
   </section>
 
