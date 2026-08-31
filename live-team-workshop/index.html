@@ -644,7 +644,8 @@ var _cio = _cio || [];
           <label>Company<input name="company" type="text" required></label>
           <label>Team size<input name="teamsize" type="text" placeholder="e.g. 20"></label>
         </div>
-        <label>What's the #1 thing eating your team's time right now?<textarea name="breaking" rows="3" required></textarea></label>
+        <label>What AI tools are you using right now?<input name="tools" type="text" placeholder="ChatGPT, Copilot, none yet…"></label>
+        <label>What's your main issue when it comes to adoption?<textarea name="adoption" rows="3" required></textarea></label>
         <button type="submit" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 2rem">Apply for a spot →</button>
         <p class="formnote" id="formnote"></p>
       </form>
@@ -667,8 +668,9 @@ var _cio = _cio || [];
         +"Name: "+el.fullname.value+"\n"
         +"Email: "+el.email.value+"\n"
         +"Company: "+el.company.value+"\n"
-        +"Team size: "+el.teamsize.value+"\n\n"
-        +"What's eating their team's time:\n"+el.breaking.value+"\n";
+        +"Team size: "+el.teamsize.value+"\n"
+        +"AI tools now: "+el.tools.value+"\n\n"
+        +"Main adoption issue:\n"+el.adoption.value+"\n";
       try{ if(window.fbq) fbq('track','Lead'); }catch(_){}
       try{ if(window._cio) _cio.track('workshop_application'); }catch(_){}
       var note=document.getElementById('formnote');
