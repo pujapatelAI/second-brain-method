@@ -200,6 +200,30 @@ var _cio = _cio || [];
   .cb .cbn{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:1.5rem;color:var(--teal-ink);line-height:1.05}
   .cb .cbl{display:block;color:var(--ink-soft);font-size:.82rem;margin-top:.4rem;line-height:1.35}
 
+  /* bio + differentiator + quotes */
+  .bio{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;margin-top:1.4rem}
+  @media(max-width:640px){.bio{grid-template-columns:1fr;justify-items:center;text-align:center;gap:1.4rem}}
+  .headshot{position:relative;width:200px;aspect-ratio:4/5;border-radius:1rem;overflow:hidden;background:var(--teal-tint);border:1px solid var(--teal-edge);display:flex;align-items:center;justify-content:center;flex:none}
+  .headshot::after{content:"Puja";font-family:"Fraunces",serif;font-weight:600;font-size:1.5rem;color:var(--teal-ink);opacity:.55}
+  .headshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+  .biotext h2{margin:0 0 .8rem}
+  .biotext p{margin:0 0 .9rem;color:var(--ink-soft);font-size:1.05rem;line-height:1.55}
+  .biotext p:last-child{margin-bottom:0}
+  .biotext b{color:var(--ink)}
+  .diff{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.2rem}
+  @media(max-width:720px){.diff{grid-template-columns:1fr}}
+  .dcard{border:1px solid var(--line);border-radius:.6rem;padding:1.3rem;background:var(--surface)}
+  .dcard.us{background:var(--teal-tint);border-color:var(--teal-edge)}
+  .dcard .dl{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-faint)}
+  .dcard.us .dl{color:var(--teal-ink)}
+  .dcard .dt{font-family:"Fraunces",serif;font-weight:600;font-size:1.08rem;margin:.35rem 0 .4rem;color:var(--ink)}
+  .dcard p{margin:0;color:var(--ink-soft);font-size:.92rem}
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+  @media(max-width:640px){.quotes{grid-template-columns:1fr}}
+  .qc{margin:0;background:var(--teal-tint);border:1px solid var(--teal-edge);border-radius:.7rem;padding:1.5rem 1.6rem}
+  .qc blockquote{margin:0;font-family:"Fraunces",serif;font-size:1.3rem;font-weight:600;color:var(--ink);line-height:1.25}
+  .qc figcaption{margin-top:.7rem;color:var(--ink-soft);font-size:.88rem}
+
   /* day in the life */
   .daygrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.2rem}
   @media (max-width:720px){.daygrid{grid-template-columns:1fr}}
@@ -485,18 +509,32 @@ var _cio = _cio || [];
   </section>
 
   <section id="whome">
-    <figure class="quote">
-      <blockquote>"I'm actually really happy with this."</blockquote>
-      <figcaption>— Managing broker, on the operating system built for their team</figcaption>
-    </figure>
-    <div class="sec-eyebrow eyebrow" style="margin-top:2.6rem">Who's building it</div>
-    <h2>You're not buying a course — you're buying what I've already built.</h2>
-    <p class="lead">I don't teach this in theory. I've built operating systems for real companies, and I run my own business on one every day.</p>
+    <div class="sec-eyebrow eyebrow">Who's building it</div>
+    <div class="bio">
+      <div class="headshot"><img src="/assets/puja.jpg" alt="Puja Patel" onerror="this.style.display='none'"></div>
+      <div class="biotext">
+        <h2>Hi — I'm Puja.</h2>
+        <p>For the last two years I've gone deep inside <b>30+ companies</b> as a consultant — every industry, every size. And I kept seeing the same thing: <b>it's never the AI that fails. It's the order it was built in.</b> Skip the foundation, and it doesn't matter how good the tool is — it won't stick.</p>
+        <p>So I built the method that puts the layers in the right order, and I run my <em>own</em> entire business on it. Now I install it in yours — in a day.</p>
+      </div>
+    </div>
     <div class="credbar">
-      <div class="cb"><span class="cbn">132</span><span class="cbl">businesses mapped</span></div>
-      <div class="cb"><span class="cbn">150-person</span><span class="cbl">operating system built</span></div>
-      <div class="cb"><span class="cbn">HIPAA</span><span class="cbl">-aligned builds</span></div>
+      <div class="cb"><span class="cbn">30+</span><span class="cbl">companies consulted</span></div>
+      <div class="cb"><span class="cbn">100s</span><span class="cbl">of businesses mapped</span></div>
+      <div class="cb"><span class="cbn">1,000s</span><span class="cbl">of hours saved</span></div>
       <div class="cb"><span class="cbn">1</span><span class="cbl">business run entirely on it — mine</span></div>
+    </div>
+
+    <p class="bpayoff">Everyone else does half the job.</p>
+    <div class="diff">
+      <div class="dcard"><p class="dl">Option A</p><p class="dt">They only teach</p><p>You sit through prompt training. By Friday, nobody's using it.</p></div>
+      <div class="dcard"><p class="dl">Option B</p><p class="dt">They only build</p><p>They build it for you — and you're on their retainer, forever.</p></div>
+      <div class="dcard us"><p class="dl">What we do</p><p class="dt">Both — plus the layer they skip</p><p>Your team builds it <em>with</em> us and owns it. And we build the foundation no one else touches — so it actually works, and lasts.</p></div>
+    </div>
+
+    <div class="quotes">
+      <figure class="qc"><blockquote>"How did you do this so fast?"</blockquote><figcaption>— Robert, real-estate team leader</figcaption></figure>
+      <figure class="qc"><blockquote>"Your output is 10x faster than my guys."</blockquote><figcaption>— Wes, CEO of a 150-person company</figcaption></figure>
     </div>
   </section>
 
