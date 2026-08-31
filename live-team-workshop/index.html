@@ -228,8 +228,8 @@ var _cio = _cio || [];
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
   @media(max-width:560px){.frow{grid-template-columns:1fr}}
   .applyform label{display:grid;gap:.35rem;font-size:.82rem;font-weight:600;color:var(--ink)}
-  .applyform input,.applyform textarea{font-family:"IBM Plex Sans",sans-serif;font-size:1rem;font-weight:400;padding:.7rem .85rem;border:1px solid var(--line);border-radius:5px;background:var(--ground);color:var(--ink);width:100%}
-  .applyform input:focus,.applyform textarea:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
+  .applyform input,.applyform textarea,.applyform select{font-family:"IBM Plex Sans",sans-serif;font-size:1rem;font-weight:400;padding:.7rem .85rem;border:1px solid var(--line);border-radius:5px;background:var(--ground);color:var(--ink);width:100%}
+  .applyform input:focus,.applyform textarea:focus,.applyform select:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
   .applyform textarea{resize:vertical}
   .applyform button{justify-self:center;cursor:pointer;border:0}
   .formnote{margin:.2rem 0 0;font-size:.86rem;color:var(--teal-ink);min-height:1.1em;text-align:center}
@@ -641,9 +641,19 @@ var _cio = _cio || [];
           <label>Email<input name="email" type="email" required></label>
         </div>
         <div class="frow">
+          <label>Phone<input name="phone" type="tel" required></label>
           <label>Company<input name="company" type="text" required></label>
-          <label>Team size<input name="teamsize" type="text" placeholder="e.g. 20"></label>
         </div>
+        <div class="frow">
+          <label>Team size<input name="teamsize" type="text" placeholder="e.g. 20"></label>
+          <label>Preferred date<select name="date" required>
+            <option value="" disabled selected>Pick a date</option>
+            <option>September 14</option>
+            <option>September 29</option>
+            <option>October 6</option>
+          </select></label>
+        </div>
+        <label>Office address — where we'd run it<input name="address" type="text" placeholder="Street, city" required></label>
         <label>What AI tools are you using right now?<input name="tools" type="text" placeholder="ChatGPT, Copilot, none yet…"></label>
         <label>What's your main issue when it comes to adoption?<textarea name="adoption" rows="3" required></textarea></label>
         <button type="submit" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 2rem">Apply for a spot →</button>
@@ -667,8 +677,11 @@ var _cio = _cio || [];
       var body="Application — Company Brain Build Day\n\n"
         +"Name: "+el.fullname.value+"\n"
         +"Email: "+el.email.value+"\n"
+        +"Phone: "+el.phone.value+"\n"
         +"Company: "+el.company.value+"\n"
         +"Team size: "+el.teamsize.value+"\n"
+        +"Preferred date: "+el.date.value+"\n"
+        +"Office address: "+el.address.value+"\n"
         +"AI tools now: "+el.tools.value+"\n\n"
         +"Main adoption issue:\n"+el.adoption.value+"\n";
       try{ if(window.fbq) fbq('track','Lead'); }catch(_){}
