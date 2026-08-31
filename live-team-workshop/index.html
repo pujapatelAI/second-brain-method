@@ -154,6 +154,19 @@ var _cio = _cio || [];
   .bcard .bt{font-family:"Fraunces",serif;font-weight:600;font-size:1.12rem;margin:0 0 .35rem;color:var(--ink)}
   .bcard p{margin:0;color:var(--ink-soft);font-size:.93rem}
 
+  /* who it's for */
+  .forgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem}
+  @media(max-width:720px){.forgrid{grid-template-columns:1fr}}
+  .forcard{border-radius:.7rem;padding:1.6rem 1.5rem;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .forcard.yes{background:var(--teal-tint);border-color:var(--teal-edge)}
+  .forcard.no{background:var(--rust-tint);border-color:var(--rust-edge)}
+  .forcard h3{font-size:1.2rem;margin:0 0 1.1rem}
+  .forcard.yes h3{color:var(--teal-ink)} .forcard.no h3{color:var(--rust-ink)}
+  .forlist{list-style:none;padding:0;margin:0;display:grid;gap:.8rem}
+  .forlist li{display:grid;grid-template-columns:auto 1fr;gap:.65rem;align-items:start;font-size:.96rem;color:var(--ink);line-height:1.45}
+  .forlist .mk{font-family:"IBM Plex Mono",monospace;font-weight:700;line-height:1.4}
+  .forcard.yes .mk{color:var(--teal)} .forcard.no .mk{color:var(--rust)}
+
   /* day in the life */
   .daygrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.2rem}
   @media (max-width:720px){.daygrid{grid-template-columns:1fr}}
@@ -447,6 +460,10 @@ var _cio = _cio || [];
         <div class="a">You own all of it — <b>it's your system, on your accounts.</b> We document the tools and approach so your AI-assisted work stays defensible and yours.</div>
       </details>
       <details>
+        <summary>Do we need to be technical? None of us can code.</summary>
+        <div class="a">No — and that's the point. Your team's expertise is <b>your business, not software.</b> We build the second brain <em>with</em> your team, in plain language, using your real work — no coding, no setup homework. If you can explain how your firm runs, you can build this. It lives in tools your team already knows how to click around in.</div>
+      </details>
+      <details>
         <summary>How does this fit our required AI training?</summary>
         <div class="a">The Build Day <b>is</b> hands-on training — your team learns by building their own system into their real work, and keeps it. It slots into your training cadence, and an internal champion carries it forward after we leave.</div>
       </details>
@@ -454,6 +471,34 @@ var _cio = _cio || [];
         <summary>What if a client contract restricts AI on their project?</summary>
         <div class="a">The system <b>respects per-project boundaries</b> — you control what runs where, so a restricted project stays restricted while the rest of the firm keeps moving.</div>
       </details>
+    </div>
+  </section>
+
+  <section id="fit">
+    <div class="sec-eyebrow eyebrow">Is this you?</div>
+    <h2>Who it's for — and who it isn't.</h2>
+    <p class="lead">This works when the fit is right. Here's the honest cut, so you know before you book.</p>
+    <div class="forgrid">
+      <div class="forcard yes">
+        <h3>Build this if…</h3>
+        <ul class="forlist">
+          <li><span class="mk">✓</span><span>You run an owner-led firm and the business lives in your team's heads.</span></li>
+          <li><span class="mk">✓</span><span>Your people are buried in proposals, reports, client comms, and intake.</span></li>
+          <li><span class="mk">✓</span><span>You've tried AI and nothing actually changed.</span></li>
+          <li><span class="mk">✓</span><span>You want your team capable and independent — not a vendor on retainer forever.</span></li>
+          <li><span class="mk">✓</span><span>You're ready to build in a day, not sit through theory.</span></li>
+        </ul>
+      </div>
+      <div class="forcard no">
+        <h3>Skip it if…</h3>
+        <ul class="forlist">
+          <li><span class="mk">✕</span><span>You want it fully done for you, with your team never in the room.</span></li>
+          <li><span class="mk">✕</span><span>You're after generic "AI 101" or a prompt-writing class.</span></li>
+          <li><span class="mk">✕</span><span>Your work is mostly physical, with little to systematize.</span></li>
+          <li><span class="mk">✕</span><span>You expect autonomous bots running the firm on day one.</span></li>
+          <li><span class="mk">✕</span><span>You're not ready to get your team on approved AI tools.</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
