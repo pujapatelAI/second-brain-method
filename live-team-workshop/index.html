@@ -134,6 +134,15 @@ var _cio = _cio || [];
   .symptoms li p{margin:0;color:var(--ink-soft)}
   .symptoms li b{color:var(--ink)}
 
+  /* what it is */
+  .holds{list-style:none;padding:0;margin:1.8rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+  @media(max-width:640px){.holds{grid-template-columns:1fr}}
+  .holds li{background:var(--surface);border:1px solid var(--line);border-radius:.55rem;padding:1.1rem 1.2rem}
+  .holds .h{font-family:"Fraunces",serif;font-weight:600;font-size:1.05rem;color:var(--ink);margin:0 0 .25rem}
+  .holds .o{color:var(--ink-soft);font-size:.92rem;margin:0}
+  .notthis{margin-top:1.3rem;color:var(--ink-soft);max-width:60ch}
+  .notthis b{color:var(--ink)}
+
   /* day in the life */
   .daygrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.2rem}
   @media (max-width:720px){.daygrid{grid-template-columns:1fr}}
@@ -253,6 +262,19 @@ var _cio = _cio || [];
     </ul>
   </section>
 
+  <section id="what">
+    <div class="sec-eyebrow eyebrow">What it actually is</div>
+    <h2>A second brain is your business — out of everyone's heads, into one system.</h2>
+    <p class="lead">Everything your company runs on, pulled into one place your team <em>and</em> your AI both work from. Not a folder of docs — a living system that produces the work.</p>
+    <ul class="holds">
+      <li><p class="h">Your processes</p><p class="o">So the work happens the same way every time — without routing through you.</p></li>
+      <li><p class="h">Your standards &amp; judgment</p><p class="o">So what comes back matches how <em>you'd</em> have done it.</p></li>
+      <li><p class="h">Your data &amp; documents</p><p class="o">So nothing's rebuilt from scratch or lost in someone's inbox.</p></li>
+      <li><p class="h">Your live context</p><p class="o">So your team and your AI actually know your business — no re-explaining.</p></li>
+    </ul>
+    <p class="notthis">It's <b>not</b> a wiki that goes stale, and it's <b>not</b> a chatbot. It's the system that drafts the proposal to your standard, answers the client, and onboards the new hire — because it finally knows how you work.</p>
+  </section>
+
   <section id="after">
     <div class="sec-eyebrow eyebrow">The ideal day in the life</div>
     <h2>The problem was never your team. The standard lives in your head.</h2>
@@ -340,10 +362,10 @@ var _cio = _cio || [];
         <div class="r-stat">5× top line<span>3× projects delivered</span></div>
       </div>
       <div class="result">
-        <div class="r-before"><span class="rlab">Before</span> A team rebuilding the <b>same report by hand every week</b> — hours gone, every week.</div>
+        <div class="r-before"><span class="rlab">Before</span> A brokerage owner was the <b>bottleneck on everything</b> — every report, pipeline update and follow-up ran through him and two admins.</div>
         <div class="r-arrow" aria-hidden="true">↓</div>
-        <div class="r-after"><span class="rlab">After</span> It builds itself. That time comes <b>straight back.</b></div>
-        <div class="r-stat">~9 hrs/wk<span>recovered, every week</span></div>
+        <div class="r-after"><span class="rlab">After</span> The reports, the pipeline and the weekly numbers <b>run themselves.</b> The operation moves without him in it.</div>
+        <div class="r-stat">2 roles' work<span>automated — owner freed</span></div>
       </div>
     </div>
     <div class="ilive">And I run my own business on one — my content, my clients, my operations. I'm not selling a theory. I'm selling the thing I use every day.</div>
