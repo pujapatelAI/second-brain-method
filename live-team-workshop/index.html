@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Second Brain Build Day — Tampa · Puja Patel</title>
+<meta name="description" content="Your AI isn't working because your systems don't exist. One day, on-site in Tampa, we build the eight layers underneath it — so your team's AI finally runs.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://puja-patel.com/live-team-workshop/">
+<meta property="og:title" content="Your AI isn't working because your systems don't exist.">
+<meta property="og:description" content="One day, on-site in Tampa. Your team walks out with the foundation your AI needs to actually run.">
+<meta property="og:image" content="https://puja-patel.com/assets/og_card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];if(y&&y.parentNode){y.parentNode.insertBefore(t,y);}else{l.head.appendChild(t);}})(window, document, "clarity", "script", "xni1glpbqz");
+</script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1358901016182853');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></noscript>
+<!-- Customer.io -->
+<script type="text/javascript">
+var _cio = _cio || [];
+(function(){var a,b,c;a=function(f){return function(){_cio.push([f].concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify","sidentify","track","page","on","off"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};var t=document.createElement('script'),s=document.getElementsByTagName('script')[0];t.async=true;t.id='cio-tracker';t.setAttribute('data-site-id','3f7f4e3fdaf9decb1c47');t.src='https://assets.customer.io/assets/track.js';s.parentNode.insertBefore(t,s)})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    /* Puja Patel · Second Brain brand — warm sand + terracotta.
+       --teal repurposed as brand green (foundation / positive);
+       --rust = terracotta (surface / cost / CTAs). */
+    --ground:#EFE8DE; --surface:#FBF7F1; --panel:#FFFFFF;
+    --ink:#2A2320; --ink-soft:#6A5F55; --ink-faint:#8A7C6E;
+    --line:#DED3C4;
+    --teal:#4E7A5B; --teal-ink:#3E6A4B; --teal-tint:#E4EEE7; --teal-edge:#C4D8C9;
+    --rust:#B0532F; --rust-ink:#A24A28; --rust-tint:#F4E6DC; --rust-edge:#E6D2BE;
+    --on-accent:#FBF7F1;
+    --shadow:0 1px 2px rgba(42,35,32,.05),0 8px 30px rgba(42,35,32,.08);
+    --shadow-lg:0 2px 6px rgba(42,35,32,.07),0 20px 50px rgba(42,35,32,.13);
+    --maxw:64rem;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#241C17; --surface:#2C231D; --panel:#332821;
+      --ink:#EFE7DC; --ink-soft:#A8998A; --ink-faint:#8E8073;
+      --line:#4A3C31;
+      --teal:#83B394; --teal-ink:#9BCBA9; --teal-tint:#223029; --teal-edge:#33473B;
+      --rust:#E08A5A; --rust-ink:#F0A183; --rust-tint:#33271F; --rust-edge:#4A3529;
+      --on-accent:#241A14;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 34px rgba(0,0,0,.34);
+      --shadow-lg:0 2px 6px rgba(0,0,0,.36),0 24px 56px rgba(0,0,0,.46);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#241C17; --surface:#2C231D; --panel:#332821;
+    --ink:#EFE7DC; --ink-soft:#A8998A; --ink-faint:#8E8073;
+    --line:#4A3C31;
+    --teal:#83B394; --teal-ink:#9BCBA9; --teal-tint:#223029; --teal-edge:#33473B;
+    --rust:#E08A5A; --rust-ink:#F0A183; --rust-tint:#33271F; --rust-edge:#4A3529;
+    --on-accent:#241A14;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 34px rgba(0,0,0,.34);
+    --shadow-lg:0 2px 6px rgba(0,0,0,.36),0 24px 56px rgba(0,0,0,.46);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    background:var(--ground);color:var(--ink);margin:0;
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.4rem}
+  .narrow{max-width:48rem}
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--teal-ink);font-weight:600;
+  }
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;letter-spacing:-.015em;text-wrap:balance;font-weight:600}
+  a{color:var(--teal-ink)}
+
+  .btn{
+    display:inline-block;font-family:"IBM Plex Sans",sans-serif;font-weight:600;
+    font-size:1rem;padding:.85rem 1.5rem;border-radius:4px;text-decoration:none;
+    border:1px solid transparent;cursor:pointer;transition:transform .12s ease;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--rust);color:var(--on-accent);box-shadow:var(--shadow)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+
+  /* nav */
+  nav{
+    position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--ground) 86%,transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  }
+  nav .row{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0}
+  .brand{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.15rem;letter-spacing:-.01em;display:flex;align-items:center;gap:.5rem}
+  .brand .dot{width:.7rem;height:.7rem;border-radius:2px;background:var(--rust);display:inline-block}
+  nav .btn{padding:.55rem 1.05rem;font-size:.9rem}
+
+  /* hero */
+  .hero{padding:4.5rem 0 3rem}
+  .hero h1{font-size:clamp(2.3rem,6vw,4rem);line-height:1.03;margin:1rem 0 0;max-width:16ch}
+  .hero h1 .hot{color:var(--rust-ink);font-style:italic}
+  .hero .sub{font-size:clamp(1.1rem,2.3vw,1.35rem);color:var(--ink-soft);max-width:44ch;margin:1.4rem 0 0}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+
+  section{padding:3.6rem 0}
+  .sec-eyebrow{margin-bottom:.7rem}
+  h2{font-size:clamp(1.7rem,3.8vw,2.5rem);margin:0}
+  .lead{font-size:1.15rem;color:var(--ink-soft);max-width:52ch;margin:1.1rem 0 0}
+
+  /* symptom list */
+  .symptoms{list-style:none;padding:0;margin:2rem 0 0;display:grid;gap:.8rem}
+  .symptoms li{
+    display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start;
+    background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:1rem 1.1rem;
+  }
+  .symptoms .x{color:var(--rust);font-weight:700;font-family:"IBM Plex Mono",monospace}
+  .symptoms li p{margin:0;color:var(--ink-soft)}
+  .symptoms li b{color:var(--ink)}
+
+  /* day in the life */
+  .daygrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.2rem}
+  @media (max-width:720px){.daygrid{grid-template-columns:1fr}}
+  .daycard{border-radius:.7rem;padding:1.6rem 1.5rem;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .daycard.now{background:var(--rust-tint);border-color:var(--rust-edge)}
+  .daycard.after{background:var(--teal-tint);border-color:var(--teal-edge)}
+  .daycard .tag{
+    font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.12em;
+    text-transform:uppercase;font-weight:600;margin-bottom:1rem;display:block;
+  }
+  .daycard.now .tag{color:var(--rust-ink)}
+  .daycard.after .tag{color:var(--teal-ink)}
+  .daycard h3{font-size:1.35rem;margin:0 0 1rem}
+  .tl{list-style:none;padding:0;margin:0;display:grid;gap:1.05rem}
+  .tl li{display:flex;flex-direction:column;gap:.25rem}
+  .tl .task{font-weight:600;color:var(--ink);font-size:.95rem;display:flex;gap:.5rem;align-items:baseline}
+  .tl .task::before{content:"▸";font-size:.75rem;flex:none;line-height:1.4}
+  .daycard.now .tl .task::before{color:var(--rust)}
+  .daycard.after .tl .task::before{color:var(--teal)}
+  .tl .fail{font-size:.92rem;font-style:italic;color:var(--ink-soft);padding-left:1.05rem;line-height:1.45}
+  .tl .fail b{color:var(--ink);font-style:normal}
+
+  /* layers */
+  .layers{display:flex;flex-direction:column;gap:.45rem;margin-top:2rem}
+  .glabel{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin:.2rem 0 .5rem}
+  .glabel.s{color:var(--rust-ink)} .glabel.f{color:var(--teal-ink)}
+  .layer{display:grid;grid-template-columns:2.8rem 1fr;gap:1rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-left-width:4px;border-radius:.5rem;padding:.85rem 1.1rem}
+  .layer .i{font-family:"IBM Plex Mono",monospace;font-size:1.25rem;font-weight:600;font-variant-numeric:tabular-nums;text-align:right;color:var(--ink-faint)}
+  .layer .nm{font-family:"Fraunces",serif;font-weight:600;font-size:1.1rem;margin:0}
+  .layer .ds{color:var(--ink-soft);font-size:.92rem;margin:.1rem 0 0}
+  .layer.s{background:var(--rust-tint);border-color:var(--rust-edge);border-left-color:var(--rust)} .layer.s .i{color:var(--rust)}
+  .layer.f{border-left-color:var(--teal)} .layer.f .i{color:var(--teal)}
+  .layer.base{background:var(--teal-tint);border-color:var(--teal-edge)}
+  .waterline{display:flex;align-items:center;gap:1rem;margin:.35rem 0}
+  .waterline .r{flex:1;height:0;border-top:2px dashed var(--rust);opacity:.85}
+  .waterline .tx{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.05em;color:var(--rust-ink);font-weight:600;text-transform:uppercase;text-align:center}
+
+  /* offer */
+  .offer{background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--teal);border-radius:.8rem;padding:2.4rem 2rem;box-shadow:var(--shadow-lg)}
+  .offer .price{font-family:"Fraunces",serif;font-weight:600;font-size:2.6rem;letter-spacing:-.02em;line-height:1}
+  .offer .price small{font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:500;letter-spacing:.08em;color:var(--ink-faint);text-transform:uppercase;display:block;margin-top:.4rem}
+  .incl{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;gap:.7rem}
+  .incl li{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:start}
+  .incl .c{color:var(--teal);font-weight:700}
+  .incl li span:last-child{color:var(--ink-soft)}
+  .incl li b{color:var(--ink)}
+  .guarantee{margin-top:1.6rem;padding:1rem 1.15rem;background:var(--teal-tint);border:1px solid var(--teal-edge);border-radius:.5rem;font-size:.95rem}
+  .guarantee b{color:var(--teal-ink)}
+
+  /* results — transformation stories */
+  .results{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+  @media(max-width:820px){.results{grid-template-columns:1fr}}
+  .result{display:flex;flex-direction:column;gap:.7rem;background:var(--surface);border:1px solid var(--line);border-radius:.7rem;padding:1.4rem 1.3rem;box-shadow:var(--shadow)}
+  .rlab{display:block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;font-weight:600;margin-bottom:.3rem}
+  .r-before{color:var(--ink-soft);font-size:.95rem}
+  .r-before .rlab{color:var(--rust-ink)} .r-before b{color:var(--ink)}
+  .r-arrow{color:var(--rust);font-weight:700;font-size:1.15rem;line-height:1}
+  .r-after{color:var(--ink);font-size:.97rem} .r-after .rlab{color:var(--teal-ink)} .r-after b{color:var(--teal-ink)}
+  .r-stat{margin-top:auto;padding-top:.9rem;border-top:1px solid var(--line);font-family:"Fraunces",serif;font-weight:600;font-size:1.4rem;color:var(--teal-ink);line-height:1.05}
+  .r-stat span{display:block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-top:.35rem}
+  .ilive{margin-top:1.6rem;padding:1.3rem 1.5rem;background:var(--teal-tint);border:1px solid var(--teal-edge);border-radius:.6rem;font-family:"Fraunces",serif;font-style:italic;font-size:1.1rem;color:var(--ink);line-height:1.4}
+
+  /* faq */
+  .faq{margin-top:2rem;border-top:1px solid var(--line)}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{cursor:pointer;list-style:none;padding:1.15rem 0;font-family:"Fraunces",serif;font-weight:600;font-size:1.1rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;color:var(--ink)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-family:"IBM Plex Mono",monospace;color:var(--rust);font-size:1.35rem;font-weight:600;flex:none;line-height:1}
+  .faq details[open] summary::after{content:"–"}
+  .faq summary:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:3px}
+  .faq .a{padding:0 0 1.3rem;color:var(--ink-soft);max-width:64ch}
+  .faq .a b{color:var(--ink)}
+
+  /* cta band */
+  .band{background:var(--panel);border:1px solid var(--line);border-radius:.9rem;padding:2.6rem 2rem;text-align:center;box-shadow:var(--shadow-lg)}
+  .band h2{max-width:22ch;margin:0 auto}
+  .band p{color:var(--ink-soft);max-width:44ch;margin:1rem auto 0}
+  .band .cta{margin-top:1.8rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+
+  footer{padding:3rem 0 4rem;color:var(--ink-faint);font-size:.85rem;border-top:1px solid var(--line);margin-top:2rem}
+  footer .mono{font-family:"IBM Plex Mono",monospace;letter-spacing:.04em}
+
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap row">
+    <div class="brand"><span class="dot"></span>Second&nbsp;Brain</div>
+    <a href="#book" class="btn btn-primary">Book a fit call</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">The Second Brain Build Day · On-site · Tampa</div>
+    <h1>Your AI isn't working because your <span class="hot">systems don't exist.</span></h1>
+    <p class="sub">You bought the tools. Your team tried them. Nothing really changed. Here's the real reason — and the one day that fixes it for your whole team.</p>
+    <div class="cta">
+      <a href="#book" class="btn btn-primary">Book a 15-min fit call</a>
+      <a href="#how" class="btn btn-ghost">See how it works</a>
+    </div>
+  </header>
+
+  <section id="why">
+    <div class="sec-eyebrow eyebrow" style="color:var(--rust-ink)">Why your AI isn't working</div>
+    <h2>AI didn't fail you. It just had nothing to stand on.</h2>
+    <p class="lead">Every company buys the app and tries to build the agent — the two layers everyone can see. But your operation lives in your team's heads. There's no data, no context, no system underneath for the AI to actually run on. So it stalls. That's not a tool problem. It's a foundation problem.</p>
+    <ul class="symptoms">
+      <li><span class="x">✕</span><p>A <b>ChatGPT tab nobody opens</b> — you're paying for it, and it changed nothing.</p></li>
+      <li><span class="x">✕</span><p>The same questions land on you every day, because <b>the answers only live in your head.</b></p></li>
+      <li><span class="x">✕</span><p>Every proposal, report, and hand-off <b>waits on one person</b> — and stops when they're out.</p></li>
+    </ul>
+  </section>
+
+  <section id="after">
+    <div class="sec-eyebrow eyebrow">The ideal day in the life</div>
+    <h2>The problem was never your team. The standard lives in your head.</h2>
+    <p class="lead">Until you get what's in your head <em>out</em>, every result — from a person or an AI — is a guess at what you actually wanted. Here's the day before and after you extract it.</p>
+    <div class="daygrid">
+      <div class="daycard now reveal">
+        <span class="tag">Your team's day — today</span>
+        <h3>Every task depends on something stuck in someone's head.</h3>
+        <ul class="tl">
+          <li><span class="task">Draft the client proposal</span><span class="fail">"I don't actually know the standard she wants — it's in her head — so I guess. It comes back covered in redlines."</span></li>
+          <li><span class="task">Reuse last quarter's version</span><span class="fail">"It's buried in someone's inbox or their memory. I end up rebuilding it from scratch."</span></li>
+          <li><span class="task">Pull a status update for the client</span><span class="fail">"I message five people, wait an hour, and still can't give a straight answer."</span></li>
+          <li><span class="task">Get the new hire producing</span><span class="fail">"Nothing's written down, so they shadow me for a month — and my own work stops."</span></li>
+          <li><span class="task">Ask AI to speed it up</span><span class="fail">"It doesn't know how we work, so it hands me generic junk I rewrite anyway."</span></li>
+        </ul>
+      </div>
+      <div class="daycard after reveal" style="animation-delay:.1s">
+        <span class="tag">Your team's day — once it's extracted</span>
+        <h3>The standard is written down, so the work comes back right.</h3>
+        <ul class="tl">
+          <li><span class="task">Draft the client proposal</span><span class="fail">"The system drafts it from her <b>actual</b> standard. I refine — I don't guess. First pass, approved."</span></li>
+          <li><span class="task">Reuse last quarter's version</span><span class="fail">"It's in the brain. I pull it in seconds and adapt it."</span></li>
+          <li><span class="task">Pull a status update</span><span class="fail">"The system already knows where everything stands. No meeting, no chase."</span></li>
+          <li><span class="task">Get the new hire producing</span><span class="fail">"They point at the brain and ship real work on <b>day one.</b>"</span></li>
+          <li><span class="task">Ask AI to speed it up</span><span class="fail">"It knows how we work — so it hands me something I'd <b>actually send.</b>"</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="sec-eyebrow eyebrow">How we get there</div>
+    <h2>We build the eight layers — in order, in one day.</h2>
+    <p class="lead">Everyone jumps straight to 07–08 — the apps and the agents — and wonders why it doesn't stick. We start at 01 and build up: the foundation the AI needs to actually run. Your team builds it with us, into your real workflows, and owns it after we leave.</p>
+
+    <div class="layers">
+      <div class="glabel f">01 → 06 — The foundation: build these first (nobody does)</div>
+      <div class="layer f base"><div class="i">01</div><div><p class="nm">Data</p><p class="ds">Clean, structured information the whole system stands on.</p></div></div>
+      <div class="layer f"><div class="i">02</div><div><p class="nm">Governance</p><p class="ds">What's safe to use, who sees what — so client data stays protected.</p></div></div>
+      <div class="layer f"><div class="i">03</div><div><p class="nm">Context management</p><p class="ds">The AI actually knowing your business — no re-explaining.</p></div></div>
+      <div class="layer f"><div class="i">04</div><div><p class="nm">Workspace</p><p class="ds">One place the second brain lives, remembers, and compounds.</p></div></div>
+      <div class="layer f"><div class="i">05</div><div><p class="nm">Integration</p><p class="ds">Your real tools, connected — so AI can do, not just talk.</p></div></div>
+      <div class="layer f"><div class="i">06</div><div><p class="nm">Skills</p><p class="ds">Repeatable capabilities your team can trust twice.</p></div></div>
+
+      <div class="waterline" aria-hidden="true"><div class="r"></div><div class="tx">Everyone skips straight to the last two — that's the mistake</div><div class="r"></div></div>
+
+      <div class="glabel s">07 · 08 — The surface: where everyone starts, and why it fails</div>
+      <div class="layer s"><div class="i">07</div><div><p class="nm">Agents</p><p class="ds">Workflows that run on their own — reliably, because the base is built.</p></div></div>
+      <div class="layer s"><div class="i">08</div><div><p class="nm">Apps</p><p class="ds">The polished tools. Great — once there's something underneath them.</p></div></div>
+    </div>
+  </section>
+
+  <section id="offer">
+    <div class="offer">
+      <div class="eyebrow">The Second Brain Build Day</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-top:.7rem">
+        <h2 style="max-width:16ch">One day, on-site. Your team walks out with the foundation built.</h2>
+        <div class="price">$10,000<small>Flat · up to 12 people</small></div>
+      </div>
+      <ul class="incl">
+        <li><span class="c">✓</span><span>A working <b>second brain</b> your team builds into their real workflows — and keeps</span></li>
+        <li><span class="c">✓</span><span>The <b>eight layers installed bottom-up</b>, not a prompt library that fades by Friday</span></li>
+        <li><span class="c">✓</span><span>Your <b>operations and data mapped</b> — the diagnosis most firms never get</span></li>
+        <li><span class="c">✓</span><span>Session recordings + the setup, so the <b>next hire onboards to a system</b>, not a person</span></li>
+      </ul>
+      <div class="guarantee"><b>The guarantee:</b> your team walks out with a working second brain, or the day is on us — and you keep everything you built.</div>
+    </div>
+  </section>
+
+  <section id="proof">
+    <div class="sec-eyebrow eyebrow">Results</div>
+    <h2>Same people. Same hours. Far more throughput.</h2>
+    <p class="lead">Not features — transformations. When the system holds the work instead of the people, capacity stops being capped by anyone's calendar.</p>
+    <div class="results">
+      <div class="result">
+        <div class="r-before"><span class="rlab">Before</span> One recruiter drowning in <b>30 open requisitions</b>, every one tracked by hand.</div>
+        <div class="r-arrow" aria-hidden="true">↓</div>
+        <div class="r-after"><span class="rlab">After</span> The same person runs <b>75</b> — with time to spare.</div>
+        <div class="r-stat">2.5× capacity<span>same headcount</span></div>
+      </div>
+      <div class="result">
+        <div class="r-before"><span class="rlab">Before</span> A <b>150-person</b> team over capacity — nobody could take a day off without something breaking.</div>
+        <div class="r-arrow" aria-hidden="true">↓</div>
+        <div class="r-after"><span class="rlab">After</span> The operation ran on a system, not on people's heads. They took on <b>3× the projects.</b></div>
+        <div class="r-stat">5× top line<span>3× projects delivered</span></div>
+      </div>
+      <div class="result">
+        <div class="r-before"><span class="rlab">Before</span> A team rebuilding the <b>same report by hand every week</b> — hours gone, every week.</div>
+        <div class="r-arrow" aria-hidden="true">↓</div>
+        <div class="r-after"><span class="rlab">After</span> It builds itself. That time comes <b>straight back.</b></div>
+        <div class="r-stat">~9 hrs/wk<span>recovered, every week</span></div>
+      </div>
+    </div>
+    <div class="ilive">And I run my own business on one — my content, my clients, my operations. I'm not selling a theory. I'm selling the thing I use every day.</div>
+  </section>
+
+  <section id="faq">
+    <div class="sec-eyebrow eyebrow">The questions firms ask first</div>
+    <h2>Built to work inside your rules — not around them.</h2>
+    <div class="faq">
+      <details>
+        <summary>Does our confidential client data go into public AI?</summary>
+        <div class="a">No. Everything is built inside <b>approved, enterprise-grade, data-isolated tools</b> — the kind your IT team already vets, where your data isn't used to train anyone's model. Confidential project files, drawings, and contracts never touch a public service. Governance is the second layer we install, not an afterthought.</div>
+      </details>
+      <details>
+        <summary>We can only use tools that pass IT / security review. Does that work?</summary>
+        <div class="a">Yes — I build inside <b>your approved-tool stack and your data-classification rules</b>, alongside your IT and internal champions, never around them. If a tool needs review first, I support that process on your timeline.</div>
+      </details>
+      <details>
+        <summary>We're accountable for our work. What about AI mistakes?</summary>
+        <div class="a">The system is built so <b>a person always reviews before anything ships.</b> AI drafts; your professionals decide. Nothing auto-submits to a client or a regulator — the human checkpoint is designed in, not bolted on.</div>
+      </details>
+      <details>
+        <summary>We're cautious about autonomous ("agentic") AI. Are you turning bots loose?</summary>
+        <div class="a">No. We build the <b>foundation first.</b> Anything autonomous comes later — only with human checkpoints, limited data scope, logging, and a rollback — inside your governance, at your pace. The foundation is what makes safe automation possible at all.</div>
+      </details>
+      <details>
+        <summary>Who owns what we build? Any IP risk?</summary>
+        <div class="a">You own all of it — <b>it's your system, on your accounts.</b> We document the tools and approach so your AI-assisted work stays defensible and yours.</div>
+      </details>
+      <details>
+        <summary>How does this fit our required AI training?</summary>
+        <div class="a">The Build Day <b>is</b> hands-on training — your team learns by building their own system into their real work, and keeps it. It slots into your training cadence, and an internal champion carries it forward after we leave.</div>
+      </details>
+      <details>
+        <summary>What if a client contract restricts AI on their project?</summary>
+        <div class="a">The system <b>respects per-project boundaries</b> — you control what runs where, so a restricted project stays restricted while the rest of the firm keeps moving.</div>
+      </details>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="band">
+      <div class="eyebrow" style="color:var(--rust-ink)">The cost of waiting</div>
+      <h2>Doing nothing isn't free. It's just an invoice you don't see yet.</h2>
+      <p>Every month, you pay twice — for AI that doesn't work, and the manual work it was supposed to replace. Let's fix the foundation in a day.</p>
+      <div class="cta">
+        <a href="mailto:info@puja-patel.com?subject=Second%20Brain%20Build%20Day%20%E2%80%94%20team%20workshop&body=Hi%20Puja%20%E2%80%94%20we%27re%20interested%20in%20the%20Second%20Brain%20Build%20Day%20for%20our%20team.%0A%0AOur%20firm%3A%20%0ATeam%20size%3A%20%0AWhat%27s%20breaking%3A%20" id="book-cta" class="btn btn-primary">Book a 15-min fit call</a>
+        <a href="#why" class="btn btn-ghost">Start from the top</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="mono">THE SECOND BRAIN BUILD DAY</span> — the foundation your AI needs. Tampa &amp; on-site.
+  </footer>
+</div>
+
+<script>
+  document.getElementById('book-cta').addEventListener('click', function(){
+    if(window.fbq) fbq('track', 'Schedule');
+    if(window._cio) _cio.track('workshop_book_clicked');
+  });
+</script>
+</body>
+</html>
