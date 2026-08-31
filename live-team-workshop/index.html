@@ -167,6 +167,39 @@ var _cio = _cio || [];
   .forlist .mk{font-family:"IBM Plex Mono",monospace;font-weight:700;line-height:1.4}
   .forcard.yes .mk{color:var(--teal)} .forcard.no .mk{color:var(--rust)}
 
+  /* the day / agenda */
+  .agenda{list-style:none;padding:0;margin:2rem 0 0;display:grid;gap:.8rem}
+  .agenda li{display:grid;grid-template-columns:8.5rem 1fr;gap:1rem;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:.5rem;padding:1.2rem 1.3rem}
+  @media(max-width:640px){.agenda li{grid-template-columns:1fr;gap:.35rem}}
+  .agenda .atime{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--teal-ink);padding-top:.25rem}
+  .agenda .ah{font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;margin:0 0 .2rem;color:var(--ink)}
+  .agenda .ad{margin:0;color:var(--ink-soft);font-size:.94rem}
+
+  /* offer scarcity */
+  .scarce{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rust-ink);font-weight:600;margin:1.3rem 0 0}
+
+  /* worth / ROI compare */
+  .compare{margin-top:2rem;border:1px solid var(--line);border-radius:.7rem;overflow:hidden;box-shadow:var(--shadow)}
+  .crow{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;padding:1.1rem 1.3rem;border-top:1px solid var(--line);background:var(--surface)}
+  .crow:first-child{border-top:0}
+  .crow .cwhat{color:var(--ink-soft)}
+  .crow .ccost{font-family:"Fraunces",serif;font-weight:600;color:var(--ink);text-align:right;line-height:1.15}
+  .crow .ccost span{display:block;font-family:"IBM Plex Sans",sans-serif;font-weight:400;font-size:.8rem;color:var(--ink-faint)}
+  .crow.best{background:var(--teal-tint);border-top-color:var(--teal-edge)}
+  .crow.best .cwhat{color:var(--teal-ink);font-weight:600}
+  .crow.best .ccost{color:var(--teal-ink)}
+  .payback{margin-top:1.4rem;font-family:"Fraunces",serif;font-style:italic;font-size:1.15rem;color:var(--ink);max-width:52ch}
+
+  /* who's building it */
+  .quote{margin:0 0 0;padding:1.6rem 1.7rem;background:var(--teal-tint);border:1px solid var(--teal-edge);border-radius:.7rem}
+  .quote blockquote{margin:0;font-family:"Fraunces",serif;font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.25}
+  .quote figcaption{margin-top:.7rem;color:var(--ink-soft);font-size:.9rem}
+  .credbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.9rem}
+  @media(max-width:640px){.credbar{grid-template-columns:1fr 1fr}}
+  .cb{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--teal);border-radius:.6rem;padding:1.2rem 1rem;text-align:center}
+  .cb .cbn{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:1.5rem;color:var(--teal-ink);line-height:1.05}
+  .cb .cbl{display:block;color:var(--ink-soft);font-size:.82rem;margin-top:.4rem;line-height:1.35}
+
   /* day in the life */
   .daygrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.2rem}
   @media (max-width:720px){.daygrid{grid-template-columns:1fr}}
@@ -391,6 +424,18 @@ var _cio = _cio || [];
     </div>
   </section>
 
+  <section id="day">
+    <div class="sec-eyebrow eyebrow">The day itself</div>
+    <h2>What a Build Day actually looks like.</h2>
+    <p class="lead">One packed day, on-site. Not a lecture — your team builds the whole time.</p>
+    <ol class="agenda">
+      <li><span class="atime">Morning</span><div><p class="ah">Map &amp; extract</p><p class="ad">We pull your operation onto one screen — the processes, standards, and data trapped in people's heads. Your first win before lunch.</p></div></li>
+      <li><span class="atime">Midday</span><div><p class="ah">Build the brain</p><p class="ad">Your team builds their second brain into their real workflows — data, context, workspace, and integrations all wired in.</p></div></li>
+      <li><span class="atime">Afternoon</span><div><p class="ah">Automate &amp; train</p><p class="ad">We turn the highest-pain tasks into repeatable skills, and your team learns to run and extend the system themselves.</p></div></li>
+      <li><span class="atime">You leave with</span><div><p class="ah">A working system — and the keys</p><p class="ad">A second brain that runs, the setup documented, and session recordings so the next hire onboards to a system, not a person.</p></div></li>
+    </ol>
+  </section>
+
   <section id="offer">
     <div class="offer">
       <div class="eyebrow">The Second Brain Build Day</div>
@@ -403,9 +448,24 @@ var _cio = _cio || [];
         <li><span class="c">✓</span><span>The <b>eight layers installed bottom-up</b>, not a prompt library that fades by Friday</span></li>
         <li><span class="c">✓</span><span>Your <b>operations and data mapped</b> — the diagnosis most firms never get</span></li>
         <li><span class="c">✓</span><span>Session recordings + the setup, so the <b>next hire onboards to a system</b>, not a person</span></li>
+        <li><span class="c">✓</span><span><b>30 days of support after</b> — a follow-up call and async help while it beds in. You're not on your own Friday.</span></li>
       </ul>
+      <p class="scarce">Limited — only a few on-site Build Days a month.</p>
       <div class="guarantee"><b>The guarantee:</b> your team walks out with a working second brain, or the day is on us — and you keep everything you built.</div>
     </div>
+  </section>
+
+  <section id="worth">
+    <div class="sec-eyebrow eyebrow">Why it's worth it</div>
+    <h2>$10K is the cheapest way to fix this.</h2>
+    <p class="lead">Put it next to what you'd otherwise spend on the exact same problem:</p>
+    <div class="compare">
+      <div class="crow"><div class="cwhat">Hire an ops person to do it</div><div class="ccost">$60K+/yr<span>plus months to ramp</span></div></div>
+      <div class="crow"><div class="cwhat">Put it on an agency retainer</div><div class="ccost">$3–5K/mo<span>forever — $36–60K a year</span></div></div>
+      <div class="crow"><div class="cwhat">Keep doing nothing</div><div class="ccost">the monthly bleed<span>hours + rework, every week</span></div></div>
+      <div class="crow best"><div class="cwhat">The Second Brain Build Day</div><div class="ccost">$10K, once<span>— and you own it</span></div></div>
+    </div>
+    <p class="payback">One recovered hire's worth of time, back — it pays for itself in weeks, then keeps paying.</p>
   </section>
 
   <section id="proof">
@@ -433,6 +493,22 @@ var _cio = _cio || [];
       </div>
     </div>
     <div class="ilive">And I run my own business on one — my content, my clients, my operations. I'm not selling a theory. I'm selling the thing I use every day.</div>
+  </section>
+
+  <section id="whome">
+    <figure class="quote">
+      <blockquote>"I'm actually really happy with this."</blockquote>
+      <figcaption>— Managing broker, on the operating system built for their team</figcaption>
+    </figure>
+    <div class="sec-eyebrow eyebrow" style="margin-top:2.6rem">Who's building it</div>
+    <h2>You're not buying a course — you're buying what I've already built.</h2>
+    <p class="lead">I don't teach second brains in theory. I've built operating systems for real companies, and I run my own business on one every day.</p>
+    <div class="credbar">
+      <div class="cb"><span class="cbn">132</span><span class="cbl">businesses mapped</span></div>
+      <div class="cb"><span class="cbn">150-person</span><span class="cbl">operating system built</span></div>
+      <div class="cb"><span class="cbn">HIPAA</span><span class="cbl">-aligned builds</span></div>
+      <div class="cb"><span class="cbn">1</span><span class="cbl">business run entirely on it — mine</span></div>
+    </div>
   </section>
 
   <section id="faq">
@@ -470,6 +546,10 @@ var _cio = _cio || [];
       <details>
         <summary>What if a client contract restricts AI on their project?</summary>
         <div class="a">The system <b>respects per-project boundaries</b> — you control what runs where, so a restricted project stays restricted while the rest of the firm keeps moving.</div>
+      </details>
+      <details>
+        <summary>Why $10K — and what's the payback?</summary>
+        <div class="a">It's less than two months of an ops hire, or a few months of an agency retainer you'd pay <em>forever</em> — and you own the result. You're not buying a day; you're buying a system your whole team keeps using. Most firms make it back in weeks of recovered time.</div>
       </details>
     </div>
   </section>
