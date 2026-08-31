@@ -203,8 +203,7 @@ var _cio = _cio || [];
   /* bio + differentiator + quotes */
   .bio{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;margin-top:1.4rem}
   @media(max-width:640px){.bio{grid-template-columns:1fr;justify-items:center;text-align:center;gap:1.4rem}}
-  .headshot{position:relative;width:200px;aspect-ratio:4/5;border-radius:1rem;overflow:hidden;background:var(--teal-tint);border:1px solid var(--teal-edge);display:flex;align-items:center;justify-content:center;flex:none}
-  .headshot::after{content:"Puja";font-family:"Fraunces",serif;font-weight:600;font-size:1.5rem;color:var(--teal-ink);opacity:.55}
+  .headshot{position:relative;width:200px;aspect-ratio:4/5;border-radius:1rem;overflow:hidden;background:var(--teal-tint);border:1px solid var(--teal-edge);flex:none}
   .headshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
   .biotext h2{margin:0 0 .8rem}
   .biotext p{margin:0 0 .9rem;color:var(--ink-soft);font-size:1.05rem;line-height:1.55}
@@ -223,6 +222,17 @@ var _cio = _cio || [];
   .qc{margin:0;background:var(--teal-tint);border:1px solid var(--teal-edge);border-radius:.7rem;padding:1.5rem 1.6rem}
   .qc blockquote{margin:0;font-family:"Fraunces",serif;font-size:1.3rem;font-weight:600;color:var(--ink);line-height:1.25}
   .qc figcaption{margin-top:.7rem;color:var(--ink-soft);font-size:.88rem}
+
+  /* application form */
+  .applyform{max-width:34rem;margin:1.9rem auto 0;text-align:left;display:grid;gap:1rem}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:560px){.frow{grid-template-columns:1fr}}
+  .applyform label{display:grid;gap:.35rem;font-size:.82rem;font-weight:600;color:var(--ink)}
+  .applyform input,.applyform textarea{font-family:"IBM Plex Sans",sans-serif;font-size:1rem;font-weight:400;padding:.7rem .85rem;border:1px solid var(--line);border-radius:5px;background:var(--ground);color:var(--ink);width:100%}
+  .applyform input:focus,.applyform textarea:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
+  .applyform textarea{resize:vertical}
+  .applyform button{justify-self:center;cursor:pointer;border:0}
+  .formnote{margin:.2rem 0 0;font-size:.86rem;color:var(--teal-ink);min-height:1.1em;text-align:center}
 
   /* day in the life */
   .daygrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.2rem}
@@ -316,7 +326,7 @@ var _cio = _cio || [];
 <nav>
   <div class="wrap row">
     <div class="brand"><span class="dot"></span>Second&nbsp;Brain</div>
-    <a href="#book" class="btn btn-primary">Book a fit call</a>
+    <a href="#book" class="btn btn-primary">Apply for a spot</a>
   </div>
 </nav>
 
@@ -327,7 +337,7 @@ var _cio = _cio || [];
     <h1>Your AI isn't working because your <span class="hot">systems don't exist.</span></h1>
     <p class="sub">You bought the tools. Your team tried them. Nothing really changed. Here's the real reason — and the one day that fixes it for your whole team.</p>
     <div class="cta">
-      <a href="#book" class="btn btn-primary">Book a 15-min fit call</a>
+      <a href="#book" class="btn btn-primary">Apply for a spot</a>
       <a href="#how" class="btn btn-ghost">See how it works</a>
     </div>
   </header>
@@ -476,7 +486,7 @@ var _cio = _cio || [];
       </ul>
       <p class="scarce">Limited — only a few on-site Build Days a month.</p>
       <div class="guarantee"><b>The guarantee:</b> your team walks out with a working company brain, or the day is on us — and you keep everything you built.</div>
-      <div style="margin-top:1.7rem"><a href="#book" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 1.8rem">Book your Build Day →</a></div>
+      <div style="margin-top:1.7rem"><a href="#book" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 1.8rem">Apply for a spot →</a></div>
     </div>
   </section>
 
@@ -518,13 +528,6 @@ var _cio = _cio || [];
         <p>So I built the method that puts the layers in the right order, and I run my <em>own</em> entire business on it. Now I install it in yours — in a day.</p>
       </div>
     </div>
-    <div class="credbar">
-      <div class="cb"><span class="cbn">30+</span><span class="cbl">companies consulted</span></div>
-      <div class="cb"><span class="cbn">100s</span><span class="cbl">of businesses mapped</span></div>
-      <div class="cb"><span class="cbn">1,000s</span><span class="cbl">of hours saved</span></div>
-      <div class="cb"><span class="cbn">1</span><span class="cbl">business run entirely on it — mine</span></div>
-    </div>
-
     <p class="bpayoff">Everyone else does half the job.</p>
     <div class="diff">
       <div class="dcard"><p class="dl">Option A</p><p class="dt">They only teach</p><p>You sit through prompt training. By Friday, nobody's using it.</p></div>
@@ -580,7 +583,7 @@ var _cio = _cio || [];
 
   <section id="book-mid">
     <div style="text-align:center;padding:.5rem 0">
-      <a href="#book" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 2rem">Book your Build Day →</a>
+      <a href="#book" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 2rem">Apply for a spot →</a>
     </div>
   </section>
 
@@ -628,14 +631,23 @@ var _cio = _cio || [];
   </section>
 
   <section id="book">
-    <div class="band">
-      <div class="eyebrow" style="color:var(--rust-ink)">The cost of waiting</div>
-      <h2>Doing nothing isn't free. It's just an invoice you don't see yet.</h2>
-      <p>Every month, you pay twice — for AI that doesn't work, and the manual work it was supposed to replace. Let's fix the foundation in a day.</p>
-      <div class="cta">
-        <a href="mailto:info@puja-patel.com?subject=Second%20Brain%20Build%20Day%20%E2%80%94%20team%20workshop&body=Hi%20Puja%20%E2%80%94%20we%27re%20interested%20in%20the%20Second%20Brain%20Build%20Day%20for%20our%20team.%0A%0AOur%20firm%3A%20%0ATeam%20size%3A%20%0AWhat%27s%20breaking%3A%20" id="book-cta" class="btn btn-primary">Book a 15-min fit call</a>
-        <a href="#why" class="btn btn-ghost">Start from the top</a>
-      </div>
+    <div class="band" style="text-align:center">
+      <div class="eyebrow" style="color:var(--rust-ink)">Apply for a spot</div>
+      <h2>Only a few Build Days a month.</h2>
+      <p>Two minutes. Tell me about your firm — if it's a fit, I'll reach out to lock your date.</p>
+      <form class="applyform" id="applyform">
+        <div class="frow">
+          <label>Your name<input name="fullname" type="text" required></label>
+          <label>Email<input name="email" type="email" required></label>
+        </div>
+        <div class="frow">
+          <label>Company<input name="company" type="text" required></label>
+          <label>Team size<input name="teamsize" type="text" placeholder="e.g. 20"></label>
+        </div>
+        <label>What's the #1 thing eating your team's time right now?<textarea name="breaking" rows="3" required></textarea></label>
+        <button type="submit" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 2rem">Apply for a spot →</button>
+        <p class="formnote" id="formnote"></p>
+      </form>
     </div>
   </section>
 
@@ -645,10 +657,25 @@ var _cio = _cio || [];
 </div>
 
 <script>
-  document.getElementById('book-cta').addEventListener('click', function(){
-    if(window.fbq) fbq('track', 'Schedule');
-    if(window._cio) _cio.track('workshop_book_clicked');
-  });
+  (function(){
+    var f=document.getElementById('applyform');
+    if(!f) return;
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var el=f.elements;
+      var body="Application — Company Brain Build Day\n\n"
+        +"Name: "+el.fullname.value+"\n"
+        +"Email: "+el.email.value+"\n"
+        +"Company: "+el.company.value+"\n"
+        +"Team size: "+el.teamsize.value+"\n\n"
+        +"What's eating their team's time:\n"+el.breaking.value+"\n";
+      try{ if(window.fbq) fbq('track','Lead'); }catch(_){}
+      try{ if(window._cio) _cio.track('workshop_application'); }catch(_){}
+      var note=document.getElementById('formnote');
+      if(note) note.textContent="Opening your email to send — just hit send and I'll be in touch.";
+      window.location.href="mailto:info@puja-patel.com?subject="+encodeURIComponent("Application — Company Brain Build Day")+"&body="+encodeURIComponent(body);
+    });
+  })();
 </script>
 </body>
 </html>
