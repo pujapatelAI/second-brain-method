@@ -515,7 +515,7 @@ s.parentNode.insertBefore(t,s)})();
        2026-08-29 minimal redesign so the Circle date automation still updates the countdown
        (WS-DATES) without erroring on missing schedule cards. Not displayed to visitors. -->
   <div hidden aria-hidden="true">
-    <div class="sched-dates" data-ws-slot="workshop">Aug 31 · Sep 7 · 28</div>
+    <div class="sched-dates" data-ws-slot="workshop">Sep 7 · 28</div>
     <div class="sched-dates" data-ws-slot="thursday">Sep 3 · 10 · 24</div>
     <div class="sched-dates" data-ws-slot="deepdive">Sep 14</div>
   </div>
@@ -584,7 +584,7 @@ s.parentNode.insertBefore(t,s)})();
   // the Circle calendar. Second Brain Workshops only (not the Thursday Q&A or the Deep Dive).
   var WORKSHOPS = [
     /* WS-DATES:START (auto-managed by apps/command/sbm_landing_dates_sync.py — do not hand-edit) */
-    '2026-08-31T18:00:00Z','2026-09-07T18:00:00Z','2026-09-28T18:00:00Z'
+    '2026-09-07T18:00:00Z','2026-09-28T18:00:00Z'
     /* WS-DATES:END */
   ].map(function(s){ return new Date(s).getTime(); });
   var strip = document.getElementById('wsStrip'), clock = document.getElementById('wsClock');
