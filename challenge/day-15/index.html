@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 15 — Deliverable Drafting · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --call:#9A6516; --call-bg:#F5E9CF;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:82px;text-align:center}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  /* finished-example card: the drafted deliverable, assembled vs your-call */
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px;font-size:16px;line-height:1.72}
+  .tmpl .subj{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:17px;font-weight:700;margin-bottom:4px}
+  .tmpl .meta{font-size:13px;color:var(--ink-soft);margin-bottom:10px}
+  .tmpl .row{padding:9px 0;border-top:1px solid var(--line)}
+  .tmpl .row:first-of-type{border-top:none}
+  .tmpl .lbl{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--on-accent);background:#6E8A46;border-radius:2px;padding:2px 7px;margin-right:8px;vertical-align:1px}
+  .tmpl .lbl.call{background:var(--call)}
+  .tmpl .await{display:block;font-size:12.5px;font-weight:700;color:var(--call);margin-top:3px;letter-spacing:.3px}
+  .tmpl .close{background:var(--surface);border-left:3px solid var(--accent-bright);padding:10px 14px;margin-top:12px;border-radius:0 4px 4px 0}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--ink-soft);margin:2px 0 14px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:22px;height:11px;border-radius:2px;display:inline-block}
+  .sw.a{background:#6E8A46}
+  .sw.c{background:var(--call)}
+  /* video strip — swipeable row so vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — check it's the one you joined with, or reply to any challenge email and i'll help.</p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 15 · Phase 2 — Delivering the Work</div>
+  <h1>deliverable drafting</h1>
+  <p class="lead">everything so far was the wrapper — onboarding, the brief, the plan, the tasks, the meetings. today you make the <em>thing</em>: the report, the strategy, the audit, the copy, whatever the client is actually paying for. and here's what nobody tells you — the deliverable is the <em>most</em> repeatable thing you do, not the least. the blank page isn't a creativity problem. it's a missing-system problem.</p>
+
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">the system, the 3 reasons your client work always runs late, and how i actually run this with a company brain in Claude — on my own audit process. <span style="color:var(--accent)">swipe &rarr;</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7680605899248995598" allow="fullscreen" title="deliverable drafting as a system" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 &middot; the system</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7680605899248995598" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7680609099540630797" allow="fullscreen" title="3 reasons your client work always runs late" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 &middot; common mistakes</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7680609099540630797" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7680615759399226638" allow="fullscreen" title="how i run my audits with a company brain in claude" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">3 &middot; how i run this with claude</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7680615759399226638" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>the deliverable is the one thing people refuse to systematize</h2>
+    <p>because they think it's <em>the creative part</em> — the sacred core that can't be templated. it's the opposite. same kind of client, same kind of deliverable, every time: the same structure, the same voice, the same quality bar. what feels like a blank page every time isn't missing inspiration — it's a missing <b>starting structure</b>.</p>
+    <p class="callout">and the second half, the one that unblocks you: <b>a first draft is not supposed to be right. its only job is to be complete enough to react to.</b> the people who stare at the blank page are trying to make the first draft the final draft in one pass — so they never start. get to a wrong-but-whole v1 fast, and you're editing instead of inventing.</p>
+    <p>which means every deliverable splits in two: the <b>~80% that's assembly</b> — the structure, the client's own words from the brief, the calls made in your meetings, the parts you've written a hundred times — and the <b>~20% that's actually your expertise</b>, the judgment only you can make. the whole system is: stop rebuilding the 80%, so all your time goes to the 20% that's the reason they hired you.</p>
+  </section>
+
+  <section>
+    <h2>the system: three questions</h2>
+    <p>answer these before you make your next deliverable, and the blank page turns into a process. write your answers in.</p>
+    <div class="q"><div class="n">1</div><div><b>what tells you it's time to start drafting — and when you sit down, what do you start from: a blank page, or a structure you reuse?</b> if it's blank every time, that's the whole problem. the same deliverable should start from the same skeleton — your sections, your order, your standard — so you're never inventing the container, only filling it.<span class="num">the last deliverable you made — did you start it from a template, or from nothing? ___</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>how much of the draft is you assembling what's already decided — the goal in their words, the scope, the calls from your meetings — versus the part that's actually your expertise?</b> name that line. the first part is assembly; it shouldn't cost you a single new thought. the second part is the only part that needs your brain.<span class="num">of your last deliverable, what % was you re-writing things already decided vs. real analysis? ___</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>what does a finished <em>first</em> draft actually contain, how do you know it's done enough to react to, and where does it go next?</b> a draft's job is to be reacted to, not to be right. decide what "complete enough to send myself or a teammate" means — and where it goes from there (tomorrow: the quality check).<span class="num">what's your line for "this draft is ready for me to edit" — is it written down anywhere? ___</span></div></div>
+  </section>
+
+  <section>
+    <h2>the system on one line</h2>
+    <p class="muted">turn a blank page into a first draft you can react to today:</p>
+    <div class="step"><span class="tag">trigger</span><span>a deliverable task is up (from day 11) and the inputs exist.</span></div>
+    <div class="step"><span class="tag">input</span><span>your standard structure for this deliverable type — plus the brief (day 9), the client's own words, and the decisions from your meetings (day 14).</span></div>
+    <div class="step"><span class="tag">process</span><span>start from the skeleton, not zero &rarr; pour in everything already decided &rarr; spend your expertise only on the 20% that's yours &rarr; stop at a complete, wrong-but-whole v1.</span></div>
+    <div class="step"><span class="tag">output</span><span>a real first draft you can react to <em>today</em> — made in a fraction of the time, because you weren't inventing the container or re-deciding what was decided.</span></div>
+    <div class="step"><span class="tag">standard</span><span>every deliverable of a given type starts from the same structure and ends at a defined "ready to edit" line — before it ever gets checked (day 16) or sent.</span></div>
+  </section>
+
+  <section>
+    <h2>what it looks like finished</h2>
+    <p>here's the first draft of a paid-social strategy for the same <em>Riverside Lending</em> project you've been following. notice the split: the shaded rows were <b>assembled</b> from what was already captured — the goal in their own words, where they are, what you're running. the amber rows are the calls the draft <b>won't</b> make for you. it filled in the 80% and stopped cold at the 20% that's actually yours.</p>
+    <div class="legend">
+      <span><span class="sw a"></span> assembled from your second brain</span>
+      <span><span class="sw c"></span> your judgment required</span>
+    </div>
+    <div class="tmpl">
+      <div class="subj">Riverside Lending — paid social strategy</div>
+      <div class="meta">draft v1 · 8 of 11 sections assembled · 3 calls flagged for you</div>
+      <div class="row"><span class="lbl">assembled</span> <b>the goal, in their words:</b> "40 qualified loan applications a month from paid social by Q1, cost per app under $120." <span class="muted">(from the kickoff call)</span></div>
+      <div class="row"><span class="lbl">assembled</span> <b>where they are now:</b> ~12 apps/mo, all referrals; landing page converts cold at ~3%; funded loan worth ~$4,300. <span class="muted">(from discovery + audit)</span></div>
+      <div class="row"><span class="lbl">assembled</span> <b>what we're running:</b> 6 UGC video ads → one conversion campaign → lead form → their CRM. <span class="muted">(from the plan, day 10)</span></div>
+      <div class="row"><span class="lbl call">your call</span> <b>which angle leads?</b> it pulled 3 from how they talk — speed / human-service / "turned down elsewhere?" — but which one gets the budget is the bet.<span class="await">◦ waiting on you — no angle selected</span></div>
+      <div class="row"><span class="lbl call">your call</span> <b>where does the first $3k go?</b> it laid out the 3 audiences and the case for each; the allocation is your judgment.<span class="await">◦ waiting on you — no split set</span></div>
+      <div class="row"><span class="lbl call">your call</span> <b>the risk to name to the client:</b> if filming slips past Sep 25 the launch slips — the honest tradeoff to raise now, in your words.<span class="await">◦ waiting on you — your read + how to say it</span></div>
+      <div class="close">i'm not staring at a blank page — i'm editing a draft and spending my brain only on the three amber calls. those are the reason they hired me, not a tool.</div>
+    </div>
+    <p class="muted">that draft took a couple of minutes to assemble and left me exactly three things to actually decide. the deliverable still has my name on it — because the part with my name on it is the part the draft refused to write.</p>
+  </section>
+
+  <section>
+    <h2>the 3 mistakes in the system</h2>
+    <p><b>1 &mdash; you start every one from a blank page.</b> same kind of deliverable, and you rebuild the whole thing from scratch every time — structure, sections, setup — like you've never made one before. that's not craft, it's waste. build the skeleton once, and every future draft starts half-done.</p>
+    <p><b>2 &mdash; you rewrite what was already decided.</b> the goal in their words, the scope, the calls made in your meetings — it's all already captured, and you retype it from memory anyway, usually slightly different from what you actually agreed. the assembly shouldn't cost you a single new thought. pull it in; save your brain for the part that's yours.</p>
+    <p><b>3 &mdash; the draft has no finish line, so it has nowhere to go.</b> you never set what "done" means for a <em>draft</em>, so there's no line between a first pass and the final thing — and no defined next step. so it either gets polished into the ground, or the raw v1 goes straight to the client with no checkpoint in between. a draft gets its own "ready to react to" line, and a next stop (your quality check — tomorrow), not a send button.</p>
+    <p class="callout">fix these three and the deliverable stops eating your nights — you start it further along, finish it faster, and it comes out <em>more</em> consistent than when you did every inch by hand.</p>
+  </section>
+
+  <section class="flag">
+    <h2>do it with Claude — on my real audit process</h2>
+    <p>the only way i handle twelve consulting clients, a group program, a software, <em>and</em> live in-person company workshops is that i have a <b>company brain in Claude Code</b> handling a lot of the back-end. and the reason it works is the whole premise of this challenge: <b>you build the systems, the rules, and the guardrails so the AI knows exactly what you want.</b> here's a real one.</p>
+    <p>one of my main consulting deliverables is <b>the audit</b>, and the process has four stages: <b>interview</b> all the relevant people &rarr; a full <b>data review</b> &rarr; the <b>analysis</b> &rarr; <b>presenting the solution</b>. the interviews are the input to everything after — and for me to run the analysis, i need the output of each interview structured a <em>certain way</em>. that certain way is a framework i've defined, so i know exactly how i want it — which means Claude knows how i want it too.</p>
+    <div class="q"><div class="n">1</div><div><b>the framework is the guardrail.</b> because the structure is defined, the moment any interview meeting is complete, it gets added into the context bank and put into the exact output i analyze from. i'm not reformatting notes — the drafted, structured input is just <em>there</em>, in my shape, ready.</div></div>
+    <div class="q"><div class="n">2</div><div><b>it's not just faster — it's more accurate.</b> anything i might have missed by listening again or scrubbing a transcript is caught, because all the context is captured against the framework. and because every point is traceable, if i want to go ask a client a question, i can — i know it came from a specific interview.</div></div>
+    <div class="q"><div class="n">3</div><div><b>the compounding part.</b> speeding up the audit means clients are happier that they get results faster, i can take on more clients, and over time i can charge a premium for the fact that we deliver this faster — without dropping quality.</div></div>
+    <p class="callout">notice what the AI is doing and <em>not</em> doing: it structures the inputs so i can think — the analysis and the solution are still mine. that's the line. <b>you don't hand over the judgment they pay you for. you hand over the busywork around it</b> — and you only get to hand it over because you did it by hand first and defined the framework.</p>
+    <p class="muted">this is the one to keep both hands on: the deliverable is the product. AI gets you off the blank page — it doesn't get to ship your thinking. <span>(video 3 above walks the whole thing.)</span></p>
+  </section>
+
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #16 &mdash; the quality-control checklist. you drafted the work fast; day 16 is how you make sure it's actually <em>good</em> before it goes out — a bar you check every deliverable against, so speed never costs you your standard.</p>
+  <p style="margin-bottom:34px;"><a href="../">&larr; all days</a> &nbsp;&middot;&nbsp; <a href="../map/">&#128506; the systems map</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel &middot; The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
