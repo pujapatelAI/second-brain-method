@@ -532,5 +532,30 @@ var _cio = _cio || [];
     }
   })();
 </script>
+
+<!-- MC-REG-CLOSED start (Sept 2 2026 event live; remove this block to re-open registration) -->
+<script>
+(function(){
+  function closeReg(){
+    var forms=document.querySelectorAll('form[action*="formsubmit.co/info@puja-patel.com"]');
+    for(var k=0;k<forms.length;k++){(function(f){
+      if(f.getAttribute('data-reg-closed'))return;
+      f.setAttribute('data-reg-closed','1');
+      f.addEventListener('submit',function(e){e.preventDefault();e.stopImmediatePropagation();return false;},true);
+      var em=f.querySelectorAll('input[type=email]');
+      for(var i=0;i<em.length;i++){em[i].disabled=true;em[i].value='';em[i].placeholder='Registration closed';}
+      var bt=f.querySelectorAll('button');
+      for(var j=0;j<bt.length;j++){var t=(bt[j].textContent||'').trim();
+        if(t==='\u00d7'||t.toLowerCase()==='x')continue;
+        bt[j].disabled=true;bt[j].style.opacity='0.55';bt[j].style.cursor='not-allowed';bt[j].textContent='Registration closed';}
+    })(forms[k]);}
+  }
+  if(document.readyState!=='loading')closeReg();
+  document.addEventListener('DOMContentLoaded',closeReg);
+  var n=0,iv=setInterval(function(){closeReg();if(++n>8)clearInterval(iv);},800);
+})();
+</script>
+<!-- MC-REG-CLOSED end -->
+
 </body>
 </html>
