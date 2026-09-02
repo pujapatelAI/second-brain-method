@@ -23,8 +23,8 @@ END:VTIMEZONE
 BEGIN:VEVENT
 UID:sbm-masterclass-weekly@puja-patel.com
 DTSTAMP:20260821T170000Z
-DTSTART;TZID=America/New_York:20260902T140000
-DTEND;TZID=America/New_York:20260902T150000
+DTSTART;TZID=America/New_York:20260923T140000
+DTEND;TZID=America/New_York:20260923T150000
 SUMMARY:Free Masterclass — Where to actually start with AI in your business
 LOCATION:https://meet.google.com/nui-whfu-yvt
 DESCRIPTION:What systems are\, what Claude Code is\, and how to teach your s
