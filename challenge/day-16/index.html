@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 16 — Quality-Control Checklist · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --call:#9A6516; --call-bg:#F5E9CF;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:82px;text-align:center}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  /* finished-example card: the checklist run against the deliverable, passed vs fix-first */
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px;font-size:16px;line-height:1.72}
+  .tmpl .subj{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:17px;font-weight:700;margin-bottom:4px}
+  .tmpl .meta{font-size:13px;color:var(--ink-soft);margin-bottom:10px}
+  .tmpl .row{padding:9px 0;border-top:1px solid var(--line)}
+  .tmpl .row:first-of-type{border-top:none}
+  .tmpl .lbl{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--on-accent);background:#6E8A46;border-radius:2px;padding:2px 7px;margin-right:8px;vertical-align:1px}
+  .tmpl .lbl.call{background:var(--call)}
+  .tmpl .await{display:block;font-size:12.5px;font-weight:700;color:var(--call);margin-top:3px;letter-spacing:.3px}
+  .tmpl .close{background:var(--surface);border-left:3px solid var(--accent-bright);padding:10px 14px;margin-top:12px;border-radius:0 4px 4px 0}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--ink-soft);margin:2px 0 14px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:22px;height:11px;border-radius:2px;display:inline-block}
+  .sw.a{background:#6E8A46}
+  .sw.c{background:var(--call)}
+  /* video strip — swipeable row so vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — check it's the one you joined with, or reply to any challenge email and i'll help.</p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 16 · Phase 2 — Delivering the Work</div>
+  <h1>quality-control checklist</h1>
+  <p class="lead">last time, you drafted the work fast. today, before it goes anywhere, it clears the same check every time. and here's the thing nobody names out loud: <em>quality isn't a trait, it's a system.</em> when the check lives in your head, the work comes out as good as the day you were having — sharp when you're rested, sloppy when you're slammed. the whole point of today is to make "is this good enough" stop being a feeling.</p>
+
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">the system, the 3 ways quality quietly slips, and how i actually run the check with a company brain in Claude — on my own delivery process. <span style="color:var(--accent)">swipe &rarr;</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7680946962849352974" allow="fullscreen" title="the quality-control checklist as a system" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 &middot; the system</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7680946962849352974" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7680949874082254094" allow="fullscreen" title="3 ways quality quietly slips" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 &middot; common mistakes</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7680949874082254094" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7680952252277738766" allow="fullscreen" title="how i run the check with a company brain in claude" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">3 &middot; how i run this with claude</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7680952252277738766" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>quality can't be a personality trait</h2>
+    <p>the reason work slips out with a typo, a dead link, or the last client's name still in the header isn't that you're careless. it's that the check was never a <em>thing</em> — it was you, remembering to look, on a day you had the time. that makes quality a coin flip against your calendar. the fix is boring and it's the whole game: <b>a written list the work runs every time, so the standard stops depending on your mood.</b></p>
+    <p class="callout">the second half, the one most people skip: a checklist has <b>two layers</b>. the <b>universal</b> checks are true of everything you send — right name, links open, dates match what you promised, nothing left over from a past version. the <b>specific</b> checks change per kind of work — a report, an ad, a contract each have their own. one list for what never changes, one list per thing you make.</p>
+    <p>and the check that actually saves the relationship isn't the typo check — it's the <b>brief check</b>. "is this correct" catches the cheap mistakes. "does this do the job we agreed on" catches the expensive ones. clean-and-wrong ships more easily than obviously-rough, which is exactly what makes it dangerous. so the last thing every deliverable does before it moves is get held up against the original promise — not just proofread.</p>
+  </section>
+
+  <section>
+    <h2>the system: four questions</h2>
+    <p>answer these before your next deliverable leaves your hands, and "did i check it" turns from a shrug into a yes. write your answers in.</p>
+    <div class="q"><div class="n">1</div><div><b>the universal bar — what has to be true of <em>everything</em> you send, no matter what it is?</b> the checks that don't change whether it's an invoice, a report, or an ad: right name on it, every link opens, dates match what you promised, nothing left over from the last client's version. write it down once and it stops depending on whether you remembered to look.<span class="num">how many items would be on that list right now — 0, 3, 10? ___</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>the specific bar — pick the one thing you deliver most. what checks matter for <em>that</em> that wouldn't apply to anything else?</b> a report, an ad, a contract each carry their own. the checklist isn't one list — it's one per thing you make, so the question has a real answer instead of a shrug.<span class="num">name them out loud — if you get past 2, you already have a checklist in your head that's never been written down. how many? ___</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>the real check — does your list ask "is this correct" or "does this do the job we agreed on"?</b> proofreading catches typos; only holding it against the brief catches a deliverable that's clean and still doesn't do what you promised. that's the miss that costs you the client.<span class="num">your last deliverable — did anyone hold it up against the original brief before it went out? yes / no ___</span></div></div>
+    <div class="q"><div class="n">4</div><div><b>the reviewer + the trigger — who runs the check, is it different eyes than the ones that made it, and does it run <em>every</em> time?</b> you can't proofread your own work at the altitude you wrote it — you read what you meant, not what's there. a second person is ideal; when it's just you, the written checklist <em>is</em> the second set of eyes. and it has to fire on the rushed weeks too, not only when you remember.<span class="num">out of your last 5 deliverables, how many got a real second look before they shipped? ___ / 5</span></div></div>
+  </section>
+
+  <section>
+    <h2>the system on one line</h2>
+    <p class="muted">turn "i think it's fine" into a bar every deliverable clears the same way:</p>
+    <div class="step"><span class="tag">trigger</span><span>a deliverable is drafted (day 15) and about to leave your hands.</span></div>
+    <div class="step"><span class="tag">input</span><span>the draft, the original brief (day 9), and your checklist — the universal list plus the one for this kind of work.</span></div>
+    <div class="step"><span class="tag">process</span><span>run the universal list &rarr; run the this-type list &rarr; hold it against the brief, not just for typos &rarr; different eyes, even if the eyes are the checklist itself.</span></div>
+    <div class="step"><span class="tag">output</span><span>nothing leaves your hands you'd be embarrassed for the client to catch — because the check happened, not because you happened to be careful that day.</span></div>
+    <div class="step"><span class="tag">standard</span><span>every deliverable of a given type clears the same written bar before it moves to sign-off (day 18) — and each new mistake becomes a new line on the list.</span></div>
+  </section>
+
+  <section>
+    <h2>what it looks like finished</h2>
+    <p>here's the checklist run against the <em>Riverside Lending</em> paid-social strategy you drafted last time. the shaded rows <b>passed</b> — the boring, universal stuff and the strategy-specific stuff. the amber rows are what the check <b>caught before it shipped</b> — and notice: a proofreader would've waved both of these straight through, because there's not a typo in sight.</p>
+    <div class="legend">
+      <span><span class="sw a"></span> passed the check</span>
+      <span><span class="sw c"></span> flagged — fix before it ships</span>
+    </div>
+    <div class="tmpl">
+      <div class="subj">Riverside Lending — paid social strategy · pre-send check</div>
+      <div class="meta">checklist run · 9 of 11 passed · 2 flagged</div>
+      <div class="row"><span class="lbl">passed</span> <b>universal:</b> right client, right contact name, every link opens, the deadline matches what you promised at kickoff.</div>
+      <div class="row"><span class="lbl">passed</span> <b>universal:</b> no leftovers — no "[insert]", no another client's name, no placeholder numbers from the template.</div>
+      <div class="row"><span class="lbl">passed</span> <b>strategy-specific:</b> goal, current state, channel plan, budget, and timeline sections are all present and filled.</div>
+      <div class="row"><span class="lbl call">fix first</span> <b>against the brief:</b> the goal promises cost-per-app <b>under $120</b>, but the draft's own budget math lands at ~$140. clean page, wrong number — and it's the number the whole deliverable is judged on.<span class="await">◦ doesn't match the brief — reconcile the budget or renegotiate the target before it goes</span></div>
+      <div class="row"><span class="lbl call">fix first</span> <b>against the brief:</b> the draft still reads "lead angle — <em>your call</em>." that was one of the three decisions you left open when you drafted it, and it never got made. it can't reach the client half-decided.<span class="await">◦ an open "your call" from day 15 — pick the angle first</span></div>
+      <div class="close">the typo check would've passed this deliverable. the brief check is the one that caught the two things that would've cost me the client's trust — a promise the math didn't keep, and a decision i forgot i hadn't made.</div>
+    </div>
+    <p class="muted">nine quiet yeses and two real catches. that's the whole job: the list looks for the same things every time, so the two that matter can't slip past on a busy day.</p>
+  </section>
+
+  <section>
+    <h2>the 3 mistakes in the system</h2>
+    <p><b>1 &mdash; it lives in your head, not on paper.</b> so the check only runs on the calm days and vanishes on the slammed ones — which is exactly when the mistakes happen. quality ends up being a function of how your week went instead of a property of the work. write the list down and it runs the same whether you're fresh or fried.</p>
+    <p><b>2 &mdash; it checks the surface but never the brief.</b> typos caught, formatting clean, links all live — and the thing still doesn't do what you promised. clean-and-wrong ships more easily than obviously-rough, because nothing <em>looks</em> off. every check has to end by asking "does this deliver what we agreed on," not just "is this tidy."</p>
+    <p><b>3 &mdash; it never gets updated.</b> every mistake that slips through should become a new line on the list. when it doesn't, the checklist keeps catching last year's problems and stays blind to the one that just cost you. a checklist that doesn't grow, rots — the moment something gets past you is the moment it earns a permanent row.</p>
+    <p class="callout">fix these three and quality stops being something you hope you had the energy for. it becomes the one thing you can promise every client, on every deliverable, no matter what your week looked like.</p>
+  </section>
+
+  <section class="flag">
+    <h2>do it with Claude — on my real delivery process</h2>
+    <p>the only way i run twelve consulting clients, a group program, a software, <em>and</em> live in-person workshops without quality slipping is that the check isn't in my head — it's built into my <b>company brain in Claude Code</b>. same premise as every day of this challenge: <b>you build the checklist, the rules, and the guardrails first, so the AI knows exactly what "good" means to you.</b> here's how the QC one actually runs.</p>
+    <div class="q"><div class="n">1</div><div><b>i built the checklist once by letting Claude interview me.</b> what's gone wrong before, what i always check, what each kind of deliverable needs — it asked, i answered, and it wrote the list down. now it lives on paper instead of in my memory, which is the whole difference between a system and a good intention.</div></div>
+    <div class="q"><div class="n">2</div><div><b>before anything ships, i hand it the draft, the original brief, and the checklist.</b> it runs every item and tells me exactly what failed and <em>where</em> — the dead link, the name mismatch, the line that drifted from what we promised. the against-the-brief catch is the one that earns its keep: "you promised X, the draft delivers Y." a proofreader sails right past that; the brief check stops it.</div></div>
+    <div class="q"><div class="n">3</div><div><b>the list gets sharper every time.</b> when something slips past me, i tell Claude once and it adds the row — so the check compounds instead of going stale. every mistake i make is the last time i make <em>that</em> one, because it's now a permanent line the AI runs on every future deliverable.</div></div>
+    <p class="callout">and here's the line you keep both hands on: <b>Claude runs the check and shows me what failed — i make the call on what actually goes out.</b> it's the second set of eyes, never the sign-off. the judgment about whether the work is truly ready is the thing they pay you for — you only get to hand over the <em>looking</em> because you defined what to look for first.</p>
+    <p class="muted">that's the guardrail on this whole system: the checklist catches; you clear it. <span>(video 3 above walks the whole thing.)</span></p>
+  </section>
+
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #17 &mdash; revision &amp; feedback handling. the check is passed and it's in front of the client; day 17 is how edits and feedback come back <em>without</em> spiraling into a dozen versions and a project that never closes.</p>
+  <p style="margin-bottom:34px;"><a href="../">&larr; all days</a> &nbsp;&middot;&nbsp; <a href="../map/">&#128506; the systems map</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel &middot; The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
