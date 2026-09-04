@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 17 — Revision & Feedback Handling · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --call:#9A6516; --call-bg:#F5E9CF;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:82px;text-align:center}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  /* finished-example card: the client's feedback, sorted — fix vs clarify vs new request */
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px;font-size:16px;line-height:1.72}
+  .tmpl .subj{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:17px;font-weight:700;margin-bottom:4px}
+  .tmpl .meta{font-size:13px;color:var(--ink-soft);margin-bottom:10px}
+  .tmpl .row{padding:9px 0;border-top:1px solid var(--line)}
+  .tmpl .row:first-of-type{border-top:none}
+  .tmpl .lbl{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--on-accent);background:#6E8A46;border-radius:2px;padding:2px 7px;margin-right:8px;vertical-align:1px}
+  .tmpl .lbl.call{background:var(--call)}
+  .tmpl .lbl.new{background:var(--accent-bright)}
+  .tmpl .await{display:block;font-size:12.5px;font-weight:700;color:var(--call);margin-top:3px;letter-spacing:.3px}
+  .tmpl .await.newr{color:var(--accent)}
+  .tmpl .close{background:var(--surface);border-left:3px solid var(--accent-bright);padding:10px 14px;margin-top:12px;border-radius:0 4px 4px 0}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--ink-soft);margin:2px 0 14px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:22px;height:11px;border-radius:2px;display:inline-block}
+  .sw.a{background:#6E8A46}
+  .sw.c{background:var(--call)}
+  .sw.n{background:var(--accent-bright)}
+  /* video strip — swipeable row so vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — check it's the one you joined with, or reply to any challenge email and i'll help.</p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 17 · Phase 2 — Delivering the Work</div>
+  <h1>revision &amp; feedback handling</h1>
+  <p class="lead">day 16, the work passed its check and went to the client. now they've reacted — and this is where good projects quietly become never-ending ones. today isn't about editing faster. it's the move <em>before</em> you touch the work: sorting what they said, so a revision stays a revision instead of a new project you do for free.</p>
+
+  <section class="flag">
+    <h2>today's videos</h2>
+    <p class="muted">the system, the 3 ways a revision loop quietly spirals, and how i actually run feedback through a company brain in Claude — on my own delivery process. <span style="color:var(--accent)">swipe &rarr;</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7681700574097722637" allow="fullscreen" title="revision & feedback handling as a system" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 &middot; the system</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7681700574097722637" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7681704889369545998" allow="fullscreen" title="3 ways a revision loop spirals" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 &middot; common mistakes</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7681704889369545998" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7681707319905864974" allow="fullscreen" title="how i run feedback through claude" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">3 &middot; how i run this with claude</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7681707319905864974" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>a revision loop is a sorting problem, not a doing problem</h2>
+    <p>a project spirals into version 9 not because the client is difficult or the edits are hard — but because every reaction gets treated the same. a typo, a vague vibe, and a brand-new idea land in one pile and all get done, for free. the fix: <b>before you touch the work, sort every note.</b></p>
+    <p class="callout">two piles, always. a <b>fix</b> is something you already agreed to — it's in the brief, you just do it. a <b>new request</b> is something they thought of after — not wrong to want, but it's a change, not a revision. the sentence that saves the project: <em>"happy to — that's a little outside what we scoped; here's what it'd take."</em> said kindly, said early.</p>
+    <p>the note you can't sort yet is the <b>vague</b> one. "make it pop," "not quite it" — a feeling, not a change. act on it and you're guessing: revise, miss, burn a round. turn it concrete first — one question back — then revise once.</p>
+    <p>then the version goes back with each note answered <b>one by one</b> — what changed, and what didn't and why. they see they were heard and re-review only what moved. that's what turns round 4 into round 2.</p>
+  </section>
+
+  <section>
+    <h2>the system: four questions</h2>
+    <p>answer these before your next revision, and "handling feedback" stops being a scramble and becomes a process. write your answers in.</p>
+    <div class="q"><div class="n">1</div><div><b>the one place it lands — when a client reacts, where does the feedback go?</b> one place tied to that deliverable, or scattered across call, email, doc, and text? scattered means you revise from memory — and memory drops the quiet notes.<span class="num">on your last deliverable, how many separate places did feedback come in from — 1, 3, 5? ___</span></div></div>
+    <div class="q"><div class="n">2</div><div><b>the sort — is each note a "fix" or a "new request," sorted before you start?</b> a fix is in the brief, you owe it; a new request is a change. that sort is the whole line between a revision and unpaid scope creep.<span class="num">of the notes on your last revision, how many were fixing what you promised vs brand-new — ___ fix / ___ new?</span></div></div>
+    <div class="q"><div class="n">3</div><div><b>the translate — a vague reaction isn't a change yet. concrete it before revising, or guess?</b> "make it pop" is a feeling, not an instruction — turn it into a specific change first, usually with one question back.<span class="num">out of last round's notes, how many could you act on as written vs had to ask "what do you mean" — ___ of ___?</span></div></div>
+    <div class="q"><div class="n">4</div><div><b>the close + the count — does the revision go back with a what-changed note, and how many rounds does a project get?</b> each note → what changed, or why it's separate. and is the round limit written down, or discovered when you're already annoyed?<span class="num">on your last project, how many rounds did it take vs how many did you plan for — 1, 2, 5, lost count? ___</span></div></div>
+  </section>
+
+  <section>
+    <h2>the system on one line</h2>
+    <p class="muted">turn a pile of reactions into one clean revised version — without the project reopening every time:</p>
+    <div class="step"><span class="tag">trigger</span><span>the deliverable passed its check (day 16), went to the client, and their feedback comes back.</span></div>
+    <div class="step"><span class="tag">input</span><span>every piece of feedback pulled into one place, next to the original brief (day 9) and the deliverable (day 15).</span></div>
+    <div class="step"><span class="tag">process</span><span>gather it all in one place &rarr; sort each note: in-scope fix vs new request &rarr; turn every vague note into a concrete change before you touch the work &rarr; make the edits &rarr; send it back with what-changed, note by note.</span></div>
+    <div class="step"><span class="tag">output</span><span>one clean revised version and a client who can see they were heard — not a pile of half-tracked versions and a project that reopened itself.</span></div>
+    <div class="step"><span class="tag">standard</span><span>revisions are bounded (name the number in the contract, day 7): in-scope notes get fixed, new requests become their own conversation, every round closes with a what-changed note &rarr; then it moves to sign-off (day 18).</span></div>
+  </section>
+
+  <section>
+    <h2>what it looks like finished</h2>
+    <p>the <em>Riverside Lending</em> paid-social strategy passed its check and went over. here's the feedback that came back — sorted before a single edit. green = <b>in-scope fixes</b> i just do. amber = <b>translate first</b>. terracotta = <b>new work</b>, and naming it that is what keeps this from becoming three free months.</p>
+    <div class="legend">
+      <span><span class="sw a"></span> fix — in scope, just do it</span>
+      <span><span class="sw c"></span> clarify first — it's a feeling, not a change</span>
+      <span><span class="sw n"></span> new request — a change, not a revision</span>
+    </div>
+    <div class="tmpl">
+      <div class="subj">Riverside Lending — paid social strategy · feedback sorted</div>
+      <div class="meta">6 notes back · 3 in-scope fixes · 1 to clarify · 2 new requests</div>
+      <div class="row"><span class="lbl">fix</span> <b>"the CTA should say 'apply in 5 minutes,' not 'get started.'"</b> matches the speed promise from kickoff. just change it.</div>
+      <div class="row"><span class="lbl">fix</span> <b>"the second creative quotes 5.1% — we advertise 4.9%."</b> a factual fix against what we scoped. done.</div>
+      <div class="row"><span class="lbl">fix</span> <b>"put the budget table above the timeline."</b> formatting, inside scope. done.</div>
+      <div class="row"><span class="lbl call">clarify</span> <b>"can the whole thing feel more premium?"</b> a feeling, not a change — acting on it is a guess.<span class="await">◦ one question first: "premium how — language, visuals, or offer framing?"</span></div>
+      <div class="row"><span class="lbl new">new</span> <b>"also add a TikTok plan and a video budget."</b> the brief was paid social on Meta. not wrong to want — but a new line, not a revision.<span class="await newr">◦ "happy to — that's a scope add; here's what it'd take" (not this round)</span></div>
+      <div class="row"><span class="lbl new">new</span> <b>"actually, can you run the campaign too?"</b> a different engagement entirely — a sales conversation, not an edit.<span class="await newr">◦ route it to a proposal, not the revision queue</span></div>
+      <div class="close">three i just fix. one i clarify before touching. two aren't revisions at all — and saying so, kindly and early, is the difference between one clean round and a project that never closes. the version goes back with all six answered.</div>
+    </div>
+    <p class="muted">the client didn't get "difficult." the feedback got sorted — which is why six reactions became three edits and one clean send-back instead of version nine.</p>
+  </section>
+
+  <section>
+    <h2>the 3 mistakes in the system</h2>
+    <p><b>1 &mdash; the feedback never lands in one place.</b> notes come in on a call, an email, a text, a doc comment — and you revise from memory, not one list. you fix the loud notes, miss the quiet ones, and the next round reopens what was done.</p>
+    <p><b>2 &mdash; every note gets treated as in-scope.</b> no line between "fix what we agreed on" and "new idea they just had," so every reaction becomes free work and the project has no end. nothing tells you which notes you actually owe.</p>
+    <p><b>3 &mdash; you act on vague feedback instead of translating it.</b> you guess at what they meant, revise, and it's still wrong — a whole round on a misread. the unclear note has to become concrete <em>before</em> you touch the work.</p>
+    <p class="callout">fix these three and the edits were never the problem — the pile was. sort it first and a round gets short, finite, and closeable.</p>
+  </section>
+
+  <section class="flag">
+    <h2>do it with Claude — on my real delivery process</h2>
+    <p>the reason feedback from twelve consulting clients, a group program, a software, <em>and</em> live workshops never spirals is that i don't sort it in my head — i run it through my <b>company brain in Claude Code</b>. same premise as every day: <b>you build the rules first — the brief, the scope, what's a fix vs a change — so the AI knows how to sort what comes back.</b></p>
+    <div class="q"><div class="n">1</div><div><b>i pull every note into one place.</b> email, call transcript, doc comments → one change list tied to <em>that</em> deliverable, deduped, nothing lost in a thread.</div></div>
+    <div class="q"><div class="n">2</div><div><b>it tags each note against the brief</b> — in-scope fix vs new request. so the "this is a change, let's talk" flag comes up <em>before</em> i revise, not after i've done it for free. that tag is the whole scope-creep defense.</div></div>
+    <div class="q"><div class="n">3</div><div><b>vague notes → a question in my voice</b> ("make it pop — headline or color?"), so nothing's revised on a guess. and it drafts the send-back note: every piece of feedback → what i changed, or why it's separate.</div></div>
+    <p class="callout">the line you keep both hands on: <b>Claude sorts and drafts the loop — i decide what's a favor i eat vs a change i charge for, and i do the revision.</b> second set of eyes on the pile, never the one deciding what's free. the scope call and the fix are what they pay you for — you hand over the <em>sorting</em> because you defined the rules first.</p>
+    <p class="muted">the guardrail: Claude sorts; you decide and revise. <span>(video 3 walks it.)</span></p>
+  </section>
+
+
+  <p class="muted" style="margin:26px 0 8px;">tomorrow: system #18 &mdash; approval &amp; sign-off. the edits are in and it's back in front of them; day 18 is how you get the actual documented <em>yes</em> — so "approved" means locked, not "looks good" in a text you can't find three weeks later.</p>
+  <p style="margin-bottom:34px;"><a href="../">&larr; all days</a> &nbsp;&middot;&nbsp; <a href="../map/">&#128506; the systems map</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel &middot; The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
