@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 18 — Approval &amp; Sign-off · The 30-Day Brain Extract</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --call:#9A6516; --call-bg:#F5E9CF;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,42px);line-height:1.1;margin-bottom:14px}
+  h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:24px;line-height:1.25;margin:0 0 14px}
+  p{margin-bottom:14px}
+  .lead{font-size:18.5px}
+  .muted{color:var(--ink-soft)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 26px 16px;margin:22px 0}
+  section.flag{border-top:3px solid var(--accent-bright)}
+  .btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;
+    padding:13px 22px;border-radius:3px;text-decoration:none;margin:2px 10px 14px 0}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .q{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:baseline}
+  .q:first-of-type{border-top:none}
+  .q .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-bright);color:var(--on-accent);
+    font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;transform:translateY(4px)}
+  .q b{display:block}
+  .q .num{display:block;color:var(--accent);font-size:14.5px;font-weight:600;margin-top:3px}
+  .step{display:flex;gap:12px;padding:9px 0;align-items:baseline}
+  .step .tag{flex:none;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--on-accent);
+    background:var(--accent-bright);border-radius:2px;padding:3px 8px;transform:translateY(-1px);min-width:82px;text-align:center}
+  .callout{background:var(--ground);border-left:3px solid var(--accent-bright);padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:14px}
+  /* finished-example card: the revised work goes back for the documented yes */
+  .tmpl{background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px;font-size:16px;line-height:1.72}
+  .tmpl .subj{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:17px;font-weight:700;margin-bottom:4px}
+  .tmpl .meta{font-size:13px;color:var(--ink-soft);margin-bottom:10px}
+  .tmpl .row{padding:9px 0;border-top:1px solid var(--line)}
+  .tmpl .row:first-of-type{border-top:none}
+  .tmpl .lbl{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--on-accent);background:#6E8A46;border-radius:2px;padding:2px 7px;margin-right:8px;vertical-align:1px}
+  .tmpl .lbl.call{background:var(--call)}
+  .tmpl .lbl.new{background:var(--accent-bright)}
+  .tmpl .await{display:block;font-size:12.5px;font-weight:700;color:var(--call);margin-top:3px;letter-spacing:.3px}
+  .tmpl .await.newr{color:var(--accent)}
+  .tmpl .close{background:var(--surface);border-left:3px solid var(--accent-bright);padding:10px 14px;margin-top:12px;border-radius:0 4px 4px 0}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--ink-soft);margin:2px 0 14px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:22px;height:11px;border-radius:2px;display:inline-block}
+  .sw.a{background:#6E8A46}
+  .sw.c{background:var(--call)}
+  .sw.n{background:var(--accent-bright)}
+  /* video strip — swipeable row so vertical videos don't wall up */
+  .videos{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;margin-top:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .videos figure{flex:0 0 auto;margin:0;scroll-snap-align:start}
+  .videos iframe{width:258px;height:592px;border:0;border-radius:8px;display:block;max-width:80vw}
+  .videos figcaption{font-size:13px;margin-top:7px}
+  .videos figcaption a{color:var(--ink-soft)}
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  a{color:var(--accent)}
+  /* members gate */
+  body.locked .wrap,body.locked .foot{display:none}
+  #c30-gate{display:none}
+  body.locked #c30-gate{display:block}
+  .gatecard{max-width:460px;margin:12vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:30px 28px 22px}
+  .gatecard input{width:100%;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin:6px 0 12px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit}
+  #c30-msg{display:none;color:var(--accent);font-size:14.5px;margin-top:4px}
+</style>
+</head>
+<body class="locked">
+
+<div id="c30-gate"><div class="gatecard">
+  <div class="eyebrow">The 30-Day Brain Extract · Members</div>
+  <h2 style="margin-bottom:8px;">enter the email you joined with</h2>
+  <p class="muted" style="font-size:15px;">this area is for challenge members — use the email from your purchase.</p>
+  <form id="c30-form">
+    <input id="c30-email" type="email" placeholder="you@business.com" required>
+    <button class="btn" type="submit">unlock →</button>
+  </form>
+  <p id="c30-msg">that email isn't on the members list — check it's the one you joined with, or reply to any challenge email and i'll help.</p>
+  <noscript><p class="muted" style="font-size:14px;">this page needs javascript to unlock — or just reply to any challenge email and i'll help.</p></noscript>
+</div></div>
+
+<div class="wrap">
+  <div class="eyebrow">The 30-Day Brain Extract · Day 18 · Phase 2 — Delivering the Work</div>
+  <h1>approval &amp; sign-off</h1>
+  <p class="lead">the revised version (day 17) went back. now you need the actual <em>yes</em> — and this is where a "looks good" in a text becomes "i never approved that." sign-off isn't chasing a decision. it's making the yes a real event: dated, on a specific version, from the person allowed to give it — so "approved" means locked, and the work can close.</p>
+
+  <section class="flag">
+    <h2>the videos</h2>
+    <p class="muted">the system, the 3 ways a sign-off fails to hold, and how i run the whole approval gate through a company brain in Claude. <span style="color:var(--accent)">swipe &rarr;</span></p>
+    <div class="videos">
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7683928423798033678" allow="fullscreen" title="approval & sign-off as a system" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">1 &middot; the system</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7683928423798033678" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7683930988539432205" allow="fullscreen" title="3 ways a sign-off fails to hold" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">2 &middot; common mistakes</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7683930988539432205" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+      <figure>
+        <iframe src="https://www.tiktok.com/embed/v2/7683935114002271501" allow="fullscreen" title="how i run the sign-off gate through claude" loading="lazy"></iframe>
+        <figcaption><b style="color:var(--ink)">3 &middot; how i run this with claude</b> &mdash; <a href="https://www.tiktok.com/@pujap109/video/7683935114002271501" target="_blank" rel="noopener">open on tiktok &rarr;</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>"approved" is an event you create, not a reply you wait for</h2>
+    <p>a deliverable stays open for weeks not because the client is slow — but because no one asked for a real yes. it goes back, "seems fine," everyone moves on, nothing locks. the fix: <b>make sign-off a deliberate step, not a vibe that drifts by.</b></p>
+    <p class="callout">a real sign-off is three things: <b>asked for</b> (not assumed from silence), from the <b>person allowed to give it</b> (not whoever's in the thread), and <b>written down</b> (approved, which version, who, when). miss one and "approved" won't hold.</p>
+    <p>the yes has to come from the <b>decider</b>, not a stand-in. "looks great" from the day-to-day contact feels like progress — until the person who owns the budget sees it and reopens the whole thing.</p>
+    <p>and the yes has to <b>change something</b>. once signed off, the work locks: next phase starts, invoice goes, anything new becomes new scope. a sign-off that locks nothing is just another comment.</p>
+  </section>
+
+  <section>
+    <h2>the system: four questions</h2>
+    <p>answer these about how work gets approved in your business, and sign-off stops being a soft "looks good" and becomes the step that closes things.</p>
+    <div class="q"><div class="n">1</div><div><b>the gate — does finished work clear a sign-off, or ship on whoever did it?</b></div></div>
+    <div class="q"><div class="n">2</div><div><b>the right yes — is it clear who's allowed to approve each kind of work, or does it default to you?</b></div></div>
+    <div class="q"><div class="n">3</div><div><b>the record — is the yes written down, or a verbal "go ahead" nobody can find later?</b></div></div>
+    <div class="q"><div class="n">4</div><div><b>the lock — once signed off, is it final, or does it keep reopening after the yes?</b></div></div>
+  </section>
+
+  <section>
+    <h2>the system on one line</h2>
+    <p class="muted">turn "looks good" into a documented yes that actually closes the work:</p>
+    <div class="step"><span class="tag">trigger</span><span>the revised version (day 17) is back, ready for a yes.</span></div>
+    <div class="step"><span class="tag">input</span><span>the final version + what changed, and who's allowed to approve it (day 9).</span></div>
+    <div class="step"><span class="tag">process</span><span>ask for the yes &rarr; send it to the person who can approve &rarr; record it against <em>this</em> version (what &middot; who &middot; when) &rarr; anything new after = new scope.</span></div>
+    <div class="step"><span class="tag">output</span><span>a dated approval tied to one version — "approved" means locked — and a clean line to the next phase or invoice.</span></div>
+    <div class="step"><span class="tag">standard</span><span>sign-off is a recorded event, not a vibe: from the decider, tied to a version, closing the deliverable so it can't reopen &rarr; then the progress view (day 19).</span></div>
+  </section>
+
+  <section>
+    <h2>what it looks like finished</h2>
+    <p>the <em>Riverside Lending</em> paid-social strategy came back from day 17 with all six notes answered — 3 fixed, 1 clarified, 2 logged as separate. now it goes back for the one thing that closes it: a documented yes.</p>
+    <div class="legend">
+      <span><span class="sw c"></span> the ask — request the yes on this version</span>
+      <span><span class="sw a"></span> approved &amp; locked — dated, on the version</span>
+      <span><span class="sw n"></span> parked — new work, not this round</span>
+    </div>
+    <div class="tmpl">
+      <div class="subj">Riverside Lending — paid social strategy v3 · sign-off</div>
+      <div class="meta">revised version back · one documented yes · locked</div>
+      <div class="row"><span class="lbl call">the ask</span> <b>"here's v3 — your six notes answered. approve this version to lock the strategy and start build?"</b> sent to the decider, not the thread.</div>
+      <div class="row"><span class="lbl">approved</span> <b>approved &middot; strategy v3 &middot; sept 10 &middot; the budget owner (day 9's decider).</b> a dated line on one version — not a 👍 to dig for later.</div>
+      <div class="row"><span class="lbl">locked</span> <b>strategy locked &middot; build starts &middot; invoice goes out.</b> no more edits trickle into "the strategy" — that version is done.</div>
+      <div class="row"><span class="lbl new">parked</span> <b>the two new requests (TikTok plan, run the campaign) &rarr; their own proposal,</b> not another revision. <span class="await newr">◦ "approved" held the line</span></div>
+      <div class="close">the project didn't close when the work got "good." it closed with a dated yes on one version, from the person allowed to give it — so "i thought we were still tweaking that" has an answer: v3, approved sept 10.</div>
+    </div>
+    <p class="muted">asked for, given by the right person, written down — which is why "approved" locked the work instead of leaving it open.</p>
+  </section>
+
+  <section>
+    <h2>the 3 mistakes in the system</h2>
+    <p><b>1 &mdash; nothing actually has to be approved.</b> work ships because someone finished it, not because the right person said go — so things go out that shouldn't have, and no one owns the yes.</p>
+    <p><b>2 &mdash; the yes is verbal and disappears.</b> "go ahead" on a call or a text, no what &middot; who &middot; when. weeks later nobody can point to it, and "i never approved that" wins.</p>
+    <p><b>3 &mdash; signed off doesn't mean locked.</b> it gets approved, then keeps getting reopened and re-touched — so the yes settles nothing and the next thing never starts.</p>
+    <p class="callout">fix these three and "approved" becomes a line you can point to — dated, owned, final — not a feeling everyone half-remembers.</p>
+  </section>
+
+  <section class="flag">
+    <h2>do it with Claude — on my real delivery process</h2>
+    <p>a "done" deliverable across twelve clients, a group program, a software, <em>and</em> live workshops stays done because i don't rely on remembering who approved what — i run the checkpoint through my <b>company brain in Claude Code</b>. same premise as every day: <b>you build the rules first — what needs a sign-off, who can give it, what "approved" records — so Claude runs the gate, doesn't decide it.</b></p>
+    <div class="q"><div class="n">1</div><div><b>it packages finished work into one approval request</b> — what changed, which version — routed to the person who signs off, not the thread.</div></div>
+    <div class="q"><div class="n">2</div><div><b>when the yes comes back, it records it</b> — approved &middot; who &middot; when &middot; version — tied to that deliverable, so "did we approve this?" is a one-second lookup.</div></div>
+    <div class="q"><div class="n">3</div><div><b>anything after the yes, it flags as new work</b> against the locked version — so "approved" holds instead of quietly reopening.</div></div>
+    <p class="callout">the line you keep both hands on: <b>Claude asks for the yes, routes it, records it, guards the boundary — i decide the work's ready, and whether that "approved" is a real yes or a soft "i guess."</b> Claude never gives the yes; it builds the gate around it.</p>
+    <p class="muted">the guardrail: Claude runs the checkpoint; you give the yes. <span>(video 3 walks it.)</span></p>
+  </section>
+
+
+  <p class="muted" style="margin:26px 0 8px;">next — system #19: progress dashboard. everything gets approved deliverable by deliverable; day 19 is the one live view of where the whole project stands — so "how's it going" becomes a link, not a status meeting.</p>
+  <p style="margin-bottom:34px;"><a href="../">&larr; all days</a> &nbsp;&middot;&nbsp; <a href="../map/">&#128506; the systems map</a></p>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel &middot; The 30-Day Brain Extract</p>
+  <p style="text-transform:none;letter-spacing:0;">questions? just reply to any challenge email.</p>
+</div></div>
+
+<script src="/challenge/gate.js" defer></script>
+</body>
+</html>
