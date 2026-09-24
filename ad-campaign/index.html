@@ -256,15 +256,10 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
            competing with the primary "Start free" CTA above it.
            source= tags the lead so we can tell hero vs end-of-page. ======= -->
       <div class="capture" style="margin-top:26px">
-        <div class="mono" style="margin-bottom:8px">Free live masterclass · Wednesday, September 23 · 2:00 PM ET</div>
+        <div class="mono" style="margin-bottom:8px">Free live masterclass · Registration closed</div>
         <h3>Where to actually start with AI in your business</h3>
         <p>What systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain.</p>
-        <form id="masterclass-form-hero" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST">
-          <input type="hidden" name="_subject" value="Masterclass registration: ad-campaign hero">
-          <input type="hidden" name="source" value="masterclass_ad_hero">
-          <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address">
-          <button class="btn" type="submit">Save my seat <span class="arw">→</span></button>
-        </form>
+        <p style="margin:0; color:var(--ink);"><strong>Registration for the free masterclass is closed.</strong> New dates coming soon.</p>
       </div>
 
       <!-- ============================================================
@@ -507,15 +502,9 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
   <section id="capture">
     <div class="wrap">
       <div class="capture">
-        <div class="mono" style="margin-bottom:8px">Free live masterclass · Wednesday, September 23 · 2:00 PM ET</div>
+        <div class="mono" style="margin-bottom:8px">Free live masterclass · Registration closed</div>
         <h3>Not ready to start today?</h3>
-        <p>Come to the free masterclass instead — what systems are, what Claude Code is, and how to teach your systems to Claude by building a second brain. Live, no pitch until the end.</p>
-        <form id="lead-form" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST">
-          <input type="hidden" name="_subject" value="Masterclass registration: ad-campaign end">
-          <input type="hidden" name="source" value="masterclass_ad_end">
-          <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address">
-          <button class="btn" type="submit">Save my seat <span class="arw">→</span></button>
-        </form>
+                <p style="margin:0; color:var(--ink);"><strong>Registration for the free masterclass is closed.</strong> New dates coming soon.</p>
       </div>
     </div>
   </section>
@@ -543,21 +532,8 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
        Recovers the bounce. Uses the shared data-mc-form handler below, so it
        captures exactly like the hero/end bands (CIO mc_source + FormSubmit
        AJAX → info@ + first-party + inline confirm). source=masterclass_ad_exit. -->
-  <div class="modal" id="exit-modal" role="dialog" aria-modal="true" aria-labelledby="exit-title" aria-hidden="true">
-    <div class="modal-card">
-      <button class="modal-close" data-modal-close aria-label="Close">&times;</button>
-      <div class="mono lead-label accent">Before you go</div>
-      <h3 id="exit-title">Not ready? Start with the free masterclass.</h3>
-      <p class="m-body">This Wednesday at 2pm ET I walk through where to actually start with AI in your business — what systems are, what Claude Code is, and how to build your second brain. No experience needed. Drop your email and I'll save you a seat.</p>
-      <form id="masterclass-form-exit" data-mc-form action="https://formsubmit.co/info@puja-patel.com" method="POST">
-        <input type="hidden" name="_subject" value="Masterclass registration: ad-campaign exit popup">
-        <input type="hidden" name="source" value="masterclass_ad_exit">
-        <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="Email address">
-        <button class="btn" type="submit">Save my seat <span class="arw">→</span></button>
-      </form>
-      <p class="modal-sub">Ready now? <a href="https://aios-with-puja-patel.circle.so/checkout/systems-ai-for-business" data-cta>Start free — map your business →</a></p>
-    </div>
-  </div>
+  <!-- Exit-intent popup removed 2026-09-24: masterclass registration closed.
+       The trigger script below returns early when #exit-modal is absent. -->
 
 </div>
 
