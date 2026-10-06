@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Second Brain Workshop Series · Puja Patel</title>
-<meta name="description" content="Three live events at the intersection of operations, data and AI, for experts whose business runs through their head. See your numbers, write down how your business runs once, then hand the repeatable parts to AI. One payment, recordings yours to keep.">
+<meta name="description" content="Three live events at the intersection of operations, data and AI, for service providers who trade time for money. Increase your capacity: see your numbers, write down how your business runs once, then hand the repeatable parts to AI. One payment, recordings yours to keep.">
 <link rel="canonical" href="https://puja-patel.com/workshop/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
 <meta property="og:type" content="website">
@@ -42,7 +42,7 @@ fbq('track', 'PageView');
     --ink:#2A2320; --ink-soft:#6F6255; --line:#DED3C4;
     --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
     --espresso:#392C22; --espresso-ink:#EFE8DE; --espresso-soft:#A99A8B; --espresso-accent:#E9A57F;
-    --maxw:1080px;
+    --maxw:1200px;
     --font-display:Georgia,"Iowan Old Style","Times New Roman",serif;
     --font-body:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"Segoe UI",sans-serif;
   }
@@ -101,22 +101,26 @@ fbq('track', 'PageView');
   .fine{font-size:.85rem; color:var(--ink-soft); margin-top:12px}
 
   /* hero */
-  .hero{padding:64px 0 60px; border-top:0}
-  .hero-grid{display:grid; grid-template-columns:1.3fr .7fr; gap:48px; align-items:center}
-  .hero .lede{font-size:1.18rem; margin:22px 0 24px; max-width:46ch}
-  .dates{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:24px; max-width:640px}
+  .hero{padding:26px 0 36px; border-top:0}
+  .hero-grid{display:grid; grid-template-columns:1.55fr .45fr; gap:40px; align-items:start}
+  .hero .eyebrow{margin-bottom:10px}
+  .hero h1{font-size:clamp(1.8rem,3.3vw,2.6rem); line-height:1.08}
+  .hero .lede{font-size:1.06rem; line-height:1.55; margin:14px 0 12px; max-width:66ch}
+  .dates{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:16px; max-width:720px}
   .dates .en{display:block; font-weight:600; margin:3px 0 2px}
-  .herofit{list-style:none; padding:0; margin:0 0 24px; max-width:52ch}
-  .herofit li{position:relative; padding-left:24px; margin:8px 0; font-size:1rem; line-height:1.45}
+  .herofit{list-style:none; padding:0; margin:0 0 16px; max-width:66ch}
+  .herofit li{position:relative; padding-left:24px; margin:4px 0; font-size:.97rem; line-height:1.45}
   .herofit li:before{content:"✓"; position:absolute; left:0; top:0; color:var(--accent); font-weight:700}
-  .dates div{background:var(--surface); border:1px solid var(--line); border-radius:3px; padding:10px 12px; font-size:.86rem; line-height:1.35}
+  .dates div{background:var(--surface); border:1px solid var(--line); border-radius:3px; padding:8px 12px; font-size:.86rem; line-height:1.35}
   .dates b{display:block; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
   .portrait{border-radius:4px; overflow:hidden; border:1px solid var(--line); background:var(--surface); margin:0}
   .portrait img{display:block; width:100%; height:auto}
-  .portrait figcaption{padding:12px 14px; font-size:.88rem; color:var(--ink-soft)}
+  .portrait figcaption{padding:10px 12px; font-size:.84rem; color:var(--ink-soft)}
+  .hero .btn.big{padding:.85em 1.4em}
   .closed-msg{font-family:var(--font-display); font-size:1.25rem; font-weight:700; color:var(--accent); margin:0}
-  @media(max-width:820px){.hero-grid{grid-template-columns:1fr} .portrait{max-width:300px}}
-  @media(max-width:480px){.dates{grid-template-columns:1fr}}
+  @media(max-width:820px){.hero-grid{grid-template-columns:1fr; gap:24px} .portrait{max-width:280px}}
+  @media(max-width:620px){.hero{padding:18px 0 28px} .hero .lede{font-size:1rem} .herofit li{font-size:.94rem} .hero .btn.big{width:100%} .portrait{max-width:220px}}
+  @media(max-width:480px){.dates{grid-template-columns:1fr; gap:6px} .dates div{padding:7px 10px}}
 
   .video{position:relative; padding-bottom:56.25%; height:0; border-radius:4px; overflow:hidden; border:1px solid var(--line); margin-top:40px; background:#000; max-width:100%}
   .video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
@@ -312,11 +316,11 @@ fbq('track', 'PageView');
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">The Second Brain Workshop Series · 3 live events for expert owners</span>
+      <span class="eyebrow">The Second Brain Workshop Series · 3 live events for service providers</span>
       <h1>Your business runs on what you know. That's exactly why it still runs through you.</h1>
-      <p class="lede">For established experts who sell what they know: consultants, coaches, advisors and agency owners with years of judgment in their heads. You already use AI. It hasn't given you your time back, because it doesn't know how your business actually runs. Three live events at the intersection of operations, data and AI change that: see your numbers clearly, write down how your business runs once, then hand the repeatable parts to AI.</p>
+      <p class="lede">For service providers who trade time for money: consultants, coaches, advisors and agency owners whose capacity stops where their hours do. You already use AI. It hasn't given you more capacity, because it doesn't know how your business actually runs. Three live events at the intersection of operations, data and AI change that: see your numbers clearly, write down how your business runs once, then hand the repeatable parts to AI, so you can take on more without adding hours.</p>
       <ul class="herofit">
-        <li>You've spent 10+ years getting very good at what you do, and clients pay for your judgment</li>
+        <li>You've spent years getting very good at what you do, and every new client costs you more of your own hours</li>
         <li>Every pricing call, proposal and "how do we do this?" still comes back to you</li>
         <li>You already use ChatGPT or Claude, and you're done with the hype</li>
       </ul>
@@ -361,8 +365,8 @@ fbq('track', 'PageView');
 <section>
   <div class="wrap narrow">
     <span class="eyebrow">The real problem</span>
-    <h2>You don't need more AI. You need your week back.</h2>
-    <p>You've spent years getting very good at what you do, and clients come to you for it. And somehow everything still routes through you: the pricing calls, the follow-ups, the client updates, every "how do we do this?", the numbers you pull together at 10pm to figure out if last month was actually good.</p>
+    <h2>You don't need more AI. You need more capacity.</h2>
+    <p>When you sell your time, your capacity is your calendar. You've spent years getting very good at what you do, and clients come to you for it. And somehow everything still routes through you: the pricing calls, the follow-ups, the client updates, every "how do we do this?", the numbers you pull together at 10pm to figure out if last month was actually good.</p>
     <p>If your business only works because you remember everything, it isn't a system yet. It's folklore. Nobody else can do it your way, because your way only exists in your head.</p>
     <p>Meanwhile every week there's a new AI tool, a new "agent," a new thing you're supposedly behind on. You already use ChatGPT or Claude. It's useful. It hasn't given you a single hour back, and it never sticks to the business.</p>
     <p>That's not because AI doesn't work. AI only knows what you paste into a chat, and AI on top of a scattered business just makes the mess move faster. Simplify first. Write it down once. That's what these three events build.</p>
@@ -478,7 +482,7 @@ fbq('track', 'PageView');
       <li><b>Laptops open</b><span>You build along with me in real time, on your own business.</span></li>
       <li><b>Hot seats</b><span>I pull real businesses from the room onto my screen and work on them live.</span></li>
       <li><b>Questions answered in the moment</b><span>Stuck on a step? Ask in the chat and we fix it right there.</span></li>
-      <li><b>Experts like you</b><span>See how other owners who sell their know-how set theirs up. The best ideas come from the room.</span></li>
+      <li><b>Service providers like you</b><span>See how other owners who sell their time and know-how set theirs up. The best ideas come from the room.</span></li>
     </ul>
     <!-- Verbatim from the Sep 28 workshop (Otter 1:11:00); Puja to spot-check the recording before publishing. -->
     <blockquote class="pull">“Once you have your files in order, this is kind of like magic... this is so wild to see like all my on decks and things that I haven't done, things that I need to do.”<cite>Christopher · consultant · said live in the Sep 28 workshop</cite></blockquote>
@@ -562,14 +566,14 @@ fbq('track', 'PageView');
   <div class="wrap">
     <div class="narrow" style="padding:0">
       <span class="eyebrow">Who it's for</span>
-      <h2>Built for experts whose business runs through their head.</h2>
-      <p>We believe in simplicity. Technology is there to create leverage in your business, not to experiment with every new tool the week it comes out. We use as few tools as possible, on purpose, and every one of them has a job.</p>
+      <h2>Built for service providers who trade time for money.</h2>
+      <p>The goal is capacity: more clients, more output, without more of your hours. And we believe in simplicity. Technology is there to create leverage in your business, not to experiment with every new tool the week it comes out. We use as few tools as possible, on purpose, and every one of them has a job.</p>
     </div>
     <div class="fit">
       <div class="yes">
         <h3>This is for you if</h3>
         <ul>
-          <li>You sell your own expertise, and you've been doing it for years</li>
+          <li>You sell your expertise and your time, and you've been doing it for years</li>
           <li>Solo or with a team, the questions still come back to you, because the know-how lives with you</li>
           <li>You already use ChatGPT or Claude. It's useful, but it doesn't stick to the business</li>
           <li>Something is changing in the next few months (a launch, a move online, a growth goal) and the mess just got expensive</li>
@@ -618,7 +622,7 @@ fbq('track', 'PageView');
     <details><summary>What's OpMap?</summary><p>OpMap is a tool I created from the methodology I use with my consulting clients to map their businesses. Now you get the same process in a 30-minute conversation that lays out how your business actually runs, where your time goes, and what to fix first. It's included in the Personalized Pass.</p></details>
     <details><summary>Do I need to be technical?</summary><p>No. The skill is knowing how you do your work and writing it down clearly. Everything technical, I walk through on screen, step by step.</p></details>
     <details><summary>I don't want to give AI access to my whole business.</summary><p>You don't have to. It works with what you choose to put in front of it. You decide which files, which docs, which numbers. You start small with one thing, you check its work, and you only hand over more when you trust it. That's how we build in every event.</p></details>
-    <details><summary>Is this for beginners?</summary><p>It's built for experts already running a real business who use AI and want it to actually do something. You don't need to know where to click. I'll be on screen showing you. You do need a business to point it at.</p></details>
+    <details><summary>Is this for beginners?</summary><p>It's built for service providers already running a real business who use AI and want it to actually do something. You don't need to know where to click. I'll be on screen showing you. You do need a business to point it at.</p></details>
     <details><summary>What happens after the three events?</summary><p>The recordings are yours to keep, and so is everything you built in your second brain. On the Personalized Pass, your OpMap access and the Thursday live working sessions run through Thursday, November 26. Nothing renews or bills again. If you want to keep building with me after that, I'll share how at the last event.</p></details>
     <!-- GUARANTEE FAQ: UNDECIDED. Turn on together with the guarantee block above.
     <details><summary>What if it isn't for me?</summary><p>Come to Event 1 live. If it wasn't worth it, email me that night for a full refund.</p></details>
@@ -630,7 +634,7 @@ fbq('track', 'PageView');
 <section class="dark center">
   <div class="wrap narrow">
     <span class="eyebrow">3 live events · <span data-f="e1Short"></span> to <span data-f="e3Short"></span></span>
-    <h2>Get it out of your head. Get your week back.</h2>
+    <h2>Get it out of your head. Take on more without adding hours.</h2>
     <p class="soft" data-show="early">Early bird until <span data-f="earlyBirdShort"></span>, one time · Recordings included · Doors close <span data-f="doorsLabel"></span></p>
     <p class="soft" data-show="regular">From <span data-price="pass"></span>, one time · Recordings included · Doors close <span data-f="doorsLabel"></span></p>
     <p class="soft" data-show="closed">Doors are closed for this series.</p>
