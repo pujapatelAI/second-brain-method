@@ -247,7 +247,29 @@ fbq('track', 'PageView');
     .mcta .btn{padding:.7em 1em; font-size:.92rem}
     .mcta[hidden]{display:none !important}
   }
+
+  /* ── Free-moves pop-up (non-buyer email capture, added Oct 6) ── */
+  .mp-back{position:fixed; inset:0; z-index:60; background:rgba(28,21,17,.62); display:flex; align-items:center; justify-content:center; padding:16px}
+  .mp-back[hidden]{display:none}
+  .mp{position:relative; width:100%; max-width:480px; max-height:calc(100vh - 32px); overflow:auto; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-top:3px solid var(--accent-bright); border-radius:4px; padding:30px 26px 24px; box-shadow:0 18px 50px rgba(0,0,0,.28)}
+  .mp h2{font-size:1.55rem; line-height:1.2; margin:0 0 10px}
+  .mp p{margin:0 0 14px; font-size:.98rem}
+  .mp-x{position:absolute; top:8px; right:10px; background:none; border:0; font-size:1.6rem; line-height:1; color:var(--ink-soft); cursor:pointer; padding:6px 8px}
+  .mp-form{display:grid; gap:12px; margin-top:6px}
+  .mp-form label{display:block; font-size:.84rem; font-weight:700; margin-bottom:4px}
+  .mp-form label .opt{font-weight:500; color:var(--ink-soft)}
+  .mp-form input[type=text], .mp-form input[type=email]{width:100%; box-sizing:border-box; padding:.75em .85em; border:1px solid var(--line); border-radius:2px; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:1rem}
+  .mp-form input:focus{outline:2px solid var(--accent); outline-offset:1px}
+  .mp-form .btn{width:100%; margin-top:4px}
+  .mp .fine{margin-top:10px; text-align:center}
+  .mp-hp{position:absolute; left:-9999px; width:1px; height:1px; opacity:0}
+  .mp-done h2{color:var(--accent)}
+  .mp-link{background:none; border:0; padding:0; color:var(--accent); font:inherit; font-size:.9rem; text-decoration:underline; cursor:pointer}
 </style>
+<script>
+var _cio = _cio || [];
+(function(){var a,b,c;a=function(f){return function(){_cio.push([f].concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify","sidentify","track","page","on","off"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};var t=document.createElement('script'),s=document.getElementsByTagName('script')[0];t.async=true;t.id='cio-tracker';t.setAttribute('data-site-id','3f7f4e3fdaf9decb1c47');t.src='https://assets.customer.io/assets/track.js';s.parentNode.insertBefore(t,s)})();
+</script>
 </head>
 <body>
 
@@ -424,7 +446,7 @@ fbq('track', 'PageView');
     <span class="eyebrow">The three events</span>
     <h2>Three live events. Each one leaves you with something running.</h2>
     <p class="soft" style="max-width:62ch">Every event is a working session on your business, not a presentation. The order is on purpose: first how to collect and decide with your data, then your numbers on one screen, then the second brain that holds how your business runs, with your numbers in it. You build while I build, and you leave each one with a result you can use the next morning.</p>
-    <p class="prework"><b>Before Event 2.</b> Right after you join, you get a short guide to set up Claude and the Second Brain Starter Kit. Do both before <span data-f="liveBuildLabel"></span> and you're ready to build along, even if you're new to Claude.</p>
+    <p class="prework"><b>Before Event 2.</b> Right after you join, your welcome email walks you through setting up Claude. Do it before <span data-f="liveBuildLabel"></span> and you're ready to build along, even if you're new to Claude.</p>
     <div class="events">
 
       <div class="ev">
@@ -519,9 +541,8 @@ fbq('track', 'PageView');
           <li><span>Event 2: Data Visualization, a live build</span><span class="v">$497 value</span></li>
           <li><span>Event 3: The Second Brain Workshop, live</span><span class="v">$497 value</span></li>
           <li><span>Recordings of all three events, yours to keep</span><span class="v">$297 value</span></li>
-          <li><span>Bonus: CLAUDE.md Setup Kit + Voice Extractor</span><span class="v">$97 value</span></li>
         </ul>
-        <div class="total"><span>Total value</span><span>$1,885</span></div>
+        <div class="total"><span>Total value</span><span>$1,788</span></div>
         <a class="btn ghost big js-buy" data-tier="pass" data-show="open" href="#">Get the Workshop Pass →</a>
         <span class="shut" data-show="closed">Doors are closed</span>
       </div>
@@ -534,7 +555,7 @@ fbq('track', 'PageView');
         <div class="pr"><s data-show="early" data-price="opmapRegular"></s><span class="now" data-price="opmap"></span><span class="once">one time</span></div>
         <p class="eb" data-show="early">Early bird until <span data-f="earlyBirdShort"></span>, then <span data-price="opmapRegular"></span></p>
         <ul>
-          <li><span>Everything in the Workshop Pass</span><span class="v">$1,885 value</span></li>
+          <li><span>Everything in the Workshop Pass</span><span class="v">$1,788 value</span></li>
           <li class="plus"><span>Plus, personalized to you</span></li>
           <li class="pz"><span>OpMap: your business mapped in 30 minutes</span><span class="v">$997 value</span></li>
           <li class="pz"><span>A full workflow analysis: where your hours and money go</span><span class="v">$997 value</span></li>
@@ -543,7 +564,7 @@ fbq('track', 'PageView');
           <li class="pz"><span>Two live working sessions with me: Thu Nov 5 and Thu Nov 12, 2pm ET</span><span class="v">$497 value</span></li>
           <li class="pz"><span>Hot-seat priority at all three events</span><span class="v">$497 value</span></li>
         </ul>
-        <div class="total"><span>Total value</span><span>$6,667</span></div>
+        <div class="total"><span>Total value</span><span>$6,570</span></div>
         <a class="btn big js-buy" data-tier="opmap" data-show="open" href="#">Get the Personalized Pass →</a>
         <span class="shut" data-show="closed">Doors are closed</span>
       </div>
@@ -564,6 +585,7 @@ fbq('track', 'PageView');
          ============================================================ -->
 
     <p class="fine center" data-show="open">Doors close <span data-f="doorsLabel"></span>. Recordings included on both tickets.</p>
+    <p class="fine center"><button type="button" class="mp-link" data-mp-open>Not ready for a ticket? Get the 10 business moves free</button></p>
     <p class="closed-note" data-show="closed">Doors are closed for this series.</p>
   </div>
 </section>
@@ -622,7 +644,7 @@ fbq('track', 'PageView');
     <span class="eyebrow">Questions</span>
     <h2>Good to know before you join.</h2>
     <details><summary>Is this a subscription?</summary><p>No. One payment, one time. You get all three events, the recordings, and everything in your ticket.</p></details>
-    <details><summary>I'm new to Claude. Can I keep up?</summary><p>Yes. Right after you join, you get a short guide to set up Claude and the Second Brain Starter Kit. Do both before Thursday's build and you're ready. Everything else I walk through on screen, step by step. You don't need to know where to click.</p></details>
+    <details><summary>I'm new to Claude. Can I keep up?</summary><p>Yes. Right after you join, your welcome email walks you through setting up Claude. Do it before Thursday's build and you're ready. Everything else I walk through on screen, step by step. You don't need to know where to click.</p></details>
     <details><summary>What if I can't make it live?</summary><p>Every event is recorded and the recordings are yours to keep. Come live if you can, though. The hot seats and the questions in the room are where most things click.</p></details>
     <details><summary>How does the early bird work?</summary><p>Until Monday, October 12 at 11:59 PM ET, the Workshop Pass is $147 and the Personalized Pass is $297. From Tuesday, October 13 they're $247 and $397. Same tickets, same events. Doors close Monday, October 26 at 12:00 PM ET, two hours before Event 3.</p></details>
     <details><summary>Which ticket should I get?</summary><p>The Workshop Pass teaches you the method and you build along. The Personalized Pass builds it around your business: OpMap maps how your business runs, the workflow analysis finds what's costing you hours and money, and your projects are built around your bottlenecks. You also get two live working sessions with me, on Thursday, November 5 and Thursday, November 12, and your OpMap access runs through Nov 26. If you want this done on your business rather than learned in general, get the Personalized Pass.</p></details>
@@ -732,6 +754,96 @@ fbq('track', 'PageView');
     return true;
   }
   if (tick()) { var t = setInterval(function(){ if(!tick()) clearInterval(t); }, 1000); }
+})();
+</script>
+
+<!-- FREE-MOVES POP-UP: email capture for visitors who aren't ready to buy.
+     Same mechanism as /moves/optin (masterclass pattern): Meta Lead event,
+     Customer.io identify + track business_moves_optin (NO `source` attribute),
+     FormSubmit copy to info@, inline confirmation. apps/command/moves_lead_intake.py
+     (--from-cio, every 15 min) sends the 10 moves and adds them to the launch emails.
+     Source attribute business_moves_channel: "pop up" (auto-opened) or "under ticket"
+     (opened from the link under the tickets). TikTok DATA leads are "dm".
+     Shows once per visitor: exit intent on desktop (after 8s), 30s or 55% scroll on
+     phones; never after a ticket click. -->
+<div class="mp-back" id="mp" hidden>
+  <div class="mp" role="dialog" aria-modal="true" aria-labelledby="mp-title">
+    <button type="button" class="mp-x" aria-label="Close" data-mp-close>&times;</button>
+    <div class="mp-view">
+      <span class="eyebrow">Not ready for a ticket?</span>
+      <h2 id="mp-title">Get the 10 business moves. Free.</h2>
+      <p>Ten decisions that set how much you can take on without adding hours: where your hours go, what to stop, which clients and offers to keep, what to charge, and what to hand off. One copy-paste prompt each, for the Claude or ChatGPT you already use.</p>
+      <form class="mp-form" action="https://formsubmit.co/info@puja-patel.com" method="POST">
+        <input type="text" name="_honey" class="mp-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="Business Moves: new opt-in (workshop pop-up)">
+        <input type="hidden" name="form_source" value="pop up">
+        <input type="hidden" name="_captcha" value="false">
+        <div><label for="mp-name">First name</label><input type="text" id="mp-name" name="first_name" required autocomplete="given-name"></div>
+        <div><label for="mp-email">Email</label><input type="email" id="mp-email" name="email" required autocomplete="email" placeholder="you@yourbusiness.com"></div>
+        <div><label for="mp-biz">What kind of business do you have? <span class="opt">(optional)</span></label><input type="text" id="mp-biz" name="business_type" maxlength="300"></div>
+        <button class="btn" type="submit">Send me the 10 moves →</button>
+      </form>
+      <p class="fine">Free. You'll also get my emails about the series. Unsubscribe anytime.</p>
+    </div>
+    <div class="mp-done" hidden role="status" aria-live="polite">
+      <h2>You're in<span class="mp-done-name"></span>.</h2>
+      <p>The 10 moves are on their way to your inbox. Give it about 15 minutes.</p>
+      <p>Want to start now? Move 1 shows where your hours actually go.</p>
+      <a class="btn" href="/moves/">Open the 10 moves →</a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='moves_popup_seen_v1', back=document.getElementById('mp'); if(!back) return;
+  var form=back.querySelector('.mp-form'), shown=false, t0=Date.now(), via='pop up';
+  function seen(){ try{ return !!localStorage.getItem(KEY); }catch(e){ return false; } }
+  function mark(v){ try{ localStorage.setItem(KEY, v||String(Date.now())); }catch(e){} }
+  function open(manual){
+    if(shown && !manual) return; if(!manual && seen()) return;
+    shown=true; mark(); via = manual ? 'under ticket' : 'pop up'; form.form_source.value = via;
+    back.hidden=false; document.body.style.overflow='hidden';
+    try{ clarity('event', manual ? 'moves_popup_open_manual' : 'moves_popup_open'); }catch(e){}
+    setTimeout(function(){ var f=document.getElementById('mp-name'); if(f) f.focus(); }, 30);
+  }
+  function close(){ back.hidden=true; document.body.style.overflow=''; }
+  back.addEventListener('click', function(e){ if(e.target===back || e.target.hasAttribute('data-mp-close')) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !back.hidden) close(); });
+  document.querySelectorAll('[data-mp-open]').forEach(function(b){ b.addEventListener('click', function(){ open(true); }); });
+  // Never interrupt a buyer: a ticket click switches the auto pop-up off.
+  document.querySelectorAll('a.js-buy, a[href*="checkout"]').forEach(function(a){ a.addEventListener('click', function(){ mark('bought_click'); shown=true; }); });
+  var touch = window.matchMedia && window.matchMedia('(hover: none)').matches;
+  if(!touch){
+    document.addEventListener('mouseout', function(e){ if(!e.relatedTarget && e.clientY<=0 && Date.now()-t0>8000) open(false); });
+  } else {
+    setTimeout(function(){ open(false); }, 30000);
+    window.addEventListener('scroll', function(){
+      var h=document.documentElement; if((h.scrollTop+window.innerHeight)/h.scrollHeight>0.55) open(false);
+    }, {passive:true});
+  }
+  form.addEventListener('submit', function(e){
+    var email=(form.email.value||'').trim(), first=(form.first_name.value||'').trim();
+    if(!email || email.indexOf('@')<1 || !first) return;
+    e.preventDefault();
+    if(!form._honey.value){
+      var biz=(form.business_type.value||'').trim(), params=new URLSearchParams(window.location.search);
+      try{ if(window.fbq) fbq('track','Lead',{content_name:'10 Business Moves'}); }catch(err){}
+      try{ clarity('event','business_moves_optin'); }catch(err){}
+      try{
+        if(window._cio){
+          var attrs={ id:email, email:email, first_name:first, business_moves_lead:true, lead_magnet:'business_moves',
+                      business_moves_channel:via, business_moves_optin_at:Math.floor(Date.now()/1000) };
+          if(biz) attrs.business_moves_business_type=biz.slice(0,300);
+          _cio.identify(attrs);
+          _cio.track('business_moves_optin',{ page:'workshop', channel:via, utm_source:params.get('utm_source')||'', utm_medium:params.get('utm_medium')||'', utm_campaign:params.get('utm_campaign')||'' });
+        }
+      }catch(err){}
+      try{ fetch('https://formsubmit.co/ajax/info@puja-patel.com',{ method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form), keepalive:true }).catch(function(){}); }catch(err){}
+    }
+    mark('optin');
+    back.querySelector('.mp-view').hidden=true;
+    var d=back.querySelector('.mp-done'); d.querySelector('.mp-done-name').textContent=', '+first; d.hidden=false;
+  });
 })();
 </script>
 </body>
