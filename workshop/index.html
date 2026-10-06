@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Second Brain Workshop Series · Puja Patel</title>
+<meta name="description" content="Three live events at the intersection of operations, data and AI, for experts whose business runs through their head. See your numbers, write down how your business runs once, then hand the repeatable parts to AI. One payment, recordings yours to keep.">
+<link rel="canonical" href="https://puja-patel.com/workshop/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://puja-patel.com/workshop/">
+<meta property="og:title" content="The Second Brain Workshop Series · Puja Patel">
+<meta property="og:description" content="Three live events. Get your business out of your head, make it simpler, and hand the repeatable parts to AI.">
+<meta property="og:image" content="https://puja-patel.com/assets/og_card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://puja-patel.com/assets/og_card.jpg">
+<!-- Microsoft Clarity: project "Second Brain Method" (xni1glpbqz) -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];if(y&&y.parentNode){y.parentNode.insertBefore(t,y);}else{l.head.appendChild(t);}
+  })(window, document, "clarity", "script", "xni1glpbqz");
+</script>
+<!-- Meta Pixel: dataset "Puja Patel Web" (1358901016182853) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1358901016182853');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></noscript>
+<style>
+  html{scroll-behavior:smooth}
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --surface-2:#F5EDE3;
+    --ink:#2A2320; --ink-soft:#6F6255; --line:#DED3C4;
+    --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --espresso:#392C22; --espresso-ink:#EFE8DE; --espresso-soft:#A99A8B; --espresso-accent:#E9A57F;
+    --maxw:1080px;
+    --font-display:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#241C17; --surface:#2C231D; --surface-2:#332821;
+      --ink:#EFE7DC; --ink-soft:#B3A495; --line:#4A3C31;
+      --accent:#E08A5A; --accent-bright:#C96A3C; --on-accent:#241A14;
+      --espresso:#1C1511; --espresso-ink:#D9CEC1; --espresso-soft:#8E8073;
+    }
+  }
+  [hidden]{display:none !important}
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  .narrow{max-width:720px}
+  p{margin:0 0 1em}
+  a{color:inherit}
+  h1,h2,h3{margin:0; text-wrap:balance; line-height:1.1}
+  h1,h2{font-family:var(--font-display); font-weight:700; letter-spacing:-.012em}
+  h1{font-size:clamp(2rem,4.6vw,3.1rem)}
+  h2{font-size:clamp(1.7rem,3.6vw,2.5rem); margin-bottom:.6em}
+  h3{font-size:1.08rem; font-weight:700; letter-spacing:-.01em}
+  .eyebrow{font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; display:block}
+  .soft{color:var(--ink-soft)}
+  .center{text-align:center}
+  section{padding:84px 0; border-top:1px solid var(--line); scroll-margin-top:60px}
+  section.alt{background:var(--surface-2)}
+  section.dark{background:var(--espresso); color:var(--espresso-ink); border-top:0}
+  section.dark h2{color:var(--espresso-ink)}
+  section.dark .eyebrow{color:var(--espresso-accent)}
+  section.dark .soft{color:var(--espresso-soft)}
+  @media(max-width:620px){section{padding:60px 0} .wrap{padding:0 16px}}
+
+  /* sticky countdown bar */
+  .bar{position:sticky; top:0; z-index:30; background:var(--espresso); color:var(--espresso-ink)}
+  .bar-in{max-width:var(--maxw); margin:0 auto; padding:10px 24px; display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:54px}
+  .bar-left{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+  .bar-label{font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--espresso-soft)}
+  .clock{font-variant-numeric:tabular-nums; font-weight:700; letter-spacing:.02em; font-size:1rem; white-space:nowrap}
+  .clock span{display:inline-block; min-width:2ch; text-align:right}
+  .clock small{font-size:.66rem; color:var(--espresso-soft); margin:0 6px 0 2px; font-weight:600; letter-spacing:.08em}
+  .bar .btn{padding:.55em .95em; font-size:.88rem}
+  @media(max-width:620px){
+    .bar-in{padding:8px 16px; gap:10px}
+    .bar-left{flex-direction:column; align-items:flex-start; gap:0}
+    .bar-label{font-size:.6rem; letter-spacing:.12em}
+    .clock{font-size:.9rem}
+    .clock small{margin:0 4px 0 1px}
+  }
+
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5em; background:var(--accent-bright); color:var(--on-accent); font-weight:700; font-size:1rem; padding:.85em 1.3em; border-radius:2px; text-decoration:none; white-space:nowrap; transition:filter .12s ease, transform .12s ease; border:0; cursor:pointer}
+  .btn:hover{filter:brightness(1.07); transform:translateY(-1px)}
+  .btn.big{font-size:1.1rem; padding:1em 1.6em}
+  .btn.ghost{background:transparent; color:var(--ink); border:1.5px solid var(--ink)}
+  .fine{font-size:.85rem; color:var(--ink-soft); margin-top:12px}
+
+  /* hero */
+  .hero{padding:64px 0 60px; border-top:0}
+  .hero-grid{display:grid; grid-template-columns:1.3fr .7fr; gap:48px; align-items:center}
+  .hero .lede{font-size:1.18rem; margin:22px 0 24px; max-width:46ch}
+  .dates{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:24px; max-width:640px}
+  .dates .en{display:block; font-weight:600; margin:3px 0 2px}
+  .herofit{list-style:none; padding:0; margin:0 0 24px; max-width:52ch}
+  .herofit li{position:relative; padding-left:24px; margin:8px 0; font-size:1rem; line-height:1.45}
+  .herofit li:before{content:"✓"; position:absolute; left:0; top:0; color:var(--accent); font-weight:700}
+  .dates div{background:var(--surface); border:1px solid var(--line); border-radius:3px; padding:10px 12px; font-size:.86rem; line-height:1.35}
+  .dates b{display:block; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+  .portrait{border-radius:4px; overflow:hidden; border:1px solid var(--line); background:var(--surface); margin:0}
+  .portrait img{display:block; width:100%; height:auto}
+  .portrait figcaption{padding:12px 14px; font-size:.88rem; color:var(--ink-soft)}
+  .closed-msg{font-family:var(--font-display); font-size:1.25rem; font-weight:700; color:var(--accent); margin:0}
+  @media(max-width:820px){.hero-grid{grid-template-columns:1fr} .portrait{max-width:300px}}
+  @media(max-width:480px){.dates{grid-template-columns:1fr}}
+
+  .video{position:relative; padding-bottom:56.25%; height:0; border-radius:4px; overflow:hidden; border:1px solid var(--line); margin-top:40px; background:#000; max-width:100%}
+  .video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+
+  /* quotes wall */
+  .quotes{columns:3 280px; column-gap:18px; margin-top:26px}
+  .q{break-inside:avoid; background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:18px 18px 14px; margin:0 0 18px}
+  .q p{margin:0 0 12px; font-size:.98rem}
+  .q .who{font-size:.8rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft)}
+
+  /* method */
+  .tri{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:28px}
+  .tri > div{background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:22px}
+  .tri .k{font-family:var(--font-display); font-size:1.3rem; line-height:1.25; font-weight:700; color:var(--accent); margin-bottom:6px}
+  .tri p{margin:0; font-size:.96rem}
+  @media(max-width:760px){.tri{grid-template-columns:1fr}}
+
+  /* runs list */
+  .runs{display:grid; grid-template-columns:repeat(2,1fr); gap:14px 28px; margin-top:26px; padding:0; list-style:none}
+  .runs li{padding:12px 0 12px 18px; border-left:3px solid var(--accent-bright)}
+  .runs b{display:block}
+  .runs .res{display:block; margin-top:4px; font-size:.92rem; color:var(--accent); font-weight:600}
+  @media(max-width:700px){.runs{grid-template-columns:1fr}}
+
+  /* events */
+  .events{display:grid; gap:18px; margin-top:30px}
+  .ev{display:grid; grid-template-columns:220px 1fr; border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--surface)}
+  .ev-side{background:var(--espresso); color:var(--espresso-ink); padding:24px 22px}
+  .ev-side .num{font-size:.72rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--espresso-accent)}
+  .ev-side .name{font-family:var(--font-display); font-size:1.5rem; font-weight:700; line-height:1.15; margin:8px 0 14px}
+  .ev-side .dt{font-size:.92rem; color:var(--espresso-soft); line-height:1.45}
+  .ev-side .dt b{color:var(--espresso-ink); display:block}
+  .ev-main{padding:24px 26px}
+  .ev-main h3{font-family:var(--font-display); font-size:1.45rem; margin-bottom:10px}
+  .ev-main p{font-size:.98rem}
+  .evq{font-family:var(--font-display); font-style:italic; font-size:1.05rem; border-left:3px solid var(--accent-bright); padding-left:14px}
+  .evq span{display:block; font-family:var(--font-body); font-style:normal; font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin-top:6px}
+  .ev-out{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px}
+  .ev-out div{background:var(--surface-2); border-radius:3px; padding:12px 14px; font-size:.93rem}
+  .ev-out b{display:block; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:3px}
+  .ev-note{margin:12px 0 0; font-size:.88rem; font-weight:600; color:var(--accent)}
+  .prework{max-width:62ch; margin:4px 0 0; padding:14px 16px; background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent-bright); border-radius:4px; font-size:.96rem}
+  @media(max-width:760px){.ev{grid-template-columns:1fr} .ev-out{grid-template-columns:1fr}}
+
+  /* live */
+  .live{display:grid; grid-template-columns:repeat(2,1fr); gap:14px 30px; margin-top:26px; list-style:none; padding:0}
+  .live li{padding-left:30px; position:relative}
+  .live li::before{content:"●"; position:absolute; left:4px; top:0; color:var(--espresso-accent); font-size:.8rem; line-height:1.9}
+  .live b{display:block; color:var(--espresso-ink)}
+  .live span{color:var(--espresso-soft); font-size:.96rem}
+  @media(max-width:700px){.live{grid-template-columns:1fr}}
+  .recnote{margin-top:30px; padding:18px 20px; border:1px solid #4A3C31; border-radius:4px; color:var(--espresso-ink)}
+  .pull{margin:34px 0 0; padding:0 0 0 20px; border-left:3px solid var(--espresso-accent); font-family:var(--font-display); font-size:1.3rem; line-height:1.4; color:var(--espresso-ink)}
+  .pull cite{display:block; margin-top:10px; font-family:var(--font-body); font-style:normal; font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--espresso-soft)}
+
+  /* pricing */
+  .eb-banner{display:inline-block; margin:6px auto 0; padding:8px 14px; background:var(--surface); border:1px solid var(--line); border-radius:3px; font-size:.92rem}
+  .eb-banner b{color:var(--accent)}
+  .tiers{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:34px; align-items:start}
+  .tier{background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:30px 26px; position:relative}
+  .tier.best{border:2px solid var(--accent-bright); box-shadow:0 10px 30px -18px rgba(57,44,34,.45)}
+  .tier .badge{position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--accent-bright); color:var(--on-accent); font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:5px 12px; border-radius:2px; white-space:nowrap}
+  .tier .tname{font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+  .tier h3{font-family:var(--font-display); font-size:1.6rem; margin:6px 0 4px}
+  .tier .sub{font-size:.94rem; color:var(--ink-soft); margin-bottom:14px}
+  .pr{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+  .pr s{font-size:1.4rem; color:var(--ink-soft); text-decoration-thickness:2px}
+  .pr .now{font-family:var(--font-display); font-size:3.2rem; font-weight:700; line-height:1}
+  .pr .once{font-size:.9rem; color:var(--ink-soft); font-weight:600}
+  .eb{margin:8px 0 0; font-size:.88rem; font-weight:600; color:var(--accent)}
+  .tier ul{list-style:none; padding:0; margin:20px 0 16px}
+  .tier li{display:flex; justify-content:space-between; gap:14px; padding:9px 0; border-top:1px solid var(--line); font-size:.94rem}
+  .tier li .v{white-space:nowrap; color:var(--ink-soft); font-size:.84rem}
+  .tier li.plus{border-top:0; padding-top:14px; font-weight:700; color:var(--accent); font-size:.8rem; letter-spacing:.12em; text-transform:uppercase}
+  .tier li.pz span:first-child::before{content:"★ "; color:var(--accent-bright)}
+  .tier .total{display:flex; justify-content:space-between; font-weight:700; padding:12px 0 18px; border-top:2px solid var(--ink)}
+  .tier .btn{width:100%}
+  .tier .shut{display:block; text-align:center; padding:.9em; border:1px dashed var(--line); border-radius:2px; color:var(--ink-soft); font-weight:600}
+  @media(max-width:820px){.tiers{grid-template-columns:1fr} .tier.best{order:-1}}
+  .closed-note{margin-top:18px; font-size:.95rem; color:var(--accent); text-align:center}
+  .guarantee{max-width:620px; margin:26px auto 0; padding:18px 20px; border:1.5px solid var(--accent-bright); border-radius:4px; background:var(--surface); text-align:center}
+  .guarantee b{display:block; font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:6px}
+  .guarantee p{margin:0}
+
+  /* who */
+  .fit{display:grid; grid-template-columns:1.2fr .8fr; gap:22px; margin-top:24px}
+  .fit div{border-radius:4px; padding:22px 24px}
+  .fit .yes{background:var(--surface); border:1px solid var(--line)}
+  .fit .no{border:1px dashed var(--line)}
+  .fit ul{margin:10px 0 0; padding-left:1.1em}
+  .fit li{margin-bottom:.5em}
+  @media(max-width:760px){.fit{grid-template-columns:1fr}}
+
+  /* founder */
+  .founder{display:grid; grid-template-columns:.7fr 1.3fr; gap:44px; align-items:start}
+  .founder img{width:100%; border-radius:4px; border:1px solid var(--line); display:block}
+  .stat{display:inline-block; margin:6px 0 18px; padding:8px 14px; background:var(--surface); border:1px solid var(--line); border-radius:3px; font-weight:700}
+  .stat b{color:var(--accent); font-family:var(--font-display); font-size:1.3rem}
+  @media(max-width:760px){.founder{grid-template-columns:1fr} .founder img{max-width:280px}}
+
+  /* faq */
+  details{border-top:1px solid var(--line); padding:18px 0}
+  details:last-child{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer; font-weight:700; list-style:none; display:flex; justify-content:space-between; gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+"; color:var(--accent); font-size:1.3rem; line-height:1}
+  details[open] summary::after{content:"−"}
+  details p{margin:12px 0 0}
+
+  footer{background:var(--espresso); color:var(--espresso-soft); font-size:.8rem; text-align:center; padding:26px 16px 90px; border-top:1px solid #4A3C31}
+  footer a{color:var(--espresso-ink)}
+
+  .mcta{display:none}
+  @media(max-width:620px){
+    .mcta{display:flex; position:fixed; left:0; right:0; bottom:0; z-index:40; padding:10px 16px calc(10px + env(safe-area-inset-bottom)); background:var(--surface); border-top:1px solid var(--line); gap:12px; align-items:center; justify-content:space-between}
+    .mcta .t{font-size:.8rem; line-height:1.3}
+    .mcta .btn{padding:.7em 1em; font-size:.92rem}
+    .mcta[hidden]{display:none !important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ONE PLACE TO EDIT DATES, PRICES AND CHECKOUT LINKS.
+     Everything on the page reads from this block.
+
+     The page picks its state from the clock (visitor's device time,
+     compared against the ET timestamps below):
+       before earlyBirdEnds   -> "early":  $147 / $297, early-bird checkouts,
+                                           bar counts down to the early-bird end
+       before liveBuildStarts -> "build":  $247 / $397, regular checkouts,
+                                           bar counts down to Event 2 (the
+                                           hands-on build, the one to be live for)
+       before doorsClose      -> "final":  $247 / $397, bar counts down to
+                                           doors close (noon, before Event 3)
+       after doorsClose       -> "closed": no buy buttons, "doors are closed";
+                                           if closedRedirect is set, the page
+                                           sends visitors there instead
+     ("regular" in data-show = build or final.)
+     It also switches live if someone has the page open at a deadline.
+
+     TODO before publishing (Puja): create the four ONE-TIME Circle
+     checkouts (all attached to the "Workshop Pass" access group) and
+     paste their URLs below. Turn off the two early-bird checkouts in
+     Circle after Mon Oct 12 11:59 PM ET (the page stops linking to
+     them on its own, but an old link in an email would still work).
+     ============================================================ -->
+<script>
+  window.SBW = {
+    // Titles match the Circle events Puja created (Circle title for Event 3: "SECOND BRAIN WORKSHOP").
+    e1Name: "Deep Dive: Making Decisions with Data",   e1Date: "Monday, October 19",   e1Short: "Mon Oct 19", e1Time: "2:00 to 3:00 PM ET",
+    e2Name: "Technical Workshop: Data Visualization",  e2Date: "Thursday, October 22", e2Short: "Thu Oct 22", e2Time: "2:00 to 3:30 PM ET",
+    e3Name: "The Second Brain Workshop",               e3Date: "Monday, October 26",   e3Short: "Mon Oct 26", e3Time: "2:00 PM ET",
+    time: "2:00 PM ET",
+
+    earlyBirdEnds:   "2026-10-12T23:59:00-04:00",       // Mon Oct 12, 11:59 PM ET (EDT)
+    earlyBirdLabel:  "Monday, October 12 at 11:59 PM ET",
+    earlyBirdShort:  "Mon Oct 12",
+    liveBuildStarts: "2026-10-22T14:00:00-04:00",       // Thu Oct 22, 2:00 PM ET: Event 2, the hands-on build
+    liveBuildLabel:  "Thursday, October 22 at 2:00 PM ET",
+    liveBuildShort:  "Thu Oct 22",
+    doorsClose:      "2026-10-26T12:00:00-04:00",       // Mon Oct 26, 12:00 PM ET: doors close two hours before Event 3 (Puja, Oct 6)
+    doorsLabel:      "Monday, October 26 at 12:00 PM ET",
+
+    pricePassEarly: 147, priceOpmapEarly: 297,          // until earlyBirdEnds
+    pricePass:      247, priceOpmap:      397,          // from Tue Oct 13 until doorsClose
+
+    checkoutPassEarly:  "https://aios-with-puja-patel.circle.so/checkout/second-brain-workshop-series-workshop-pass?coupon_code=EARLYBIRD",   // $147 one-time Workshop Pass, early bird (without OpMap)
+    checkoutOpmapEarly: "https://aios-with-puja-patel.circle.so/checkout/second-brain-workshop-series-personalized-pass?coupon_code=EARLYBIRD",   // $297 one-time Personalized Pass, early bird (with OpMap)
+    checkoutPass:       "https://aios-with-puja-patel.circle.so/checkout/second-brain-workshop-series-workshop-pass",   // $247 one-time Workshop Pass (without OpMap)
+    checkoutOpmap:      "https://aios-with-puja-patel.circle.so/checkout/second-brain-workshop-series-personalized-pass",   // $397 one-time Personalized Pass (with OpMap)
+
+    vslEmbed: "",             // Loom/YouTube EMBED url for the VSL (see vsl_script.md). Empty = no video block.
+    closedRedirect: ""        // Optional: after doorsClose, send visitors here (e.g. the free-session page). Empty = show the closed state.
+  };
+</script>
+
+<div class="bar" role="region" aria-label="Countdown">
+  <div class="bar-in">
+    <div class="bar-left">
+      <span class="bar-label" data-show="early">Early bird ends in</span>
+      <span class="bar-label" data-show="build">Live build starts in</span>
+      <span class="bar-label" data-show="final">Doors close in</span>
+      <span class="bar-label" data-show="closed">Doors are closed for this series</span>
+      <span class="clock" data-show="open" aria-live="off"><span id="cd-d">00</span><small>D</small><span id="cd-h">00</span><small>H</small><span id="cd-m">00</span><small>M</small><span id="cd-s">00</span><small>S</small></span>
+    </div>
+    <a class="btn" href="#join" data-show="open">Get my ticket →</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">The Second Brain Workshop Series · 3 live events for expert owners</span>
+      <h1>Your business runs on what you know. That's exactly why it still runs through you.</h1>
+      <p class="lede">For established experts who sell what they know: consultants, coaches, advisors and agency owners with years of judgment in their heads. You already use AI. It hasn't given you your time back, because it doesn't know how your business actually runs. Three live events at the intersection of operations, data and AI change that: see your numbers clearly, write down how your business runs once, then hand the repeatable parts to AI.</p>
+      <ul class="herofit">
+        <li>You've spent 10+ years getting very good at what you do, and clients pay for your judgment</li>
+        <li>Every pricing call, proposal and "how do we do this?" still comes back to you</li>
+        <li>You already use ChatGPT or Claude, and you're done with the hype</li>
+      </ul>
+      <div class="dates">
+        <div><b>Event 1</b><span class="en" data-f="e1Name"></span><span data-f="e1Short"></span> · <span data-f="time"></span></div>
+        <div><b>Event 2</b><span class="en" data-f="e2Name"></span><span data-f="e2Short"></span> · <span data-f="time"></span></div>
+        <div><b>Event 3</b><span class="en" data-f="e3Name"></span><span data-f="e3Short"></span> · <span data-f="time"></span></div>
+      </div>
+      <a class="btn big" href="#join" data-show="open">Get my ticket →</a>
+      <p class="closed-msg" data-show="closed">Doors are closed for this series.</p>
+    </div>
+    <figure class="portrait">
+      <img src="/assets/puja.jpg" alt="Puja Patel" width="640" height="800">
+      <figcaption>Puja Patel · 100+ businesses mapped</figcaption>
+    </figure>
+  </div>
+  <div class="wrap" id="vsl" hidden><div class="video"><iframe id="vsl-frame" title="Watch: the three events in 3 minutes" allowfullscreen loading="lazy"></iframe></div></div>
+</header>
+
+<!-- PROOF WALL -->
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">In their words</span>
+    <h2>What owners say when they finally see their business on one page.</h2>
+    <!-- TODO (Puja): add screenshots of the chat from the Oct 26 room here, like Callan's Zoom-chat wall. Real messages only. -->
+    <div class="quotes">
+      <div class="q"><p>“I'm impressed with how quickly this creates clarity. A clear view of what's happening operationally, where the bottlenecks are, and what needs to happen next.”</p><div class="who">Hector · consulting company owner</div></div>
+      <div class="q"><p>“Just the thought of taking everything out is overwhelming to me... I didn't realize I had 12 systems until I did your map... It was so easy to use, it understood it so quickly. This is so fun.”</p><div class="who">Shivani · events company owner</div></div>
+      <div class="q"><p>“I was looking for a place where I can actually implement and learn the things I see online. This is one of the only places where I got the help MY business needed and not some generic course or template.”</p><div class="who">Jane · marketing agency owner</div></div>
+      <div class="q"><p>“Everything lives in such silos; I've created the same documents probably 500 times... I see it. I know that I can be more productive and help a lot of people in the process.”</p><div class="who">Nuala · coaching business owner</div></div>
+      <div class="q"><p>“Love your program. This is gold. It brings so much clarity. Very valuable.”</p><div class="who">Jonathan · entrepreneur</div></div>
+      <!-- New quotes pulled Sep 29 from Otter / Drive transcripts (verbatim, trims marked "..."). Puja to approve each before publishing. -->
+      <div class="q"><p>“I'll be honest with you. I was very skeptical... you had really insightful questions like already built in... it definitely had a lot more practical recommendations than like fluff.”</p><div class="who">Salman · founding member</div></div>
+      <div class="q"><p>“I'm really impressed... the software came up with steps... and some were like, 'Oh, yeah... that would be great if I did that.'”</p><div class="who">Dave · IT and network security company, five teams</div></div>
+      <div class="q"><p>“We really enjoy your take as well because it's like what's actually helping the small business owner.”</p><div class="who">CJ · CPA firm owner</div></div>
+      <div class="q"><p>“See, this is where I would have stopped and been like, 'It's broken.' I would not have clicked that five times in a row.”</p><div class="who">Nikki · PR and marketing, said live in a workshop</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section>
+  <div class="wrap narrow">
+    <span class="eyebrow">The real problem</span>
+    <h2>You don't need more AI. You need your week back.</h2>
+    <p>You've spent years getting very good at what you do, and clients come to you for it. And somehow everything still routes through you: the pricing calls, the follow-ups, the client updates, every "how do we do this?", the numbers you pull together at 10pm to figure out if last month was actually good.</p>
+    <p>If your business only works because you remember everything, it isn't a system yet. It's folklore. Nobody else can do it your way, because your way only exists in your head.</p>
+    <p>Meanwhile every week there's a new AI tool, a new "agent," a new thing you're supposedly behind on. You already use ChatGPT or Claude. It's useful. It hasn't given you a single hour back, and it never sticks to the business.</p>
+    <p>That's not because AI doesn't work. AI only knows what you paste into a chat, and AI on top of a scattered business just makes the mess move faster. Simplify first. Write it down once. That's what these three events build.</p>
+  </div>
+</section>
+
+<!-- THE METHOD: OPERATIONS x DATA x AI -->
+<section class="alt">
+  <div class="wrap">
+    <div class="narrow" style="padding:0">
+      <span class="eyebrow">Operations × Data × AI</span>
+      <h2>Why it takes all three.</h2>
+      <p>Most advice picks one. Fix your processes. Track your numbers. Use AI. On its own, each one stalls, and I've watched it happen in business after business I've mapped:</p>
+    </div>
+    <div class="tri">
+      <div><div class="k">Operations without data</div><p>You fix whatever feels most urgent, not what's actually costing you. Without the numbers, you're guessing which part of the business to fix first.</p></div>
+      <div><div class="k">Data without operations</div><p>Dashboards nobody acts on. The numbers tell you something's off, but if how the work gets done only lives in your head, nothing changes.</p></div>
+      <div><div class="k">AI without either</div><p>AI only knows what you put in front of it. On top of a scattered business, it just makes the mess move faster.</p></div>
+    </div>
+    <div class="narrow" style="padding:28px 0 0">
+      <p>Put together, each one has a job. <b>Operations</b> is how the work actually gets done, written down once in your second brain. <b>Data</b> is how you see it: what's working, what's leaking and where your hours go. <b>AI</b> is how you hand it off, and because the work is written down and measured, you can tell if it's actually helping.</p>
+      <p>That's why the series starts with your numbers. They show you where your operations really need work, so you simplify the right thing before you automate it. This is the same order I use with my consulting clients, and it's why the builds stick.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT TAKES OFF YOUR PLATE -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">What your second brain takes off your plate</span>
+    <h2>The work that eats your week, handled. And what it's worth.</h2>
+    <ul class="runs">
+      <li><b>Follow-ups</b>Drafted from what actually happened on the call, ready to send.<span class="res">→ Leads hear back the same day. Fewer deals go quiet.</span></li>
+      <li><b>Proposals and quotes</b>Built from your past wins, your pricing and your voice.<span class="res">→ Out the same day as the call, while they're still excited.</span></li>
+      <li><b>Your numbers, every Monday</b>Revenue, pipeline and cash pulled into one brief.<span class="res">→ You know if the month is on track before it's over.</span></li>
+      <li><b>The weekly client report</b>Last week's notes in, this week's report out.<span class="res">→ Your Friday afternoon back.</span></li>
+      <li><b>SOPs rewritten as instructions</b>Written once, followed every time.<span class="res">→ Your team stops asking you how.</span></li>
+      <li><b>Client emails in your voice</b>Learned from the last twenty you sent.<span class="res">→ Replies that sound like you, without you writing them.</span></li>
+      <li><b>Onboarding</b>Every new client gets the same great first week.<span class="res">→ Delivery that doesn't depend on you remembering.</span></li>
+      <li><b>Content from what you already made</b>Old lives, calls and posts turned into new pieces.<span class="res">→ Marketing that keeps going while you're busy delivering.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- THE THREE EVENTS -->
+<section class="alt" id="events">
+  <div class="wrap">
+    <span class="eyebrow">The three events</span>
+    <h2>Three live events. Each one leaves you with something running.</h2>
+    <p class="soft" style="max-width:62ch">Every event is a working session on your business, not a presentation. The order is on purpose: first how to collect and decide with your data, then your numbers on one screen, then the second brain that holds how your business runs, with your numbers in it. You build while I build, and you leave each one with a result you can use the next morning.</p>
+    <p class="prework"><b>Before Event 2.</b> Right after you join, you get a short guide to set up Claude and the Second Brain Starter Kit. Do both before <span data-f="liveBuildLabel"></span> and you're ready to build along, even if you're new to Claude.</p>
+    <div class="events">
+
+      <div class="ev">
+        <div class="ev-side">
+          <div class="num">Event 1 · Data</div>
+          <div class="name" data-f="e1Name"></div>
+          <div class="dt"><b data-f="e1Date"></b><span data-f="e1Time"></span> · live</div>
+        </div>
+        <div class="ev-main">
+          <h3>How to collect, read and decide with your data.</h3>
+          <p>Most owners have their data spread across five tools and make the big calls from memory and a gut feeling. In this deep dive you learn how to collect the data your business already produces, how to analyze it without a data team, and how to turn it into decisions. Then we look at where it can work in your business: sales, delivery, cash and your own time.</p>
+          <div class="ev-out">
+            <div><b>You leave with</b>A clear way to collect, analyze and make decisions with your data, and where it can be put to work in your business.</div>
+            <div><b>The business result</b>Decisions made from your numbers, not your gut.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev">
+        <div class="ev-side">
+          <div class="num">Event 2 · Data + AI</div>
+          <div class="name" data-f="e2Name"></div>
+          <div class="dt"><b data-f="e2Date"></b><span data-f="e2Time"></span> · live</div>
+        </div>
+        <div class="ev-main">
+          <h3>Your numbers on one screen, built live.</h3>
+          <p>We build a live dashboard of your own numbers in Claude, step by step, screen shared. Revenue, pipeline, cash, or whatever Event 1 showed matters most to you. No code background needed. This is the hands-on build, so it's the one to be live for: you build yours while I build mine, and we fix anything that breaks right there.</p>
+          <div class="ev-out">
+            <div><b>You leave with</b>A dashboard of your own numbers that you can open any time.</div>
+            <div><b>The business result</b>You know if the month is on track before it's over.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev">
+        <div class="ev-side">
+          <div class="num">Event 3 · Operations + AI</div>
+          <div class="name" data-f="e3Name"></div>
+          <div class="dt"><b data-f="e3Date"></b><span data-f="e3Time"></span> · live</div>
+        </div>
+        <div class="ev-main">
+          <h3>Get your business out of your head.</h3>
+          <p>We map where your hours actually go and find the one workflow costing you the most. We cut it down to the simplest version. Then we build your second brain: how you price, sell, deliver and talk to clients, written down once, so Claude works from how your business really runs instead of guessing. The numbers from Events 1 and 2 go in too.</p>
+          <div class="ev-out">
+            <div><b>You leave with</b>Your second brain set up and your first workflow running.</div>
+            <div><b>The business result</b>The work stops routing through you.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY LIVE -->
+<section class="dark">
+  <div class="wrap">
+    <span class="eyebrow">Why come live</span>
+    <h2>It's a workshop, not a webinar.</h2>
+    <p class="soft" style="max-width:62ch">No slides for an hour and a pitch at the end. It's informal, it's hands-on, and it's the closest thing to sitting next to me while I build.</p>
+    <ul class="live">
+      <li><b>Laptops open</b><span>You build along with me in real time, on your own business.</span></li>
+      <li><b>Hot seats</b><span>I pull real businesses from the room onto my screen and work on them live.</span></li>
+      <li><b>Questions answered in the moment</b><span>Stuck on a step? Ask in the chat and we fix it right there.</span></li>
+      <li><b>Experts like you</b><span>See how other owners who sell their know-how set theirs up. The best ideas come from the room.</span></li>
+    </ul>
+    <!-- Verbatim from the Sep 28 workshop (Otter 1:11:00); Puja to spot-check the recording before publishing. -->
+    <blockquote class="pull">“Once you have your files in order, this is kind of like magic... this is so wild to see like all my on decks and things that I haven't done, things that I need to do.”<cite>Christopher · consultant · said live in the Sep 28 workshop</cite></blockquote>
+    <div class="recnote">Every event is recorded and the recordings are yours to keep, so you'll never miss anything. But the hot seats, the chat and the back-and-forth only happen live, and Event 2 is a hands-on build that works best done alongside me. Come live if you can.</div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="join">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Choose your ticket</span>
+      <h2>One payment. Three live events. Yours to keep.</h2>
+      <p class="soft">Not a subscription. Pick how personal you want it to be.</p>
+      <p class="eb-banner" data-show="early"><b>Early bird</b> until <span data-f="earlyBirdLabel"></span>. From Tuesday, October 13 the tickets are <span data-price="passRegular"></span> and <span data-price="opmapRegular"></span>.</p>
+    </div>
+    <div class="tiers">
+
+      <div class="tier">
+        <div class="tname">Without OpMap</div>
+        <h3>Workshop Pass</h3>
+        <p class="sub">All three events, the recordings, and the tools to build along.</p>
+        <div class="pr"><s data-show="early" data-price="passRegular"></s><span class="now" data-price="pass"></span><span class="once">one time</span></div>
+        <p class="eb" data-show="early">Early bird until <span data-f="earlyBirdShort"></span>, then <span data-price="passRegular"></span></p>
+        <ul>
+          <li><span>Event 1: Making Decisions with Data, live</span><span class="v">$497 value</span></li>
+          <li><span>Event 2: Data Visualization, a live build</span><span class="v">$497 value</span></li>
+          <li><span>Event 3: The Second Brain Workshop, live</span><span class="v">$497 value</span></li>
+          <li><span>Recordings of all three events, yours to keep</span><span class="v">$297 value</span></li>
+          <li><span>Bonus: CLAUDE.md Setup Kit + Voice Extractor</span><span class="v">$97 value</span></li>
+        </ul>
+        <div class="total"><span>Total value</span><span>$1,885</span></div>
+        <a class="btn ghost big js-buy" data-tier="pass" data-show="open" href="#">Get the Workshop Pass →</a>
+        <span class="shut" data-show="closed">Doors are closed</span>
+      </div>
+
+      <div class="tier best">
+        <div class="badge">Most popular · Built on your business</div>
+        <div class="tname">With OpMap</div>
+        <h3>Personalized Pass</h3>
+        <p class="sub">Everything in the Workshop Pass, built around your business with OpMap.</p>
+        <div class="pr"><s data-show="early" data-price="opmapRegular"></s><span class="now" data-price="opmap"></span><span class="once">one time</span></div>
+        <p class="eb" data-show="early">Early bird until <span data-f="earlyBirdShort"></span>, then <span data-price="opmapRegular"></span></p>
+        <ul>
+          <li><span>Everything in the Workshop Pass</span><span class="v">$1,885 value</span></li>
+          <li class="plus"><span>Plus, personalized to you</span></li>
+          <li class="pz"><span>OpMap: your business mapped in 30 minutes</span><span class="v">$997 value</span></li>
+          <li class="pz"><span>A full workflow analysis: where your hours and money go</span><span class="v">$997 value</span></li>
+          <li class="pz"><span>Custom AI projects built around your bottlenecks, each tied to a business result</span><span class="v">$1,497 value</span></li>
+          <li class="pz"><span>Your 30-day plan of bite-sized tasks</span><span class="v">$297 value</span></li>
+          <li class="pz"><span>Live working sessions with me, Thursdays at 2pm ET through Nov 26</span><span class="v">$497 value</span></li>
+          <li class="pz"><span>Hot-seat priority at all three events</span><span class="v">$497 value</span></li>
+        </ul>
+        <div class="total"><span>Total value</span><span>$6,667</span></div>
+        <a class="btn big js-buy" data-tier="opmap" data-show="open" href="#">Get the Personalized Pass →</a>
+        <span class="shut" data-show="closed">Doors are closed</span>
+      </div>
+
+    </div>
+
+    <!-- ============================================================
+         GUARANTEE: UNDECIDED (Puja). To turn it on, delete the two
+         comment lines around the block below (and the matching FAQ
+         entry further down). Same wording everywhere: page, FAQ,
+         emails, VSL. Note: Event 1 is now Mon Oct 19, so anyone who
+         joins after it can't "come to Event 1 live". If you turn this
+         on, decide whether late buyers get it for Event 2 instead.
+    <div class="guarantee">
+      <b>Come to Event 1 risk-free</b>
+      <p>Come to Event 1 live. If it wasn't worth it, email me that night for a full refund.</p>
+    </div>
+         ============================================================ -->
+
+    <p class="fine center" data-show="open">Doors close <span data-f="doorsLabel"></span>. Recordings included on both tickets.</p>
+    <p class="closed-note" data-show="closed">Doors are closed for this series.</p>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="alt">
+  <div class="wrap">
+    <div class="narrow" style="padding:0">
+      <span class="eyebrow">Who it's for</span>
+      <h2>Built for experts whose business runs through their head.</h2>
+      <p>We believe in simplicity. Technology is there to create leverage in your business, not to experiment with every new tool the week it comes out. We use as few tools as possible, on purpose, and every one of them has a job.</p>
+    </div>
+    <div class="fit">
+      <div class="yes">
+        <h3>This is for you if</h3>
+        <ul>
+          <li>You sell your own expertise, and you've been doing it for years</li>
+          <li>Solo or with a team, the questions still come back to you, because the know-how lives with you</li>
+          <li>You already use ChatGPT or Claude. It's useful, but it doesn't stick to the business</li>
+          <li>Something is changing in the next few months (a launch, a move online, a growth goal) and the mess just got expensive</li>
+          <li>You want fewer tools doing more, and technology that gives you leverage instead of more to manage</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h3>It's not for you if</h3>
+        <ul>
+          <li>You're still figuring out what you sell</li>
+          <li>You're deeply technical and mostly want to experiment with the latest tools</li>
+          <li>You want a tour of 45 different AI apps. We go deep on a few that earn their place</li>
+          <li>You'd rather watch a course later than build it now</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine" style="margin-top:18px">You don't need to be technical, and you don't need to know where to click. I'll be on screen showing you. The skill here is knowing how you do your work, and you already know that better than anyone.</p>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section>
+  <div class="wrap founder">
+    <img src="/assets/puja.jpg" alt="Puja Patel" width="640" height="800" loading="lazy">
+    <div>
+      <span class="eyebrow">Who's running the room</span>
+      <h2>I'm Puja.</h2>
+      <div class="stat"><b>100+</b> businesses mapped</div>
+      <p>I help business owners get their business out of their own heads. I learned how by doing it to mine first.</p>
+      <p>I work where operations, data and AI meet. I've mapped more than 100 businesses, and the pattern is almost always the same: the whole thing runs on one person's head, the numbers live in five different places, and the AI tools they pay for don't touch either one.</p>
+      <p>My own business runs on a second brain I built for myself first. Clients, pipeline, content, cash. It's what lets me run the whole thing without being the bottleneck in it. That's exactly what I build with you in these three events. Not theory I packaged. The thing I actually use every day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="alt">
+  <div class="wrap narrow">
+    <span class="eyebrow">Questions</span>
+    <h2>Good to know before you join.</h2>
+    <details><summary>Is this a subscription?</summary><p>No. One payment, one time. You get all three events, the recordings, and everything in your ticket.</p></details>
+    <details><summary>I'm new to Claude. Can I keep up?</summary><p>Yes. Right after you join, you get a short guide to set up Claude and the Second Brain Starter Kit. Do both before Thursday's build and you're ready. Everything else I walk through on screen, step by step. You don't need to know where to click.</p></details>
+    <details><summary>What if I can't make it live?</summary><p>Every event is recorded and the recordings are yours to keep. Come live if you can, though. The hot seats and the questions in the room are where most things click.</p></details>
+    <details><summary>How does the early bird work?</summary><p>Until Monday, October 12 at 11:59 PM ET, the Workshop Pass is $147 and the Personalized Pass is $297. From Tuesday, October 13 they're $247 and $397. Same tickets, same events. Doors close Monday, October 26 at 12:00 PM ET, two hours before Event 3.</p></details>
+    <details><summary>Which ticket should I get?</summary><p>The Workshop Pass teaches you the method and you build along. The Personalized Pass builds it around your business: OpMap maps how your business runs, the workflow analysis finds what's costing you hours and money, and your projects are built around your bottlenecks. You're also invited to my Thursday live working sessions, and your OpMap access and the sessions run through Nov 26. If you want this done on your business rather than learned in general, get the Personalized Pass.</p></details>
+    <details><summary>What's OpMap?</summary><p>OpMap is a tool I created from the methodology I use with my consulting clients to map their businesses. Now you get the same process in a 30-minute conversation that lays out how your business actually runs, where your time goes, and what to fix first. It's included in the Personalized Pass.</p></details>
+    <details><summary>Do I need to be technical?</summary><p>No. The skill is knowing how you do your work and writing it down clearly. Everything technical, I walk through on screen, step by step.</p></details>
+    <details><summary>I don't want to give AI access to my whole business.</summary><p>You don't have to. It works with what you choose to put in front of it. You decide which files, which docs, which numbers. You start small with one thing, you check its work, and you only hand over more when you trust it. That's how we build in every event.</p></details>
+    <details><summary>Is this for beginners?</summary><p>It's built for experts already running a real business who use AI and want it to actually do something. You don't need to know where to click. I'll be on screen showing you. You do need a business to point it at.</p></details>
+    <details><summary>What happens after the three events?</summary><p>The recordings are yours to keep, and so is everything you built in your second brain. On the Personalized Pass, your OpMap access and the Thursday live working sessions run through Thursday, November 26. Nothing renews or bills again. If you want to keep building with me after that, I'll share how at the last event.</p></details>
+    <!-- GUARANTEE FAQ: UNDECIDED. Turn on together with the guarantee block above.
+    <details><summary>What if it isn't for me?</summary><p>Come to Event 1 live. If it wasn't worth it, email me that night for a full refund.</p></details>
+    -->
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="dark center">
+  <div class="wrap narrow">
+    <span class="eyebrow">3 live events · <span data-f="e1Short"></span> to <span data-f="e3Short"></span></span>
+    <h2>Get it out of your head. Get your week back.</h2>
+    <p class="soft" data-show="early">Early bird until <span data-f="earlyBirdShort"></span>, one time · Recordings included · Doors close <span data-f="doorsLabel"></span></p>
+    <p class="soft" data-show="regular">From <span data-price="pass"></span>, one time · Recordings included · Doors close <span data-f="doorsLabel"></span></p>
+    <p class="soft" data-show="closed">Doors are closed for this series.</p>
+    <a class="btn big" href="#join" style="margin-top:10px" data-show="open">Get my ticket →</a>
+  </div>
+</section>
+
+<footer>
+  The Second Brain Method · Puja Patel LLC · <a href="/">Home</a> · <a href="/privacy.html">Privacy</a>
+</footer>
+
+<div class="mcta" data-show="open">
+  <div class="t" data-show="early"><b>Early bird until <span data-f="earlyBirdShort"></span></b><br>From <span data-price="pass"></span> · one time</div>
+  <div class="t" data-show="build"><b>Live build <span data-f="liveBuildShort"></span>, 2 PM ET</b><br>From <span data-price="pass"></span> · one time</div>
+  <div class="t" data-show="final"><b>Last event <span data-f="e3Short"></span>, 2 PM ET</b><br>From <span data-price="pass"></span> · one time</div>
+  <a class="btn" href="#join">Get my ticket →</a>
+</div>
+
+<script>
+(function(){
+  var C = window.SBW;
+  var EB = new Date(C.earlyBirdEnds).getTime();
+  var CLOSE = new Date(C.doorsClose).getTime();
+
+  var BUILD = new Date(C.liveBuildStarts).getTime();
+
+  // early -> build (until Event 2 starts) -> final (until doors close) -> closed
+  function phaseAt(t){ return t >= CLOSE ? 'closed' : t >= BUILD ? 'final' : t >= EB ? 'build' : 'early'; }
+  function targetFor(phase){ return phase === 'early' ? EB : phase === 'build' ? BUILD : CLOSE; }
+  function money(n){ return '$' + n; }
+
+  // Static text fields
+  document.querySelectorAll('[data-f]').forEach(function(el){ el.textContent = C[el.getAttribute('data-f')] || ''; });
+  if (C.vslEmbed) { document.getElementById('vsl-frame').src = C.vslEmbed; document.getElementById('vsl').hidden = false; }
+
+  function render(phase){
+    var early = phase === 'early', open = phase !== 'closed';
+    if (!open && C.closedRedirect) { window.location.replace(C.closedRedirect); return; }
+    document.documentElement.setAttribute('data-phase', phase);
+
+    // Show/hide by phase. data-show lists the phases an element belongs to:
+    // "open" = any phase before doors close, "regular" = build or final.
+    var regular = phase === 'build' || phase === 'final';
+    document.querySelectorAll('[data-show]').forEach(function(el){
+      var tokens = el.getAttribute('data-show').split(' ');
+      el.hidden = !(tokens.indexOf(phase) > -1 || (open && tokens.indexOf('open') > -1) || (regular && tokens.indexOf('regular') > -1));
+    });
+
+    // Prices
+    var P = {
+      pass:  early ? C.pricePassEarly  : C.pricePass,
+      opmap: early ? C.priceOpmapEarly : C.priceOpmap,
+      passRegular: C.pricePass, opmapRegular: C.priceOpmap
+    };
+    document.querySelectorAll('[data-price]').forEach(function(el){ el.textContent = money(P[el.getAttribute('data-price')]); });
+
+    // Checkout links for the current price step
+    document.querySelectorAll('.js-buy').forEach(function(a){
+      var tier = a.getAttribute('data-tier');
+      var url = tier === 'opmap' ? (early ? C.checkoutOpmapEarly : C.checkoutOpmap)
+                                 : (early ? C.checkoutPassEarly  : C.checkoutPass);
+      a.setAttribute('data-url', url || '');
+      a.setAttribute('data-value', P[tier]);
+      a.href = url || '#';
+    });
+  }
+
+  document.querySelectorAll('.js-buy').forEach(function(a){
+    a.addEventListener('click', function(ev){
+      var url = a.getAttribute('data-url');
+      if (!url) { ev.preventDefault(); alert('Checkout link not set yet.'); return; }
+      try { fbq('track','InitiateCheckout',{value:Number(a.getAttribute('data-value')), currency:'USD', content_name:'SBW series ' + a.getAttribute('data-tier')}); } catch(e){}
+      try { clarity('event','checkout_click_' + a.getAttribute('data-tier')); } catch(e){}
+    });
+  });
+
+  var current = null;
+  function pad(n){ return (n<10?'0':'') + n; }
+  function tick(){
+    var now = Date.now(), phase = phaseAt(now);
+    if (phase !== current) { current = phase; render(phase); }
+    if (phase === 'closed') return false;
+    var s = Math.max(0, Math.floor((targetFor(phase) - now) / 1000));
+    document.getElementById('cd-d').textContent = pad(Math.floor(s/86400));
+    document.getElementById('cd-h').textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById('cd-m').textContent = pad(Math.floor(s%3600/60));
+    document.getElementById('cd-s').textContent = pad(s%60);
+    return true;
+  }
+  if (tick()) { var t = setInterval(function(){ if(!tick()) clearInterval(t); }, 1000); }
+})();
+</script>
+</body>
+</html>
