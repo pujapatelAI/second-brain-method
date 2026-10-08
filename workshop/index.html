@@ -319,6 +319,7 @@ var _cio = _cio || [];
     liveBuildShort:  "Thu Oct 22",
     doorsClose:      "2026-10-26T12:00:00-04:00",       // Mon Oct 26, 12:00 PM ET: doors close two hours before Event 3 (Puja, Oct 6)
     doorsLabel:      "Monday, October 26 at 12:00 PM ET",
+    guaranteeUntil:  "2026-10-19T14:00:00-04:00",       // Mon Oct 19, 2:00 PM ET: Event 1 starts; refund guarantee hides (Puja, Oct 8)
 
     pricePassEarly: 147, priceOpmapEarly: 297,          // until earlyBirdEnds
     pricePass:      247, priceOpmap:      397,          // from Tue Oct 13 until doorsClose
@@ -576,18 +577,14 @@ var _cio = _cio || [];
 
     </div>
 
-    <!-- ============================================================
-         GUARANTEE: UNDECIDED (Puja). To turn it on, delete the two
-         comment lines around the block below (and the matching FAQ
-         entry further down). Same wording everywhere: page, FAQ,
-         emails, VSL. Note: Event 1 is now Mon Oct 19, so anyone who
-         joins after it can't "come to Event 1 live". If you turn this
-         on, decide whether late buyers get it for Event 2 instead.
-    <div class="guarantee">
+    <!-- GUARANTEE: ON (Puja, Oct 8) for anyone who buys before Event 1.
+         Not offered after the first event: every [data-guarantee] element
+         (this block + the FAQ entry) hides itself at SBW.guaranteeUntil.
+         Same wording everywhere: page, FAQ, emails, VSL. -->
+    <div class="guarantee" data-guarantee>
       <b>Come to Event 1 risk-free</b>
       <p>Come to Event 1 live. If it wasn't worth it, email me that night for a full refund.</p>
     </div>
-         ============================================================ -->
 
     <p class="fine center" data-show="open">Doors close <span data-f="doorsLabel"></span>. Recordings included on both tickets.</p>
     <p class="fine center"><button type="button" class="mp-link" data-mp-open>Not ready for a ticket? Get the 10 business moves free</button></p>
@@ -658,11 +655,17 @@ var _cio = _cio || [];
     <details><summary>I don't want to give AI access to my whole business.</summary><p>You don't have to. It works with what you choose to put in front of it. You decide which files, which docs, which numbers. You start small with one thing, you check its work, and you only hand over more when you trust it. That's how we build in every event.</p></details>
     <details><summary>Is this for beginners?</summary><p>It's built for service providers already running a real business who use AI and want it to actually do something. You don't need to know where to click. I'll be on screen showing you. You do need a business to point it at.</p></details>
     <details><summary>What happens after the three events?</summary><p>The recordings are yours to keep, and so is everything you built in your second brain. On the Personalized Pass, you have two live working sessions with me on November 5 and November 12, and your OpMap access runs through Thursday, November 26. Nothing renews or bills again. If you want to keep building with me after that, I'll share how at the last event.</p></details>
-    <!-- GUARANTEE FAQ: UNDECIDED. Turn on together with the guarantee block above.
-    <details><summary>What if it isn't for me?</summary><p>Come to Event 1 live. If it wasn't worth it, email me that night for a full refund.</p></details>
-    -->
+    <details data-guarantee><summary>What if it isn't for me?</summary><p>Come to Event 1 live. If it wasn't worth it, email me that night for a full refund.</p></details>
   </div>
 </section>
+<script>
+// Guarantee only for buyers before Event 1 starts (Puja, Oct 8).
+(function(){
+  var until=new Date(window.SBW.guaranteeUntil).getTime();
+  function apply(){ var off=Date.now()>=until; document.querySelectorAll('[data-guarantee]').forEach(function(el){ el.hidden=off; }); return !off; }
+  if(apply()) setTimeout(apply, Math.min(until-Date.now(), 2147483647));
+})();
+</script>
 
 <!-- FINAL CTA -->
 <section class="dark center">
