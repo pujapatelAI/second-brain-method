@@ -258,12 +258,17 @@ fbq('track', 'PageView');
   .mp-form{display:grid; gap:12px; margin-top:6px}
   .mp-form label{display:block; font-size:.84rem; font-weight:700; margin-bottom:4px}
   .mp-form label .opt{font-weight:500; color:var(--ink-soft)}
-  .mp-form input[type=text], .mp-form input[type=email]{width:100%; box-sizing:border-box; padding:.75em .85em; border:1px solid var(--line); border-radius:2px; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:1rem}
+  .mp-form input[type=text], .mp-form input[type=email], .mp-form input[type=tel]{width:100%; box-sizing:border-box; padding:.75em .85em; border:1px solid var(--line); border-radius:2px; background:var(--ground); color:var(--ink); font-family:var(--font-body); font-size:1rem}
   .mp-form input:focus{outline:2px solid var(--accent); outline-offset:1px}
   .mp-form .btn{width:100%; margin-top:4px}
   .mp .fine{margin-top:10px; text-align:center}
   .mp-hp{position:absolute; left:-9999px; width:1px; height:1px; opacity:0}
   .mp-done h2{color:var(--accent)}
+  .mp-tel{border:1px solid var(--line); border-radius:4px; background:var(--ground); padding:16px 16px 6px; margin:0 0 18px}
+  .mp-tel p{margin:0 0 10px}
+  .mp-tel .fine{text-align:left; margin-top:8px; font-size:.78rem}
+  .mp-err{color:var(--accent); font-size:.86rem; margin:0}
+  .mp-err[hidden], .mp-tel-form[hidden]{display:none}
   .mp-link{background:none; border:0; padding:0; color:var(--accent); font:inherit; font-size:.9rem; text-decoration:underline; cursor:pointer}
 </style>
 <script>
@@ -765,7 +770,11 @@ var _cio = _cio || [];
      Source attribute business_moves_channel: "pop up" (auto-opened) or "under ticket"
      (opened from the link under the tickets). TikTok DATA leads are "dm".
      Shows once per visitor: exit intent on desktop (after 8s), 30s or 55% scroll on
-     phones; never after a ticket click. -->
+     phones; never after a ticket click.
+     Step 2 (optional, after the email is in): mobile number for reminder texts and a
+     call from the team. Stored as sbw_phone (+E.164), NOT the `phone` identifier,
+     which Customer.io rejects on bad or duplicate values. Toll-free and 555 numbers
+     are refused in the browser. -->
 <div class="mp-back" id="mp" hidden>
   <div class="mp" role="dialog" aria-modal="true" aria-labelledby="mp-title">
     <button type="button" class="mp-x" aria-label="Close" data-mp-close>&times;</button>
@@ -788,6 +797,16 @@ var _cio = _cio || [];
     <div class="mp-done" hidden role="status" aria-live="polite">
       <h2>You're in<span class="mp-done-name"></span>.</h2>
       <p>The 10 moves are on their way to your inbox. Give it about 15 minutes.</p>
+      <div class="mp-tel">
+        <form class="mp-form mp-tel-form" novalidate>
+          <p><b>Want a text before the deadline and on event days?</b> Add your number and I'll send you a quick heads-up.</p>
+          <div><label for="mp-phone">Mobile number <span class="opt">(optional)</span></label><input type="tel" id="mp-phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="24"></div>
+          <p class="mp-err" hidden>That doesn't look like a mobile number. Outside the US? Start with + and your country code.</p>
+          <button class="btn" type="submit">Text me the reminders →</button>
+        </form>
+        <p class="mp-tel-ok" hidden><b>Got it.</b> I'll text you before the deadline.</p>
+        <p class="fine">By adding your number, you agree to get texts and calls from Puja Patel and her team about the workshop series. Msg &amp; data rates may apply. Reply STOP anytime.</p>
+      </div>
       <p>Want to start now? Move 1 shows where your hours actually go.</p>
       <a class="btn" href="/moves/">Open the 10 moves →</a>
     </div>
@@ -841,8 +860,45 @@ var _cio = _cio || [];
       try{ fetch('https://formsubmit.co/ajax/info@puja-patel.com',{ method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form), keepalive:true }).catch(function(){}); }catch(err){}
     }
     mark('optin');
+    lead={ email:email, first:first, real:!form._honey.value };
     back.querySelector('.mp-view').hidden=true;
     var d=back.querySelector('.mp-done'); d.querySelector('.mp-done-name').textContent=', '+first; d.hidden=false;
+  });
+
+  // Step 2: optional mobile number. +E.164 out, '' for anything that can't take a text.
+  var lead=null, tel=back.querySelector('.mp-tel-form');
+  function normPhone(v){
+    var s=(v||'').trim(), d=s.replace(/\D/g,'');
+    if(s.charAt(0)==='+' && d.charAt(0)!=='1') return /^\d{8,15}$/.test(d) ? '+'+d : '';
+    if(d.length===10) d='1'+d;
+    if(d.length!==11 || d.charAt(0)!=='1') return '';
+    var area=d.substr(1,3), exch=d.substr(4,3);
+    if(/^[01]/.test(area) || /^[01]/.test(exch) || exch==='555') return '';
+    if(/^(800|833|844|855|866|877|888|900)$/.test(area)) return '';
+    return '+'+d;
+  }
+  tel.addEventListener('submit', function(e){
+    e.preventDefault();
+    var err=tel.querySelector('.mp-err'), p=normPhone(tel.phone.value);
+    if(!p){ err.hidden=false; tel.phone.focus(); return; }
+    err.hidden=true;
+    if(lead && lead.real){
+      var ts=Math.floor(Date.now()/1000);
+      try{ clarity('event','moves_popup_phone'); }catch(x){}
+      try{
+        if(window._cio){
+          _cio.identify({ id:lead.email, email:lead.email, sbw_phone:p, sbw_phone_optin_at:ts, sbw_phone_channel:via });
+          _cio.track('sbw_phone_optin',{ page:'workshop', channel:via });
+        }
+      }catch(x){}
+      try{
+        var fd=new FormData();
+        fd.append('_subject','Business Moves: phone added (workshop pop-up)'); fd.append('_captcha','false');
+        fd.append('first_name',lead.first); fd.append('email',lead.email); fd.append('phone',p); fd.append('form_source',via);
+        fetch('https://formsubmit.co/ajax/info@puja-patel.com',{ method:'POST', headers:{'Accept':'application/json'}, body:fd, keepalive:true }).catch(function(){});
+      }catch(x){}
+    }
+    tel.hidden=true; back.querySelector('.mp-tel-ok').hidden=false;
   });
 })();
 </script>
