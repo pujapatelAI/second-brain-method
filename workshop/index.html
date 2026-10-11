@@ -739,12 +739,29 @@ var _cio = _cio || [];
     });
   }
 
+  // First-touch UTMs: same 'sbm_utm' key and format as the home page, so either page can set it.
+  var UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_content'];
+  function utmFrom(q){ var o = {}; UTM_KEYS.forEach(function(k){ if (q.get(k)) o[k] = q.get(k); }); return o; }
+  try {
+    var landing = utmFrom(new URLSearchParams(location.search));
+    if (Object.keys(landing).length && !localStorage.getItem('sbm_utm')) localStorage.setItem('sbm_utm', JSON.stringify(landing));
+  } catch(e){}
+
   document.querySelectorAll('.js-buy').forEach(function(a){
     a.addEventListener('click', function(ev){
       var url = a.getAttribute('data-url');
       if (!url) { ev.preventDefault(); alert('Checkout link not set yet.'); return; }
       try { fbq('track','InitiateCheckout',{value:Number(a.getAttribute('data-value')), currency:'USD', content_name:'SBW series ' + a.getAttribute('data-tier')}); } catch(e){}
       try { clarity('event','checkout_click_' + a.getAttribute('data-tier')); } catch(e){}
+      // Ticket-click source: this URL's UTMs if it has any, else the stored first-touch ones.
+      try {
+        if (window._cio) {
+          var q = new URLSearchParams(location.search), u = utmFrom(q);
+          if (!Object.keys(u).length) { try { u = JSON.parse(localStorage.getItem('sbm_utm') || '{}') || {}; } catch(x){ u = {}; } }
+          _cio.track('sbw_checkout_click', {tier:a.getAttribute('data-tier'), value:Number(a.getAttribute('data-value')), page:'workshop',
+            utm_source:u.utm_source||'', utm_medium:u.utm_medium||'', utm_campaign:u.utm_campaign||'', utm_content:u.utm_content||'', has_fbclid:q.has('fbclid')});
+        }
+      } catch(e){}
     });
   });
 
