@@ -872,7 +872,9 @@ document.addEventListener('submit', function (e) {
 </div>
 <script>
 (function(){
-  var KEY='moves_popup_seen_v1', back=document.getElementById('mp'); if(!back) return;
+  var KEY='moves_popup_seen_home_v1', back=document.getElementById('mp'); if(!back) return;
+  // Separate key from /workshop/ so a pop-up seen there doesn't hide this one; only an actual opt-in there does.
+  try{ if(localStorage.getItem('moves_popup_seen_v1')==='optin') localStorage.setItem(KEY,'optin'); }catch(e){}
   var form=back.querySelector('.mp-form'), shown=false, t0=Date.now(), via='pop up';
   function seen(){ try{ return !!localStorage.getItem(KEY); }catch(e){ return false; } }
   function mark(v){ try{ localStorage.setItem(KEY, v||String(Date.now())); }catch(e){} }
@@ -889,15 +891,12 @@ document.addEventListener('submit', function (e) {
   document.querySelectorAll('[data-mp-open]').forEach(function(b){ b.addEventListener('click', function(){ open(true); }); });
   // Never interrupt a buyer: a ticket click switches the auto pop-up off.
   document.querySelectorAll('a.js-buy, a[href*="checkout"]').forEach(function(a){ a.addEventListener('click', function(){ mark('bought_click'); shown=true; }); });
-  var touch = window.matchMedia && window.matchMedia('(hover: none)').matches;
-  if(!touch){
-    document.addEventListener('mouseout', function(e){ if(!e.relatedTarget && e.clientY<=0 && Date.now()-t0>8000) open(false); });
-  } else {
-    setTimeout(function(){ open(false); }, 30000);
-    window.addEventListener('scroll', function(){
-      var h=document.documentElement; if((h.scrollTop+window.innerHeight)/h.scrollHeight>0.55) open(false);
-    }, {passive:true});
-  }
+  // Homepage: exit intent on desktop, plus 30s or 55% scroll on every device.
+  document.addEventListener('mouseout', function(e){ if(!e.relatedTarget && e.clientY<=0 && Date.now()-t0>8000) open(false); });
+  setTimeout(function(){ open(false); }, 30000);
+  window.addEventListener('scroll', function(){
+    var h=document.documentElement; if((h.scrollTop+window.innerHeight)/h.scrollHeight>0.55) open(false);
+  }, {passive:true});
   form.addEventListener('submit', function(e){
     var email=(form.email.value||'').trim(), first=(form.first_name.value||'').trim();
     if(!email || email.indexOf('@')<1 || !first) return;
