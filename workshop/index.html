@@ -849,6 +849,12 @@ var _cio = _cio || [];
   back.addEventListener('click', function(e){ if(e.target===back || e.target.hasAttribute('data-mp-close')) close(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !back.hidden) close(); });
   document.querySelectorAll('[data-mp-open]').forEach(function(b){ b.addEventListener('click', function(){ open(true); }); });
+  // Already opted in elsewhere: Meta lead-form thank-you (utm_source=meta, utm_medium=paid)
+  // or the /moves freebie bridge (utm_medium=freebie). No auto pop-up, now or on later visits.
+  try{
+    var q=new URLSearchParams(window.location.search), src=(q.get('utm_source')||'').toLowerCase(), med=(q.get('utm_medium')||'').toLowerCase();
+    if((src==='meta' && med==='paid') || med==='freebie'){ mark('already_optin'); shown=true; }
+  }catch(e){}
   // Never interrupt a buyer: a ticket click switches the auto pop-up off.
   document.querySelectorAll('a.js-buy, a[href*="checkout"]').forEach(function(a){ a.addEventListener('click', function(){ mark('bought_click'); shown=true; }); });
   var touch = window.matchMedia && window.matchMedia('(hover: none)').matches;
