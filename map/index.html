@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Systems Map · Puja Patel</title>
+<style>
+  :root{
+    --ground:#EFE8DE; --surface:#FBF7F1; --ink:#2A2320; --ink-soft:#8A7C6E;
+    --line:#DED3C4; --accent:#A24A28; --accent-bright:#B0532F; --on-accent:#FBF7F1;
+    --footer-bg:#392C22; --footer-ink:#EFE8DE;
+    --s1:#C4772E; --s1-bg:#FBE7CE;
+    --s2:#3E7C93; --s2-bg:#D9EAF0;
+    --s3:#5E9A44; --s3-bg:#DEF0D6;
+    --s4:#7E5AA6; --s4-bg:#E9DFF4;
+    --s5:#B24A63; --s5-bg:#F6E0E6;
+    --s6:#2F8F8A; --s6-bg:#D5EEEC;
+    --s7:#A8841C; --s7-bg:#F4EBC6;
+    --s8:#4A5BA6; --s8-bg:#E1E4F3;
+    --s9:#7A4E86; --s9-bg:#EADEEF;
+    --s10:#2F7E8C; --s10-bg:#D8E9ED;
+    --s11:#8C5A2B; --s11-bg:#F0E2D2;
+    --s12:#B0532F; --s12-bg:#F6E0D6;
+    --s13:#39708A; --s13-bg:#D7E7EE;
+    --s14:#5F7A3A; --s14-bg:#E4EDD3;
+    --s15:#B5563A; --s15-bg:#F5E1D8;
+    --s16:#4A6E8A; --s16-bg:#DCE8EF;
+    --s17:#9A4E6E; --s17-bg:#F1DDE6;
+    --s18:#3E7A57; --s18-bg:#D8EADF;
+    --dot:#D8CCBB;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1140px;margin:0 auto;padding:40px 20px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-size:clamp(30px,6vw,44px);line-height:1.1;margin-bottom:14px}
+  .lead{font-size:18.5px;max-width:730px}
+  .muted{color:var(--ink-soft)}
+  p{margin-bottom:14px}
+  a{color:var(--accent)}
+  .hint{font-size:13px;color:var(--ink-soft);margin:18px 0 6px}
+
+  /* ── the canvas (whiteboard) ── */
+  .canvas{background:var(--surface);
+    background-image:radial-gradient(circle, var(--dot) 1.4px, transparent 1.4px);
+    background-size:24px 24px;background-position:-2px -2px;
+    border:1px solid var(--line);border-radius:10px;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    padding:56px 34px 34px;margin:8px 0}
+  .flow{display:flex;align-items:flex-start;width:max-content;min-height:440px}
+  .section{display:flex;flex-direction:column;align-items:stretch}
+  .banner{height:34px;display:flex;align-items:center;justify-content:flex-start;padding-left:22px;white-space:nowrap;
+    background:var(--sc-bg);border:1.5px solid var(--sc);color:var(--sc);border-radius:20px;
+    font-size:11px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;padding:0 16px;margin-bottom:14px}
+  .srow{align-self:center;display:flex;align-items:center}
+  .node{position:relative;display:flex;flex-direction:column;align-items:center}
+  .box{width:150px;min-height:76px;display:flex;align-items:center;justify-content:center;text-align:center;
+    background:var(--sc-bg);border:1.5px solid var(--sc);border-radius:9px;padding:9px 11px;
+    font-size:12.5px;line-height:1.32;color:var(--ink)}
+  .arrow{color:var(--ink-soft);font-size:20px;line-height:1;padding:0 8px;flex:0 0 auto}
+  .xarrow{margin-top:70px;color:var(--ink-soft);font-size:22px;padding:0 6px;flex:0 0 auto}
+
+  /* drop-tree hanging below a node */
+  .drop{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);width:174px;
+    display:flex;flex-direction:column;align-items:center}
+  .drop::before{content:'';position:absolute;top:-14px;left:50%;width:2px;height:14px;background:var(--sc)}
+  .dhead{width:100%;text-align:center;background:#fff;border:1.5px solid var(--sc);border-radius:8px;
+    padding:7px 9px;font-size:12px;font-weight:600;color:var(--ink);margin-bottom:2px}
+  .dstem{width:2px;height:12px;background:var(--sc)}
+  .ditems{align-self:flex-start;margin-left:22px;border-left:2px solid var(--sc);padding-left:14px;
+    display:flex;flex-direction:column;gap:8px}
+  .ditem{position:relative;background:#fff;border:1.5px solid var(--sc);border-radius:7px;
+    padding:6px 9px;font-size:11.5px;line-height:1.25;color:var(--ink)}
+  .ditem::before{content:'';position:absolute;left:-16px;top:50%;width:14px;height:2px;background:var(--sc)}
+  .icp-tag{margin-top:9px;font-size:10.5px;font-style:italic;color:var(--ink-soft);text-align:center;width:100%}
+
+  .comingsoon{align-self:flex-start;margin-top:48px;width:118px;min-height:76px;display:flex;align-items:center;
+    justify-content:center;text-align:center;border:1.5px dashed var(--line);border-radius:9px;
+    color:var(--ink-soft);font-size:12px;padding:8px}
+
+  .section.s1{--sc:var(--s1);--sc-bg:var(--s1-bg)}
+  .section.s2{--sc:var(--s2);--sc-bg:var(--s2-bg)}
+  .section.s3{--sc:var(--s3);--sc-bg:var(--s3-bg)}
+  .section.s4{--sc:var(--s4);--sc-bg:var(--s4-bg)}
+  .section.s5{--sc:var(--s5);--sc-bg:var(--s5-bg)}
+  .section.s6{--sc:var(--s6);--sc-bg:var(--s6-bg)}
+  .section.s7{--sc:var(--s7);--sc-bg:var(--s7-bg)}
+  .section.s8{--sc:var(--s8);--sc-bg:var(--s8-bg)}
+  .section.s9{--sc:var(--s9);--sc-bg:var(--s9-bg)}
+  .section.s10{--sc:var(--s10);--sc-bg:var(--s10-bg)}
+  .section.s11{--sc:var(--s11);--sc-bg:var(--s11-bg)}
+  .section.s12{--sc:var(--s12);--sc-bg:var(--s12-bg)}
+  .section.s13{--sc:var(--s13);--sc-bg:var(--s13-bg)}
+  .section.s14{--sc:var(--s14);--sc-bg:var(--s14-bg)}
+  .section.s15{--sc:var(--s15);--sc-bg:var(--s15-bg)}
+  .section.s16{--sc:var(--s16);--sc-bg:var(--s16-bg)}
+  .section.s17{--sc:var(--s17);--sc-bg:var(--s17-bg)}
+  .section.s18{--sc:var(--s18);--sc-bg:var(--s18-bg)}
+
+  .foot{background:var(--footer-bg);color:var(--footer-ink);margin-top:34px}
+  .foot .wrap{padding:26px 20px 30px;max-width:1140px}
+  .foot p{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A99A8B;margin-bottom:6px}
+  .foot a{color:var(--footer-ink)}
+  .backrow{margin:22px 0 34px}
+
+  /* email gate: the map unlocks after the form */
+  body.locked .wrap,body.locked .foot{display:none}
+  html.unlocked body.locked .wrap,html.unlocked body.locked .foot{display:block}
+  #gate{display:none;padding:0 16px}
+  body.locked #gate{display:block}
+  html.unlocked #gate{display:none!important}
+  .gatecard{max-width:480px;margin:6vh auto 40px;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid var(--accent-bright);border-radius:6px;padding:28px 26px 22px}
+  .gatecard h2{font-family:Georgia,serif;font-size:26px;line-height:1.15;margin-bottom:8px}
+  .gatecard label{display:block;font-size:14px;font-weight:700;margin-top:10px}
+  .gatecard input,.gatecard select{width:100%;font-size:16px;padding:11px 13px;border:1.5px solid var(--line);
+    border-radius:3px;background:#fff;color:var(--ink);margin-top:5px;font-family:inherit}
+  .gatecard button{width:100%;text-align:center;border:0;cursor:pointer;font-family:inherit;margin-top:16px;
+    background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;padding:13px 22px;border-radius:3px}
+  .gatecard .err{display:none;color:var(--accent);font-size:14px;margin-top:8px}
+  .gatecard .fine{font-size:12px;color:var(--ink-soft);margin-top:12px;line-height:1.5}
+  .gatecard .hp{position:absolute;left:-9999px}
+  .cta{max-width:730px;margin:30px 0 40px;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent-bright);border-radius:6px;padding:24px 24px 22px}
+  .cta h2{font-family:Georgia,serif;font-size:24px;line-height:1.2;margin-bottom:10px}
+  .cta p{margin-bottom:14px}
+  .cta a.btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;padding:13px 22px;border-radius:3px;text-decoration:none}
+
+</style>
+<!-- Link Analyzer: visit + click tracking (assets/visits.js) -->
+<script src="/assets/visits.js" defer></script>
+<!-- customer.io (same workspace as the homepage) -->
+<script type="text/javascript">
+var _cio = _cio || [];
+(function(){var a,b,c;a=function(f){return function(){_cio.push([f].concat(
+Array.prototype.slice.call(arguments,0)))}};b=["load","identify","sidentify","track","page","on","off"];
+for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};var t=document.createElement('script'),
+s=document.getElementsByTagName('script')[0];t.async=true;t.id='cio-tracker';
+t.setAttribute('data-site-id','3f7f4e3fdaf9decb1c47');t.src='https://assets.customer.io/assets/track.js';
+s.parentNode.insertBefore(t,s)})();
+</script>
+<script>try{if(localStorage.getItem('systems_map_unlocked'))document.documentElement.className+=' unlocked'}catch(e){}</script>
+</head>
+<body class="locked">
+
+<div id="gate"><div class="gatecard">
+  <div class="eyebrow">Puja Patel · The Systems Map</div>
+  <h2>get the systems map</h2>
+  <p class="muted" style="font-size:15.5px;">every system a service business runs on, in the order a stranger becomes a client, with the questions that get each one out of your head.</p>
+  <form id="gate-form" novalidate>
+    <label for="g-name">Name</label>
+    <input id="g-name" name="name" autocomplete="name" required>
+    <label for="g-email">Email</label>
+    <input id="g-email" name="email" type="email" autocomplete="email" required>
+    <label for="g-phone">Mobile number</label>
+    <input id="g-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required>
+    <label for="g-biz">Business name</label>
+    <input id="g-biz" name="business_name" autocomplete="organization" required>
+    <label for="g-rev">Monthly revenue</label>
+    <select id="g-rev" name="monthly_revenue" required>
+      <option value="">Select…</option>
+      <option>Under $10k/mo</option>
+      <option>$10k to $15k/mo</option>
+      <option>$15k to $30k/mo</option>
+      <option>$30k to $75k/mo</option>
+      <option>$75k+/mo</option>
+    </select>
+    <input class="hp" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit">unlock the map →</button>
+    <p class="err" id="g-err">please fill in every field.</p>
+    <p class="err" id="g-tel-err">that doesn't look like a mobile number. outside the US? start with + and your country code.</p>
+  </form>
+  <p class="fine">By adding your number, you agree to get texts and calls from Puja Patel and her team. Msg &amp; data rates may apply. Reply STOP anytime. <a href="/privacy.html">Privacy</a></p>
+</div></div>
+
+
+<div class="wrap">
+  <div class="eyebrow">Puja Patel · The Systems Map</div>
+  <h1>how it all connects</h1>
+  <p class="lead">every system in your business connects. they chain into one process: the path a stranger takes to becoming a paying client. answer the questions across the map and you're not taking notes. you're <em>extracting your own system</em>.</p>
+  <p class="muted" style="max-width:730px;margin-top:10px;">start with the stage that costs you the most. answer its questions out loud, the messy version. that's how a system gets out of your head.</p>
+  <p class="hint">↔ scroll the map sideways to follow the whole flow.</p>
+</div>
+
+<div class="wrap">
+  <div class="canvas">
+    <div class="flow">
+
+      <!-- STAGE 1 -->
+      <div class="section s1">
+        <div class="banner">Lead Intake &amp; Capture</div>
+        <div class="srow">
+          <div class="node"><div class="box">Where are your leads currently coming from?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Where do they go?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Do you get notified when that happens?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">How long before you reach out / reply?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Are you getting the info you need through the intake?</div></div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 2 -->
+      <div class="section s2">
+        <div class="banner">Lead Qualification + Triage</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">Triage each lead into the correct offer</div>
+            <div class="drop">
+              <div class="dhead">Define your ICP for each offer</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Industry / niche</div>
+                <div class="ditem">Actual problem</div>
+                <div class="ditem">Timeline</div>
+                <div class="ditem">Etc.</div>
+              </div>
+              <div class="icp-tag">↑ your ICP — defined here, deepened in day 3, applied in day 4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 3 -->
+      <div class="section s3">
+        <div class="banner">Discovery-Call Prep</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">What questions get them to rant about their problem?</div>
+            <div class="drop">
+              <div class="dhead">Define your ICP on a deeper level</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Their buyer type</div>
+                <div class="ditem">Symptoms of their problems</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Research what you already have (LinkedIn, website, etc.)</div></div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 4 -->
+      <div class="section s4">
+        <div class="banner">Discovery → Proposal</div>
+        <div class="srow">
+          <div class="node"><div class="box">Where do your call notes live?</div></div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">What questions do you NEED answered on your proposal?</div>
+            <div class="drop">
+              <div class="ditems" style="margin-top:2px;">
+                <div class="ditem">The problem (in their words)</div>
+                <div class="ditem">The outcome (desired result)</div>
+                <div class="ditem">The scope (actual work)</div>
+                <div class="ditem">The terms (price / timeline)</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Do you have a structure for your proposals?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">How long from end of discovery call to proposal sent?</div></div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <div class="section s5">
+        <div class="banner">Proposal → Close</div>
+        <div class="srow">
+          <div class="node"><div class="box">Do you present the proposal, or just send it?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">What next step do you set? (a decision date, not "let me know")</div></div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">What objections do you hear over &amp; over?</div>
+            <div class="drop">
+              <div class="dhead">Your objection bank</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Price</div>
+                <div class="ditem">Timing</div>
+                <div class="ditem">"Let me think about it"</div>
+                <div class="ditem">"Check with my partner"</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">What happens the second they say yes? (contract + deposit ready)</div></div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 6 -->
+      <div class="section s6">
+        <div class="banner">Follow-up &amp; Reactivation</div>
+        <div class="srow">
+          <div class="node"><div class="box">Who's gone quiet — and how many with no next step?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">What's your rule for when a follow-up fires? (days quiet · # of touches)</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Where does each lead's status live?</div></div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">What do you say each time?</div>
+            <div class="drop">
+              <div class="dhead">Your message bank</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Quiet warm lead</div>
+                <div class="ditem">Proposal — no reply</div>
+                <div class="ditem">Past-client reactivation</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Which past clients haven't heard from you in 90+ days?</div></div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 7 -->
+      <div class="section s7">
+        <div class="banner">Contract → Kickoff Handoff</div>
+        <div class="srow">
+          <div class="node"><div class="box">The second they say yes — what locks it in? (contract + deposit)</div></div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">What do you need from them to start?</div>
+            <div class="drop">
+              <div class="dhead">Your kickoff intake</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Access &amp; logins</div>
+                <div class="ditem">Assets &amp; brand</div>
+                <div class="ditem">Answers only they have</div>
+                <div class="ditem">Points of contact</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">What do they hear right after? (welcome + what's next + timeline)</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Is the kickoff call booked in the same motion?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Where does the project live on day one?</div></div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 8 -->
+      <div class="section s8">
+        <div class="banner">Client Onboarding</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">When a client's ready to start — what gets set up on your end?</div>
+            <div class="drop">
+              <div class="dhead">Your setup checklist</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Workspace / project home</div>
+                <div class="ditem">Tools &amp; access</div>
+                <div class="ditem">The tracker</div>
+                <div class="ditem">First tasks staged</div>
+              </div>
+              <div class="icp-tag">↑ project home created day 7 → fully set up here (day 8)</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">What do you hand them to step in — and how do they find their way + reach you?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">What do you both lock in before the work starts? (how you'll talk · what you each need)</div></div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 9 -->
+      <div class="section s9">
+        <div class="banner">The Kickoff Brief</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">Who needs to be on the same page before you start?</div>
+            <div class="drop">
+              <div class="dhead">Which brief?</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Internal — align your team on the work</div>
+                <div class="ditem">External — align the client on deliverables</div>
+                <div class="ditem">Often both — one brief, pointed each way</div>
+              </div>
+              <div class="icp-tag">↑ onboarded (day 8) → the work defined here → scheduled (day 10)</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">What's the one goal — in THEIR words?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">What's in scope — and what's explicitly OUT?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Who owns what — and who makes the call?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">How will you stay synced? (checkpoints · how you share progress)</div></div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 10 -->
+      <div class="section s10">
+        <div class="banner">Project Plan &amp; Timeline</div>
+        <div class="srow">
+          <div class="node"><div class="box">What are your milestone deadlines? (from your kickoff brief)</div></div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">What are the tactical tasks — with verbs — to hit each milestone?</div>
+            <div class="drop">
+              <div class="dhead">Sort every task</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Can run at the same time</div>
+                <div class="ditem">Has to go in order (one can't start till another's done)</div>
+              </div>
+              <div class="icp-tag">↑ milestones from the kickoff brief (day 9) → each task gets a seat + a done (day 11)</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">Which of those tasks need client input?</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">By when does each piece land — with buffer to beat the client's deadline?</div></div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 11 -->
+      <div class="section s11">
+        <div class="banner">Task Breakdown &amp; Assignment</div>
+        <div class="srow">
+          <div class="node"><div class="box">Is each piece small enough to finish in one sitting?</div></div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">Who owns it — name the SEAT, not just the person</div>
+            <div class="drop">
+              <div class="dhead">Who owns it</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">You — the calls only you can make</div>
+                <div class="ditem">Someone you pay — team, contractor, VA, agency</div>
+                <div class="ditem">The client — with a date, same as anyone</div>
+                <div class="ditem">AI — the lines nothing about you needs to do</div>
+              </div>
+              <div class="icp-tag">↑ solo? you hold every seat on your side — the client's is still theirs</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">When's it due — and how does that person find out it's theirs?</div></div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">What does done look like — and where do you both see status?</div>
+            <div class="drop">
+              <div class="dhead">The output</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">You see what's stuck without asking anyone</div>
+              </div>
+              <div class="icp-tag">↑ scheduled (day 10) → owned &amp; tracked here → reported weekly (day 12) →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 12 -->
+      <div class="section s12">
+        <div class="banner">Weekly Status Update</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">What does your client need to know every week?</div>
+            <div class="drop">
+              <div class="dhead">Only four things</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">What got finished</div>
+                <div class="ditem">What's next</div>
+                <div class="ditem">What's sitting with THEM</div>
+                <div class="ditem">Did anything move the date</div>
+              </div>
+              <div class="icp-tag">↑ owned &amp; tracked (day 11) → read out to the client here</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="box">When does it go out — and does it still go out on a slow week?</div></div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">Where do the facts come from — and what's the one thing you need back?</div>
+            <div class="drop">
+              <div class="dhead">The output</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">A client who never has to check in</div>
+                <div class="ditem">A written record of every week it sat on their side</div>
+              </div>
+              <div class="icp-tag">↑ pull from the tracker, not your memory → it goes out on the boring weeks too</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 13 -->
+      <div class="section s13">
+        <div class="banner">Meeting Prep &amp; Agendas</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">What does this meeting need to PRODUCE? (a decision — not a check-in)</div>
+            <div class="drop">
+              <div class="dhead">Every agenda line is a…</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Decision to make</div>
+                <div class="ditem">Question to answer</div>
+                <div class="ditem">Not a topic — topics wander</div>
+              </div>
+              <div class="icp-tag">↑ if it's just a readout, that was the day-12 update</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">What do you walk in already knowing?</div>
+            <div class="drop">
+              <div class="dhead">Pull from where the work lives</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">What's moved since last time</div>
+                <div class="ditem">What's sitting on THEIR side</div>
+                <div class="ditem">Last meeting's action items — done?</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">Does the agenda go out BEFORE — so they show up ready to decide?</div>
+            <div class="drop">
+              <div class="dhead">The output</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">One call, decisions made, everyone clear</div>
+                <div class="ditem">No "let me get back to you" second meeting</div>
+              </div>
+              <div class="icp-tag">↑ reported weekly (day 12) → the live meeting prepped here → notes → actions (day 14) →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 14 -->
+      <div class="section s14">
+        <div class="banner">Meeting Notes &rarr; Action Items</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">What actually got DECIDED? (capture decisions, not the discussion)</div>
+            <div class="drop">
+              <div class="dhead">Pull the 5%, not the transcript</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">The decisions made</div>
+                <div class="ditem">The owned next steps</div>
+                <div class="ditem">The open questions left</div>
+              </div>
+              <div class="icp-tag">↑ a notetaker gives you a receipt — this makes the record</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">Which actions are real — who owns each, by when?</div>
+            <div class="drop">
+              <div class="dhead">Every action gets…</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">An owner — a seat, not a name</div>
+                <div class="ditem">A date</div>
+                <div class="ditem">A home: your tracker (day 11)</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">Where does it land — and who hears it?</div>
+            <div class="drop">
+              <div class="dhead">The output</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Actions in the tracker, nothing on the floor</div>
+                <div class="ditem">A recap to the room within the hour</div>
+              </div>
+              <div class="icp-tag">↑ prepped (day 13) → the meeting → notes → actions → the work (day 15) →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 15 -->
+      <div class="section s15">
+        <div class="banner">Deliverable Drafting</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">What do you start from — a blank page, or a structure you reuse?</div>
+            <div class="drop">
+              <div class="dhead">Start from your standard skeleton</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Your sections, in your order</div>
+                <div class="ditem">Your voice + depth</div>
+                <div class="ditem">Same for every deliverable of this type</div>
+              </div>
+              <div class="icp-tag">↑ the blank page is a missing template, not missing ideas</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">How much is assembling what's decided vs. your expertise?</div>
+            <div class="drop">
+              <div class="dhead">Name the 80 / 20 line</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">~80% assembly: goal in their words, scope, meeting calls</div>
+                <div class="ditem">~20% expertise: the judgment only you make</div>
+                <div class="ditem">Pour in the assembly — spend your brain on the 20%</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">What makes a first draft done — and where does it go next?</div>
+            <div class="drop">
+              <div class="dhead">A wrong-but-whole v1</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Complete enough to react to, not perfect</div>
+                <div class="ditem">The judgment calls flagged for you</div>
+                <div class="ditem">→ the quality check (day 16)</div>
+              </div>
+              <div class="icp-tag">↑ notes → actions (day 14) → the first draft of the work → checked (day 16) →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 16 -->
+      <div class="section s16">
+        <div class="banner">Quality-Control Checklist</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">What has to be true of everything you send?</div>
+            <div class="drop">
+              <div class="dhead">The universal bar</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Right name, links open</div>
+                <div class="ditem">Dates match what you promised</div>
+                <div class="ditem">No leftovers from a past version</div>
+              </div>
+              <div class="icp-tag">↑ written once — stops depending on whether you looked</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">What checks matter for the one thing you deliver most?</div>
+            <div class="drop">
+              <div class="dhead">One list per thing you make</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">A report, an ad, a contract each carry their own</div>
+                <div class="ditem">Past 2? it's an unwritten checklist in your head</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">Different eyes, every time?</div>
+            <div class="drop">
+              <div class="dhead">Held against the brief, not just typos</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">"Is it correct" catches the cheap misses</div>
+                <div class="ditem">"Does it do the job" catches the expensive ones</div>
+                <div class="ditem">→ feedback &amp; revisions (day 17)</div>
+              </div>
+              <div class="icp-tag">↑ drafted (day 15) → checked vs the brief (day 9) → out to the client →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 17 -->
+      <div class="section s17">
+        <div class="banner">Revision &amp; Feedback Handling</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">When feedback comes back, where does it land?</div>
+            <div class="drop">
+              <div class="dhead">One list, tied to the deliverable</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Call, email, doc, text — one place</div>
+                <div class="ditem">Revise from the list, not memory</div>
+              </div>
+              <div class="icp-tag">↑ scattered notes get dropped → the round reopens</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">Fix, or new request?</div>
+            <div class="drop">
+              <div class="dhead">Sort before you touch the work</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Fix: in the brief — just do it</div>
+                <div class="ditem">New: a change, its own conversation</div>
+                <div class="ditem">Rounds bounded in the contract (day 7)</div>
+              </div>
+              <div class="icp-tag">↑ the sort = revision vs unpaid scope creep</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">Concrete change, or vague feeling?</div>
+            <div class="drop">
+              <div class="dhead">Translate, then send back note by note</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">"Make it pop" → one question first</div>
+                <div class="ditem">Send back: each note → what changed</div>
+                <div class="ditem">→ approval &amp; sign-off (day 18)</div>
+              </div>
+              <div class="icp-tag">↑ checked (day 16) → sorted &amp; revised → the yes (day 18) →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <!-- STAGE 18 -->
+      <div class="section s18">
+        <div class="banner">Approval &amp; Sign-off</div>
+        <div class="srow">
+          <div class="node">
+            <div class="box">Before it goes out, does it clear a sign-off?</div>
+            <div class="drop">
+              <div class="dhead">A required yes, from the right person</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Ships on a yes — not on "someone finished it"</div>
+                <div class="ditem">Each type of work → who's allowed to approve it (day 9)</div>
+              </div>
+              <div class="icp-tag">↑ no gate, or the wrong approver → it reopens later</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">When it's approved, where does the yes live?</div>
+            <div class="drop">
+              <div class="dhead">Written down: what · who · when · version</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Not a "go ahead" nobody can find later</div>
+                <div class="ditem">"Did we approve this?" → one-second lookup</div>
+              </div>
+              <div class="icp-tag">↑ a verbal yes → "i never approved that" wins</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <div class="box">Once approved, is it locked?</div>
+            <div class="drop">
+              <div class="dhead">Locked — next phase starts, invoice goes</div>
+              <div class="dstem"></div>
+              <div class="ditems">
+                <div class="ditem">Anything new after = new work (day 7 / 17)</div>
+                <div class="ditem">→ progress dashboard (day 19)</div>
+              </div>
+              <div class="icp-tag">↑ sorted &amp; revised (day 17) → the documented yes → locked (day 19) →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xarrow">→</div>
+
+      <div class="comingsoon">systems 19 to 30<br>coming to<br>the map</div>
+
+    </div>
+  </div>
+
+  <p class="muted" style="max-width:730px;margin-top:16px;">by system 30 it's your whole client-getting-and-delivering operation on one page: your <b>second brain</b>, laid out.</p>
+  <div class="cta">
+    <h2>want your top 3 out of your head this week?</h2>
+    <p><b>The Systems Setup File, $27.</b> you talk, Claude writes. in one sitting you set up your second brain, score your systems, and get the 3 that cost you the most written down, so they stop running through you.</p>
+    <a class="btn" href="https://second-brain-method.circle.so/checkout/systems-setup-file">get the Systems Setup File →</a>
+  </div>
+</div>
+
+<div class="foot"><div class="wrap">
+  <p>Puja Patel · puja-patel.com</p>
+</div></div>
+
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","xni1glpbqz");</script>
+<script>
+/* Systems Map email gate. Any real entry unlocks. The lead goes to Customer.io
+   (systems_map_* attributes + a systems_map_optin event) with a formsubmit copy
+   to info@. Phone is stored as mobile_phone (+E.164), NOT the `phone`
+   identifier, which Customer.io rejects on bad or duplicate values.
+   Never writes `source` or `purchased`. Funnel gate, not DRM. */
+(function(){
+  var KEY='systems_map_unlocked', form=document.getElementById('gate-form');
+  function unlock(){ document.body.classList.remove('locked'); window.scrollTo(0,0); }
+  try{ if(localStorage.getItem(KEY)){ unlock(); return; } }catch(e){}
+  function normPhone(v){
+    var s=(v||'').trim(), d=s.replace(/\D/g,'');
+    if(s.charAt(0)==='+' && d.charAt(0)!=='1') return /^\d{8,15}$/.test(d) ? '+'+d : '';
+    if(d.length===10) d='1'+d;
+    if(d.length!==11 || d.charAt(0)!=='1') return '';
+    var area=d.substr(1,3), exch=d.substr(4,3);
+    if(/^[01]/.test(area) || /^[01]/.test(exch) || exch==='555') return '';
+    if(/^(800|833|844|855|866|877|888|900)$/.test(area)) return '';
+    return '+'+d;
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var f=form, name=f.name.value.trim(), email=f.email.value.trim().toLowerCase(),
+        biz=f.business_name.value.trim(), rev=f.monthly_revenue.value, raw=f.phone.value.trim();
+    var err=document.getElementById('g-err'), terr=document.getElementById('g-tel-err');
+    err.style.display='none'; terr.style.display='none';
+    if(!name || !biz || !rev || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.style.display='block'; return; }
+    var tel=normPhone(raw);
+    if(!tel){ terr.style.display='block'; f.phone.focus(); return; }
+    if(!f._honey.value){
+      var params=new URLSearchParams(window.location.search), now=Math.floor(Date.now()/1000);
+      try{ clarity('event','systems_map_optin'); }catch(x){}
+      try{
+        if(window._cio){
+          _cio.identify({ id:email, email:email, first_name:name.split(/\s+/)[0], full_name:name.slice(0,120),
+            business_name:biz.slice(0,200), monthly_revenue_band:rev, mobile_phone:tel,
+            systems_map_lead:true, systems_map_optin_at:now });
+          _cio.track('systems_map_optin',{ utm_source:params.get('utm_source')||'', utm_medium:params.get('utm_medium')||'',
+            utm_campaign:params.get('utm_campaign')||'' });
+        }
+      }catch(x){}
+      try{
+        var fd=new FormData();
+        fd.append('_subject','Systems Map: new sign-up'); fd.append('_captcha','false');
+        fd.append('name',name); fd.append('email',email); fd.append('phone',tel);
+        fd.append('business_name',biz); fd.append('monthly_revenue',rev);
+        fd.append('utm_source',params.get('utm_source')||'');
+        fetch('https://formsubmit.co/ajax/info@puja-patel.com',{ method:'POST', headers:{'Accept':'application/json'}, body:fd, keepalive:true }).catch(function(){});
+      }catch(x){}
+    }
+    try{ localStorage.setItem(KEY,'1'); }catch(x){}
+    unlock();
+  });
+})();
+</script>
+</body>
+</html>
