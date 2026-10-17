@@ -205,6 +205,10 @@ s.parentNode.insertBefore(t,s)})();
       <option>Design, photo, or video</option>
       <option>Other</option>
     </select>
+    <div id="g-ind-other-wrap" style="display:none">
+      <label for="g-ind-other">What's your industry?</label>
+      <input id="g-ind-other" name="industry_other" maxlength="80">
+    </div>
     <label for="g-rev">Monthly revenue</label>
     <select id="g-rev" name="monthly_revenue" required>
       <option value="">Select…</option>
@@ -1470,7 +1474,11 @@ s.parentNode.insertBefore(t,s)})();
     if(/^(800|833|844|855|866|877|888|900)$/.test(area)) return '';
     return '+'+d;
   }
-  var low=document.getElementById('g-rev-low');
+  var low=document.getElementById('g-rev-low'), oth=document.getElementById('g-ind-other-wrap');
+  form.industry.addEventListener('change', function(){
+    var on=this.value==='Other'; oth.style.display=on?'block':'none';
+    if(on) form.industry_other.focus(); else form.industry_other.value='';
+  });
   form.monthly_revenue.addEventListener('change', function(){
     var on=this.value==='Under $10k/mo'; low.style.display=on?'block':'none';
     if(!on) form.revenue_detail.value='';
@@ -1478,10 +1486,10 @@ s.parentNode.insertBefore(t,s)})();
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var f=form, name=f.name.value.trim(), email=f.email.value.trim().toLowerCase(),
-        ind=f.industry.value, rev=f.monthly_revenue.value, revd=f.revenue_detail.value, raw=f.phone.value.trim();
+        ind=f.industry.value, indo=f.industry_other.value.trim(), rev=f.monthly_revenue.value, revd=f.revenue_detail.value, raw=f.phone.value.trim();
     var err=document.getElementById('g-err'), terr=document.getElementById('g-tel-err');
     err.style.display='none'; terr.style.display='none';
-    if(!name || !ind || !rev || (rev==='Under $10k/mo' && !revd) || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.style.display='block'; return; }
+    if(!name || !ind || (ind==='Other' && !indo) || !rev || (rev==='Under $10k/mo' && !revd) || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.style.display='block'; return; }
     var tel=normPhone(raw);
     if(!tel){ terr.style.display='block'; f.phone.focus(); return; }
     if(!f._honey.value){
@@ -1490,7 +1498,7 @@ s.parentNode.insertBefore(t,s)})();
       try{
         if(window._cio){
           _cio.identify({ id:email, email:email, first_name:name.split(/\s+/)[0], full_name:name.slice(0,120),
-            industry:ind, monthly_revenue_band:rev, monthly_revenue_detail:revd, mobile_phone:tel,
+            industry:(ind==='Other' ? 'Other: '+indo.slice(0,80) : ind), monthly_revenue_band:rev, monthly_revenue_detail:revd, mobile_phone:tel,
             systems_map_lead:true, systems_map_optin_at:now });
           _cio.track('systems_map_optin',{ utm_source:params.get('utm_source')||'', utm_medium:params.get('utm_medium')||'',
             utm_campaign:params.get('utm_campaign')||'' });
@@ -1500,7 +1508,7 @@ s.parentNode.insertBefore(t,s)})();
         var fd=new FormData();
         fd.append('_subject','Systems Map: new sign-up'); fd.append('_captcha','false');
         fd.append('name',name); fd.append('email',email); fd.append('phone',tel);
-        fd.append('industry',ind); fd.append('monthly_revenue',rev); fd.append('revenue_detail',revd);
+        fd.append('industry',ind==='Other' ? 'Other: '+indo : ind); fd.append('monthly_revenue',rev); fd.append('revenue_detail',revd);
         fd.append('utm_source',params.get('utm_source')||'');
         fetch('https://formsubmit.co/ajax/info@puja-patel.com',{ method:'POST', headers:{'Accept':'application/json'}, body:fd, keepalive:true }).catch(function(){});
       }catch(x){}
