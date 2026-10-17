@@ -192,8 +192,19 @@ s.parentNode.insertBefore(t,s)})();
     <input id="g-email" name="email" type="email" autocomplete="email" required>
     <label for="g-phone">Mobile number</label>
     <input id="g-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required>
-    <label for="g-biz">Business name</label>
-    <input id="g-biz" name="business_name" autocomplete="organization" required>
+    <label for="g-ind">Industry</label>
+    <select id="g-ind" name="industry" required>
+      <option value="">Select…</option>
+      <option>Coaching</option>
+      <option>Consulting</option>
+      <option>Agency (marketing, creative, web)</option>
+      <option>Bookkeeping, accounting, or tax</option>
+      <option>Real estate or mortgage</option>
+      <option>Health, wellness, or fitness</option>
+      <option>Legal</option>
+      <option>Design, photo, or video</option>
+      <option>Other</option>
+    </select>
     <label for="g-rev">Monthly revenue</label>
     <select id="g-rev" name="monthly_revenue" required>
       <option value="">Select…</option>
@@ -203,6 +214,16 @@ s.parentNode.insertBefore(t,s)})();
       <option>$30k to $75k/mo</option>
       <option>$75k+/mo</option>
     </select>
+    <div id="g-rev-low" style="display:none">
+      <label for="g-rev-detail">About how much a month?</label>
+      <select id="g-rev-detail" name="revenue_detail">
+        <option value="">Select…</option>
+        <option>Not making money yet</option>
+        <option>Under $2k/mo</option>
+        <option>$2k to $5k/mo</option>
+        <option>$5k to $10k/mo</option>
+      </select>
+    </div>
     <input class="hp" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
     <button type="submit">unlock the free map →</button>
     <p class="err" id="g-err">please fill in every field.</p>
@@ -1449,13 +1470,18 @@ s.parentNode.insertBefore(t,s)})();
     if(/^(800|833|844|855|866|877|888|900)$/.test(area)) return '';
     return '+'+d;
   }
+  var low=document.getElementById('g-rev-low');
+  form.monthly_revenue.addEventListener('change', function(){
+    var on=this.value==='Under $10k/mo'; low.style.display=on?'block':'none';
+    if(!on) form.revenue_detail.value='';
+  });
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var f=form, name=f.name.value.trim(), email=f.email.value.trim().toLowerCase(),
-        biz=f.business_name.value.trim(), rev=f.monthly_revenue.value, raw=f.phone.value.trim();
+        ind=f.industry.value, rev=f.monthly_revenue.value, revd=f.revenue_detail.value, raw=f.phone.value.trim();
     var err=document.getElementById('g-err'), terr=document.getElementById('g-tel-err');
     err.style.display='none'; terr.style.display='none';
-    if(!name || !biz || !rev || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.style.display='block'; return; }
+    if(!name || !ind || !rev || (rev==='Under $10k/mo' && !revd) || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.style.display='block'; return; }
     var tel=normPhone(raw);
     if(!tel){ terr.style.display='block'; f.phone.focus(); return; }
     if(!f._honey.value){
@@ -1464,7 +1490,7 @@ s.parentNode.insertBefore(t,s)})();
       try{
         if(window._cio){
           _cio.identify({ id:email, email:email, first_name:name.split(/\s+/)[0], full_name:name.slice(0,120),
-            business_name:biz.slice(0,200), monthly_revenue_band:rev, mobile_phone:tel,
+            industry:ind, monthly_revenue_band:rev, monthly_revenue_detail:revd, mobile_phone:tel,
             systems_map_lead:true, systems_map_optin_at:now });
           _cio.track('systems_map_optin',{ utm_source:params.get('utm_source')||'', utm_medium:params.get('utm_medium')||'',
             utm_campaign:params.get('utm_campaign')||'' });
@@ -1474,7 +1500,7 @@ s.parentNode.insertBefore(t,s)})();
         var fd=new FormData();
         fd.append('_subject','Systems Map: new sign-up'); fd.append('_captcha','false');
         fd.append('name',name); fd.append('email',email); fd.append('phone',tel);
-        fd.append('business_name',biz); fd.append('monthly_revenue',rev);
+        fd.append('industry',ind); fd.append('monthly_revenue',rev); fd.append('revenue_detail',revd);
         fd.append('utm_source',params.get('utm_source')||'');
         fetch('https://formsubmit.co/ajax/info@puja-patel.com',{ method:'POST', headers:{'Accept':'application/json'}, body:fd, keepalive:true }).catch(function(){});
       }catch(x){}
