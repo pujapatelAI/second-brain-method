@@ -1464,6 +1464,22 @@ s.parentNode.insertBefore(t,s)})();
   // Links in Puja's emails carry ?open=1, so the map opens on any device without the form again.
   if(/[?&]open=/.test(location.search)){ try{ localStorage.setItem(KEY,'1'); }catch(e){} unlock(); return; }
   try{ if(localStorage.getItem(KEY)){ unlock(); return; } }catch(e){}
+  // Invite emails carry ?t=<random token>: fill name, email and phone from Supabase
+  // (map_prefill_get) so the lead only picks industry + revenue. No personal data in the URL.
+  var tok=new URLSearchParams(location.search).get('t');
+  if(tok && tok.length>=20){
+    fetch('https://elfcasizjccgjrwgebvv.supabase.co/rest/v1/rpc/map_prefill_get',{ method:'POST',
+      headers:{'apikey':'sb_publishable_01CM_h2wN3ysZN52BcO1Sw_SDAatM00','Content-Type':'application/json'},
+      body:JSON.stringify({p_token:tok}) }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
+      var p=rows && rows[0]; if(!p) return;
+      if(p.name && !form.name.value) form.name.value=p.name;
+      if(p.email && !form.email.value) form.email.value=p.email;
+      if(p.phone && !form.phone.value) form.phone.value=p.phone;
+      var note=document.querySelector('#gate .gatecard > p.muted');
+      if(note) note.textContent='your details are filled in. pick your industry and revenue, and the map is yours.';
+      try{ form.industry.focus({preventScroll:true}); }catch(x){}
+    }).catch(function(){});
+  }
   function normPhone(v){
     var s=(v||'').trim(), d=s.replace(/\D/g,'');
     if(s.charAt(0)==='+' && d.charAt(0)!=='1') return /^\d{8,15}$/.test(d) ? '+'+d : '';
