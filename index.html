@@ -803,7 +803,7 @@ s.parentNode.insertBefore(t,s)})();
         </div>
 
       </div>
-      <p style="margin-top:22px; text-align:center"><button type="button" class="mp-link" data-mp-open>Not ready to join? Get the 10 business moves free</button></p>
+      <p style="margin-top:22px; text-align:center"><button type="button" class="mp-link" data-mp-open>Not ready to join? Get the free Systems Map</button></p>
     </div>
   </section>
 
@@ -1029,96 +1029,45 @@ document.addEventListener('submit', function (e) {
   } catch (err) {}
 })();
 </script>
-<!-- FREE-MOVES POP-UP (homepage copy of the /workshop/ pop-up, without the phone step): email capture for visitors who aren't ready to buy.
-     Same mechanism as /moves/optin (masterclass pattern): Meta Lead event,
-     Customer.io identify + track business_moves_optin (NO `source` attribute),
-     FormSubmit copy to info@, inline confirmation. apps/command/moves_lead_intake.py
-     (--from-cio, every 15 min) sends the 10 moves and adds them to the launch emails.
-     Source attribute business_moves_channel: "pop up" (auto-opened) or "under ticket"
-     (opened from the link under the tickets). TikTok DATA leads are "dm".
-     Shows once per visitor: exit intent on desktop (after 8s), 30s or 55% scroll on
-     phones; never after a ticket click.
-     Step 2 (optional, after the email is in): mobile number for reminder texts and a
-     call from the team. Stored as sbw_phone (+E.164), NOT the `phone` identifier,
-     which Customer.io rejects on bad or duplicate values. Toll-free and 555 numbers
-     are refused in the browser. -->
+<!-- NOT-READY POP-UP: points visitors who aren't ready to join to the free Systems Map.
+     The map page's own form asks for name, email, phone, industry and monthly revenue,
+     which starts the map -> $27 emails and texts. Shows once per visitor: exit intent on
+     desktop (after 8s), 30s or 55% scroll; never after a checkout click. -->
 <div class="mp-back" id="mp" hidden>
   <div class="mp" role="dialog" aria-modal="true" aria-labelledby="mp-title">
     <button type="button" class="mp-x" aria-label="Close" data-mp-close>&times;</button>
     <div class="mp-view">
       <span class="mono lead-label">Not ready to join?</span>
-      <h2 id="mp-title">Get the 10 business moves. Free.</h2>
-      <p>Ten decisions that set how much you can take on without adding hours: where your hours go, what to stop, which clients and offers to keep, what to charge, and what to hand off. One copy-paste prompt each, for the Claude or ChatGPT you already use.</p>
-      <form class="mp-form" action="https://formsubmit.co/info@puja-patel.com" method="POST">
-        <input type="text" name="_honey" class="mp-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="hidden" name="_subject" value="Business Moves: new opt-in (homepage pop-up)">
-        <input type="hidden" name="form_source" value="pop up">
-        <input type="hidden" name="_captcha" value="false">
-        <div><label for="mp-name">First name</label><input type="text" id="mp-name" name="first_name" required autocomplete="given-name"></div>
-        <div><label for="mp-email">Email</label><input type="email" id="mp-email" name="email" required autocomplete="email" placeholder="you@yourbusiness.com"></div>
-        <div><label for="mp-biz">What kind of business do you have? <span class="opt">(optional)</span></label><input type="text" id="mp-biz" name="business_type" maxlength="300"></div>
-        <button class="btn" type="submit">Send me the 10 moves →</button>
-      </form>
-      <p class="fine">Free. You'll also get my emails. Unsubscribe anytime.</p>
-    </div>
-    <div class="mp-done" hidden role="status" aria-live="polite">
-      <h2>You're in<span class="mp-done-name"></span>.</h2>
-      <p>The 10 moves are on their way to your inbox. Give it about 15 minutes.</p>
-      <p>Want to start now? Move 1 shows where your hours actually go.</p>
-      <a class="btn" href="/moves/">Open the 10 moves →</a>
+      <h2 id="mp-title">Get the Systems Map. Free.</h2>
+      <p>A free resource for service-based business owners: every system your business runs on, from the first lead to the repeat client, with the questions that get each one out of your head.</p>
+      <a class="btn" style="width:100%; justify-content:center" href="/map/?utm_source=site&amp;utm_medium=popup&amp;utm_campaign=not_ready" data-mp-go>Get the free map →</a>
+      <p class="fine">Free. Takes about a minute.</p>
     </div>
   </div>
 </div>
 <script>
 (function(){
-  var KEY='moves_popup_seen_home_v1', back=document.getElementById('mp'); if(!back) return;
-  // Separate key from /workshop/ so a pop-up seen there doesn't hide this one; only an actual opt-in there does.
-  try{ if(localStorage.getItem('moves_popup_seen_v1')==='optin') localStorage.setItem(KEY,'optin'); }catch(e){}
-  var form=back.querySelector('.mp-form'), shown=false, t0=Date.now(), via='pop up';
+  var KEY='map_popup_seen_home_v1', back=document.getElementById('mp'); if(!back) return;
+  var shown=false, t0=Date.now();
   function seen(){ try{ return !!localStorage.getItem(KEY); }catch(e){ return false; } }
   function mark(v){ try{ localStorage.setItem(KEY, v||String(Date.now())); }catch(e){} }
   function open(manual){
     if(shown && !manual) return; if(!manual && seen()) return;
-    shown=true; mark(); via = manual ? 'under ticket' : 'pop up'; form.form_source.value = via;
+    shown=true; mark();
     back.hidden=false; document.body.style.overflow='hidden';
-    try{ clarity('event', manual ? 'moves_popup_open_manual' : 'moves_popup_open'); }catch(e){}
-    setTimeout(function(){ var f=document.getElementById('mp-name'); if(f) f.focus(); }, 30);
+    try{ clarity('event', manual ? 'map_popup_open_manual' : 'map_popup_open'); }catch(e){}
   }
   function close(){ back.hidden=true; document.body.style.overflow=''; }
   back.addEventListener('click', function(e){ if(e.target===back || e.target.hasAttribute('data-mp-close')) close(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !back.hidden) close(); });
   document.querySelectorAll('[data-mp-open]').forEach(function(b){ b.addEventListener('click', function(){ open(true); }); });
-  // Never interrupt a buyer: a ticket click switches the auto pop-up off.
+  back.querySelector('[data-mp-go]').addEventListener('click', function(){ mark('clicked'); try{ clarity('event','map_popup_click'); }catch(e){} });
+  // Never interrupt a buyer: a checkout click switches the auto pop-up off.
   document.querySelectorAll('a.js-buy, a[href*="checkout"]').forEach(function(a){ a.addEventListener('click', function(){ mark('bought_click'); shown=true; }); });
-  // Homepage: exit intent on desktop, plus 30s or 55% scroll on every device.
   document.addEventListener('mouseout', function(e){ if(!e.relatedTarget && e.clientY<=0 && Date.now()-t0>8000) open(false); });
   setTimeout(function(){ open(false); }, 30000);
   window.addEventListener('scroll', function(){
     var h=document.documentElement; if((h.scrollTop+window.innerHeight)/h.scrollHeight>0.55) open(false);
   }, {passive:true});
-  form.addEventListener('submit', function(e){
-    var email=(form.email.value||'').trim(), first=(form.first_name.value||'').trim();
-    if(!email || email.indexOf('@')<1 || !first) return;
-    e.preventDefault();
-    if(!form._honey.value){
-      var biz=(form.business_type.value||'').trim(), params=new URLSearchParams(window.location.search);
-      try{ if(window.fbq) fbq('track','Lead',{content_name:'10 Business Moves'}); }catch(err){}
-      try{ clarity('event','business_moves_optin'); }catch(err){}
-      try{
-        if(window._cio){
-          var attrs={ id:email, email:email, first_name:first, business_moves_lead:true, lead_magnet:'business_moves',
-                      business_moves_channel:via, business_moves_optin_at:Math.floor(Date.now()/1000) };
-          if(biz) attrs.business_moves_business_type=biz.slice(0,300);
-          _cio.identify(attrs);
-          _cio.track('business_moves_optin',{ page:'home', channel:via, utm_source:params.get('utm_source')||'', utm_medium:params.get('utm_medium')||'', utm_campaign:params.get('utm_campaign')||'' });
-        }
-      }catch(err){}
-      try{ fetch('https://formsubmit.co/ajax/info@puja-patel.com',{ method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form), keepalive:true }).catch(function(){}); }catch(err){}
-    }
-    mark('optin');
-    back.querySelector('.mp-view').hidden=true;
-    var d=back.querySelector('.mp-done'); d.querySelector('.mp-done-name').textContent=', '+first; d.hidden=false;
-  });
-
 })();
 </script>
