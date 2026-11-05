@@ -170,6 +170,18 @@
 </style>
 <!-- Link Analyzer: visit + click tracking (assets/visits.js) -->
 <script src="/assets/visits.js" defer></script>
+<!-- Meta Pixel: dataset "Puja Patel Web" (1358901016182853), same as the homepage -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1358901016182853');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></noscript>
 <!-- customer.io (same workspace as the homepage) -->
 <script type="text/javascript">
 var _cio = _cio || [];
@@ -1518,6 +1530,19 @@ s.parentNode.insertBefore(t,s)})();
     if(!f._honey.value){
       var params=new URLSearchParams(window.location.search), now=Math.floor(Date.now()/1000);
       try{ clarity('event','systems_map_optin'); }catch(x){}
+      /* Meta: MapSignup = every sign-up (reporting + audiences). SubmitApplication =
+         only the $10k-$30k/mo bands, the one event the SBM ads optimize on, so Meta
+         looks for more of those owners. Name, email and phone go in as advanced
+         matching (the pixel hashes them in the browser). */
+      try{
+        if(window.fbq){
+          fbq('init','1358901016182853',{ em:email, ph:tel.replace(/\D/g,''), fn:name.split(/\s+/)[0].toLowerCase() });
+          fbq('trackCustom','MapSignup',{ revenue_band:rev });
+          if(rev==='$10k to $15k/mo' || rev==='$15k to $30k/mo'){
+            fbq('track','SubmitApplication',{ content_name:'systems_map_10k_30k', revenue_band:rev });
+          }
+        }
+      }catch(x){}
       try{
         if(window._cio){
           _cio.identify({ id:email, email:email, first_name:name.split(/\s+/)[0], full_name:name.slice(0,120),
