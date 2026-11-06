@@ -112,6 +112,8 @@ s.parentNode.insertBefore(t,s)})();
   .ws-strip .ws-dot{width:6px; height:6px; border-radius:50%; background:var(--accent-bright); flex:none; animation:wspulse 2s infinite}
   @keyframes wspulse{0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--accent-bright) 55%, transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
   @media (prefers-reduced-motion:reduce){.ws-strip .ws-dot{animation:none}}
+  .grp-line{margin:14px 0 0; font-size:.95rem; color:var(--ink-soft)} .grp-line b{color:var(--accent)}
+  .grp-tier{margin:18px 0 0; padding:10px 14px; border-radius:8px; background:color-mix(in srgb, var(--accent-bright) 12%, transparent); font-size:.95rem; text-align:center} .grp-tier b{color:var(--accent)}
   @media(max-width:620px){.ws-strip{font-size:.68rem; padding:7px 16px; gap:6px} .ws-strip .ws-full{display:none} .ws-strip .ws-mob{display:inline}}
 
   .btn{
@@ -362,6 +364,7 @@ s.parentNode.insertBefore(t,s)})();
         <a class="btn sm" href="#tiers">Join</a>
       </div>
     </div>
+    <div class="ws-strip" id="grpStrip"><span class="ws-dot" aria-hidden="true"></span><span>Next group starts <b class="ws-clock" data-grp-start>Monday, Nov 9</b> · join by <span data-grp-joinby>Sunday, Nov 8</span></span></div>
     <div class="ws-strip" id="wsStrip" hidden>
       <span class="ws-dot" aria-hidden="true"></span>
       <span class="ws-full">Next Second Brain Workshop in </span><span class="ws-mob">Next workshop in </span><span class="ws-clock" id="wsClock">&mdash;</span><span class="ws-full"> &mdash; members only, so </span><span class="ws-mob"> &mdash; </span><a class="ws-cta" href="#tiers">join to attend <span class="arw">&rarr;</span></a>
@@ -402,6 +405,7 @@ s.parentNode.insertBefore(t,s)})();
       .me{order:3; margin-top:18px !important; justify-self:stretch; max-width:none; display:grid; grid-template-columns:92px minmax(0,1fr); gap:14px; align-items:start; background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--accent-bright); border-radius:4px; padding:12px}
       .hero2 .sub{order:4}
       .hero2-cta{order:6}
+      .hero2 .grp-line{order:6; margin-top:-6px}
       .me-ph{border:0; border-radius:3px}
       .me img{aspect-ratio:1/1.15}
       .me-ph img{transform:scale(2.1); transform-origin:54% 46%}
@@ -435,6 +439,7 @@ s.parentNode.insertBefore(t,s)})();
           <a class="btn" href="#tiers">Join for $250/mo <span class="arw">→</span></a>
           <a class="btn ghost" href="#walkthrough">Watch the walkthrough</a>
         </div>
+        <p class="grp-line">Next group starts <b data-grp-start>Monday, Nov 9</b>. Join by <span data-grp-joinby>Sunday, Nov 8</span>.</p>
         <div class="promise"><b>Set up live at the Second Brain Workshop.</b> If your second brain isn't up and running by the end of it, we'll book another session until it is. Cancel anytime.</div>
       </div>
       <figure class="me" style="margin:0">
@@ -796,6 +801,7 @@ s.parentNode.insertBefore(t,s)})();
             <li><span class="ck">→</span><span>You get <b>live weekly working sessions</b> to get unstuck the moment your roadmap stalls</span></li>
             <li><span class="ck">→</span><span>You get a <b>community of operators</b> building the same way, right alongside you</span></li>
           </ul>
+          <div class="grp-tier">Next group starts <b data-grp-start>Monday, Nov 9</b> · join by <span data-grp-joinby>Sunday, Nov 8</span></div>
           <div class="tier-cta">
             <a class="btn" href="https://aios-with-puja-patel.circle.so/checkout/second-brain-method" data-checkout data-tier="vip" data-value="250" target="_blank" rel="noopener">Start now <span class="arw">→</span></a>
             <a class="tier-learn" href="/vip/">See everything included ↓</a>
@@ -1069,5 +1075,19 @@ document.addEventListener('submit', function (e) {
   window.addEventListener('scroll', function(){
     var h=document.documentElement; if((h.scrollTop+window.innerHeight)/h.scrollHeight>0.55) open(false);
   }, {passive:true});
+})();
+</script>
+<script>
+/* Group starts (Mondays), Nov 2026. The page shows the next one after today; add dates here. */
+(function(){
+  var GROUPS=['2026-11-09','2026-11-23','2026-12-07','2026-12-21','2027-01-04'];
+  var M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var n=new Date(), today=new Date(n.getFullYear(),n.getMonth(),n.getDate()), hit=null;
+  for(var i=0;i<GROUPS.length;i++){var p=GROUPS[i].split('-'),d=new Date(+p[0],+p[1]-1,+p[2]); if(d>today){hit=d;break;}}
+  if(!hit){ var st=document.getElementById('grpStrip'); if(st) st.hidden=true;
+    document.querySelectorAll('.grp-line,.grp-tier').forEach(function(e){e.hidden=true;}); return; }
+  var j=new Date(hit); j.setDate(j.getDate()-1);
+  document.querySelectorAll('[data-grp-start]').forEach(function(e){e.textContent='Monday, '+M[hit.getMonth()]+' '+hit.getDate();});
+  document.querySelectorAll('[data-grp-joinby]').forEach(function(e){e.textContent='Sunday, '+M[j.getMonth()]+' '+j.getDate();});
 })();
 </script>
