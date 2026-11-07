@@ -242,8 +242,8 @@ s.parentNode.insertBefore(t,s)})();
   .vid iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
   .vid-fallback{display:grid; grid-template-columns:120px minmax(0,1fr); gap:16px; padding:14px}
   @media(min-width:860px){.vid-fallback{grid-template-columns:minmax(0,1fr); gap:0; padding:0}}
-  .vid-fallback img{display:block; width:100%; height:100%; object-fit:cover; object-position:50% 25%; border-radius:4px; aspect-ratio:1/1.1}
-  @media(min-width:860px){.vid-fallback img{aspect-ratio:4/3.3; border-radius:0}}
+  .vid-fallback img{display:block; width:100%; height:auto; align-self:start; object-fit:cover; object-position:50% 20%; border-radius:4px; aspect-ratio:1/1}
+  @media(min-width:860px){.vid-fallback img{aspect-ratio:4/3.6; border-radius:0; object-position:50% 12%}}
   .proof{display:grid; gap:8px}
   @media(min-width:860px){.proof{padding:16px 18px; border-top:3px solid var(--accent-bright); background:var(--surface)}}
   .proof-k{font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); font-weight:700}
@@ -286,6 +286,13 @@ s.parentNode.insertBefore(t,s)})();
   .cs blockquote{margin:18px 0 0; padding:14px 0 0; border-top:1px solid var(--line); font-family:var(--font-display); font-style:italic; font-size:1.02rem; line-height:1.5}
   .cs blockquote cite{display:block; font-style:normal; font-family:var(--font-body); font-size:.84rem; color:var(--ink-soft); margin-top:6px}
   .cs.brief .cs-grid{grid-template-columns:1fr}
+  .cf{display:grid; gap:18px}
+  @media(min-width:860px){.cf{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:28px; align-items:start}}
+  .cf-video{position:relative; aspect-ratio:16/9; background:#1C1511; border:1px solid var(--line); border-radius:6px; overflow:hidden}
+  .cf-video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+  .cf p{color:var(--ink-soft); font-size:.98rem; line-height:1.5; margin:0 0 12px}
+  .cf .stats{margin-top:12px}
+  .cf .more{display:inline-block; margin-top:14px; font-weight:600}
 
   /* how */
   .steps{counter-reset:s; display:grid; gap:14px; margin-top:28px}
@@ -328,8 +335,8 @@ s.parentNode.insertBefore(t,s)})();
 
   /* about */
   .about{display:grid; gap:22px; margin-top:24px}
-  @media(min-width:860px){.about{grid-template-columns:260px minmax(0,1fr); gap:40px; align-items:start}}
-  .about img{display:block; width:100%; border-radius:6px; border:1px solid var(--line); object-fit:cover; aspect-ratio:4/4.6; object-position:50% 25%}
+  @media(min-width:860px){.about{grid-template-columns:220px minmax(0,1fr); gap:40px; align-items:start}}
+  .about img{display:block; width:100%; height:auto; border-radius:6px; border:1px solid var(--line); object-fit:cover; aspect-ratio:4/5; object-position:50% 40%}
   .about p{color:var(--ink-soft)}
   .about p b{color:var(--ink); font-weight:600}
   @media(max-width:859px){.about img{max-width:220px}}
@@ -355,9 +362,9 @@ s.parentNode.insertBefore(t,s)})();
   <div class="wrap bar-in">
     <a class="brand" href="/">Puja Patel</a>
     <nav class="nav" aria-label="Sections">
-      <a href="#ways">Two ways to work with me</a>
-      <a href="#results">Results</a>
       <a href="#how">How it works</a>
+      <a href="#results">Results</a>
+      <a href="#ways">Two ways to work with me</a>
       <a href="#faq">Questions</a>
     </nav>
     <div class="bar-right">
@@ -381,13 +388,13 @@ s.parentNode.insertBefore(t,s)})();
     <!-- VIDEO SLOT. When the brand video is filmed, paste its embed URL into data-embed (Loom: https://www.loom.com/embed/ID?hideEmbedTopBar=true). Empty = photo + proof card. -->
     <div class="vid" id="vid" data-embed="">
       <div class="vid-fallback">
-        <img src="/assets/puja.jpg" alt="Puja Patel" width="1000" height="1250">
+        <img src="/assets/puja_hero.jpg" alt="Puja Patel" width="700" height="880">
         <div class="proof">
           <div class="proof-k">A few facts</div>
           <ul>
             <li><b>7</b><span>years where operations, data and AI meet, inside companies first, now building for them</span></li>
             <li><b>100+</b><span>businesses mapped</span></li>
-            <li><b>6</b><span>engagements below, from a 5-to-10-person brokerage to a 150-person retailer</span></li>
+            <li><b>150</b><span>people in the largest company I have mapped end to end; the smallest was one person</span></li>
             <li><b>1</b><span>business of my own that runs on the same system, so I'm not the bottleneck in it</span></li>
           </ul>
           <div class="sig"><b>Puja Patel</b> · founder, Puja Patel LLC</div>
@@ -397,46 +404,78 @@ s.parentNode.insertBefore(t,s)})();
   </div>
 </header>
 
-<section id="ways">
+<section class="alt" id="about">
   <div class="wrap">
-    <div class="eyebrow">Two ways to work with me</div>
-    <h2>Same idea at two sizes. Pick yours by revenue.</h2>
-    <p class="lead" style="margin-top:14px">A <b>second brain</b> gets a business out of one head. A <b>company brain</b> gets it out of everyone's heads and into one system the team and the AI run from. One method, the same eight layers. What changes is the scale and who does the building.</p>
-    <div class="doors">
-      <div class="door sb">
-        <div class="band">Under $100K a month</div>
-        <h3>The Second Brain Method</h3>
-        <p>You build your second brain, with the group and with me showing you exactly where to click.</p>
-        <ul>
-          <li>Your business mapped and your bottlenecks found</li>
-          <li>A deep-dive workshop every month, a working session every week</li>
-          <li>Everything you build lives in your own files and accounts</li>
-        </ul>
-        <a class="btn ghost" href="/second-brain-method/" data-door="sbm">See The Second Brain Method <span class="arw">&rarr;</span></a>
-        <p class="fine">$250 a month, cancel anytime.</p>
-      </div>
-      <div class="door hi">
-        <div class="band">$100K a month and up</div>
-        <h3>A company brain: audit, then build</h3>
-        <p>I map how your business runs today. What the audit finds sets the build. Then my builders and I do the building, in milestones, with your sign-off at each one.</p>
-        <ul>
-          <li>An audit built from observation: interviews, voice memos, your real data</li>
-          <li>A current state review, a system blueprint and a phased roadmap</li>
-          <li>Systems and AI built and tested on our side before they touch yours</li>
-        </ul>
-        <a class="btn" href="/apply/" data-apply="door">Apply for a call <span class="arw">&rarr;</span></a>
-        <p class="fine">The call checks fit and walks you through how it works. It is not an audit.</p>
+    <div class="eyebrow">About</div>
+    <h2>I'm Puja.</h2>
+    <div class="about">
+      <img src="/assets/puja.jpg" alt="Puja Patel" width="1000" height="1250">
+      <div>
+        <p><b>I help business owners get their business out of their own heads. I learned how by doing it to mine first.</b></p>
+        <p>I work where operations, data and AI meet. I have a degree in data science and seven years at that intersection: three of them running day-to-day operations for a multi-property portfolio, where I first put AI into daily workflows, then standing up the processes and systems of a $70 million solar manufacturing facility from scratch.</p>
+        <p>For the last two years I have done this work for clients across retail, brokerage, recruiting, real estate, events and healthcare. The pattern is almost always the same: the whole thing runs on a few people's heads, the numbers live in five places, and the AI tools they pay for touch neither.</p>
+        <p>My own business runs on a second brain I built for myself first. Clients, pipeline, content, cash. It is what lets me run everything without being the bottleneck in it, and it is the same system I build in yours, at your size.</p>
       </div>
     </div>
   </div>
 </section>
+<section id="how">
+  <div class="wrap">
+    <div class="eyebrow">How it works</div>
+    <h2>Eight layers, built in order, from the data up.</h2>
+    <div class="two">
+      <div>
+        <p class="lead">Most companies buy the app and try to build the agent, the two layers everyone can see. Underneath there is no clean data, no context and no written standard for the AI to run on, so it stalls and the team goes back to doing it by hand. That is not a tool problem. It is a foundation problem.</p>
+        <p class="lead">The audit builds layers 1 to 4: after it, the company brain exists. The build adds layers 5 to 8: the brain starts doing the work. Same layers in The Second Brain Method, at one-head scale.</p>
+      </div>
+      <div class="layers">
+        <div class="lgrp">The surface: where everyone starts, and why it fails</div>
+        <div class="layer s"><div class="i">08</div><div><p class="nm">Apps</p><p class="ds">The polished tools. Great, once there is something underneath them.</p></div></div>
+        <div class="layer s"><div class="i">07</div><div><p class="nm">Agents</p><p class="ds">Workflows that run on their own, reliably, because the base is built.</p></div></div>
+        <div class="lgrp">The foundation: where we start</div>
+        <div class="layer f"><div class="i">06</div><div><p class="nm">Skills</p><p class="ds">Repeatable capabilities your team can trust twice.</p></div></div>
+        <div class="layer f"><div class="i">05</div><div><p class="nm">Integration</p><p class="ds">Your real tools connected, so AI can do, not just talk.</p></div></div>
+        <div class="layer f"><div class="i">04</div><div><p class="nm">Workspace</p><p class="ds">One place the company brain lives, remembers and compounds.</p></div></div>
+        <div class="layer f"><div class="i">03</div><div><p class="nm">Context management</p><p class="ds">The AI actually knowing your business, with no re-explaining.</p></div></div>
+        <div class="layer f"><div class="i">02</div><div><p class="nm">Governance</p><p class="ds">What is safe to use and who sees what, so client data stays protected.</p></div></div>
+        <div class="layer f base"><div class="i">01</div><div><p class="nm">Data</p><p class="ds">Clean, structured information the whole system stands on.</p></div></div>
+      </div>
+    </div>
 
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>The call</h3><p>30 minutes. We check fit, I walk you through how the audit and the build work, and we decide. Nothing gets mapped on the call.</p></div>
+      <div class="step"><div class="n">2</div><h3>The audit</h3><p>How your business runs today, from observation: interviews with the people doing the work, voice memos, read-only access to your systems. Output: a current state review, a system blueprint and a phased roadmap, each item tied to a measurable outcome.</p></div>
+      <div class="step"><div class="n">3</div><h3>The build</h3><p>Milestones with a written definition of done. Nothing touches your machines until it is built and running green on ours. Your sign-off at every gate, and every scope change in writing.</p></div>
+      <div class="step"><div class="n">4</div><h3>After</h3><p>The system is yours, in your accounts, documented so your team can run and extend it. When the first project lands, most clients move into the next area that needs attention.</p></div>
+    </div>
+    <p class="center" style="margin-top:28px"><a class="btn" href="/apply/" data-apply="how">Apply for a call <span class="arw">&rarr;</span></a></p>
+  </div>
+</section>
 <section class="alt" id="results">
   <div class="wrap">
     <div class="eyebrow">Results</div>
-    <h2>Six engagements. The problem, what we built, what changed.</h2>
-    <p class="lead" style="margin-top:14px">Clients are described by shape, not by name. Every engagement here either completed its full scope or expanded past it.</p>
+    <h2>A sample of the work: the problem, what we built, what changed.</h2>
+    <p class="lead" style="margin-top:14px">A few of the engagements, described by shape rather than by name, since most of this work is under NDA. Every one here either completed its full scope or expanded past it.</p>
     <div class="cs-list">
+
+      <article class="cs" id="cs-01">
+        <div class="cs-head"><span class="cs-tag">Case File 01</span><h3>Property management company: 12% to 53% margins in 90 days, without hiring</h3><p class="cs-meta">25 people · 1,120 doors · audit, then build · the numbers 90 days after go-live</p></div>
+        <div class="cf">
+          <div>
+            <p>The owner was about to hire because the team was at 132% capacity and still turning work away, and a 12% margin could not pay for the hire. The audit mapped every recurring task, found where the hours per door actually went, and the fix was operations first, then the tech stack built from the data up.</p>
+            <p>This is the whole method on one real company, start to finish: the audit, the map, the diagnosis, the fix, and the scorecard 90 days after go-live.</p>
+            <div class="stats">
+              <div class="stat"><b>12% &rarr; 53%</b><span>profit margin</span></div>
+              <div class="stat"><b>0</b><span>hires</span></div>
+              <div class="stat"><b>90 days</b><span>after go-live</span></div>
+            </div>
+            <a class="more" href="/learn/case-file-01-property-management/">Read the full case file &rarr;</a>
+          </div>
+          <div class="cf-video">
+            <iframe src="https://www.youtube-nocookie.com/embed/VpLZedBTMeY?rel=0&amp;modestbranding=1" title="Case File 01: He couldn't afford to hire. 90 days later: 12% to 53% margins" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+      </article>
 
       <article class="cs" id="cs-a">
         <div class="cs-head"><span class="cs-tag">A</span><h3>Multi-location ophthalmology practice</h3><p class="cs-meta">3 locations · 300+ referring physicians · three-month build, 2026</p></div>
@@ -537,6 +576,17 @@ s.parentNode.insertBefore(t,s)})();
         </div>
       </article>
 
+      <article class="cs brief" id="cs-g">
+        <div class="cs-head"><span class="cs-tag">G</span><h3>Mortgage team</h3><p class="cs-meta">Owner-led lending team · processors and loan officers</p></div>
+        <div class="cs-grid">
+          <div><h4>What changed</h4><p>Processing time per loan went from about 17 hours to about 5.3, with the same people: roughly three times the capacity without a hire. The work that had been routing through the owner was mapped, written down and handed to the system.</p></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>17 &rarr; 5.3</b><span>hours per loan</span></div>
+          <div class="stat"><b>~3x</b><span>capacity, same team</span></div>
+        </div>
+      </article>
+
       <article class="cs brief" id="cs-f">
         <div class="cs-head"><span class="cs-tag">F</span><h3>Event operations, 200 to 20,000+ attendees</h3><p class="cs-meta">Cultural festivals · engaged since May 2025</p></div>
         <div class="cs-grid">
@@ -547,41 +597,7 @@ s.parentNode.insertBefore(t,s)})();
     </div>
   </div>
 </section>
-
-<section id="how">
-  <div class="wrap">
-    <div class="eyebrow">How it works</div>
-    <h2>Eight layers, built in order, from the data up.</h2>
-    <div class="two">
-      <div>
-        <p class="lead">Most companies buy the app and try to build the agent, the two layers everyone can see. Underneath there is no clean data, no context and no written standard for the AI to run on, so it stalls and the team goes back to doing it by hand. That is not a tool problem. It is a foundation problem.</p>
-        <p class="lead">The audit builds layers 1 to 4: after it, the company brain exists. The build adds layers 5 to 8: the brain starts doing the work. Same layers in The Second Brain Method, at one-head scale.</p>
-      </div>
-      <div class="layers">
-        <div class="lgrp">The surface: where everyone starts, and why it fails</div>
-        <div class="layer s"><div class="i">08</div><div><p class="nm">Apps</p><p class="ds">The polished tools. Great, once there is something underneath them.</p></div></div>
-        <div class="layer s"><div class="i">07</div><div><p class="nm">Agents</p><p class="ds">Workflows that run on their own, reliably, because the base is built.</p></div></div>
-        <div class="lgrp">The foundation: where we start</div>
-        <div class="layer f"><div class="i">06</div><div><p class="nm">Skills</p><p class="ds">Repeatable capabilities your team can trust twice.</p></div></div>
-        <div class="layer f"><div class="i">05</div><div><p class="nm">Integration</p><p class="ds">Your real tools connected, so AI can do, not just talk.</p></div></div>
-        <div class="layer f"><div class="i">04</div><div><p class="nm">Workspace</p><p class="ds">One place the company brain lives, remembers and compounds.</p></div></div>
-        <div class="layer f"><div class="i">03</div><div><p class="nm">Context management</p><p class="ds">The AI actually knowing your business, with no re-explaining.</p></div></div>
-        <div class="layer f"><div class="i">02</div><div><p class="nm">Governance</p><p class="ds">What is safe to use and who sees what, so client data stays protected.</p></div></div>
-        <div class="layer f base"><div class="i">01</div><div><p class="nm">Data</p><p class="ds">Clean, structured information the whole system stands on.</p></div></div>
-      </div>
-    </div>
-
-    <div class="steps">
-      <div class="step"><div class="n">1</div><h3>The call</h3><p>30 minutes. We check fit, I walk you through how the audit and the build work, and we decide. Nothing gets mapped on the call.</p></div>
-      <div class="step"><div class="n">2</div><h3>The audit</h3><p>How your business runs today, from observation: interviews with the people doing the work, voice memos, read-only access to your systems. Output: a current state review, a system blueprint and a phased roadmap, each item tied to a measurable outcome.</p></div>
-      <div class="step"><div class="n">3</div><h3>The build</h3><p>Milestones with a written definition of done. Nothing touches your machines until it is built and running green on ours. Your sign-off at every gate, and every scope change in writing.</p></div>
-      <div class="step"><div class="n">4</div><h3>After</h3><p>The system is yours, in your accounts, documented so your team can run and extend it. When the first project lands, most clients move into the next area that needs attention.</p></div>
-    </div>
-    <p class="center" style="margin-top:28px"><a class="btn" href="/apply/" data-apply="how">Apply for a call <span class="arw">&rarr;</span></a></p>
-  </div>
-</section>
-
-<section class="alt" id="fit">
+<section id="fit">
   <div class="wrap">
     <div class="eyebrow">Fit</div>
     <h2>Who this is for, and who it isn't.</h2>
@@ -608,7 +624,39 @@ s.parentNode.insertBefore(t,s)})();
     </div>
   </div>
 </section>
-
+<section class="alt" id="ways">
+  <div class="wrap">
+    <div class="eyebrow">Two ways to work with me</div>
+    <h2>Same idea at two sizes. Pick yours by revenue.</h2>
+    <p class="lead" style="margin-top:14px">A <b>second brain</b> gets a business out of one head. A <b>company brain</b> gets it out of everyone's heads and into one system the team and the AI run from. One method, the same eight layers. What changes is the scale and who does the building.</p>
+    <div class="doors">
+      <div class="door sb">
+        <div class="band">Under $100K a month</div>
+        <h3>The Second Brain Method</h3>
+        <p>You build your second brain, with the group and with me showing you exactly where to click.</p>
+        <ul>
+          <li>Your business mapped and your bottlenecks found</li>
+          <li>A deep-dive workshop every month, a working session every week</li>
+          <li>Everything you build lives in your own files and accounts</li>
+        </ul>
+        <a class="btn ghost" href="/second-brain-method/" data-door="sbm">See The Second Brain Method <span class="arw">&rarr;</span></a>
+        <p class="fine">$250 a month, cancel anytime.</p>
+      </div>
+      <div class="door hi">
+        <div class="band">$100K a month and up</div>
+        <h3>A company brain: audit, then build</h3>
+        <p>I map how your business runs today. What the audit finds sets the build. Then my builders and I do the building, in milestones, with your sign-off at each one.</p>
+        <ul>
+          <li>An audit built from observation: interviews, voice memos, your real data</li>
+          <li>A current state review, a system blueprint and a phased roadmap</li>
+          <li>Systems and AI built and tested on our side before they touch yours</li>
+        </ul>
+        <a class="btn" href="/apply/" data-apply="door">Apply for a call <span class="arw">&rarr;</span></a>
+        <p class="fine">The call checks fit and walks you through how it works. It is not an audit.</p>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="faq">
   <div class="wrap">
     <div class="eyebrow">Questions</div>
@@ -625,23 +673,6 @@ s.parentNode.insertBefore(t,s)})();
     </div>
   </div>
 </section>
-
-<section class="alt" id="about">
-  <div class="wrap">
-    <div class="eyebrow">About</div>
-    <h2>I'm Puja.</h2>
-    <div class="about">
-      <img src="/assets/puja.jpg" alt="Puja Patel" width="1000" height="1250">
-      <div>
-        <p><b>I help business owners get their business out of their own heads. I learned how by doing it to mine first.</b></p>
-        <p>I work where operations, data and AI meet. I have a degree in data science and seven years at that intersection: three of them running day-to-day operations for a multi-property portfolio, where I first put AI into daily workflows, then standing up the processes and systems of a $70 million solar manufacturing facility from scratch.</p>
-        <p>For the last two years I have done this work for clients across retail, brokerage, recruiting, real estate, events and healthcare. The pattern is almost always the same: the whole thing runs on a few people's heads, the numbers live in five places, and the AI tools they pay for touch neither.</p>
-        <p>My own business runs on a second brain I built for myself first. Clients, pipeline, content, cash. It is what lets me run everything without being the bottleneck in it, and it is the same system I build in yours, at your size.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="final" id="apply">
   <div class="wrap">
     <div class="eyebrow">Next step</div>
