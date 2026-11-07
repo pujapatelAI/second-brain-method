@@ -491,10 +491,6 @@ s.parentNode.insertBefore(t,s)})();
       </div>
     </div>
     <div class="ws-strip" id="grpStrip"><span class="ws-dot" aria-hidden="true"></span><span>Next group starts <b class="ws-clock" data-grp-start>Monday, Nov 9</b> · join by <span data-grp-joinby>Sunday, Nov 8</span></span></div>
-    <div class="ws-strip" id="wsStrip" hidden>
-      <span class="ws-dot" aria-hidden="true"></span>
-      <span class="ws-full">Next Second Brain Workshop in </span><span class="ws-mob">Next workshop in </span><span class="ws-clock" id="wsClock">&mdash;</span><span class="ws-full"> &mdash; members only, so </span><span class="ws-mob"> &mdash; </span><a class="ws-cta" href="#tiers">join to attend <span class="arw">&rarr;</span></a>
-    </div>
   </div>
 
   <style>
@@ -1034,19 +1030,21 @@ s.parentNode.insertBefore(t,s)})();
 
 <script>
 (function(){
-  // Next Second Brain Workshop countdown (top-bar strip). Auto-rolls to the next date and
-  // HIDES when the list is exhausted — never shows a stale/negative clock. Times are 2PM ET
-  // (= 18:00 UTC while ET is on EDT, through early Nov 2026). ⚠️ TOP UP this list monthly from
-  // the Circle calendar. Second Brain Workshops only (not the Thursday Q&A or the Deep Dive).
+  // Next Second Brain Workshop countdown. The visible top-bar strip (#wsStrip) was removed on
+  // 2026-11-07 at Puja's request. The WORKSHOPS list stays because the daily Circle date sync
+  // (apps/command/sbm_landing_dates_sync.py) rewrites it between the WS-DATES markers and
+  // errors if they are missing. With no strip on the page this only sets the scroll padding.
   var WORKSHOPS = [
     /* WS-DATES:START (auto-managed by apps/command/sbm_landing_dates_sync.py — do not hand-edit) */
     '2026-11-23T19:00:00Z'
     /* WS-DATES:END */
   ].map(function(s){ return new Date(s).getTime(); });
-  var strip = document.getElementById('wsStrip'), clock = document.getElementById('wsClock');
-  if(!strip || !clock) return;
   var bar = document.querySelector('.bar');
   function syncPad(){ if(bar) document.documentElement.style.scrollPaddingTop = (bar.offsetHeight + 12) + 'px'; }
+  syncPad();
+  window.addEventListener('resize', syncPad);
+  var strip = document.getElementById('wsStrip'), clock = document.getElementById('wsClock');
+  if(!strip || !clock) return;
   function nextTs(){ var now = Date.now(); for(var i=0;i<WORKSHOPS.length;i++){ if(WORKSHOPS[i] > now) return WORKSHOPS[i]; } return null; }
   function pad(n){ return (n<10?'0':'') + n; }
   function tick(){
@@ -1060,7 +1058,6 @@ s.parentNode.insertBefore(t,s)})();
   }
   tick();
   setInterval(tick, 1000);
-  window.addEventListener('resize', syncPad);
 })();
 </script>
 
