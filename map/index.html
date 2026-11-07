@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
+<!-- Google Analytics 4 (G-Y2JTHK29BD) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2JTHK29BD"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y2JTHK29BD');</script>
+<link rel="canonical" href="https://puja-patel.com/map/">
 <title>The Systems Map · Puja Patel</title>
 <meta name="description" content="Every system a service business runs on, in the order a stranger becomes a client, with the questions that get each one out of your head. Free.">
 <meta property="og:type" content="website">
@@ -1541,6 +1544,13 @@ s.parentNode.insertBefore(t,s)})();
           if(rev==='$10k to $15k/mo' || rev==='$15k to $30k/mo'){
             fbq('track','SubmitApplication',{ content_name:'systems_map_10k_30k', revenue_band:rev });
           }
+        }
+      }catch(x){}
+      /* GA4: generate_lead = every sign-up; qualify_lead = the $10k-$30k/mo bands (same split as Meta). */
+      try{
+        if(window.gtag){
+          gtag('event','generate_lead',{ revenue_band:rev });
+          if(rev==='$10k to $15k/mo' || rev==='$15k to $30k/mo'){ gtag('event','qualify_lead',{ revenue_band:rev }); }
         }
       }catch(x){}
       try{

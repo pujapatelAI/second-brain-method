@@ -1,0 +1,9 @@
+# puja-patel.com
+# Everything public is crawlable. AI search crawlers (Google-Extended, GPTBot,
+# ClaudeBot, PerplexityBot, etc.) are deliberately NOT blocked: being cited in
+# AI answers is part of the plan. Pages that should stay out of search carry a
+# noindex meta tag instead, so crawlers can still read that instruction.
+User-agent: *
+Allow: /
+
+Sitemap: https://puja-patel.com/sitemap.xml

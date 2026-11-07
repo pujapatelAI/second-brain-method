@@ -1,5 +1,133 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Analytics 4 (G-Y2JTHK29BD) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2JTHK29BD"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y2JTHK29BD');</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Service",
+   "@id": "https://puja-patel.com/vip/#service",
+   "name": "The Second Brain Method",
+   "serviceType": "Business operations membership",
+   "provider": {
+    "@id": "https://puja-patel.com/#org"
+   },
+   "url": "https://puja-patel.com/vip/",
+   "description": "Your business mapped in OpMap, your bottlenecks found, a 30-day plan, monthly workshops and live weekly working sessions.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Monthly",
+     "price": "250",
+     "priceCurrency": "USD",
+     "url": "https://puja-patel.com/vip/",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "250",
+      "priceCurrency": "USD",
+      "billingDuration": 1,
+      "unitCode": "MON"
+     }
+    },
+    {
+     "@type": "Offer",
+     "name": "Annual",
+     "price": "2500",
+     "priceCurrency": "USD",
+     "url": "https://puja-patel.com/vip/",
+     "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "2500",
+      "priceCurrency": "USD",
+      "billingDuration": 1,
+      "unitCode": "ANN"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://puja-patel.com/#org",
+   "name": "Puja Patel LLC",
+   "url": "https://puja-patel.com/",
+   "logo": "https://puja-patel.com/assets/puja.jpg",
+   "founder": {
+    "@id": "https://puja-patel.com/#puja"
+   },
+   "sameAs": [
+    "https://www.tiktok.com/@pujap109",
+    "https://www.instagram.com/pujapatel.ai",
+    "https://www.youtube.com/channel/UCFcm-eAvCkPryWrb0ZcQMRg",
+    "https://www.facebook.com/1054243464437844"
+   ]
+  },
+  {
+   "@type": "Person",
+   "@id": "https://puja-patel.com/#puja",
+   "name": "Puja Patel",
+   "url": "https://puja-patel.com/",
+   "image": "https://puja-patel.com/assets/puja.jpg",
+   "jobTitle": "Founder",
+   "worksFor": {
+    "@id": "https://puja-patel.com/#org"
+   },
+   "knowsAbout": [
+    "AI operations for service businesses",
+    "business systems and SOPs",
+    "second brain for business",
+    "Claude for business operations"
+   ],
+   "sameAs": [
+    "https://www.tiktok.com/@pujap109",
+    "https://www.instagram.com/pujapatel.ai",
+    "https://www.youtube.com/channel/UCFcm-eAvCkPryWrb0ZcQMRg",
+    "https://www.facebook.com/1054243464437844"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://puja-patel.com/vip/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What are the live weekly working sessions?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A live session every week where you work your roadmap and get unstuck in real time. Bring what you're stuck on; leave with it moving."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How personalized is it, really?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Fully. OpMap starts from a map of your business, the analysis names your ceiling, and the projects are built around your bottlenecks — not a generic curriculum."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Monthly or annual?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Your choice — $250/month, or $2,500/year (you pick at checkout). Either way, cancel anytime."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do I need to be technical?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The software does the heavy lifting; you bring your business and follow the plan."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 <title>VIP — The Second Brain Method</title>
 <meta name="description" content="VIP ($250/mo or $2,500/yr): your business mapped in 30 minutes, a workflow analysis that finds your ceiling, custom projects, a 30-day plan, and live weekly working sessions. Cancel anytime.">
 <link rel="canonical" href="https://puja-patel.com/vip/">
@@ -502,6 +630,7 @@ s.parentNode.insertBefore(t,s)})();
       var tier = a.getAttribute('data-tier') || 'unknown';
       var val = parseInt(a.getAttribute('data-value'), 10) || 0;
       try{ if(window.fbq) fbq('track','InitiateCheckout',{value:val, currency:'USD', content_name:tier}); }catch(e){}
+      try{ if(window.gtag) gtag('event','begin_checkout',{value:val, currency:'USD', items:[{item_name:tier}]}); }catch(e){}
       try{ if(window.clarity){ clarity('event','checkout_click'); clarity('set','checkout_tier',tier); } }catch(e){}
       try{ if(window._cio) _cio.track('checkout_clicked',{tier:tier, value:val}); }catch(e){}
     });

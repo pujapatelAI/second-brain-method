@@ -1,5 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Analytics 4 (G-Y2JTHK29BD) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2JTHK29BD"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y2JTHK29BD');</script>
 <title>OpMap — Inside the Second Brain Method</title>
 <meta name="description" content="OpMap is the software layer of the Second Brain Method. It opens for members — and comes with three more layers a tool alone can't give you: the community, the skills, and me in your corner.">
 <link rel="canonical" href="https://puja-patel.com/opmap">
@@ -329,6 +332,7 @@ s.parentNode.insertBefore(t,s)})();
       clar('event', 'checkout_click');
       clar('set', 'checkout_from', 'opmap:' + where);
       if(window.fbq) fbq('track', 'InitiateCheckout', {value: 250, currency: 'USD', content_name: 'opmap:' + where});
+      if(window.gtag) gtag('event', 'begin_checkout', {value: 250, currency: 'USD', items: [{item_name: 'opmap:' + where}]});
       if(window._cio) _cio.track('checkout_clicked', {from: 'opmap:' + where});
     });
   });

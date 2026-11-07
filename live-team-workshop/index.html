@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Analytics 4 (G-Y2JTHK29BD) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2JTHK29BD"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y2JTHK29BD');</script>
 <title>The Company Brain Build Day — Tampa · Puja Patel</title>
 <meta name="description" content="Your AI isn't working because your systems don't exist. One day, on-site in Tampa, we build the eight layers underneath it — so your team's AI finally runs.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
@@ -717,6 +720,7 @@ var _cio = _cio || [];
         +"AI tools now: "+el.tools.value+"\n\n"
         +"Main adoption issue:\n"+el.adoption.value+"\n";
       try{ if(window.fbq) fbq('track','Lead'); }catch(_){}
+      try{ if(window.gtag) gtag('event','generate_lead'); }catch(_){}
       try{ if(window._cio) _cio.track('workshop_application'); }catch(_){}
       var note=document.getElementById('formnote');
       if(note) note.textContent="Opening your email to send — just hit send and I'll be in touch.";
