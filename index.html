@@ -236,21 +236,23 @@ s.parentNode.insertBefore(t,s)})();
   .hero-cta{margin-top:24px; display:flex; gap:12px; flex-wrap:wrap; align-items:center}
   .hero-alt{margin-top:12px; font-size:.95rem; color:var(--ink-soft)}
   @media(max-width:560px){.hero-cta .btn{width:100%}}
-  /* video slot: paste the brand video's embed URL into data-embed on #vid below. Empty = Puja's photo + proof card. */
+  /* video slot: paste the brand video's embed URL into data-embed on #vid below. Empty = Puja's photo + name line. */
   .vid{position:relative; border:1px solid var(--line); border-radius:6px; background:var(--surface); overflow:hidden}
   .vid.has-video{aspect-ratio:16/9}
+  @media(max-width:859px){.vid:not(.has-video){display:none}} /* phones: About right below shows the photo */
   .vid iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
   .vid-fallback{display:grid; grid-template-columns:120px minmax(0,1fr); gap:16px; padding:14px}
   @media(min-width:860px){.vid-fallback{grid-template-columns:minmax(0,1fr); gap:0; padding:0}}
   .vid-fallback img{display:block; width:100%; height:auto; align-self:start; object-fit:cover; object-position:50% 20%; border-radius:4px; aspect-ratio:1/1}
   @media(min-width:860px){.vid-fallback img{aspect-ratio:4/3.6; border-radius:0; object-position:50% 12%}}
-  .proof{display:grid; gap:8px}
+  .proof{display:grid; gap:8px; align-self:center}
+  @media(min-width:860px){.proof{align-self:auto}}
   @media(min-width:860px){.proof{padding:16px 18px; border-top:3px solid var(--accent-bright); background:var(--surface)}}
   .proof-k{font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); font-weight:700}
   .proof ul{list-style:none; margin:0; padding:0; display:grid; gap:6px}
   .proof li{display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; font-size:.96rem; line-height:1.35}
   .proof li b{font-family:var(--font-display); color:var(--accent); font-size:1.1rem; min-width:2.6ch; text-align:right}
-  .proof .sig{font-size:.9rem; color:var(--ink-soft); padding-top:8px; border-top:1px solid var(--line)}
+  .proof .sig{font-size:.9rem; color:var(--ink-soft)}
   .proof .sig b{color:var(--ink)}
 
   /* doors */
@@ -385,18 +387,11 @@ s.parentNode.insertBefore(t,s)})();
       </div>
       <p class="hero-alt">Under $100K a month? <a href="/second-brain-method/" data-door="sbm-hero">Start with The Second Brain Method</a>.</p>
     </div>
-    <!-- VIDEO SLOT. When the brand video is filmed, paste its embed URL into data-embed (Loom: https://www.loom.com/embed/ID?hideEmbedTopBar=true). Empty = photo + proof card. -->
+    <!-- VIDEO SLOT. When the brand video is filmed, paste its embed URL into data-embed (Loom: https://www.loom.com/embed/ID?hideEmbedTopBar=true). Empty = photo + name line. -->
     <div class="vid" id="vid" data-embed="">
       <div class="vid-fallback">
         <img src="/assets/puja_hero.jpg" alt="Puja Patel" width="700" height="880">
         <div class="proof">
-          <div class="proof-k">A few facts</div>
-          <ul>
-            <li><b>7</b><span>years where operations, data and AI meet, inside companies first, now building for them</span></li>
-            <li><b>100+</b><span>businesses mapped</span></li>
-            <li><b>150</b><span>people in the largest company I have mapped end to end; the smallest was one person</span></li>
-            <li><b>1</b><span>business of my own that runs on the same system, so I'm not the bottleneck in it</span></li>
-          </ul>
           <div class="sig"><b>Puja Patel</b> · founder, Puja Patel LLC</div>
         </div>
       </div>
