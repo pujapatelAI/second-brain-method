@@ -29,6 +29,10 @@
   .muted{color:var(--ink-soft);font-size:15px;margin-top:12px}
   ol{padding-left:22px}
   li{margin-bottom:10px}
+  .inapp{background:#F7E9DF;border:1px solid #E5C9B6;border-radius:4px;padding:14px 16px;margin-bottom:16px;font-size:16px}
+  .inapp p{margin-top:6px}
+  .inapp .copy{margin-top:10px;background:var(--ink);color:var(--on-accent);border:0;border-radius:3px;font:700 15px/1 -apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;padding:11px 16px;cursor:pointer}
+  .inapp .url{font-size:14px;color:var(--ink-soft);word-break:break-all;margin-top:8px}
   .foot{background:var(--footer-bg);color:#A99A8B;font-size:13px;letter-spacing:1px;text-transform:uppercase}
   .foot .wrap{padding:24px 20px 28px}
 </style>
@@ -41,6 +45,12 @@
 
   <div class="card">
     <h2>1. Download your file</h2>
+    <div class="inapp" id="inapp" hidden>
+      <b>You're in <span data-inapp-app>this app</span>'s browser, and it can't download files.</b>
+      <p>Your file is also on its way to your email. To download it now, tap <b>&bull;&bull;&bull;</b> at the top right and choose the option to open in your browser. Or copy this page's link and paste it into Safari or Chrome.</p>
+      <button type="button" class="copy" data-copy-link data-track="copy-thanks-link">Copy link</button>
+      <div class="url">puja-patel.com/setup-file/thanks/</div>
+    </div>
     <a class="btn" href="systems-setup-file.zip" download data-track="download-ssf">Download the Systems Setup File &rarr;</a>
     <p class="muted">Unzip it and open "0 - START HERE" first. It takes 2 minutes and tells you exactly what to do. Bookmark this page to download it again.</p>
   </div>
@@ -60,6 +70,29 @@
   </div>
 </div>
 <div class="foot"><div class="wrap">Puja Patel · puja-patel.com</div></div>
+<script>
+/* Puja, Nov 10 2026: Meta ad buyers pay inside the Facebook/Instagram in-app browser, which can't
+   download the zip (Tina, Nov 10). Show them how to get it. ?inapp=1 forces the notice for testing. */
+(function(){
+  var ua = navigator.userAgent || "";
+  var apps = [[/Instagram/i,"Instagram"],[/FBAN|FBAV|FB_IAB|FBIOS|FB4A/i,"Facebook"],[/Messenger/i,"Messenger"],
+              [/musical_ly|Bytedance|TikTok/i,"TikTok"],[/LinkedInApp/i,"LinkedIn"],[/Snapchat/i,"Snapchat"],[/Pinterest/i,"Pinterest"]];
+  var app = null;
+  for (var i = 0; i < apps.length; i++) if (apps[i][0].test(ua)) { app = apps[i][1]; break; }
+  if (!app && /[?&]inapp=1/.test(location.search)) app = "Facebook";
+  if (!app) return;
+  var box = document.getElementById("inapp");
+  box.querySelector("[data-inapp-app]").textContent = app;
+  box.hidden = false;
+  var btn = box.querySelector("[data-copy-link]");
+  btn.addEventListener("click", function(){
+    var url = "https://puja-patel.com/setup-file/thanks/";
+    var done = function(){ btn.textContent = "Copied. Now paste it into Safari or Chrome"; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function(){ prompt("Copy this link:", url); });
+    else prompt("Copy this link:", url);
+  });
+})();
+</script>
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","xni1glpbqz");</script>
 </body>
 </html>
