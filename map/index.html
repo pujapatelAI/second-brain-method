@@ -233,8 +233,11 @@ s.parentNode.insertBefore(t,s)})();
       <option>Under $10k/mo</option>
       <option>$10k to $15k/mo</option>
       <option>$15k to $30k/mo</option>
-      <option>$30k to $75k/mo</option>
-      <option>$75k+/mo</option>
+      <option>$30k to $50k/mo</option>
+      <option>$50k to $75k/mo</option>
+      <option>$75k to $250k/mo</option>
+      <option>$250k to $500k/mo</option>
+      <option>$500k+/mo</option>
     </select>
     <div id="g-rev-low" style="display:none">
       <label for="g-rev-detail">About how much a month?</label>
@@ -1573,6 +1576,14 @@ s.parentNode.insertBefore(t,s)})();
     }
     try{ localStorage.setItem(KEY,'1'); }catch(x){}
     unlock();
+    /* Puja, Nov 9 2026: anyone above $250k/mo goes to the Owner Independence Program. */
+    if(rev==='$250k to $500k/mo' || rev==='$500k+/mo'){
+      var b=document.createElement('div');
+      b.style.cssText='background:#B0532F;color:#FBF7F1;padding:14px 16px;text-align:center;font-weight:600;line-height:1.45';
+      b.innerHTML='At your size, the map is only the start. <a href="/owner-independence/" style="color:#FBF7F1;text-decoration:underline">See the Owner Independence Program &rarr;</a>';
+      document.body.insertBefore(b, document.body.firstChild);
+      try{ if(window._cio) _cio.track('map_oip_route',{ monthly_revenue_band:rev }); }catch(x){}
+    }
   });
 })();
 </script>
