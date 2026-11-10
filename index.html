@@ -261,8 +261,7 @@ s.parentNode.insertBefore(t,s)})();
   .issue h3{font-size:1.18rem; margin-bottom:8px}
   .issue p{color:var(--ink-soft); font-size:.97rem; margin:0}
   /* best-fit router */
-  .fitwrap{display:grid; gap:28px}
-  @media(min-width:860px){.fitwrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:44px; align-items:start}}
+  .fitwrap{display:grid; gap:24px; max-width:680px}
   .fitform{display:grid; gap:14px; margin-top:22px}
   .fitform label{display:grid; gap:6px; font-weight:600; font-size:.95rem}
   .fitform label[hidden]{display:none}
@@ -271,7 +270,8 @@ s.parentNode.insertBefore(t,s)})();
   .fitform .btn{width:100%; margin-top:4px; border:0; cursor:pointer}
   .fitform .fine{font-size:.86rem; color:var(--ink-soft); margin:0}
   .ferr{color:var(--accent); font-weight:600; margin:0}
-  .result{background:var(--ground); border:1px solid var(--line); border-radius:6px; padding:20px 18px}
+  .result{display:none; background:var(--ground); border:1px solid var(--line); border-radius:6px; padding:20px 18px}
+  .result.done{display:block}
   .rlist{list-style:none; margin:10px 0 0; padding:0; display:grid; gap:10px}
   .rlist li{display:grid; grid-template-columns:7.2em minmax(0,1fr); gap:10px; font-size:.96rem; line-height:1.4; color:var(--ink-soft)}
   .rlist li b{font-family:var(--font-display); font-weight:normal; color:var(--accent)}
@@ -284,6 +284,30 @@ s.parentNode.insertBefore(t,s)})();
   .rcard p{color:var(--ink-soft)}
   .rcard .rnote{color:var(--ink); font-weight:600; margin:0}
   .final-cta a:not(.btn){color:var(--ink-soft)}
+  /* benefits */
+  .bens{list-style:none; margin:26px 0 0; padding:0; display:grid; gap:12px}
+  @media(min-width:640px){.bens{grid-template-columns:1fr 1fr}}
+  @media(min-width:1000px){.bens{grid-template-columns:repeat(3,1fr)}}
+  .bens li{display:grid; grid-template-columns:1.6rem minmax(0,1fr); gap:10px; align-items:start; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:14px 16px; font-size:1.02rem; line-height:1.4}
+  .bens .ck{color:var(--accent); font-weight:700; font-size:1.1rem; line-height:1.3}
+  .ben-more{margin:20px 0 0; font-family:var(--font-display); font-style:italic; font-size:1.2rem}
+  /* member stories + quotes (same stories as /second-brain-method/) */
+  .stories{display:grid; gap:16px; margin-top:26px}
+  .story{background:var(--ground); border:1px solid var(--line); border-top:3px solid var(--accent-bright); border-radius:6px; padding:20px 18px}
+  .story-who{font-family:var(--font-display); font-size:1.2rem; line-height:1.25; margin-bottom:12px}
+  .story-cols{display:grid; gap:12px}
+  @media(min-width:860px){.story-cols{grid-template-columns:repeat(3,1fr); gap:22px}}
+  .story-col h4{font-family:var(--font-body); font-size:.7rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin:0 0 6px}
+  .story-col p{color:var(--ink-soft); font-size:.96rem; margin:0}
+  .story-q{margin-top:14px; padding-top:12px; border-top:1px solid var(--line); font-family:var(--font-display); font-style:italic; line-height:1.45}
+  .wall{display:grid; gap:14px; margin-top:26px}
+  @media(min-width:760px){.wall{grid-template-columns:1fr 1fr}}
+  @media(min-width:1000px){.wall{grid-template-columns:repeat(3,1fr)}}
+  .quote{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:18px 18px 16px; display:flex; flex-direction:column}
+  .quote .mk{font-family:var(--font-display); font-size:2.4rem; line-height:.7; color:var(--accent); height:.9em}
+  .quote p{margin:0 0 14px; flex:1}
+  .who-row{display:flex; gap:10px; align-items:center; font-size:.88rem; color:var(--ink-soft)}
+  .who-av{flex:none; width:28px; height:28px; border-radius:50%; background:var(--surface-2); border:1px solid var(--line); color:var(--accent); display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:.82rem}
 </style>
 </head>
 <body>
@@ -293,8 +317,9 @@ s.parentNode.insertBefore(t,s)})();
     <a class="brand" href="/">Puja Patel</a>
     <nav class="nav" aria-label="Sections">
       <a href="#stuck">Where it breaks</a>
-      <a href="#how">How it works</a>
       <a href="#about">About</a>
+      <a href="#how">How it works</a>
+      <a href="#stories">Stories</a>
       <a href="/map/">Free Systems Map</a>
     </nav>
     <div class="bar-right">
@@ -362,6 +387,43 @@ s.parentNode.insertBefore(t,s)})();
   </div>
 </section>
 
+<section id="benefits">
+  <div class="wrap">
+    <div class="eyebrow">What it actually gets you</div>
+    <h2>The benefits of AI have nothing to do with the tech.</h2>
+    <ul class="bens">
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>Higher profit margins</span></li>
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>More visibility into your business</span></li>
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>Cleaner data</span></li>
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>Everyone knows what the hell is going on</span></li>
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>People stop asking you ridiculous things they should already know</span></li>
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>Everything that comes out of your company meets YOUR standards</span></li>
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>You're not the bottleneck</span></li>
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>You can spend time with your family</span></li>
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>You can sell your company</span></li>
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>You can take on more clients</span></li>
+      <li><span class="ck" aria-hidden="true">&#10003;</span><span>You can travel the world</span></li>
+    </ul>
+    <p class="ben-more">And a million more things I could go on and on about.</p>
+  </div>
+</section>
+
+<section class="alt" id="about">
+  <div class="wrap">
+    <div class="eyebrow">About</div>
+    <h2>I'm Puja.</h2>
+    <div class="about">
+      <img src="/assets/puja.jpg" alt="Puja Patel" width="1000" height="1250">
+      <div>
+        <p><b>I help business owners get their business out of their own heads. I learned how by doing it to mine first.</b></p>
+        <p>I work where operations, data and AI meet. I have a degree in data science and seven years at that intersection: three of them running day-to-day operations for a multi-property portfolio, where I first put AI into daily workflows, then standing up the processes and systems of a $70 million solar manufacturing facility from scratch.</p>
+        <p>For the last two years I have done this work for clients across retail, brokerage, recruiting, real estate, events and healthcare. The pattern is almost always the same: the whole thing runs on a few people's heads, the numbers live in five places, and the AI tools they pay for touch neither.</p>
+        <p>My own business runs on a second brain I built for myself first. Clients, pipeline, content, cash. It is what lets me run everything without being the bottleneck in it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="how">
   <div class="wrap">
     <div class="eyebrow">How it works</div>
@@ -380,6 +442,122 @@ s.parentNode.insertBefore(t,s)})();
       <div class="layer f base"><div class="i">01</div><div><p class="nm">Data</p><p class="ds">Clean, structured information the whole system stands on.</p></div></div>
     </div>
     <p class="muted" style="margin-top:18px">Same layers at every size. Under one head, you build them with me and a group. With a whole team, I build them for you.</p>
+  </div>
+</section>
+
+<section class="alt" id="stories">
+  <div class="wrap">
+    <div class="eyebrow">Member stories</div>
+    <h2>Before, what we did, and after.</h2>
+    <div class="stories">
+      <div class="story">
+          <div class="story-who">A coach, 15 years in business</div>
+          <div class="story-cols">
+            <div class="story-col"><h4>Before</h4><p>Everything she knew lived in her head. When she had a team, they always needed her to move anything forward. She had a whole folder of saved AI videos and no idea where to start, and new tools intimidated her.</p></div>
+            <div class="story-col"><h4>What we did</h4><p>She mapped her business in OpMap and turned it into 10 projects. Then she built her second brain live at the Second Brain Workshop and went from chatting with Claude to having Claude do the work.</p></div>
+            <div class="story-col"><h4>After</h4><p>Claude cleaned up years of files from two versions of her business, built and launched her new website, relabeled 52 podcast episodes, and fixed her email follow-up. New people now opt in almost every day.</p></div>
+          </div>
+          <div class="story-q">&ldquo;I've had somebody opt in almost every day on that &hellip; and I'm like, thank God that thing's getting fixed.&rdquo;</div>
+        </div>
+      <div class="story">
+          <div class="story-who">A mom of a toddler, running a strategy studio</div>
+          <div class="story-cols">
+            <div class="story-col"><h4>Before</h4><p>Every night she dug through hundreds of emails to count her new sign-ups and see who they were, skipping the duplicates her platform sends. Since the baby arrived, 72 warm leads had piled up.</p></div>
+            <div class="story-col"><h4>What we did</h4><p>In a live workshop she described the job to Claude in plain words. Claude found her Telegram bot, wrote the script, tested it and caught the duplicate emails on its own.</p></div>
+            <div class="story-col"><h4>After</h4><p>Every night at 9pm, a Telegram message tells her how many leads came in and their first names, while she's winding her son down for bed.</p></div>
+          </div>
+          <div class="story-q">&ldquo;It did this whole thing that I do in my brain every night &hellip; oh my god, this is amazing. This is so cool.&rdquo;</div>
+        </div>
+      <div class="story">
+          <div class="story-who">A brand positioning consultant, launching new ventures</div>
+          <div class="story-cols">
+            <div class="story-col"><h4>Before</h4><p>He was consulting while starting three new ventures at once, with &ldquo;a lot of responsibilities and a lot of dropped balls.&rdquo; He was only using AI on the surface.</p></div>
+            <div class="story-col"><h4>What we did</h4><p>He finished his OpMap map in 3 days with 4 projects underway. He built his second brain live, connected to his notes, email and files, and picked one venture to focus on first.</p></div>
+            <div class="story-col"><h4>After</h4><p>For the first time, everything on his plate is in one place, so he can see what's done, what's open and what's next.</p></div>
+          </div>
+          <div class="story-q">&ldquo;Once you have your files in order, this is kind of like magic &hellip; this is so wild to see like all my on decks and things that I haven't done, things that I need to do.&rdquo;</div>
+        </div>
+      <div class="story">
+          <div class="story-who">An events-planning co-owner with an 11-person team</div>
+          <div class="story-cols">
+            <div class="story-col"><h4>Before</h4><p>She knew there was a better way but felt overwhelmed, and she had lost late nights building things herself in ChatGPT.</p></div>
+            <div class="story-col"><h4>What we did</h4><p>She was onboarded live in a workshop. Working from her own files, Claude drafted a proposal for one of her real clients in about 45 seconds.</p></div>
+            <div class="story-col"><h4>After</h4><p>She went on to connect her e-signature tool and build a Claude skill that turns out her contracts faster.</p></div>
+          </div>
+          <div class="story-q">&ldquo;I'm thinking about all the hours I'm gonna get back in my life.&rdquo;</div>
+        </div>
+      <div class="story">
+          <div class="story-who">The founder of an IT and network-security firm with five service teams</div>
+          <div class="story-cols">
+            <div class="story-col"><h4>Before</h4><p>His processes ran across five delivery teams, with key client data split across two systems.</p></div>
+            <div class="story-col"><h4>What we did</h4><p>He mapped his business in OpMap twice, adding more detail the second time, then built his second brain in a live workshop.</p></div>
+            <div class="story-col"><h4>After</h4><p>OpMap's recommendations flagged one employee covering three roles and suggested splitting them up.</p></div>
+          </div>
+          <div class="story-q">&ldquo;The software came up with steps&hellip; some were like, &lsquo;Oh, yeah&hellip; that would be great if I did that.&rsquo;&rdquo;</div>
+        </div>
+      <div class="story">
+          <div class="story-who">An executive advisor who'd tried other AI mapping tools</div>
+          <div class="story-cols">
+            <div class="story-col"><h4>Before</h4><p>Other AI tools had given him generic output he couldn't act on, so he came in skeptical.</p></div>
+            <div class="story-col"><h4>What we did</h4><p>He ran OpMap's discovery, went back to update it, then reviewed his roadmap and recommendations.</p></div>
+            <div class="story-col"><h4>After</h4><p>He found the roadmap practical, closer to where the process should actually go.</p></div>
+          </div>
+          <div class="story-q">&ldquo;I was very skeptical&hellip; it definitely had a lot more practical recommendations than like fluff.&rdquo;</div>
+        </div>
+      <div class="story">
+          <div class="story-who">A product consultant building a business around a 9-to-5</div>
+          <div class="story-cols">
+            <div class="story-col"><h4>Before</h4><p>She was working a 9-to-5 &ldquo;while working my 5-to-9,&rdquo; with no clients yet.</p></div>
+            <div class="story-col"><h4>What we did</h4><p>She built her second brain in a live workshop, then set up her own Telegram assistant in the next one.</p></div>
+            <div class="story-col"><h4>After</h4><p>Her assistant now runs from her phone, reading from the files she organized for it.</p></div>
+          </div>
+          <div class="story-q">&ldquo;I actually got my bot working&hellip; Claude, it generated a link for me on my desktop that I could type in to my phone.&rdquo;</div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section id="quotes">
+  <div class="wrap">
+    <div class="eyebrow">In their words</div>
+    <h2>What members say.</h2>
+    <div class="wall">
+      <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>I stayed on my call with my clients an extra 30 minutes talking about Claude Code and Puja Patel.</p>
+          <div class="who-row"><span class="who-av" aria-hidden="true">&#9733;</span><span class="who">Coach · 15 years in business</span></div>
+        </div>
+      <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>You're focused on the frameworks and the system of a business first. That appealed to me.</p>
+          <div class="who-row"><span class="who-av" aria-hidden="true">&#9733;</span><span class="who">Brand positioning consultant</span></div>
+        </div>
+      <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>I'm impressed with how quickly this creates clarity. A clear view of what's happening operationally, where the bottlenecks are, and what needs to happen next.</p>
+          <div class="who-row"><span class="who-av" aria-hidden="true">H</span><span class="who">Hector · consulting company owner</span></div>
+        </div>
+      <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>I was looking for a place where I can actually implement and learn the things I see online&hellip; this is one of the only places where I got the help MY business needed and not some generic course or template.</p>
+          <div class="who-row"><span class="who-av" aria-hidden="true">J</span><span class="who">Jane · marketing agency owner</span></div>
+        </div>
+      <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>Just the thought of taking everything out is overwhelming to me&hellip; and I'm like, I want to do this&hellip; I didn't realize I had 12 systems until I did your map&hellip; It was so easy to use, it understood it so quickly&hellip; I wasn't even typing in English&hellip; This is so fun.</p>
+          <div class="who-row"><span class="who-av" aria-hidden="true">S</span><span class="who">Shivani · events company owner</span></div>
+        </div>
+      <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>I'm a complete beginner here&hellip; I'm not savvy or anything&hellip; Everything lives in such silos; I've created the same documents probably 500 times&hellip; I see it. I know that I can be more productive and help a lot of people in the process.</p>
+          <div class="who-row"><span class="who-av" aria-hidden="true">N</span><span class="who">Nuala · coaching business owner</span></div>
+        </div>
+      <div class="quote">
+          <div class="mk">&ldquo;</div>
+          <p>Love your program. This is gold. It brings so much clarity. Very valuable.</p>
+          <div class="who-row"><span class="who-av" aria-hidden="true">J</span><span class="who">Jonathan · entrepreneur</span></div>
+        </div>
+    </div>
   </div>
 </section>
 
@@ -422,47 +600,9 @@ s.parentNode.insertBefore(t,s)})();
         </label>
         <p class="ferr" id="ferr" hidden>Please fill in all four.</p>
         <button class="btn" type="submit">Show me my best fit <span class="arw">&rarr;</span></button>
-        <p class="fine">No spam. Your answers stay with me. <a href="/privacy.html">Privacy</a>.</p>
       </form>
     </div>
     <div id="result" class="result" aria-live="polite">
-      <div class="rhint">
-        <div class="proof-k">Where people usually land</div>
-        <ul class="rlist">
-          <li><b>Under $10k</b><span>Marketing first, plus the free Systems Map</span></li>
-          <li><b>$10k to $50k</b><span>The Second Brain Method</span></li>
-          <li><b>$50k to $250k</b><span>VIP Second Brain Method or a Business Systems Audit</span></li>
-          <li><b>$250k+</b><span>The Owner Independence Program</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap">
-    <div class="eyebrow">About</div>
-    <h2>I'm Puja.</h2>
-    <div class="about">
-      <img src="/assets/puja.jpg" alt="Puja Patel" width="1000" height="1250">
-      <div>
-        <p><b>I help business owners get their business out of their own heads. I learned how by doing it to mine first.</b></p>
-        <p>I work where operations, data and AI meet. I have a degree in data science and seven years at that intersection: three of them running day-to-day operations for a multi-property portfolio, where I first put AI into daily workflows, then standing up the processes and systems of a $70 million solar manufacturing facility from scratch.</p>
-        <p>For the last two years I have done this work for clients across retail, brokerage, recruiting, real estate, events and healthcare. The pattern is almost always the same: the whole thing runs on a few people's heads, the numbers live in five places, and the AI tools they pay for touch neither.</p>
-        <p>My own business runs on a second brain I built for myself first. Clients, pipeline, content, cash. It is what lets me run everything without being the bottleneck in it.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="alt" id="members">
-  <div class="wrap">
-    <div class="eyebrow">From members</div>
-    <h2>What it looks like once it's out of your head.</h2>
-    <div class="issues">
-      <div class="issue"><div class="ik">A coach, 15 years in business</div><p>New people now opt in almost every day after Claude rebuilt her site and follow-up.</p></div>
-      <div class="issue"><div class="ik">A strategy-studio owner and new mom</div><p>A 9pm Telegram message counts her new leads so she doesn't have to.</p></div>
-      <div class="issue"><div class="ik">A consultant starting three ventures</div><p>Everything on his plate in one place, with 4 projects moving in 3 days.</p></div>
     </div>
   </div>
 </section>
@@ -596,7 +736,7 @@ s.parentNode.insertBefore(t,s)})();
 
   /* Section-reach signals for Clarity. */
   if('IntersectionObserver' in window){
-    var seen={}, keys=['stuck','how','fit','about','members','start'];
+    var seen={}, keys=['stuck','benefits','how','stories','quotes','fit','about','start'];
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if(en.isIntersecting && !seen[en.target.id]){
