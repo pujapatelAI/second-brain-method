@@ -190,7 +190,7 @@ s.parentNode.insertBefore(t,s)})();
         <a class="btn" href="https://aios-with-puja-patel.circle.so/checkout/second-brain-method" data-checkout data-tier="vip" data-value="250" target="_blank" rel="noopener">Join for $250/mo <span aria-hidden="true">&rarr;</span></a>
         <a class="textlink" href="#walkthrough">See what it looks like</a>
       </div>
-      <p class="grp" data-grp-line>Next group starts <b data-grp-start>soon</b>. Join by <span data-grp-joinby>the Sunday before</span>. Cancel anytime.</p>
+      <p class="grp" data-grp-line>Next group starts <b data-grp-start>soon</b>. Join by <span data-grp-joinby>the Friday before</span>. Cancel anytime.</p>
     </div>
   </section>
 
@@ -286,7 +286,7 @@ s.parentNode.insertBefore(t,s)})();
           <li>Everything you build lives in your own files and accounts</li>
         </ul>
         <a class="btn" href="https://aios-with-puja-patel.circle.so/checkout/second-brain-method" data-checkout data-tier="vip" data-value="250" target="_blank" rel="noopener">Start now <span aria-hidden="true">&rarr;</span></a>
-        <p class="fine" data-grp-line>Next group starts <span data-grp-start>soon</span>. Join by <span data-grp-joinby>the Sunday before</span>.</p>
+        <p class="fine" data-grp-line>Next group starts <span data-grp-start>soon</span>. Join by <span data-grp-joinby>the Friday before</span>.</p>
         <p class="fine"><a href="/second-brain-method/">Read the full program page</a></p>
       </div>
     </div>
@@ -360,11 +360,12 @@ s.parentNode.insertBefore(t,s)})();
   var GROUPS=['2026-11-09','2026-11-23','2026-12-07','2026-12-21','2027-01-04'];
   var M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var n=new Date(), today=new Date(n.getFullYear(),n.getMonth(),n.getDate()), hit=null;
-  for(var i=0;i<GROUPS.length;i++){var p=GROUPS[i].split('-'),d=new Date(+p[0],+p[1]-1,+p[2]); if(d>today){hit=d;break;}}
+  /* Join by the Friday before each Monday start (Puja, Nov 9 2026). */
+  for(var i=0;i<GROUPS.length;i++){var p=GROUPS[i].split('-'),d=new Date(+p[0],+p[1]-1,+p[2]),jb=new Date(+p[0],+p[1]-1,+p[2]-3); if(jb>=today){hit=d;break;}}
   if(!hit){ document.querySelectorAll('[data-grp-line]').forEach(function(e){e.hidden=true;}); return; }
-  var j=new Date(hit); j.setDate(j.getDate()-1);
+  var j=new Date(hit); j.setDate(j.getDate()-3);
   document.querySelectorAll('[data-grp-start]').forEach(function(e){e.textContent='Monday, '+M[hit.getMonth()]+' '+hit.getDate();});
-  document.querySelectorAll('[data-grp-joinby]').forEach(function(e){e.textContent='Sunday, '+M[j.getMonth()]+' '+j.getDate();});
+  document.querySelectorAll('[data-grp-joinby]').forEach(function(e){e.textContent='Friday, '+M[j.getMonth()]+' '+j.getDate();});
 })();
 </script>
 </body>

@@ -480,7 +480,7 @@ s.parentNode.insertBefore(t,s)})();
         <a class="btn sm" href="#tiers">Join</a>
       </div>
     </div>
-    <div class="ws-strip" id="grpStrip"><span class="ws-dot" aria-hidden="true"></span><span>Next group starts <b class="ws-clock" data-grp-start>Monday, Nov 9</b> · join by <span data-grp-joinby>Sunday, Nov 8</span></span></div>
+    <div class="ws-strip" id="grpStrip"><span class="ws-dot" aria-hidden="true"></span><span>Next group starts <b class="ws-clock" data-grp-start>Monday, Nov 23</b> · join by <span data-grp-joinby>Friday, Nov 20</span></span></div>
   </div>
 
   <style>
@@ -551,7 +551,7 @@ s.parentNode.insertBefore(t,s)})();
           <a class="btn" href="#tiers">Join for $250/mo <span class="arw">→</span></a>
           <a class="btn ghost" href="#walkthrough">Watch the walkthrough</a>
         </div>
-        <p class="grp-line">Next group starts <b data-grp-start>Monday, Nov 9</b>. Join by <span data-grp-joinby>Sunday, Nov 8</span>.</p>
+        <p class="grp-line">Next group starts <b data-grp-start>Monday, Nov 23</b>. Join by <span data-grp-joinby>Friday, Nov 20</span>.</p>
         <div class="promise"><b>Set up live at the Second Brain Workshop.</b> If your second brain isn't up and running by the end of it, we'll book another session until it is. Cancel anytime.</div>
       </div>
       <figure class="me" style="margin:0">
@@ -913,7 +913,7 @@ s.parentNode.insertBefore(t,s)})();
             <li><span class="ck">→</span><span>You get <b>live weekly working sessions</b> to get unstuck the moment your roadmap stalls</span></li>
             <li><span class="ck">→</span><span>You get a <b>community of operators</b> building the same way, right alongside you</span></li>
           </ul>
-          <div class="grp-tier">Next group starts <b data-grp-start>Monday, Nov 9</b> · join by <span data-grp-joinby>Sunday, Nov 8</span></div>
+          <div class="grp-tier">Next group starts <b data-grp-start>Monday, Nov 23</b> · join by <span data-grp-joinby>Friday, Nov 20</span></div>
           <div class="tier-cta">
             <a class="btn" href="https://aios-with-puja-patel.circle.so/checkout/second-brain-method" data-checkout data-tier="vip" data-value="250" target="_blank" rel="noopener">Start now <span class="arw">→</span></a>
             <a class="tier-learn" href="/vip/">See everything included ↓</a>
@@ -1197,11 +1197,12 @@ document.addEventListener('submit', function (e) {
   var GROUPS=['2026-11-09','2026-11-23','2026-12-07','2026-12-21','2027-01-04'];
   var M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var n=new Date(), today=new Date(n.getFullYear(),n.getMonth(),n.getDate()), hit=null;
-  for(var i=0;i<GROUPS.length;i++){var p=GROUPS[i].split('-'),d=new Date(+p[0],+p[1]-1,+p[2]); if(d>today){hit=d;break;}}
+  /* Join by the Friday before each Monday start (Puja, Nov 9 2026); after that Friday the page shows the next group. */
+  for(var i=0;i<GROUPS.length;i++){var p=GROUPS[i].split('-'),d=new Date(+p[0],+p[1]-1,+p[2]),jb=new Date(+p[0],+p[1]-1,+p[2]-3); if(jb>=today){hit=d;break;}}
   if(!hit){ var st=document.getElementById('grpStrip'); if(st) st.hidden=true;
     document.querySelectorAll('.grp-line,.grp-tier').forEach(function(e){e.hidden=true;}); return; }
-  var j=new Date(hit); j.setDate(j.getDate()-1);
+  var j=new Date(hit); j.setDate(j.getDate()-3);
   document.querySelectorAll('[data-grp-start]').forEach(function(e){e.textContent='Monday, '+M[hit.getMonth()]+' '+hit.getDate();});
-  document.querySelectorAll('[data-grp-joinby]').forEach(function(e){e.textContent='Sunday, '+M[j.getMonth()]+' '+j.getDate();});
+  document.querySelectorAll('[data-grp-joinby]').forEach(function(e){e.textContent='Friday, '+M[j.getMonth()]+' '+j.getDate();});
 })();
 </script>
