@@ -8,6 +8,33 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y2JTHK29BD');</script>
 <meta name="robots" content="noindex, nofollow">
 <title>Your Systems Setup File · Puja Patel</title>
+<!-- Meta Pixel (dataset "Puja Patel Web"). Nov 10 2026: the $27 / $77 pages had no pixel, so Meta never saw a sale. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1358901016182853');
+fbq('track', 'PageView');
+/* Purchase: Stripe sends $27 buyers here and passes nothing along, so the value is the $27 (a $77 added at
+   checkout isn't visible here). Once per browser session so a reload or the bookmark doesn't count twice. */
+try{
+  if(!sessionStorage.getItem('ssf_purchase_fired')){
+    sessionStorage.setItem('ssf_purchase_fired','1');
+    fbq('track','Purchase',{value:27, currency:'USD', content_name:'systems_setup_file'});
+  }
+}catch(x){}
+/* a tap on any Stripe buy link = InitiateCheckout ($27 file, or the $77 live setup) */
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
+  if (!a) return;
+  var v = /8x2fZa5KOerpfX47cY6c007/.test(a.href) ? 77 : 27;
+  try{ fbq('track','InitiateCheckout',{value:v, currency:'USD', content_name: v === 77 ? 'second_brain_setup' : 'systems_setup_file'}); }catch(x){}
+}, true);
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></noscript>
 <!-- Link Analyzer: visit + click tracking (assets/visits.js) -->
 <script src="/assets/visits.js" defer></script>
 <style>
