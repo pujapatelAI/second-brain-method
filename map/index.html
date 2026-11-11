@@ -167,6 +167,12 @@
   .cta p{margin-bottom:14px}
   .offer{max-width:730px;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent-bright);border-radius:6px;padding:14px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
   .offer p{margin:0;max-width:440px;font-size:15px;line-height:1.4}
+  /* Puja, Nov 11 2026: the live-setup box with her headline + the second-brain Loom */
+  .offer.offer-live{display:block;padding:18px 18px 16px}
+  .offer-live h2{font-family:Georgia,serif;font-size:22px;line-height:1.25;margin:0 0 12px}
+  .offer-live p{max-width:none;margin:0 0 10px}
+  .offer-live .vid{position:relative;aspect-ratio:16/9;margin:0 0 14px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+  .offer-live .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .offer a.btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:14.5px;padding:11px 18px;border-radius:3px;text-decoration:none;white-space:nowrap}
   /* $27 offer right after sign-up (Puja, Nov 10 2026: only 2 of 41 Meta sign-ups ever reached the $27 page) */
   #oto{position:fixed;inset:0;z-index:50;background:rgba(42,35,32,.55);overflow-y:auto;padding:0 16px}
@@ -1639,6 +1645,12 @@ s.parentNode.insertBefore(t,s)})();
   /* Puja, Nov 11 2026 (late): "let's keep trying to optimize for the $77" / "Yes, push both": $50k-$250k/mo get the
      same after-sign-up screen and 60-minute clock as under $50k. The static MID boxes below stay as the fallback. */
   var TIMED=UNDER50.concat(MID);
+  /* Puja, Nov 11 2026 ("ok lets do it"): text and email links carry ?k=<code> so the map knows the band on any
+     device (Meta sign-ups happen in the Instagram/Facebook browser; their text/email links open in Safari/Chrome,
+     which had no pp_band and showed the $27). Codes, not revenue text, go in the URL. */
+  var KCODE={m1:'Under $10k/mo',m2:'$10k to $15k/mo',m3:'$15k to $30k/mo',m4:'$30k to $50k/mo',m5:'$50k to $75k/mo',
+             m6:'$75k to $250k/mo',m7:'$250k to $500k/mo',m8:'$500k+/mo'};
+  try{ var kc=new URLSearchParams(location.search).get('k'); if(KCODE[kc]) localStorage.setItem('pp_band', KCODE[kc]); }catch(x){}
   var SESSIONS=[{at:'2026-11-23T14:00:00-05:00', label:'Mon Nov 23, 2pm ET'}];
   var LINK='https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007';
   function band(){ try{ return localStorage.getItem('pp_band')||''; }catch(x){ return ''; } }
@@ -1659,7 +1671,9 @@ s.parentNode.insertBefore(t,s)})();
       var top=document.querySelector('.offer'), cta=document.querySelector('.cta'), pitch=pitchOf(s);
       if(TIMED.indexOf(b)>=0 && window.ppLive77){
         var buy=function(track){ return '<a class="btn" data-l77-buy href="'+LINK+'" data-track="'+track+'">save my spot, <span data-l77-price>$77</span> &rarr;</a>'; };
-        if(top) top.innerHTML='<p><b>Set up your second brain with me, live.</b> '+pitch+'</p>'+timed+buy('map-top-to-live')+how+alt('/setup-file/?from=map-top','map-top-to-setup-file');
+        if(top){ top.className='offer offer-live'; top.innerHTML='<h2>Teach your systems to your AI to have it execute as an extension of you.</h2>'+
+          '<div class="vid"><iframe src="https://www.loom.com/embed/f0a8078104d5444fb2f3ee62f083d38a?hideEmbedTopBar=true" title="What is a second brain? A quick look" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>'+
+          '<p><b>Set up your second brain with me, live.</b> '+pitch+'</p>'+timed+buy('map-top-to-live')+alt('/setup-file/?from=map-top','map-top-to-setup-file'); }
         if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p>'+timed+buy('map-to-live')+how+alt('/setup-file/','map-to-setup-file');
         ppLive77.start();
         return;
