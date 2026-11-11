@@ -1561,6 +1561,8 @@ s.parentNode.insertBefore(t,s)})();
     var tel=normPhone(raw);
     if(!tel){ terr.style.display='block'; f.phone.focus(); return; }
     if(!f._honey.value){
+      /* so /setup-file/ can hand Stripe their email (Puja, Nov 11 2026) */
+      try{ localStorage.setItem('pp_email', email); }catch(x){}
       var params=new URLSearchParams(window.location.search), now=Math.floor(Date.now()/1000);
       try{ clarity('event','systems_map_optin'); }catch(x){}
       /* Meta: MapSignup = every sign-up (reporting + audiences). SubmitApplication =

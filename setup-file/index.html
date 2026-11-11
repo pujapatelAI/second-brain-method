@@ -170,5 +170,17 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
 <div class="foot"><div class="wrap">Puja Patel · puja-patel.com · <a href="/privacy.html">Privacy</a></div></div>
 
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","xni1glpbqz");</script>
+<script>
+/* Stripe checkout gets the email they gave the map, so they don't type it again (Puja, Nov 11 2026).
+   /map/ saves pp_email on sign-up; earlier sign-ups fall back to Customer.io's _cioid cookie (the map
+   identifies people by email). Only a value with an @ in it is used. */
+(function(){try{
+  var e=''; try{ e=localStorage.getItem('pp_email')||''; }catch(x){}
+  if(e.indexOf('@')<1){ var m=document.cookie.match(/(?:^|;\s*)_cioid=([^;]+)/); e=m?decodeURIComponent(m[1]):''; }
+  if(e.indexOf('@')<1) return;
+  var as=document.querySelectorAll('a[href^="https://buy.stripe.com/"]');
+  for(var i=0;i<as.length;i++){ var u=new URL(as[i].href); u.searchParams.set('prefilled_email', e); as[i].href=u.toString(); }
+}catch(x){}})();
+</script>
 </body>
 </html>
