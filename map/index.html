@@ -1636,6 +1636,9 @@ s.parentNode.insertBefore(t,s)})();
 (function(){
   var UNDER50=['Under $10k/mo','$10k to $15k/mo','$15k to $30k/mo','$30k to $50k/mo'];
   var MID=['$50k to $75k/mo','$75k to $250k/mo'];
+  /* Puja, Nov 11 2026 (late): "let's keep trying to optimize for the $77" / "Yes, push both": $50k-$250k/mo get the
+     same after-sign-up screen and 60-minute clock as under $50k. The static MID boxes below stay as the fallback. */
+  var TIMED=UNDER50.concat(MID);
   var SESSIONS=[{at:'2026-11-23T14:00:00-05:00', label:'Mon Nov 23, 2pm ET'}];
   var LINK='https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007';
   function band(){ try{ return localStorage.getItem('pp_band')||''; }catch(x){ return ''; } }
@@ -1654,7 +1657,7 @@ s.parentNode.insertBefore(t,s)})();
       var b=band(), s=session();
       if(!b || !s) return;
       var top=document.querySelector('.offer'), cta=document.querySelector('.cta'), pitch=pitchOf(s);
-      if(UNDER50.indexOf(b)>=0 && window.ppLive77){
+      if(TIMED.indexOf(b)>=0 && window.ppLive77){
         var buy=function(track){ return '<a class="btn" data-l77-buy href="'+LINK+'" data-track="'+track+'">save my spot, <span data-l77-price>$77</span> &rarr;</a>'; };
         if(top) top.innerHTML='<p><b>Set up your second brain with me, live.</b> '+pitch+'</p>'+timed+buy('map-top-to-live')+how+alt('/setup-file/?from=map-top','map-top-to-setup-file');
         if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p>'+timed+buy('map-to-live')+how+alt('/setup-file/','map-to-setup-file');
@@ -1671,7 +1674,7 @@ s.parentNode.insertBefore(t,s)})();
   window.ppLiveScreen=function(rev){
     try{
       var s=session(), oto=document.getElementById('oto');
-      if(!oto || !s || UNDER50.indexOf(rev)<0 || !window.ppLive77) return;
+      if(!oto || !s || TIMED.indexOf(rev)<0 || !window.ppLive77) return;
       oto.querySelector('.otocard').innerHTML=
         '<div class="ok">&#10003; your map is unlocked</div>'+
         '<h2 id="oto-h">Would you rather do this WITH me and have your second brain set up?</h2>'+
