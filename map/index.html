@@ -1605,7 +1605,9 @@ s.parentNode.insertBefore(t,s)})();
     }
     try{ localStorage.setItem(KEY,'1'); }catch(x){}
     unlock();
-    if(rev!=='$250k to $500k/mo' && rev!=='$500k+/mo') showOto();
+    /* The $27 screen (Nov 10) no longer shows after sign-up. Puja, Nov 11 2026: "the goal is for them to see
+       the map, feel overwhelmed, and then tell claude to talk to it". Before it, ~10% of sign-ups went on to
+       /setup-file/ from the map's own links; with it, ~5%. ?oto=1 still shows it for testing. */
     /* Puja, Nov 9 2026: anyone above $250k/mo goes to the Owner Independence Program. */
     if(rev==='$250k to $500k/mo' || rev==='$500k+/mo'){
       /* Puja, Nov 10 2026: an audience for Owner Independence retargeting. Meta blocks audiences built on revenue_band (it reads it as financial info), so $250k+ sign-ups also fire this event with nothing attached. */
