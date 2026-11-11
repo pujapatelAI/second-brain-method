@@ -1645,6 +1645,8 @@ s.parentNode.insertBefore(t,s)})();
   /* Puja, Nov 11 2026 (late): "let's keep trying to optimize for the $77" / "Yes, push both": $50k-$250k/mo get the
      same after-sign-up screen and 60-minute clock as under $50k. The static MID boxes below stay as the fallback. */
   var TIMED=UNDER50.concat(MID);
+  /* Puja, Nov 11 2026: "add the guarantee to the $77" */
+  var gtee='<p class="gtee" style="margin:8px 0 0;font-size:14px"><b>Guarantee:</b> leave with your second brain set up, or I\'ll refund you in full.</p>';
   /* Puja, Nov 11 2026 ("ok lets do it"): text and email links carry ?k=<code> so the map knows the band on any
      device (Meta sign-ups happen in the Instagram/Facebook browser; their text/email links open in Safari/Chrome,
      which had no pp_band and showed the $27). Codes, not revenue text, go in the URL. */
@@ -1673,15 +1675,15 @@ s.parentNode.insertBefore(t,s)})();
         var buy=function(track){ return '<a class="btn" data-l77-buy href="'+LINK+'" data-track="'+track+'">save my spot, <span data-l77-price>$77</span> &rarr;</a>'; };
         if(top){ top.className='offer offer-live'; top.innerHTML='<h2>Teach your systems to your AI to have it execute as an extension of you.</h2>'+
           '<div class="vid"><iframe src="https://www.loom.com/embed/f0a8078104d5444fb2f3ee62f083d38a?hideEmbedTopBar=true" title="What is a second brain? A quick look" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>'+
-          '<p><b>Set up your second brain with me, live.</b> '+pitch+'</p>'+timed+buy('map-top-to-live')+alt('/setup-file/?from=map-top','map-top-to-setup-file'); }
-        if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p>'+timed+buy('map-to-live')+how+alt('/setup-file/','map-to-setup-file');
+          '<p><b>Set up your second brain with me, live.</b> '+pitch+'</p>'+timed+buy('map-top-to-live')+gtee+alt('/setup-file/?from=map-top','map-top-to-setup-file'); }
+        if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p>'+timed+buy('map-to-live')+gtee+how+alt('/setup-file/','map-to-setup-file');
         ppLive77.start();
         return;
       }
       if(MID.indexOf(b)<0) return;
       var e=email(), link=LINK+(e.indexOf('@')>0 ? '?prefilled_email='+encodeURIComponent(e) : '');
-      if(top) top.innerHTML='<p><b>Set up your second brain with me, live.</b> '+pitch+'</p><a class="btn" href="'+link+'" data-track="map-top-to-77">save my spot, $77 &rarr;</a>'+alt('/setup-file/?from=map-top','map-top-to-setup-file');
-      if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p><a class="btn" href="'+link+'" data-track="map-to-77">save my spot, $77 &rarr;</a>'+alt('/setup-file/','map-to-setup-file');
+      if(top) top.innerHTML='<p><b>Set up your second brain with me, live.</b> '+pitch+'</p><a class="btn" href="'+link+'" data-track="map-top-to-77">save my spot, $77 &rarr;</a>'+gtee+alt('/setup-file/?from=map-top','map-top-to-setup-file');
+      if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p><a class="btn" href="'+link+'" data-track="map-to-77">save my spot, $77 &rarr;</a>'+gtee+alt('/setup-file/','map-to-setup-file');
     }catch(x){}
   };
   /* The screen right after sign-up (Puja, Nov 11 2026: "would you rather do it WITH me ... $77 now"). */
@@ -1696,6 +1698,7 @@ s.parentNode.insertBefore(t,s)})();
         '<p data-l77-open><b>$77 for the next <span data-l77-clock style="font-variant-numeric:tabular-nums">60:00</span>.</b> After that it\'s $147.</p>'+
         '<p data-l77-closed hidden><b>$147.</b></p>'+
         '<a class="btn" data-l77-buy href="'+LINK+'" data-track="map-unlock-to-live">save my spot, <span data-l77-price>$77</span> &rarr;</a>'+
+        gtee.replace('margin:8px 0 0','margin:10px 0 0;text-align:center')+
         '<p style="margin:12px 0 0;font-size:14.5px;text-align:center"><a href="/live-setup/" data-track="map-unlock-to-live-setup" style="color:inherit;text-decoration:underline">what\'s a second brain? see how I use mine &rarr;</a></p>'+
         '<button type="button" class="skip" data-track="map-unlock-no-thanks">no thanks, show me my map</button>';
       ppLive77.start();
