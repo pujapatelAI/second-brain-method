@@ -1607,6 +1607,7 @@ s.parentNode.insertBefore(t,s)})();
     try{ localStorage.setItem(KEY,'1'); }catch(x){}
     unlock();
     try{ if(window.ppLiveOffer) window.ppLiveOffer(); }catch(x){}
+    try{ if(window.ppLiveScreen) window.ppLiveScreen(rev); }catch(x){}
     /* The $27 screen (Nov 10) no longer shows after sign-up. Puja, Nov 11 2026: "the goal is for them to see
        the map, feel overwhelmed, and then tell claude to talk to it". Before it, ~10% of sign-ups went on to
        /setup-file/ from the map's own links; with it, ~5%. ?oto=1 still shows it for testing. */
@@ -1623,30 +1624,67 @@ s.parentNode.insertBefore(t,s)})();
   });
 })();
 </script>
+<script src="/assets/live77.js"></script>
 <script>
-/* Puja, Nov 11 2026: "ya i'm down for 77 live session straight - and downsell the 27". Sign-ups at
-   $10k-$250k/mo (pp_band, saved at sign-up) see the live setup ($77, straight to Stripe with their email
-   filled in) in both offer boxes while a session is ahead, with the $27 file as the do-it-yourself line.
-   Under $10k, $250k+, no band, or no session ahead: the $27 boxes stay as they are. Copy = the R77 ad. */
+/* Puja, Nov 11 2026: "ya i'm down for 77 live session straight - and downsell the 27". Then, same night:
+   "it should always be for the 60 minutes before it becomes $147", then "group together 0-50 and 50-250 for
+   the purposes of offerings". Under $50k/mo (Under $10k included): right after sign-up a screen offers the live
+   setup at $77 with this person's one 60-minute clock (assets/live77.js), then $147; the map's two offer boxes
+   show the same price and clock. $50k-$250k/mo (audit + implementation) keep the static $77 boxes until their
+   own funnel (a $77 or a call) is decided.
+   $250k+, no band, or no session ahead: the $27 boxes stay as they are. */
 (function(){
+  var UNDER50=['Under $10k/mo','$10k to $15k/mo','$15k to $30k/mo','$30k to $50k/mo'];
+  var MID=['$50k to $75k/mo','$75k to $250k/mo'];
   var SESSIONS=[{at:'2026-11-23T14:00:00-05:00', label:'Mon Nov 23, 2pm ET'}];
   var LINK='https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007';
+  function band(){ try{ return localStorage.getItem('pp_band')||''; }catch(x){ return ''; } }
+  function session(){ var now=Date.now(); for(var i=0;i<SESSIONS.length;i++){ if(new Date(SESSIONS[i].at).getTime()>now) return SESSIONS[i]; } return null; }
+  function email(){
+    var e=''; try{ e=localStorage.getItem('pp_email')||''; }catch(x){}
+    if(e.indexOf('@')<1){ var m=document.cookie.match(/(?:^|;\s*)_cioid=([^;]+)/); e=m?decodeURIComponent(m[1]):''; }
+    return e;
+  }
+  var pitchOf=function(s){ return s.label+', small group. You leave with your second brain set up, your top 3 systems written down, and one real piece of client work done with Claude. The replay is yours too.'; };
+  var alt=function(href,track){ return '<p style="margin:12px 0 0;font-size:14.5px"><a href="'+href+'" data-track="'+track+'" style="color:inherit;text-decoration:underline">rather do it on your own? the Systems Setup File is $27 &rarr;</a></p>'; };
+  var timed='<p data-l77-open style="margin:10px 0 0"><b>$77 for the next <span data-l77-clock style="font-variant-numeric:tabular-nums">60:00</span>.</b> After that it\'s $147.</p>';
+  var how='<p style="margin:10px 0 0;font-size:14.5px"><a href="/live-setup/" data-track="map-to-live-setup" style="color:inherit;text-decoration:underline">what\'s a second brain? see how I use mine &rarr;</a></p>';
   window.ppLiveOffer=function(){
     try{
-      var band=''; try{ band=localStorage.getItem('pp_band')||''; }catch(x){}
-      if(!band || /^Under/.test(band) || band==='$250k to $500k/mo' || band==='$500k+/mo') return;
-      var now=Date.now(), s=null;
-      for(var i=0;i<SESSIONS.length;i++){ if(new Date(SESSIONS[i].at).getTime()>now){ s=SESSIONS[i]; break; } }
-      if(!s) return;
-      var e=''; try{ e=localStorage.getItem('pp_email')||''; }catch(x){}
-      if(e.indexOf('@')<1){ var m=document.cookie.match(/(?:^|;\s*)_cioid=([^;]+)/); e=m?decodeURIComponent(m[1]):''; }
-      var link=LINK+(e.indexOf('@')>0 ? '?prefilled_email='+encodeURIComponent(e) : '');
-      var pitch=s.label+', small group. You leave with your second brain set up, your top 3 systems written down, and one real piece of client work done with Claude. The replay is yours too.';
-      var alt=function(href,track){ return '<p style="margin:12px 0 0;font-size:14.5px"><a href="'+href+'" data-track="'+track+'" style="color:inherit;text-decoration:underline">rather do it on your own? the Systems Setup File is $27 &rarr;</a></p>'; };
-      var top=document.querySelector('.offer');
+      var b=band(), s=session();
+      if(!b || !s) return;
+      var top=document.querySelector('.offer'), cta=document.querySelector('.cta'), pitch=pitchOf(s);
+      if(UNDER50.indexOf(b)>=0 && window.ppLive77){
+        var buy=function(track){ return '<a class="btn" data-l77-buy href="'+LINK+'" data-track="'+track+'">save my spot, <span data-l77-price>$77</span> &rarr;</a>'; };
+        if(top) top.innerHTML='<p><b>Set up your second brain with me, live.</b> '+pitch+'</p>'+timed+buy('map-top-to-live')+how+alt('/setup-file/?from=map-top','map-top-to-setup-file');
+        if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p>'+timed+buy('map-to-live')+how+alt('/setup-file/','map-to-setup-file');
+        ppLive77.start();
+        return;
+      }
+      if(MID.indexOf(b)<0) return;
+      var e=email(), link=LINK+(e.indexOf('@')>0 ? '?prefilled_email='+encodeURIComponent(e) : '');
       if(top) top.innerHTML='<p><b>Set up your second brain with me, live.</b> '+pitch+'</p><a class="btn" href="'+link+'" data-track="map-top-to-77">save my spot, $77 &rarr;</a>'+alt('/setup-file/?from=map-top','map-top-to-setup-file');
-      var cta=document.querySelector('.cta');
       if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p><a class="btn" href="'+link+'" data-track="map-to-77">save my spot, $77 &rarr;</a>'+alt('/setup-file/','map-to-setup-file');
+    }catch(x){}
+  };
+  /* The screen right after sign-up (Puja, Nov 11 2026: "would you rather do it WITH me ... $77 now"). */
+  window.ppLiveScreen=function(rev){
+    try{
+      var s=session(), oto=document.getElementById('oto');
+      if(!oto || !s || UNDER50.indexOf(rev)<0 || !window.ppLive77) return;
+      oto.querySelector('.otocard').innerHTML=
+        '<div class="ok">&#10003; your map is unlocked</div>'+
+        '<h2 id="oto-h">Would you rather do this WITH me and have your second brain set up?</h2>'+
+        '<p>'+pitchOf(s)+'</p>'+
+        '<p data-l77-open><b>$77 for the next <span data-l77-clock style="font-variant-numeric:tabular-nums">60:00</span>.</b> After that it\'s $147.</p>'+
+        '<p data-l77-closed hidden><b>$147.</b></p>'+
+        '<a class="btn" data-l77-buy href="'+LINK+'" data-track="map-unlock-to-live">save my spot, <span data-l77-price>$77</span> &rarr;</a>'+
+        '<p style="margin:12px 0 0;font-size:14.5px;text-align:center"><a href="/live-setup/" data-track="map-unlock-to-live-setup" style="color:inherit;text-decoration:underline">what\'s a second brain? see how I use mine &rarr;</a></p>'+
+        '<button type="button" class="skip" data-track="map-unlock-no-thanks">no thanks, show me my map</button>';
+      ppLive77.start();
+      oto.hidden=false; document.documentElement.style.overflow='hidden';
+      try{ clarity('event','map_live_screen_shown'); }catch(x){}
+      oto.querySelector('.skip').addEventListener('click', function(){ oto.hidden=true; document.documentElement.style.overflow=''; window.scrollTo(0,0); });
     }catch(x){}
   };
   window.ppLiveOffer();
