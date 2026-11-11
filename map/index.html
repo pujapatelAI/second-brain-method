@@ -1606,6 +1606,8 @@ s.parentNode.insertBefore(t,s)})();
     if(rev!=='$250k to $500k/mo' && rev!=='$500k+/mo') showOto();
     /* Puja, Nov 9 2026: anyone above $250k/mo goes to the Owner Independence Program. */
     if(rev==='$250k to $500k/mo' || rev==='$500k+/mo'){
+      /* Puja, Nov 10 2026: an audience for Owner Independence retargeting. Meta blocks audiences built on revenue_band (it reads it as financial info), so $250k+ sign-ups also fire this event with nothing attached. */
+      try{ if(window.fbq) fbq('trackCustom','OIPFit'); }catch(x){}
       var b=document.createElement('div');
       b.style.cssText='background:#B0532F;color:#FBF7F1;padding:14px 16px;text-align:center;font-weight:600;line-height:1.45';
       b.innerHTML='At your size, the map is only the start. <a href="/owner-independence/" style="color:#FBF7F1;text-decoration:underline">See the Owner Independence Program &rarr;</a>';
