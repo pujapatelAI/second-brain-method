@@ -1563,6 +1563,7 @@ s.parentNode.insertBefore(t,s)})();
     if(!f._honey.value){
       /* so /setup-file/ can hand Stripe their email (Puja, Nov 11 2026) */
       try{ localStorage.setItem('pp_email', email); }catch(x){}
+      try{ localStorage.setItem('pp_band', rev); }catch(x){}
       var params=new URLSearchParams(window.location.search), now=Math.floor(Date.now()/1000);
       try{ clarity('event','systems_map_optin'); }catch(x){}
       /* Meta: MapSignup = every sign-up (reporting + audiences). SubmitApplication =
@@ -1605,6 +1606,7 @@ s.parentNode.insertBefore(t,s)})();
     }
     try{ localStorage.setItem(KEY,'1'); }catch(x){}
     unlock();
+    try{ if(window.ppLiveOffer) window.ppLiveOffer(); }catch(x){}
     /* The $27 screen (Nov 10) no longer shows after sign-up. Puja, Nov 11 2026: "the goal is for them to see
        the map, feel overwhelmed, and then tell claude to talk to it". Before it, ~10% of sign-ups went on to
        /setup-file/ from the map's own links; with it, ~5%. ?oto=1 still shows it for testing. */
@@ -1619,6 +1621,35 @@ s.parentNode.insertBefore(t,s)})();
       try{ if(window._cio) _cio.track('map_oip_route',{ monthly_revenue_band:rev }); }catch(x){}
     }
   });
+})();
+</script>
+<script>
+/* Puja, Nov 11 2026: "ya i'm down for 77 live session straight - and downsell the 27". Sign-ups at
+   $10k-$250k/mo (pp_band, saved at sign-up) see the live setup ($77, straight to Stripe with their email
+   filled in) in both offer boxes while a session is ahead, with the $27 file as the do-it-yourself line.
+   Under $10k, $250k+, no band, or no session ahead: the $27 boxes stay as they are. Copy = the R77 ad. */
+(function(){
+  var SESSIONS=[{at:'2026-11-23T14:00:00-05:00', label:'Mon Nov 23, 2pm ET'}];
+  var LINK='https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007';
+  window.ppLiveOffer=function(){
+    try{
+      var band=''; try{ band=localStorage.getItem('pp_band')||''; }catch(x){}
+      if(!band || /^Under/.test(band) || band==='$250k to $500k/mo' || band==='$500k+/mo') return;
+      var now=Date.now(), s=null;
+      for(var i=0;i<SESSIONS.length;i++){ if(new Date(SESSIONS[i].at).getTime()>now){ s=SESSIONS[i]; break; } }
+      if(!s) return;
+      var e=''; try{ e=localStorage.getItem('pp_email')||''; }catch(x){}
+      if(e.indexOf('@')<1){ var m=document.cookie.match(/(?:^|;\s*)_cioid=([^;]+)/); e=m?decodeURIComponent(m[1]):''; }
+      var link=LINK+(e.indexOf('@')>0 ? '?prefilled_email='+encodeURIComponent(e) : '');
+      var pitch=s.label+', small group. You leave with your second brain set up, your top 3 systems written down, and one real piece of client work done with Claude. The replay is yours too.';
+      var alt=function(href,track){ return '<p style="margin:12px 0 0;font-size:14.5px"><a href="'+href+'" data-track="'+track+'" style="color:inherit;text-decoration:underline">rather do it on your own? the Systems Setup File is $27 &rarr;</a></p>'; };
+      var top=document.querySelector('.offer');
+      if(top) top.innerHTML='<p><b>Set up your second brain with me, live.</b> '+pitch+'</p><a class="btn" href="'+link+'" data-track="map-top-to-77">save my spot, $77 &rarr;</a>'+alt('/setup-file/?from=map-top','map-top-to-setup-file');
+      var cta=document.querySelector('.cta');
+      if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p><a class="btn" href="'+link+'" data-track="map-to-77">save my spot, $77 &rarr;</a>'+alt('/setup-file/','map-to-setup-file');
+    }catch(x){}
+  };
+  window.ppLiveOffer();
 })();
 </script>
 </body>
