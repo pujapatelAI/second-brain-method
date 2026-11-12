@@ -183,6 +183,13 @@
   .otocard p{font-size:16px;line-height:1.5;margin-bottom:12px}
   .otocard a.btn{display:block;text-align:center;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:16px;padding:14px 18px;border-radius:3px;text-decoration:none;margin-top:6px}
   .otocard .skip{display:block;width:100%;background:none;border:0;font:inherit;font-size:14.5px;color:var(--ink-soft);text-decoration:underline;margin-top:14px;cursor:pointer}
+  /* Puja, Nov 12 2026: "do a real timer" */
+  .t77{display:flex;gap:8px;margin:10px 0 14px}
+  .t77[hidden]{display:none}
+  .t77 span{flex:0 0 auto;min-width:58px;text-align:center;background:var(--ink,#2A2320);color:var(--surface,#FBF7F1);border-radius:6px;padding:8px 6px 6px}
+  .t77 b{display:block;font-family:Georgia,serif;font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
+  .t77 i{display:block;font-style:normal;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-top:4px}
+  .otocard .t77{justify-content:center}
   .cta a.btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;padding:13px 22px;border-radius:3px;text-decoration:none}
 
 </style>
@@ -284,9 +291,8 @@ s.parentNode.insertBefore(t,s)})();
 
 <div class="wrap">
   <div class="eyebrow">Puja Patel · The Systems Map</div>
-  <h1>the 30 systems that get your business out of your head and teach your AI to execute for you</h1>
+  <h1>30 SYSTEMS FOR SERVICE BASED BUSINESS OWNERS</h1>
   <p class="lead">every system in your business connects. they chain into one process: the path a stranger takes to becoming a paying client. answer the questions across the map and you're not taking notes. you're <em>extracting your own system</em>.</p>
-  <p class="muted" style="max-width:730px;margin-top:10px;">start with the stage that costs you the most. answer its questions out loud, the messy version. that's how a system gets out of your head.</p>
   <div class="offer">
     <p><b>AI can't take work off your plate until it knows how your business runs.</b> that's the first step in building with AI, and it takes one sitting. The Systems Setup File, $27: you talk, Claude writes your top 3 systems out of your head, then takes its first task off your plate before you close the laptop.</p>
     <a class="btn" href="/setup-file/?from=map-top" data-track="map-top-to-setup-file">start tonight for $27 →</a>
@@ -1640,7 +1646,7 @@ s.parentNode.insertBefore(t,s)})();
    setup at $77 (Nov 11, later: Fri Nov 13 11:59pm ET, or Fri Nov 20 for leads who first see it after Nov 13; assets/live77.js), then $147; the map's two offer boxes
    show the same price and clock. $50k-$250k/mo (audit + implementation) keep the static $77 boxes until their
    own funnel (a $77 or a call) is decided.
-   $250k+, no band, or no session ahead: the $27 boxes stay as they are. */
+   Nov 12: the two boxes show the $77 to everyone (any band or none); the $27 boxes stay only once no session is ahead. */
 (function(){
   var UNDER50=['Under $10k/mo','$10k to $15k/mo','$15k to $30k/mo','$30k to $50k/mo'];
   var MID=['$50k to $75k/mo','$75k to $250k/mo'];
@@ -1648,7 +1654,7 @@ s.parentNode.insertBefore(t,s)})();
      same after-sign-up screen and 60-minute clock as under $50k. The static MID boxes below stay as the fallback. */
   var TIMED=UNDER50.concat(MID);
   /* Puja, Nov 11 2026: "add the guarantee to the $77" */
-  var gtee='<p class="gtee" style="margin:8px 0 0;font-size:14px"><b>Guarantee:</b> leave with your second brain set up, or I\'ll refund you in full.</p>';
+  var gtee='<p class="gtee" style="margin:8px 0 0;font-size:14px">Set up, or your money back.</p>';
   /* Puja, Nov 11 2026 ("ok lets do it"): text and email links carry ?k=<code> so the map knows the band on any
      device (Meta sign-ups happen in the Instagram/Facebook browser; their text/email links open in Safari/Chrome,
      which had no pp_band and showed the $27). Codes, not revenue text, go in the URL. */
@@ -1665,22 +1671,26 @@ s.parentNode.insertBefore(t,s)})();
     return e;
   }
   /* Puja, Nov 11 2026 ("Yes, push it"): say the $77 includes the setup file today (Stripe: 0 $77 checkout opens since Oct 17). */
-  var pitchOf=function(s){ return s.label+', small group. You leave with your second brain set up, your top 3 systems written down, and one real piece of client work done with Claude. The replay is yours too. <b>Includes the Systems Setup File today, so you can start tonight.</b> Then we finish it together, live, on '+s.label.split(',')[0]+'.'; };
-  var alt=function(href,track){ return '<p style="margin:12px 0 0;font-size:14.5px"><a href="'+href+'" data-track="'+track+'" style="color:inherit;text-decoration:underline">rather do it on your own? the Systems Setup File is $27 &rarr;</a></p>'; };
-  var timed='<p data-l77-open style="margin:10px 0 0"><b>$77 until <span data-l77-until>Fri Nov 13</span>, 11:59pm ET.</b> Then it\'s $147. <span data-l77-clock style="font-variant-numeric:tabular-nums">9d</span> left.</p>'+
-    '<p data-l77-closed hidden style="margin:10px 0 0"><b>$147.</b> The $77 price ended Friday night.</p>';
+  /* Puja, Nov 12 2026: "i want less words on the site" */
+  var pitchOf=function(s){ return s.label+', small group. Start tonight with the Systems Setup File, then we finish it together.'; };
+  var alt=function(href,track){ return '<p style="margin:12px 0 0;font-size:14.5px"><a href="'+href+'" data-track="'+track+'" style="color:inherit;text-decoration:underline">or do it yourself for $27 &rarr;</a></p>'; };
+  var timed='<p data-l77-open style="margin:10px 0 0"><b>$77 until <span data-l77-until>Fri Nov 13</span>,</b> then $147.</p><div class="t77" data-t77><span><b data-t="d">0</b><i>days</i></span><span><b data-t="h">00</b><i>hrs</i></span><span><b data-t="m">00</b><i>min</i></span><span><b data-t="s">00</b><i>sec</i></span></div>'+
+    '<p data-l77-closed hidden style="margin:10px 0 0"><b>$147.</b> The $77 price ended.</p>';
   var how='<p style="margin:10px 0 0;font-size:14.5px"><a href="/live-setup/" data-track="map-to-live-setup" style="color:inherit;text-decoration:underline">what\'s a second brain? see how I use mine &rarr;</a></p>';
   window.ppLiveOffer=function(){
     try{
       var b=band(), s=session();
-      if(!b || !s) return;
+      if(!s) return;
       var top=document.querySelector('.offer'), cta=document.querySelector('.cta'), pitch=pitchOf(s);
-      if(TIMED.indexOf(b)>=0 && window.ppLive77){
+      /* Puja, Nov 12 2026: "no keep 77 for everyone". Every visitor, any band or none (a new device with no ?k=,
+         or before sign-up), gets the $77 live setup in both boxes, with the $27 as the do-it-yourself line under it.
+         Since Nov 10: 353 sign-ups, 2 bought the $27, 0 the $77, while texts and emails all push the $77. */
+      if(window.ppLive77){
         var buy=function(track){ return '<a class="btn" data-l77-buy href="'+LINK+'" data-track="'+track+'">save my spot, <span data-l77-price>$77</span> &rarr;</a>'; };
         if(top){ top.className='offer offer-live'; top.innerHTML='<h2>Teach your AI to operate like you.</h2>'+
           '<div class="vid"><iframe src="https://www.loom.com/embed/f0a8078104d5444fb2f3ee62f083d38a?hideEmbedTopBar=true" title="What is a second brain? A quick look" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>'+
           '<p><b>Set up your second brain with me, live.</b> '+pitch+'</p>'+timed+buy('map-top-to-live')+gtee+alt('/setup-file/?from=map-top','map-top-to-setup-file'); }
-        if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p>'+timed+buy('map-to-live')+gtee+how+alt('/setup-file/','map-to-setup-file');
+        if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p>'+timed+buy('map-to-live')+gtee+alt('/setup-file/','map-to-setup-file');
         ppLive77.start();
         return;
       }
@@ -1700,8 +1710,8 @@ s.parentNode.insertBefore(t,s)})();
         '<h2 id="oto-h">Would you rather do this WITH me and have your second brain set up?</h2>'+
         '<p>'+pitchOf(s)+'</p>'+
         '<p class="pp-one">One of my members, an events-planning co-owner with an 11-person team, set hers up live with me. Working from her own files, Claude drafted a proposal for one of her real clients in about 45 seconds.</p>'+
-        '<p data-l77-open><b>$77 until <span data-l77-until>Fri Nov 13</span>, 11:59pm ET.</b> Then it\'s $147. <span data-l77-clock style="font-variant-numeric:tabular-nums">9d</span> left.</p>'+
-        '<p data-l77-closed hidden><b>$147.</b> The $77 price ended Friday night.</p>'+
+        '<p data-l77-open><b>$77 until <span data-l77-until>Fri Nov 13</span>,</b> then $147.</p><div class="t77" data-t77><span><b data-t="d">0</b><i>days</i></span><span><b data-t="h">00</b><i>hrs</i></span><span><b data-t="m">00</b><i>min</i></span><span><b data-t="s">00</b><i>sec</i></span></div>'+
+        '<p data-l77-closed hidden><b>$147.</b> The $77 price ended.</p>'+
         '<a class="btn" data-l77-buy href="'+LINK+'" data-track="map-unlock-to-live">save my spot, <span data-l77-price>$77</span> &rarr;</a>'+
         gtee.replace('margin:8px 0 0','margin:10px 0 0;text-align:center')+
         '<p style="margin:12px 0 0;font-size:14.5px;text-align:center"><a href="/live-setup/" data-track="map-unlock-to-live-setup" style="color:inherit;text-decoration:underline">what\'s a second brain? see how I use mine &rarr;</a></p>'+
@@ -1712,7 +1722,20 @@ s.parentNode.insertBefore(t,s)})();
       oto.querySelector('.skip').addEventListener('click', function(){ oto.hidden=true; document.documentElement.style.overflow=''; window.scrollTo(0,0); });
     }catch(x){}
   };
-  window.ppLiveOffer();
+  /* the boxes tick every second toward this person's deadline (assets/live77.js); hidden once $77 ends */
+  function tick(){
+    if(!window.ppLive77) return;
+    var left=Math.max(0,ppLive77.deadline()-Date.now()), s=Math.floor(left/1000), p=function(n){ return (n<10?'0':'')+n; };
+    var v={d:Math.floor(s/86400), h:p(Math.floor(s%86400/3600)), m:p(Math.floor(s%3600/60)), s:p(s%60)};
+    document.querySelectorAll('[data-t77]').forEach(function(t){
+      t.hidden=left<=0;
+      t.querySelectorAll('[data-t]').forEach(function(n){ n.textContent=v[n.getAttribute('data-t')]; });
+      var dl=t.querySelector('[data-t="d"]+i'); if(dl) dl.textContent=v.d===1?'day':'days';
+    });
+  }
+  setInterval(tick,1000);
+  window.ppLiveOffer(); tick();
+  var _ls=window.ppLiveScreen; window.ppLiveScreen=function(r){ _ls(r); tick(); };
 })();
 </script>
 </body>
