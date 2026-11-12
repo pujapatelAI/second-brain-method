@@ -28,7 +28,7 @@ try{
 /* a tap on any Stripe buy link = InitiateCheckout ($27 file, or the $77 live setup) */
 document.addEventListener('click', function(e){
   var a = e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
-  if (!a) return;
+  if (!a || a.hasAttribute('data-l77-buy')) return; /* the live setup button is tracked by assets/live77.js at its current price */
   var v = /8x2fZa5KOerpfX47cY6c007/.test(a.href) ? 77 : 27;
   try{ fbq('track','InitiateCheckout',{value:v, currency:'USD', content_name: v === 77 ? 'second_brain_setup' : 'systems_setup_file'}); }catch(x){}
 }, true);
@@ -85,10 +85,12 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
 
   <div class="card" id="live-setup">
     <h2>Rather do it with me?</h2>
-    <p>Add the live Second Brain Setup, $77. I'll set it up with you, live, in a small group. You leave with your second brain set up, your top 3 systems written down, and one real piece of client work done with Claude.</p>
+    <p>Add the live Second Brain Setup, <span data-l77-price>$77</span>. I'll set it up with you, live, in a small group. You leave with your second brain set up, your top 3 systems written down, and one real piece of client work done with Claude.</p>
     <p class="pp-one">One of my members, a brand positioning consultant starting three new ventures, set his up live with me. For the first time, everything on his plate is in one place: what's done, what's open and what's next.</p>
     <p class="muted" style="margin-top:0;margin-bottom:16px">Next session: Mon Nov 23, 2pm ET. The replay is yours too.</p>
-    <a class="btn" href="https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007" data-track="thanks-to-77" target="_blank" rel="noopener">Add the live setup for $77 &rarr;</a>
+    <p data-l77-open style="margin:0 0 12px"><b>$77 until Fri Nov 13, 11:59pm ET.</b> Then it's $147. <span data-l77-clock style="font-variant-numeric:tabular-nums">2d</span> left.</p>
+    <p data-l77-closed hidden style="margin:0 0 12px"><b>$147.</b> The $77 price ended Friday night.</p>
+    <a class="btn" data-l77-buy href="https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007" data-track="thanks-to-77" target="_blank" rel="noopener">Add the live setup for <span data-l77-price>$77</span> &rarr;</a>
     <p style="margin:10px 0 0;font-size:14px"><b>Guarantee:</b> leave with your second brain set up, or I'll refund you in full.</p>
     <p class="muted">Already added it at checkout? You're in. Your invite arrives by email. Bring a laptop with Claude open.</p>
   </div>
@@ -140,5 +142,7 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
   for(var i=0;i<as.length;i++){ var u=new URL(as[i].href); u.searchParams.set('prefilled_email', e); as[i].href=u.toString(); }
 }catch(x){}})();
 </script>
+<script src="/assets/live77.js"></script>
+<script>/* Puja, Nov 11 2026 ("Yes, switch them"): this card follows the fixed $77 deadline, then $147. */ if(window.ppLive77) ppLive77.start();</script>
 </body>
 </html>
