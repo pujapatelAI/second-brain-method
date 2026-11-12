@@ -1,4 +1,4 @@
-/* Live Second Brain Setup: $77 until one fixed deadline, Fri Nov 20 2026 at 11:59pm ET,
+/* Live Second Brain Setup: $77 until one fixed deadline, Fri Nov 13 2026 at 11:59pm ET,
    then $147 until the session (Puja, Nov 11 2026: "keep the fixed deadline friday night
    and so we can more aggressively market it towards the end"). Same price for everyone,
    on every device. This replaced the per-person 60-minute clock (pp77_deadline / ?until=).
@@ -10,7 +10,7 @@
      [data-l77-open]    shown only while $77 is open
      [data-l77-closed]  shown only after the $77 price ends                              */
 (function(){
-  var DEADLINE=Date.parse('2026-11-20T23:59:00-05:00');
+  var DEADLINE=Date.parse('2026-11-13T23:59:00-05:00');
   var SESSION=Date.parse('2026-11-23T14:00:00-05:00');
   var L77='https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007';
   var L147='https://buy.stripe.com/4gM28k4GK6YX26eeFq6c009';
