@@ -1637,7 +1637,7 @@ s.parentNode.insertBefore(t,s)})();
 /* Puja, Nov 11 2026: "ya i'm down for 77 live session straight - and downsell the 27". Then, same night:
    "it should always be for the 60 minutes before it becomes $147", then "group together 0-50 and 50-250 for
    the purposes of offerings". Under $50k/mo (Under $10k included): right after sign-up a screen offers the live
-   setup at $77 with this person's one 60-minute clock (assets/live77.js), then $147; the map's two offer boxes
+   setup at $77 (Nov 11, later: one fixed deadline for everyone, Fri Nov 20 11:59pm ET, assets/live77.js), then $147; the map's two offer boxes
    show the same price and clock. $50k-$250k/mo (audit + implementation) keep the static $77 boxes until their
    own funnel (a $77 or a call) is decided.
    $250k+, no band, or no session ahead: the $27 boxes stay as they are. */
@@ -1667,7 +1667,8 @@ s.parentNode.insertBefore(t,s)})();
   /* Puja, Nov 11 2026 ("Yes, push it"): say the $77 includes the setup file today (Stripe: 0 $77 checkout opens since Oct 17). */
   var pitchOf=function(s){ return s.label+', small group. You leave with your second brain set up, your top 3 systems written down, and one real piece of client work done with Claude. The replay is yours too. <b>Includes the Systems Setup File today, so you can start tonight.</b> Then we finish it together, live, on '+s.label.split(',')[0]+'.'; };
   var alt=function(href,track){ return '<p style="margin:12px 0 0;font-size:14.5px"><a href="'+href+'" data-track="'+track+'" style="color:inherit;text-decoration:underline">rather do it on your own? the Systems Setup File is $27 &rarr;</a></p>'; };
-  var timed='<p data-l77-open style="margin:10px 0 0"><b>$77 for the next <span data-l77-clock style="font-variant-numeric:tabular-nums">60:00</span>.</b> After that it\'s $147.</p>';
+  var timed='<p data-l77-open style="margin:10px 0 0"><b>$77 until Fri Nov 20, 11:59pm ET.</b> Then it\'s $147. <span data-l77-clock style="font-variant-numeric:tabular-nums">9d</span> left.</p>'+
+    '<p data-l77-closed hidden style="margin:10px 0 0"><b>$147.</b> The $77 price ended Friday night.</p>';
   var how='<p style="margin:10px 0 0;font-size:14.5px"><a href="/live-setup/" data-track="map-to-live-setup" style="color:inherit;text-decoration:underline">what\'s a second brain? see how I use mine &rarr;</a></p>';
   window.ppLiveOffer=function(){
     try{
@@ -1699,8 +1700,8 @@ s.parentNode.insertBefore(t,s)})();
         '<h2 id="oto-h">Would you rather do this WITH me and have your second brain set up?</h2>'+
         '<p>'+pitchOf(s)+'</p>'+
         '<p class="pp-one">One of my members, an events-planning co-owner with an 11-person team, set hers up live with me. Working from her own files, Claude drafted a proposal for one of her real clients in about 45 seconds.</p>'+
-        '<p data-l77-open><b>$77 for the next <span data-l77-clock style="font-variant-numeric:tabular-nums">60:00</span>.</b> After that it\'s $147.</p>'+
-        '<p data-l77-closed hidden><b>$147.</b></p>'+
+        '<p data-l77-open><b>$77 until Fri Nov 20, 11:59pm ET.</b> Then it\'s $147. <span data-l77-clock style="font-variant-numeric:tabular-nums">9d</span> left.</p>'+
+        '<p data-l77-closed hidden><b>$147.</b> The $77 price ended Friday night.</p>'+
         '<a class="btn" data-l77-buy href="'+LINK+'" data-track="map-unlock-to-live">save my spot, <span data-l77-price>$77</span> &rarr;</a>'+
         gtee.replace('margin:8px 0 0','margin:10px 0 0;text-align:center')+
         '<p style="margin:12px 0 0;font-size:14.5px;text-align:center"><a href="/live-setup/" data-track="map-unlock-to-live-setup" style="color:inherit;text-decoration:underline">what\'s a second brain? see how I use mine &rarr;</a></p>'+
