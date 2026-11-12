@@ -169,6 +169,15 @@
   .offer p{margin:0;max-width:440px;font-size:15px;line-height:1.4}
   /* Puja, Nov 11 2026: the live-setup box with her headline + the second-brain Loom */
   .offer.offer-live{display:block;padding:18px 18px 16px}
+  /* Nov 12 2026 alignment: boxes span the same width as the map, so every right edge lines up */
+  .offer.offer-live,.cta.cta-live{max-width:none}
+  .ol-cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:center}
+  .ol-cols .vid{margin:0!important}
+  .ol-side>p:first-child{margin-top:0}
+  .cta-live{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:center}
+  .cta-live .cta-copy p{margin-bottom:0}
+  .cta-live .cta-buy>p:first-child{margin-top:0!important}
+  @media(max-width:860px){.ol-cols,.cta-live{grid-template-columns:1fr;gap:12px}}
   .offer-live h2{font-family:Georgia,serif;font-size:22px;line-height:1.25;margin:0 0 12px}
   .offer-live p{max-width:none;margin:0 0 10px}
   .offer-live .vid{position:relative;aspect-ratio:16/9;margin:0 0 14px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
@@ -1495,7 +1504,7 @@ s.parentNode.insertBefore(t,s)})();
   </div>
 
   <p class="muted" style="max-width:730px;margin-top:16px;">by system 30 it's your whole client-getting-and-delivering operation on one page: your <b>second brain</b>, laid out.</p>
-  <div style="max-width:980px;margin-top:34px"><div class="pp-proof"><span class="pp-eye">Members</span><h2>what changes once it's out of your head</h2><div class="pp-stories"><div class="pp-story"><p class="pp-who">A coach, 15 years in business</p><p>Everything she knew lived in her head, and she had a folder of saved AI videos and no idea where to start. She built her second brain live with me and went from chatting with Claude to having Claude do the work. Since then Claude has cleaned up years of files, built and launched her new website and fixed her email follow-up. New people now opt in almost every day.</p></div><div class="pp-story"><p class="pp-who">A mom of a toddler, running a strategy studio</p><p>Every night she dug through hundreds of emails to count her new sign-ups, and 72 warm leads had piled up since the baby arrived. In a live workshop she described the job to Claude in plain words, and Claude built it, tested it and caught the duplicate emails on its own. Now a message at 9pm tells her how many leads came in and their first names, while she's winding her son down for bed.</p></div><div class="pp-story"><p class="pp-who">A brand positioning consultant, starting three new ventures</p><p>He was consulting while starting three ventures at once, with a lot of dropped balls, and only using AI on the surface. He built his second brain live with me, connected to his notes, email and files. For the first time, everything on his plate is in one place: what's done, what's open and what's next.</p></div></div></div></div>
+  <div style="margin-top:34px"><div class="pp-proof"><span class="pp-eye">Members</span><h2>what changes once it's out of your head</h2><div class="pp-stories"><div class="pp-story"><p class="pp-who">A coach, 15 years in business</p><p>Everything she knew lived in her head, and she had a folder of saved AI videos and no idea where to start. She built her second brain live with me and went from chatting with Claude to having Claude do the work. Since then Claude has cleaned up years of files, built and launched her new website and fixed her email follow-up. New people now opt in almost every day.</p></div><div class="pp-story"><p class="pp-who">A mom of a toddler, running a strategy studio</p><p>Every night she dug through hundreds of emails to count her new sign-ups, and 72 warm leads had piled up since the baby arrived. In a live workshop she described the job to Claude in plain words, and Claude built it, tested it and caught the duplicate emails on its own. Now a message at 9pm tells her how many leads came in and their first names, while she's winding her son down for bed.</p></div><div class="pp-story"><p class="pp-who">A brand positioning consultant, starting three new ventures</p><p>He was consulting while starting three ventures at once, with a lot of dropped balls, and only using AI on the surface. He built his second brain live with me, connected to his notes, email and files. For the first time, everything on his plate is in one place: what's done, what's open and what's next.</p></div></div></div></div>
   <div class="cta">
     <h2>want your top 3 out of your head this week?</h2>
     <p><b>The Systems Setup File, $27.</b> you talk, Claude writes. in one sitting you set up your second brain, score your systems, and get the 3 that cost you the most written down, so they stop running through you.</p>
@@ -1687,10 +1696,10 @@ s.parentNode.insertBefore(t,s)})();
          Since Nov 10: 353 sign-ups, 2 bought the $27, 0 the $77, while texts and emails all push the $77. */
       if(window.ppLive77){
         var buy=function(track){ return '<a class="btn" data-l77-buy href="'+LINK+'" data-track="'+track+'">save my spot, <span data-l77-price>$77</span> &rarr;</a>'; };
-        if(top){ top.className='offer offer-live'; top.innerHTML='<h2>Teach your AI to operate like you.</h2>'+
-          '<div class="vid"><iframe src="https://www.loom.com/embed/f0a8078104d5444fb2f3ee62f083d38a?hideEmbedTopBar=true" title="What is a second brain? A quick look" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>'+
-          '<p><b>Set up your second brain with me, live.</b> '+pitch+'</p>'+timed+buy('map-top-to-live')+gtee+alt('/setup-file/?from=map-top','map-top-to-setup-file'); }
-        if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p>'+timed+buy('map-to-live')+gtee+alt('/setup-file/','map-to-setup-file');
+        if(top){ top.className='offer offer-live'; top.innerHTML='<h2>Teach your AI to operate like you.</h2><div class="ol-cols">'+
+          '<div class="vid"><iframe src="https://www.loom.com/embed/f0a8078104d5444fb2f3ee62f083d38a?hideEmbedTopBar=true" title="What is a second brain? A quick look" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="ol-side">'+
+          '<p><b>Set up your second brain with me, live.</b> '+pitch+'</p>'+timed+buy('map-top-to-live')+gtee+alt('/setup-file/?from=map-top','map-top-to-setup-file')+'</div></div>'; }
+        if(cta){ cta.className='cta cta-live'; cta.innerHTML='<div class="cta-copy"><h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p></div><div class="cta-buy">'+timed+buy('map-to-live')+gtee+alt('/setup-file/','map-to-setup-file')+'</div>'; }
         ppLive77.start();
         return;
       }

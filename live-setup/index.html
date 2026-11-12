@@ -368,12 +368,20 @@ s.parentNode.insertBefore(t,s)})();
   .deal .diy{margin:12px 0 0; font-size:.95rem; color:var(--ink-soft)}
   .deal .diy a{color:inherit}
   .vids{margin-top:28px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
-  .vids iframe{width:100%; aspect-ratio:325/578; border:1px solid var(--line); border-radius:6px; background:var(--surface)}
-  @media(max-width:860px){.vids{grid-template-columns:minmax(0,1fr); max-width:340px}}
+  .vids iframe{display:block; width:100%; aspect-ratio:325/578; border:1px solid var(--line); border-radius:6px; background:var(--surface)}
+  @media(max-width:860px){.vids{grid-template-columns:repeat(2,minmax(0,1fr))}} @media(max-width:560px){.vids{grid-template-columns:minmax(0,1fr); max-width:340px}}
   .get{margin-top:22px; list-style:none; padding:0; display:grid; gap:12px; max-width:var(--measure)}
   .get li{font-size:1.1rem; line-height:1.5; padding-left:22px; position:relative}
   .get li:before{content:""; position:absolute; left:0; top:.6em; width:8px; height:8px; border-radius:50%; background:var(--accent-bright)}
   @media(max-width:560px){.deal .btn{width:100%; justify-content:center}}
+  /* Nov 12 2026 alignment: hero = copy | price box, so the box ends where the videos end */
+  .lhero-grid{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:48px; align-items:center}
+  .lhero-grid .deal{margin-top:0; max-width:none}
+  @media(max-width:860px){.lhero-grid{grid-template-columns:minmax(0,1fr); gap:0} .lhero-grid .deal{margin-top:24px}}
+  .vids figure{margin:0}
+  .vids figcaption{margin-top:8px; font-size:.95rem; line-height:1.4; color:var(--ink-soft)}
+  #proof .pp-eye{margin-bottom:18px; font-size:.72rem; letter-spacing:.13em}
+  #proof .pp-lead{margin-top:12px}
 </style>
 <style>/* Puja, Nov 12 2026: "do the same timer on /live-setup/" (same as /map/) */
 .t77{display:flex;gap:8px;margin:10px 0 14px}.t77[hidden]{display:none}.final .t77{justify-content:center}
@@ -396,10 +404,12 @@ s.parentNode.insertBefore(t,s)})();
   </div>
 
   <header class="lhero">
-    <div class="wrap">
+    <div class="wrap lhero-grid">
+      <div class="lhero-copy">
       <div class="callout">Live with Puja · Mon Nov 23, 2pm ET · small group</div>
       <h1>Set up your second brain with me, live.</h1>
       <p class="sub">You leave with <b>your second brain set up</b>, <b>your top 3 systems written down</b>, and <b>one real piece of client work done with Claude</b>. The replay is yours too. <b>Includes the Systems Setup File today, so you can start tonight.</b> Then we finish it together, live, on Mon Nov 23.</p>
+      </div>
       <div class="deal">
           <p class="p" data-l77-open><b>$77 until <span data-l77-until>Fri Nov 13</span>,</b> then $147.</p><div class="t77" data-t77><span><b data-t="d">0</b><i>days</i></span><span><b data-t="h">00</b><i>hrs</i></span><span><b data-t="m">00</b><i>min</i></span><span><b data-t="s">00</b><i>sec</i></span></div>
           <p class="p" data-l77-closed hidden><b>$147.</b> The $77 price ended Friday night.</p>
@@ -424,11 +434,14 @@ s.parentNode.insertBefore(t,s)})();
   <section id="mine">
     <div class="wrap">
       <div class="mono lead-label">See it</div>
-      <h2 class="h2">How I use mine.</h2>
+      <h2 class="h2">How I use Claude in my business.</h2>
       <div class="vids">
-        <iframe src="https://www.tiktok.com/player/v1/7695087254632533262?music_info=0&description=0&rel=0" title="Puja on TikTok" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        <iframe src="https://www.tiktok.com/player/v1/7698125655388589326?music_info=0&description=0&rel=0" title="Puja on TikTok" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        <iframe src="https://www.tiktok.com/player/v1/7686177159005703437?music_info=0&description=0&rel=0" title="Puja on TikTok" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <figure><iframe src="https://www.tiktok.com/player/v1/7696286706349165838?music_info=0&description=0&rel=0" title="How I use Claude in my business: Project management for 12+ clients" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe><figcaption>Project management for 12+ clients</figcaption></figure>
+        <figure><iframe src="https://www.tiktok.com/player/v1/7672809188195568910?music_info=0&description=0&rel=0" title="How I use Claude in my business: Contract to kickoff" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe><figcaption>Contract to kickoff</figcaption></figure>
+        <figure><iframe src="https://www.tiktok.com/player/v1/7673159747092139278?music_info=0&description=0&rel=0" title="How I use Claude in my business: Client onboarding" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe><figcaption>Client onboarding</figcaption></figure>
+        <figure><iframe src="https://www.tiktok.com/player/v1/7675424043272736013?music_info=0&description=0&rel=0" title="How I use Claude in my business: Project plan + task assignment" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe><figcaption>Project plan + task assignment</figcaption></figure>
+        <figure><iframe src="https://www.tiktok.com/player/v1/7675759562514894094?music_info=0&description=0&rel=0" title="How I use Claude in my business: Weekly client status updates" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe><figcaption>Weekly client status updates</figcaption></figure>
+        <figure><iframe src="https://www.tiktok.com/player/v1/7683935114002271501?music_info=0&description=0&rel=0" title="How I use Claude in my business: Approvals + sign offs" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe><figcaption>Approvals + sign offs</figcaption></figure>
       </div>
     </div>
   </section>
