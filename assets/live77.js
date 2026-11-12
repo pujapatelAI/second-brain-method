@@ -21,6 +21,9 @@
   function put(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
   (function(){ var q=''; try{ q=new URLSearchParams(location.search).get('dl')||''; }catch(e){} if(WINDOWS[q]) put('pp77_dl',q); })();
   function win(){
+    /* Puja, Nov 12 2026: "leave it 13 for now - then extend it to 20 for everyone" (not announced).
+       Once Fri Nov 13 11:59pm ET passes, EVERYONE gets $77 until Fri Nov 20, early visitors and ?dl=13 included. */
+    if(Date.now()>=D13) return WINDOWS['20'];
     var dl=get('pp77_dl'); if(WINDOWS[dl]) return WINDOWS[dl];
     var first=parseInt(get('pp77_first')||'0',10)||(get('pp77_deadline') ? D13-1 : 0)||Date.now();
     return first<D13 ? WINDOWS['13'] : WINDOWS['20'];
