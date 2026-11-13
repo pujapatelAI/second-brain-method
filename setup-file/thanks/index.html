@@ -22,7 +22,10 @@ fbq('track', 'PageView');
 try{
   if(!sessionStorage.getItem('ssf_purchase_fired')){
     sessionStorage.setItem('ssf_purchase_fired','1');
-    fbq('track','Purchase',{value:27, currency:'USD', content_name:'systems_setup_file'});
+    /* eventID = 'cs-' + Stripe checkout session (Nov 12 2026): apps/command/meta_capi_purchases.py sends the same
+       sale server-side with this event_id, so Meta counts it once. */
+    var sid=(location.search.match(/[?&]session_id=(cs_[A-Za-z0-9_]+)/)||[])[1];
+    fbq('track','Purchase',{value:27, currency:'USD', content_name:'systems_setup_file'}, sid?{eventID:'cs-'+sid}:{});
   }
 }catch(x){}
 /* a tap on any Stripe buy link = InitiateCheckout ($27 file, or the $77 live setup) */

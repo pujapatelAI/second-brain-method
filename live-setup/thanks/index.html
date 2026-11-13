@@ -24,7 +24,9 @@ try{
   var v = /[?&]v=147\b/.test(location.search) ? 147 : 77;
   if(!sessionStorage.getItem('ls_purchase_fired')){
     sessionStorage.setItem('ls_purchase_fired','1');
-    fbq('track','Purchase',{value:v, currency:'USD', content_name:'live_setup'});
+    /* eventID = 'cs-' + Stripe checkout session; matches the server-side copy (apps/command/meta_capi_purchases.py). */
+    var sid=(location.search.match(/[?&]session_id=(cs_[A-Za-z0-9_]+)/)||[])[1];
+    fbq('track','Purchase',{value:v, currency:'USD', content_name:'live_setup'}, sid?{eventID:'cs-'+sid}:{});
   }
 }catch(x){ try{ fbq('track','Purchase',{value:77, currency:'USD', content_name:'live_setup'}); }catch(y){} }
 </script>
