@@ -199,6 +199,16 @@
   .t77 b{display:block;font-family:Georgia,serif;font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
   .t77 i{display:block;font-style:normal;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-top:4px}
   .otocard .t77{justify-content:center}
+  /* Puja, Nov 13 2026: today-only bonus card on the $77 screen, hidden from Sat Nov 14 00:00 ET */
+  .bonus77{margin:2px 0 14px;background:var(--surface);background:color-mix(in srgb,var(--accent-bright) 6%,var(--surface));border:2px solid var(--accent-bright);border-radius:6px;padding:12px 14px;text-align:left}
+  .bonus77[hidden]{display:none}
+  .otocard .bonus77 .b77-h{font-family:Georgia,serif;font-size:19px;font-weight:700;line-height:1.25;margin:0 0 8px}
+  .bonus77 ul{list-style:none;display:grid;gap:6px}
+  .bonus77 li{position:relative;padding-left:22px;font-size:15px;line-height:1.45}
+  .bonus77 .ck{position:absolute;left:0;top:0;color:var(--accent-bright);font-weight:700}
+  .bonus77 li.hot{padding:8px 10px 8px 32px;background:color-mix(in srgb,var(--accent-bright) 13%,transparent);border-radius:4px}
+  .bonus77 li.hot .ck{left:10px;top:8px}
+  .bonus77 li.hot b{color:var(--accent)}
   .cta a.btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;padding:13px 22px;border-radius:3px;text-decoration:none}
 
 </style>
@@ -1710,6 +1720,8 @@ s.parentNode.insertBefore(t,s)})();
       if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p><a class="btn" href="'+link+'" data-track="map-to-77">save my spot, $77 &rarr;</a>'+gtee+alt('/setup-file/','map-to-setup-file');
     }catch(x){}
   };
+  /* Puja, Nov 13 2026: the today-only bonus card on this screen is built only before Sat Nov 14 00:00 ET; tick() hides it at that moment */
+  var BONUS77=Date.parse('2026-11-14T00:00:00-05:00');
   /* The screen right after sign-up (Puja, Nov 11 2026: "would you rather do it WITH me ... $77 now"). */
   window.ppLiveScreen=function(rev){
     try{
@@ -1722,6 +1734,7 @@ s.parentNode.insertBefore(t,s)})();
         '<p class="pp-one">One of my members, an events-planning co-owner with an 11-person team, set hers up live with me. Working from her own files, Claude drafted a proposal for one of her real clients in about 45 seconds.</p>'+
         '<p data-l77-open><b>Last day for $77:</b> <span data-l77-until>Fri Nov 13</span>, midnight ET.</p><div class="t77" data-t77><span><b data-t="d">0</b><i>days</i></span><span><b data-t="h">00</b><i>hrs</i></span><span><b data-t="m">00</b><i>min</i></span><span><b data-t="s">00</b><i>sec</i></span></div>'+
         '<p data-l77-closed hidden><b>$147.</b> The $77 price ended.</p>'+
+        (Date.now()<BONUS77 ? '<div class="bonus77" data-bonus77><p class="b77-h">Everything you get today for $77:</p><ul><li><span class="ck">&#10003;</span>The live setup with me, Mon Nov 23, 2pm ET</li><li><span class="ck">&#10003;</span>The Systems Setup File, so you can start tonight</li><li class="hot"><span class="ck">&#10003;</span><b>TODAY ONLY BONUS:</b> my members-only content editing workshop, Thu Dec 3. Claude edits your videos for you, built right on top of your new second brain.</li></ul></div>' : '')+
         '<a class="btn" data-l77-buy href="'+LINK+'" data-track="map-unlock-to-live">save my spot, <span data-l77-price>$77</span> &rarr;</a>'+
         gtee.replace('margin:8px 0 0','margin:10px 0 0;text-align:center')+
         '<p style="margin:12px 0 0;font-size:14.5px;text-align:center"><a href="/live-setup/" data-track="map-unlock-to-live-setup" style="color:inherit;text-decoration:underline">what\'s a second brain? see how I use mine &rarr;</a></p>'+
@@ -1734,6 +1747,7 @@ s.parentNode.insertBefore(t,s)})();
   };
   /* the boxes tick every second toward this person's deadline (assets/live77.js); hidden once $77 ends */
   function tick(){
+    if(Date.now()>=BONUS77) document.querySelectorAll('[data-bonus77]').forEach(function(n){ n.hidden=true; });
     if(!window.ppLive77) return;
     var left=Math.max(0,ppLive77.deadline()-Date.now()), s=Math.floor(left/1000), p=function(n){ return (n<10?'0':'')+n; };
     var v={d:Math.floor(s/86400), h:p(Math.floor(s%86400/3600)), m:p(Math.floor(s%3600/60)), s:p(s%60)};
