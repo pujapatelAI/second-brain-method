@@ -1597,6 +1597,8 @@ s.parentNode.insertBefore(t,s)})();
       /* so /setup-file/ can hand Stripe their email (Puja, Nov 11 2026) */
       try{ localStorage.setItem('pp_email', email); }catch(x){}
       try{ localStorage.setItem('pp_band', rev); }catch(x){}
+      /* Puja, Nov 14 2026: /vip/ fills in what they already answered here (same browser only; nothing goes in a URL). */
+      try{ localStorage.setItem('pp_lead', JSON.stringify({ name:name, phone:tel, industry:(ind==='Other' ? indo : ind) })); }catch(x){}
       var params=new URLSearchParams(window.location.search), now=Math.floor(Date.now()/1000);
       try{ clarity('event','systems_map_optin'); }catch(x){}
       /* Meta: MapSignup = every sign-up (reporting + audiences). SubmitApplication =
@@ -1654,7 +1656,25 @@ s.parentNode.insertBefore(t,s)})();
       document.body.insertBefore(b, document.body.firstChild);
       try{ if(window._cio) _cio.track('map_oip_route',{ monthly_revenue_band:rev }); }catch(x){}
     }
+    if(rev==='$50k to $75k/mo'){ vipInvite(rev, true); }
   });
+  /* Puja, Nov 14 2026: $50k-$75k/mo sign-ups are invited to the VIP program page, which fills in what they just
+     answered ("route map leads at this level to this page"). VIPFit carries nothing (Meta blocks audiences
+     built on revenue_band); it exists so the $77 retargeting ads can exclude these owners. Also runs when a
+     known $50k-$75k lead comes back (saved band, or a ?k=m5 link). */
+  function vipInvite(rev, fresh){
+    if(document.getElementById('vip-invite')) return;
+    try{ if(window.fbq) fbq('trackCustom','VIPFit'); }catch(x){}
+    var b=document.createElement('div'); b.id='vip-invite';
+    b.style.cssText='background:#B0532F;color:#FBF7F1;padding:14px 16px;text-align:center;font-weight:600;line-height:1.45';
+    b.innerHTML='At your size, the map is only the start. <a href="/vip/" style="color:#FBF7F1;text-decoration:underline">You\'re invited to my free private workshop &rarr;</a>';
+    document.body.insertBefore(b, document.body.firstChild);
+    if(fresh){ try{ if(window._cio) _cio.track('map_vip_route',{ monthly_revenue_band:rev }); }catch(x){} }
+  }
+  try{
+    var vk=new URLSearchParams(location.search).get('k'), vb=localStorage.getItem('pp_band')||'';
+    if(vk==='m5' || (!vk && vb==='$50k to $75k/mo')) vipInvite('$50k to $75k/mo', false);
+  }catch(x){}
 })();
 </script>
 <script src="/assets/live77.js"></script>
@@ -1726,6 +1746,23 @@ s.parentNode.insertBefore(t,s)})();
   window.ppLiveScreen=function(rev){
     try{
       var s=session(), oto=document.getElementById('oto');
+      /* Puja, Nov 14 2026: "route map leads at this level to this page". A $50k-$75k/mo sign-up sees the VIP
+         invitation here instead of the $77 screen. The $77 boxes further down the map don't change. No date in
+         this card, so it never goes stale; /vip/ carries the date. */
+      if(rev==='$50k to $75k/mo' && oto){
+        oto.querySelector('.otocard').innerHTML=
+          '<div class="ok">&#10003; your map is unlocked</div>'+
+          '<h2 id="oto-h">At your size, you\'re invited to a free private workshop.</h2>'+
+          '<p>I run a private Second Brain Workshop for a small group of owners past $50k a month. It\'s free and invitation only, and it\'s where I open the 5 seats in my six-month VIP program.</p>'+
+          '<p class="pp-one">One of my members, an events-planning co-owner with an 11-person team, set hers up live with me. Working from her own files, Claude drafted a proposal for one of her real clients in about 45 seconds.</p>'+
+          '<a class="btn" href="/vip/" data-track="map-unlock-to-vip">see your invitation &rarr;</a>'+
+          '<p style="margin:10px 0 0;font-size:14.5px;text-align:center">Your answers carry over, so you won\'t type them twice.</p>'+
+          '<button type="button" class="skip" data-track="map-unlock-vip-no-thanks">not now, show me my map</button>';
+        oto.hidden=false; document.documentElement.style.overflow='hidden';
+        try{ clarity('event','map_vip_screen_shown'); }catch(x){}
+        oto.querySelector('.skip').addEventListener('click', function(){ oto.hidden=true; document.documentElement.style.overflow=''; window.scrollTo(0,0); });
+        return;
+      }
       if(!oto || !s || TIMED.indexOf(rev)<0 || !window.ppLive77) return;
       oto.querySelector('.otocard').innerHTML=
         '<div class="ok">&#10003; your map is unlocked</div>'+
