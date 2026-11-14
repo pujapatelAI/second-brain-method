@@ -76,7 +76,12 @@ window.VIP_CONFIG = {
   QUALIFIED: { investment:["yes"], start:["November","December"], team_max:5, bands:["$50k to $75k/mo"], time_ok:["yes"] },
   // Puja, Nov 14 2026: "anyone who says no to nov 30 should be asked about dec 15 and if they say no they go to
   // waitlist". The Dec 15 question shows only after a no to Nov 30 (or once Nov 30 applications close).
-  NEXT_COHORT: "dec15"
+  NEXT_COHORT: "dec15",
+  // Puja, Nov 14 2026: "route them to a thank you, you're on the waitlist page". Who the approval job puts on the
+  // waitlist: no to both dates, or these not met (decision maker always required). Same rules as CommandOS
+  // data/marketing/systems_map/vip_applications.json auto_approve: change both together.
+  AUTO_APPROVE: { bands:["$50k to $75k/mo", "$75k to $250k/mo"], investment:["yes", "need_to_talk"], exclude_start:["I'm only exploring"] },
+  WAITLIST_URL: "/vip/waitlist/"
 };
 </script>
 <style>
@@ -563,7 +568,7 @@ window.VIP_CONFIG = {
         <p data-done="nov30 dec15">I read every application myself. <b>You'll hear from me by text and email within one business day.</b></p>
         <p data-done="nov30">If it's a fit, your invitation arrives with free access to OpMap. Finishing it by <b>Sun Nov 29, noon ET</b> holds your free seat for <b>Mon Nov 30 at 2pm ET</b>.</p>
         <p data-done="dec15">If it's a fit, your invitation arrives with free access to OpMap. Finishing it by <b>Mon Dec 14, noon ET</b> holds your free seat for <b>Tue Dec 15 at 2pm ET</b>.</p>
-        <p data-done="waitlist">You're on the waitlist for the next private workshop. I'll reach out when the next date is set.</p>
+        <p data-done="waitlist">Thank you for applying. You're on the waitlist for my private Second Brain Workshop.</p>
       </section>
     </section>
 
@@ -789,6 +794,9 @@ window.VIP_CONFIG = {
             can_attend: closed ? 'no' : radio('can_attend'), can_dec15: radio('can_dec15'),
             investment:radio('investment'), time_ok:radio('time_ok'), heard:val('heard'), anything_else:val('anything_else') };
     var cohort = (!closed && a.can_attend==='yes') ? CFG.COHORT : (a.can_dec15==='yes' ? CFG.NEXT_COHORT : 'waitlist');
+    var R=CFG.AUTO_APPROVE||{}, inList=function(list,v){ return (list||[]).indexOf(v)>-1; };
+    var waitlisted = cohort==='waitlist' || !(a.decision_maker==='yes' && inList(R.bands,a.revenue)
+      && inList(R.investment,a.investment) && !inList(R.exclude_start,a.start));
     var utm=utms(), now=Math.floor(Date.now()/1000);
     var Q=CFG.QUALIFIED||{}, has=function(list,v){ return (list||[]).indexOf(v)>-1; };
     var qualified = a.decision_maker==='yes' && has(Q.investment,a.investment) && has(Q.start,a.start)
@@ -835,7 +843,10 @@ window.VIP_CONFIG = {
     try{ localStorage.removeItem(DRAFT); }catch(x){}
     form.style.display='none';
     var p=document.getElementById('p-done'); p.classList.add('on');
-    p.querySelectorAll('[data-done]').forEach(function(el){ el.style.display=(' '+el.getAttribute('data-done')+' ').indexOf(' '+cohort+' ')>-1?'':'none'; });
+    var doneKey = waitlisted ? 'waitlist' : cohort;
+    p.querySelectorAll('[data-done]').forEach(function(el){ el.style.display=(' '+el.getAttribute('data-done')+' ').indexOf(' '+doneKey+' ')>-1?'':'none'; });
+    /* Waitlisted: on to the thank-you page, after a moment so Customer.io, Meta and FormSubmit finish sending. */
+    if(waitlisted){ setTimeout(function(){ location.replace(CFG.WAITLIST_URL); }, 1500); }
     p.querySelectorAll('[data-first]').forEach(function(el){ el.textContent=first||'there'; });
     try{ p.scrollIntoView({behavior:'smooth', block:'start'}); }catch(x){ window.scrollTo(0,0); }
   });
