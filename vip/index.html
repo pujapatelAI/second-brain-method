@@ -73,7 +73,10 @@ window.VIP_CONFIG = {
   // Puja, Nov 14 2026: Meta gets "VIPQualified" (nothing attached) only when the answers match these, plus
   // "Yes, that's me" as decision maker. Same rules as CommandOS data/marketing/systems_map/vip_applications.json
   // meta_qualified (the server sends the same event with the same ID): change both together.
-  QUALIFIED: { investment:["yes"], start:["November","December"], team_max:5, bands:["$50k to $75k/mo"], time_ok:["yes"] }
+  QUALIFIED: { investment:["yes"], start:["November","December"], team_max:5, bands:["$50k to $75k/mo"], time_ok:["yes"] },
+  // Puja, Nov 14 2026: "anyone who says no to nov 30 should be asked about dec 15 and if they say no they go to
+  // waitlist". The Dec 15 question shows only after a no to Nov 30 (or once Nov 30 applications close).
+  NEXT_COHORT: "dec15"
 };
 </script>
 <style>
@@ -494,7 +497,14 @@ window.VIP_CONFIG = {
             <label>Can you be there live on Mon Nov 30 at 2pm ET?</label>
             <div class="radios">
               <label><input type="radio" name="can_attend" value="yes"> Yes</label>
-              <label><input type="radio" name="can_attend" value="next"> No, invite me to the next one</label>
+              <label><input type="radio" name="can_attend" value="no"> No</label>
+            </div>
+          </div>
+          <div class="field" id="dec15-q" data-req="radio:can_dec15" style="display:none">
+            <label>The next one is Tue Dec 15 at 2pm ET. Can you be there live?</label>
+            <div class="radios">
+              <label><input type="radio" name="can_dec15" value="yes"> Yes</label>
+              <label><input type="radio" name="can_dec15" value="no"> No, put me on the waitlist</label>
             </div>
           </div>
         </div>
@@ -550,9 +560,10 @@ window.VIP_CONFIG = {
       <section class="panel" id="p-done" aria-live="polite">
         <div class="eyebrow">Application received</div>
         <h2>Got it, <span data-first>there</span>.</h2>
-        <p>I read every application myself. <b>You'll hear from me by text and email within one business day.</b></p>
-        <p class="open-only">If it's a fit, your invitation arrives with free access to OpMap. Finishing it by <b>Sun Nov 29, noon ET</b> holds your free seat for <b>Mon Nov 30 at 2pm ET</b>.</p>
-        <p class="closed-note" style="border:0; background:none; padding:0">If it's a fit, your invitation to the next private workshop arrives with free access to OpMap.</p>
+        <p data-done="nov30 dec15">I read every application myself. <b>You'll hear from me by text and email within one business day.</b></p>
+        <p data-done="nov30">If it's a fit, your invitation arrives with free access to OpMap. Finishing it by <b>Sun Nov 29, noon ET</b> holds your free seat for <b>Mon Nov 30 at 2pm ET</b>.</p>
+        <p data-done="dec15">If it's a fit, your invitation arrives with free access to OpMap. Finishing it by <b>Mon Dec 14, noon ET</b> holds your free seat for <b>Tue Dec 15 at 2pm ET</b>.</p>
+        <p data-done="waitlist">You're on the waitlist for the next private workshop. I'll reach out when the next date is set.</p>
       </section>
     </section>
 
@@ -573,7 +584,8 @@ window.VIP_CONFIG = {
    FormSubmit copy to info@, the same plumbing as /apply/ and /map/. Phone is stored as mobile_phone (+E.164),
    never the `phone` identifier. It never writes `source`, `purchased` or `monthly_revenue_band`, so a map lead's
    text route doesn't change because they applied. GA4: generate_lead. Meta: VIPApplication (custom).
-   After CLOSES_AT the page switches to "next workshop" wording and stops asking about the date. */
+   After CLOSES_AT the page switches to "next workshop" wording and stops asking about Nov 30. A no to Nov 30 (or
+   any application after CLOSES_AT) is asked about Dec 15: yes = vip_cohort "dec15", no = "waitlist". */
 (function(){
   var CFG=window.VIP_CONFIG, form=document.getElementById('vip-form');
   var closed = Date.now() >= Date.parse(CFG.CLOSES_AT);
@@ -639,6 +651,7 @@ window.VIP_CONFIG = {
     Array.prototype.forEach.call(scope.querySelectorAll('.field[data-req]'), function(fd){
       var r=fd.getAttribute('data-req'), ok;
       if(closed && r==='radio:can_attend'){ ok=true; }
+      else if(fd.style.display==='none'){ ok=true; }
       else if(r.indexOf('radio:')===0){ ok=!!radio(r.slice(6)); }
       else if(r.indexOf('check:')===0){ ok=!!checks(r.slice(6)); }
       else if(r==='email'){ var em=val('email'); ok=em.indexOf('@')>0 && em.indexOf('.')>0; }
@@ -687,7 +700,16 @@ window.VIP_CONFIG = {
       return Math.min(Math.max(0, d.step|0), steps.length-1);
     }catch(x){ return 0; }
   }
+  /* The Dec 15 question: only after a no to Nov 30, or once Nov 30 applications are closed. */
+  function syncDec15(){
+    var q=document.getElementById('dec15-q'), on=closed || radio('can_attend')==='no';
+    q.style.display=on?'':'none';
+    if(!on){ Array.prototype.forEach.call(form.querySelectorAll('input[name=can_dec15]'), function(i){ i.checked=false; }); }
+  }
+  form.addEventListener('change', syncDec15);
+  syncDec15();
   function show(i, quiet){
+    syncDec15();
     cur=i;
     steps.forEach(function(s,k){ s.classList.toggle('on', k===i); });
     document.getElementById('prog-n').textContent='Step '+(i+1)+' of '+steps.length;
@@ -764,9 +786,9 @@ window.VIP_CONFIG = {
             stop_doing:val('stop_doing'), lost_time:val('lost_time'),
             six_months:val('six_months'), revenue_goal:val('revenue_goal'), margin_goal:val('margin_goal'),
             why_now:val('why_now'), start:val('start'), team_lead:val('team_lead'),
-            can_attend: closed ? 'next' : radio('can_attend'),
+            can_attend: closed ? 'no' : radio('can_attend'), can_dec15: radio('can_dec15'),
             investment:radio('investment'), time_ok:radio('time_ok'), heard:val('heard'), anything_else:val('anything_else') };
-    var cohort = (closed || a.can_attend==='next') ? 'next' : CFG.COHORT;
+    var cohort = (!closed && a.can_attend==='yes') ? CFG.COHORT : (a.can_dec15==='yes' ? CFG.NEXT_COHORT : 'waitlist');
     var utm=utms(), now=Math.floor(Date.now()/1000);
     var Q=CFG.QUALIFIED||{}, has=function(list,v){ return (list||[]).indexOf(v)>-1; };
     var qualified = a.decision_maker==='yes' && has(Q.investment,a.investment) && has(Q.start,a.start)
@@ -791,7 +813,7 @@ window.VIP_CONFIG = {
           _cio.identify({ id:email, email:email, first_name:first, full_name:cut(name,120), mobile_phone:tel,
             business_name:cut(a.business,120), company_website:cut(a.website,120),
             vip_applicant:true, vip_applied_at:now, vip_cohort:cohort, vip_revenue_band:a.revenue, vip_team_size:a.team,
-            vip_decision_maker:(a.decision_maker==='yes'), vip_investment:a.investment, vip_can_attend:a.can_attend,
+            vip_decision_maker:(a.decision_maker==='yes'), vip_investment:a.investment, vip_can_attend:a.can_attend, vip_can_dec15:a.can_dec15,
             vip_start:a.start, vip_time_ok:a.time_ok, vip_heard_from:a.heard,
             vip_meta_event_id:qid, vip_meta_fbp:ck('_fbp'), vip_meta_fbc:ck('_fbc'), vip_meta_ua:cut(navigator.userAgent,300) });
           var ev={ cohort:cohort, utm_source:utm.utm_source, utm_medium:utm.utm_medium, utm_campaign:utm.utm_campaign, utm_content:utm.utm_content };
@@ -813,6 +835,7 @@ window.VIP_CONFIG = {
     try{ localStorage.removeItem(DRAFT); }catch(x){}
     form.style.display='none';
     var p=document.getElementById('p-done'); p.classList.add('on');
+    p.querySelectorAll('[data-done]').forEach(function(el){ el.style.display=(' '+el.getAttribute('data-done')+' ').indexOf(' '+cohort+' ')>-1?'':'none'; });
     p.querySelectorAll('[data-first]').forEach(function(el){ el.textContent=first||'there'; });
     try{ p.scrollIntoView({behavior:'smooth', block:'start'}); }catch(x){ window.scrollTo(0,0); }
   });
