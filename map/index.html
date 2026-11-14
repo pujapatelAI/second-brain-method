@@ -1656,13 +1656,18 @@ s.parentNode.insertBefore(t,s)})();
       document.body.insertBefore(b, document.body.firstChild);
       try{ if(window._cio) _cio.track('map_oip_route',{ monthly_revenue_band:rev }); }catch(x){}
     }
-    if(rev==='$50k to $75k/mo'){ vipInvite(rev, true); }
+    if(rev==='$50k to $75k/mo' && window.ppVipInvite){ window.ppVipInvite(rev, true); }
   });
-  /* Puja, Nov 14 2026: $50k-$75k/mo sign-ups are invited to the VIP program page, which fills in what they just
-     answered ("route map leads at this level to this page"). VIPFit carries nothing (Meta blocks audiences
-     built on revenue_band); it exists so the $77 retargeting ads can exclude these owners. Also runs when a
-     known $50k-$75k lead comes back (saved band, or a ?k=m5 link). */
-  function vipInvite(rev, fresh){
+})();
+</script>
+<script>
+/* Puja, Nov 14 2026: $50k-$75k/mo sign-ups are invited to the VIP program page, which fills in what they just
+   answered ("route map leads at this level to this page"). VIPFit carries nothing (Meta blocks audiences built
+   on revenue_band); it exists so the $77 retargeting ads can exclude these owners. This lives in its own script
+   because the gate script above stops early for anyone already unlocked (?open=1 links, returning visitors),
+   and those are exactly the leads who should see the banner when they come back. */
+(function(){
+  window.ppVipInvite=function(rev, fresh){
     if(document.getElementById('vip-invite')) return;
     try{ if(window.fbq) fbq('trackCustom','VIPFit'); }catch(x){}
     var b=document.createElement('div'); b.id='vip-invite';
@@ -1670,10 +1675,10 @@ s.parentNode.insertBefore(t,s)})();
     b.innerHTML='At your size, the map is only the start. <a href="/vip/" style="color:#FBF7F1;text-decoration:underline">You\'re invited to my free private workshop &rarr;</a>';
     document.body.insertBefore(b, document.body.firstChild);
     if(fresh){ try{ if(window._cio) _cio.track('map_vip_route',{ monthly_revenue_band:rev }); }catch(x){} }
-  }
+  };
   try{
     var vk=new URLSearchParams(location.search).get('k'), vb=localStorage.getItem('pp_band')||'';
-    if(vk==='m5' || (!vk && vb==='$50k to $75k/mo')) vipInvite('$50k to $75k/mo', false);
+    if(vk==='m5' || (!vk && vb==='$50k to $75k/mo')) window.ppVipInvite('$50k to $75k/mo', false);
   }catch(x){}
 })();
 </script>
