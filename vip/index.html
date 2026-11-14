@@ -69,7 +69,11 @@ window.VIP_CONFIG = {
   // Applications for the Mon Nov 30 workshop close Fri Nov 27 at midnight ET (= Nov 28 05:00 UTC).
   CLOSES_AT: "2026-11-28T05:00:00Z",
   // Lead copy to info@ (same FormSubmit endpoint as /map/ and /apply/).
-  LEAD_WEBHOOK_URL: "https://formsubmit.co/ajax/info@puja-patel.com"
+  LEAD_WEBHOOK_URL: "https://formsubmit.co/ajax/info@puja-patel.com",
+  // Puja, Nov 14 2026: Meta gets "VIPQualified" (nothing attached) only when the answers match these, plus
+  // "Yes, that's me" as decision maker. Same rules as CommandOS data/marketing/systems_map/vip_applications.json
+  // meta_qualified (the server sends the same event with the same ID): change both together.
+  QUALIFIED: { investment:["yes"], start:["November","December"], team_max:5, bands:["$50k to $75k/mo"], time_ok:["yes"] }
 };
 </script>
 <style>
@@ -764,6 +768,11 @@ window.VIP_CONFIG = {
             investment:radio('investment'), time_ok:radio('time_ok'), heard:val('heard'), anything_else:val('anything_else') };
     var cohort = (closed || a.can_attend==='next') ? 'next' : CFG.COHORT;
     var utm=utms(), now=Math.floor(Date.now()/1000);
+    var Q=CFG.QUALIFIED||{}, has=function(list,v){ return (list||[]).indexOf(v)>-1; };
+    var qualified = a.decision_maker==='yes' && has(Q.investment,a.investment) && has(Q.start,a.start)
+      && /^\d+$/.test(a.team) && parseInt(a.team,10)<=Q.team_max && has(Q.bands,a.revenue) && has(Q.time_ok,a.time_ok);
+    var qid='vipq-'+now+'-'+Math.random().toString(36).slice(2,10);
+    var ck=function(n){ var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)')); return m?decodeURIComponent(m[1]):''; };
     document.getElementById('submit').disabled=true;
 
     if(!form.elements._honey.value){
@@ -773,6 +782,7 @@ window.VIP_CONFIG = {
           fbq('init','1358901016182853',{ em:email, ph:tel.replace(/\D/g,''), fn:first.toLowerCase() });
           fbq('trackCustom','VIPApplication',{ revenue_band:a.revenue, investment:a.investment, cohort:cohort });
           fbq('trackCustom','VIPFit');
+          if(qualified) fbq('trackCustom','VIPQualified',{},{ eventID:qid });
         }
       }catch(x){}
       try{ if(window.gtag){ gtag('event','generate_lead',{ form:'vip_apply', revenue_band:a.revenue, investment:a.investment }); } }catch(x){}
@@ -782,7 +792,8 @@ window.VIP_CONFIG = {
             business_name:cut(a.business,120), company_website:cut(a.website,120),
             vip_applicant:true, vip_applied_at:now, vip_cohort:cohort, vip_revenue_band:a.revenue, vip_team_size:a.team,
             vip_decision_maker:(a.decision_maker==='yes'), vip_investment:a.investment, vip_can_attend:a.can_attend,
-            vip_start:a.start, vip_time_ok:a.time_ok, vip_heard_from:a.heard });
+            vip_start:a.start, vip_time_ok:a.time_ok, vip_heard_from:a.heard,
+            vip_meta_event_id:qid, vip_meta_fbp:ck('_fbp'), vip_meta_fbc:ck('_fbc'), vip_meta_ua:cut(navigator.userAgent,300) });
           var ev={ cohort:cohort, utm_source:utm.utm_source, utm_medium:utm.utm_medium, utm_campaign:utm.utm_campaign, utm_content:utm.utm_content };
           Object.keys(a).forEach(function(k){ ev[k]=cut(a[k],1000); });
           _cio.track('vip_application', ev);
