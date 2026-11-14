@@ -1656,12 +1656,12 @@ s.parentNode.insertBefore(t,s)})();
       document.body.insertBefore(b, document.body.firstChild);
       try{ if(window._cio) _cio.track('map_oip_route',{ monthly_revenue_band:rev }); }catch(x){}
     }
-    if(rev==='$50k to $75k/mo' && window.ppVipInvite){ window.ppVipInvite(rev, true); }
+    if((rev==='$50k to $75k/mo' || rev==='$75k to $250k/mo') && window.ppVipInvite){ window.ppVipInvite(rev, true); }
   });
 })();
 </script>
 <script>
-/* Puja, Nov 14 2026: $50k-$75k/mo sign-ups are invited to the VIP program page, which fills in what they just
+/* Puja, Nov 14 2026: $50k-$250k/mo sign-ups ("Yes, add them" added $75k-$250k) are invited to the VIP program page, which fills in what they just
    answered ("route map leads at this level to this page"). VIPFit carries nothing (Meta blocks audiences built
    on revenue_band); it exists so the $77 retargeting ads can exclude these owners. This lives in its own script
    because the gate script above stops early for anyone already unlocked (?open=1 links, returning visitors),
@@ -1678,7 +1678,9 @@ s.parentNode.insertBefore(t,s)})();
   };
   try{
     var vk=new URLSearchParams(location.search).get('k'), vb=localStorage.getItem('pp_band')||'';
-    if(vk==='m5' || (!vk && vb==='$50k to $75k/mo')) window.ppVipInvite('$50k to $75k/mo', false);
+    var VB={m5:'$50k to $75k/mo', m6:'$75k to $250k/mo'};
+    if(VB[vk]) window.ppVipInvite(VB[vk], false);
+    else if(!vk && (vb==='$50k to $75k/mo' || vb==='$75k to $250k/mo')) window.ppVipInvite(vb, false);
   }catch(x){}
 })();
 </script>
@@ -1751,10 +1753,10 @@ s.parentNode.insertBefore(t,s)})();
   window.ppLiveScreen=function(rev){
     try{
       var s=session(), oto=document.getElementById('oto');
-      /* Puja, Nov 14 2026: "route map leads at this level to this page". A $50k-$75k/mo sign-up sees the VIP
+      /* Puja, Nov 14 2026: "route map leads at this level to this page". A $50k-$250k/mo sign-up sees the VIP
          invitation here instead of the $77 screen. The $77 boxes further down the map don't change. No date in
          this card, so it never goes stale; /vip/ carries the date. */
-      if(rev==='$50k to $75k/mo' && oto){
+      if((rev==='$50k to $75k/mo' || rev==='$75k to $250k/mo') && oto){
         oto.querySelector('.otocard').innerHTML=
           '<div class="ok">&#10003; your map is unlocked</div>'+
           '<h2 id="oto-h">At your size, you\'re invited to a free private workshop.</h2>'+

@@ -605,7 +605,7 @@ window.VIP_CONFIG = {
     }catch(x){}
     /* VIPFit carries nothing (Meta blocks audiences built on revenue). It exists so the $77 retargeting ads
        can exclude owners at this level (Puja, Nov 14 2026: "make sure they don't get the retargeting 77 ads"). */
-    if(band==='$50k to $75k/mo'){ try{ if(window.fbq) fbq('trackCustom','VIPFit'); }catch(x){} }
+    if(band==='$50k to $75k/mo' || band==='$75k to $250k/mo'){ try{ if(window.fbq) fbq('trackCustom','VIPFit'); }catch(x){} }
   })();
   function normPhone(v){
     var s=(v||'').trim(), d=s.replace(/\D/g,'');
