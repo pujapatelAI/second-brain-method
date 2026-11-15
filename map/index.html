@@ -1602,22 +1602,29 @@ s.parentNode.insertBefore(t,s)})();
     if(on) form.industry_other.focus(); else form.industry_other.value='';
   });
   /* Puja, Nov 15 2026: $10k-$50k/mo answer "Would you invest $250 ...". Yes goes straight to the membership page;
-     Maybe and No get the $77 screen they already got. Under $10k and $50k+ never see it. */
-  var JOINQ=['$10k to $15k/mo','$15k to $30k/mo','$30k to $50k/mo'], joinq=document.getElementById('g-join');
+     Maybe and No get the $77 screen they already got. Under $10k and $50k+ never see it.
+     Puja, Nov 15 2026 (later): "open up the 250 question to 2k-10k" (Under $10k + $2k-$5k or $5k-$10k). */
+  var JOINQ=['$10k to $15k/mo','$15k to $30k/mo','$30k to $50k/mo'], JOINQ_LOW=['$2k to $5k/mo','$5k to $10k/mo'],
+      joinq=document.getElementById('g-join');
+  function asks250(rev, revd){ return JOINQ.indexOf(rev)>=0 || (rev==='Under $10k/mo' && JOINQ_LOW.indexOf(revd)>=0); }
+  function showJoin(){
+    var jq=asks250(form.monthly_revenue.value, form.revenue_detail.value); joinq.style.display=jq?'block':'none';
+    if(!jq) joinq.querySelectorAll('input').forEach(function(i){ i.checked=false; });
+  }
   form.monthly_revenue.addEventListener('change', function(){
     var on=this.value==='Under $10k/mo'; low.style.display=on?'block':'none';
     if(!on) form.revenue_detail.value='';
-    var jq=JOINQ.indexOf(this.value)>=0; joinq.style.display=jq?'block':'none';
-    if(!jq) joinq.querySelectorAll('input').forEach(function(i){ i.checked=false; });
+    showJoin();
   });
+  form.revenue_detail.addEventListener('change', showJoin);
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var f=form, name=f.name.value.trim(), email=f.email.value.trim().toLowerCase(),
         ind=f.industry.value, indo=f.industry_other.value.trim(), rev=f.monthly_revenue.value, revd=f.revenue_detail.value, raw=f.phone.value.trim();
     var err=document.getElementById('g-err'), terr=document.getElementById('g-tel-err');
     err.style.display='none'; terr.style.display='none';
-    var jc=f.querySelector('input[name="join_250"]:checked'), join=(JOINQ.indexOf(rev)>=0 && jc) ? jc.value : '';
-    if(!name || !ind || (ind==='Other' && !indo) || !rev || (rev==='Under $10k/mo' && !revd) || (JOINQ.indexOf(rev)>=0 && !join) || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.style.display='block'; return; }
+    var jc=f.querySelector('input[name="join_250"]:checked'), join=(asks250(rev, revd) && jc) ? jc.value : '';
+    if(!name || !ind || (ind==='Other' && !indo) || !rev || (rev==='Under $10k/mo' && !revd) || (asks250(rev, revd) && !join) || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.style.display='block'; return; }
     var tel=normPhone(raw);
     if(!tel){ terr.style.display='block'; f.phone.focus(); return; }
     if(!f._honey.value){
