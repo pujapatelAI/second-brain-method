@@ -162,6 +162,15 @@
   .gatecard .err{display:none;color:var(--accent);font-size:14px;margin-top:8px}
   .gatecard .fine{font-size:12px;color:var(--ink-soft);margin-top:12px;line-height:1.5}
   .gatecard .hp{position:absolute;left:-9999px}
+  /* Puja, Nov 15 2026: the $250 question, shown only to $10k-$50k/mo */
+  .gatecard fieldset.join{border:0;padding:0;margin:14px 0 0;min-width:0}
+  .gatecard .join legend{font-size:14px;font-weight:700;padding:0;line-height:1.4}
+  .gatecard .join ul{margin:6px 0 4px 18px;padding:0;font-size:14px;line-height:1.45}
+  .gatecard .join ul li{margin:2px 0}
+  .gatecard label.jr{display:flex;align-items:center;gap:10px;font-weight:400;font-size:15px;margin-top:6px;padding:10px 12px;
+    border:1.5px solid var(--line);border-radius:3px;background:#fff;cursor:pointer}
+  .gatecard label.jr input{width:auto;margin:0;padding:0;flex:none;accent-color:var(--accent-bright)}
+  .gatecard label.jr:has(input:checked){border-color:var(--accent-bright)}
   .cta{max-width:730px;margin:30px 0 40px;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent-bright);border-radius:6px;padding:24px 24px 22px}
   .cta h2{font-family:Georgia,serif;font-size:24px;line-height:1.2;margin-bottom:10px}
   .cta p{margin-bottom:14px}
@@ -299,6 +308,18 @@ s.parentNode.insertBefore(t,s)})();
         <option>$5k to $10k/mo</option>
       </select>
     </div>
+    <fieldset class="join" id="g-join" style="display:none">
+      <legend>Would you invest $250 to get your business out of your head?</legend>
+      <ul>
+        <li>your business mapped in 30 minutes</li>
+        <li>a full workflow analysis</li>
+        <li>your second brain built live</li>
+        <li>weekly sessions to improve your AI systems: more capacity, better margins, more done with fewer people</li>
+      </ul>
+      <label class="jr"><input type="radio" name="join_250" value="yes"> Yes</label>
+      <label class="jr"><input type="radio" name="join_250" value="maybe"> Maybe, I'd want to see it first</label>
+      <label class="jr"><input type="radio" name="join_250" value="no"> No, not right now</label>
+    </fieldset>
     <input class="hp" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
     <button type="submit">unlock the free map →</button>
     <p class="err" id="g-err">please fill in every field.</p>
@@ -1580,9 +1601,14 @@ s.parentNode.insertBefore(t,s)})();
     var on=this.value==='Other'; oth.style.display=on?'block':'none';
     if(on) form.industry_other.focus(); else form.industry_other.value='';
   });
+  /* Puja, Nov 15 2026: $10k-$50k/mo answer "Would you invest $250 ...". Yes goes straight to the membership page;
+     Maybe and No get the $77 screen they already got. Under $10k and $50k+ never see it. */
+  var JOINQ=['$10k to $15k/mo','$15k to $30k/mo','$30k to $50k/mo'], joinq=document.getElementById('g-join');
   form.monthly_revenue.addEventListener('change', function(){
     var on=this.value==='Under $10k/mo'; low.style.display=on?'block':'none';
     if(!on) form.revenue_detail.value='';
+    var jq=JOINQ.indexOf(this.value)>=0; joinq.style.display=jq?'block':'none';
+    if(!jq) joinq.querySelectorAll('input').forEach(function(i){ i.checked=false; });
   });
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -1590,7 +1616,8 @@ s.parentNode.insertBefore(t,s)})();
         ind=f.industry.value, indo=f.industry_other.value.trim(), rev=f.monthly_revenue.value, revd=f.revenue_detail.value, raw=f.phone.value.trim();
     var err=document.getElementById('g-err'), terr=document.getElementById('g-tel-err');
     err.style.display='none'; terr.style.display='none';
-    if(!name || !ind || (ind==='Other' && !indo) || !rev || (rev==='Under $10k/mo' && !revd) || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.style.display='block'; return; }
+    var jc=f.querySelector('input[name="join_250"]:checked'), join=(JOINQ.indexOf(rev)>=0 && jc) ? jc.value : '';
+    if(!name || !ind || (ind==='Other' && !indo) || !rev || (rev==='Under $10k/mo' && !revd) || (JOINQ.indexOf(rev)>=0 && !join) || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.style.display='block'; return; }
     var tel=normPhone(raw);
     if(!tel){ terr.style.display='block'; f.phone.focus(); return; }
     if(!f._honey.value){
@@ -1612,8 +1639,12 @@ s.parentNode.insertBefore(t,s)})();
           if(rev==='$10k to $15k/mo' || rev==='$15k to $30k/mo'){
             fbq('track','SubmitApplication',{ content_name:'systems_map_10k_30k', revenue_band:rev });
           }
+          /* Puja, Nov 15 2026: a Yes to the $250 question. Nothing attached, so Meta can build audiences on it
+             (it blocks revenue_band) and a custom conversion can optimize on it. */
+          if(join==='yes') fbq('trackCustom','Join250Yes');
         }
       }catch(x){}
+      if(join){ try{ clarity('event','map_join250_'+join); }catch(x){} }
       /* GA4: generate_lead = every sign-up; qualify_lead = the $10k-$30k/mo bands (same split as Meta). */
       try{
         if(window.gtag){
@@ -1625,7 +1656,7 @@ s.parentNode.insertBefore(t,s)})();
         if(window._cio){
           _cio.identify({ id:email, email:email, first_name:name.split(/\s+/)[0], full_name:name.slice(0,120),
             industry:(ind==='Other' ? 'Other: '+indo.slice(0,80) : ind), monthly_revenue_band:rev, monthly_revenue_detail:revd, mobile_phone:tel,
-            systems_map_lead:true, systems_map_optin_at:now });
+            systems_map_lead:true, systems_map_optin_at:now, join_250_answer:join });
           _cio.track('systems_map_optin',{ utm_source:params.get('utm_source')||'', utm_medium:params.get('utm_medium')||'',
             utm_campaign:params.get('utm_campaign')||'' });
         }
@@ -1635,11 +1666,18 @@ s.parentNode.insertBefore(t,s)})();
         fd.append('_subject','Systems Map: new sign-up'); fd.append('_captcha','false');
         fd.append('name',name); fd.append('email',email); fd.append('phone',tel);
         fd.append('industry',ind==='Other' ? 'Other: '+indo : ind); fd.append('monthly_revenue',rev); fd.append('revenue_detail',revd);
-        fd.append('utm_source',params.get('utm_source')||'');
+        fd.append('utm_source',params.get('utm_source')||''); fd.append('join_250',join);
         fetch('https://formsubmit.co/ajax/info@puja-patel.com',{ method:'POST', headers:{'Accept':'application/json'}, body:fd, keepalive:true }).catch(function(){});
       }catch(x){}
     }
     try{ localStorage.setItem(KEY,'1'); }catch(x){}
+    /* Yes to $250: straight to the membership page. The map stays unlocked on this browser and its email has the link.
+       The short wait lets Meta, Customer.io and the form email send before the page changes. */
+    if(join==='yes'){
+      var sb=f.querySelector('button[type="submit"]'); if(sb){ sb.disabled=true; sb.textContent='taking you there…'; }
+      setTimeout(function(){ location.href='/second-brain-method/?from=map-yes'; }, 900);
+      return;
+    }
     unlock();
     try{ if(window.ppLiveOffer) window.ppLiveOffer(); }catch(x){}
     try{ if(window.ppLiveScreen) window.ppLiveScreen(rev); }catch(x){}
