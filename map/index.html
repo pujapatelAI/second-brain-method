@@ -1687,7 +1687,7 @@ s.parentNode.insertBefore(t,s)})();
     }
     unlock();
     try{ if(window.ppLiveOffer) window.ppLiveOffer(); }catch(x){}
-    try{ if(window.ppLiveScreen) window.ppLiveScreen(rev); }catch(x){}
+    try{ if(window.ppLiveScreen) window.ppLiveScreen(rev, join); }catch(x){}
     /* The $27 screen (Nov 10) no longer shows after sign-up. Puja, Nov 11 2026: "the goal is for them to see
        the map, feel overwhelmed, and then tell claude to talk to it". Before it, ~10% of sign-ups went on to
        /setup-file/ from the map's own links; with it, ~5%. ?oto=1 still shows it for testing. */
@@ -1795,7 +1795,7 @@ s.parentNode.insertBefore(t,s)})();
   /* Puja, Nov 13 2026: the today-only bonus card on this screen is built only before Sat Nov 14 00:00 ET; tick() hides it at that moment */
   var BONUS77=Date.parse('2026-11-14T00:00:00-05:00');
   /* The screen right after sign-up (Puja, Nov 11 2026: "would you rather do it WITH me ... $77 now"). */
-  window.ppLiveScreen=function(rev){
+  window.ppLiveScreen=function(rev, join){
     try{
       var s=session(), oto=document.getElementById('oto');
       /* Puja, Nov 14 2026: "route map leads at this level to this page". A $50k-$250k/mo sign-up sees the VIP
@@ -1818,8 +1818,13 @@ s.parentNode.insertBefore(t,s)})();
       if(!oto || !s || TIMED.indexOf(rev)<0 || !window.ppLive77) return;
       oto.querySelector('.otocard').innerHTML=
         '<div class="ok">&#10003; your map is unlocked</div>'+
-        '<h2 id="oto-h">Would you rather do this WITH me and have your second brain set up?</h2>'+
-        '<p>'+pitchOf(s)+'</p>'+
+        /* Puja, Nov 15 2026 ("Approve, build it"): a Maybe on the $250 question ("I'd want to see it first")
+           gets its own headline and first line; the rest of the screen is the same. */
+        (join==='maybe'
+          ? '<h2 id="oto-h">You said you\'d want to see it first. Here\'s how.</h2>'+
+            '<p>Set up your second brain with me, live, for $77. '+s.label+', small group. You see how it works on your own business before you decide on anything bigger.</p>'
+          : '<h2 id="oto-h">Would you rather do this WITH me and have your second brain set up?</h2>'+
+            '<p>'+pitchOf(s)+'</p>')+
         '<p class="pp-one">One of my members, an events-planning co-owner with an 11-person team, set hers up live with me. Working from her own files, Claude drafted a proposal for one of her real clients in about 45 seconds.</p>'+
         '<p data-l77-open><b>Last day for $77:</b> <span data-l77-until>Fri Nov 13</span>, midnight ET.</p><div class="t77" data-t77><span><b data-t="d">0</b><i>days</i></span><span><b data-t="h">00</b><i>hrs</i></span><span><b data-t="m">00</b><i>min</i></span><span><b data-t="s">00</b><i>sec</i></span></div>'+
         '<p data-l77-closed hidden><b>$147.</b> The $77 price ended.</p>'+
