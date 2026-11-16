@@ -1756,10 +1756,12 @@ s.parentNode.insertBefore(t,s)})();
   var KCODE={m1:'Under $10k/mo',m2:'$10k to $15k/mo',m3:'$15k to $30k/mo',m4:'$30k to $50k/mo',m5:'$50k to $75k/mo',
              m6:'$75k to $250k/mo',m7:'$250k to $500k/mo',m8:'$500k+/mo'};
   try{ var kc=new URLSearchParams(location.search).get('k'); if(KCODE[kc]) localStorage.setItem('pp_band', KCODE[kc]); }catch(x){}
-  var SESSIONS=[{at:'2026-11-23T14:00:00-05:00', label:'Mon Nov 23, 2pm ET'}];
+  /* until = last moment to buy for that session at $77 (Puja, Nov 16 2026: "$77 until Dec 4" for Mon Dec 7) */
+  var SESSIONS=[{at:'2026-11-23T14:00:00-05:00', until:'2026-11-20T23:59:00-05:00', label:'Mon Nov 23, 2pm ET'},
+                {at:'2026-12-07T14:00:00-05:00', until:'2026-12-04T23:59:00-05:00', label:'Mon Dec 7, 2pm ET'}];
   var LINK='https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007';
   function band(){ try{ return localStorage.getItem('pp_band')||''; }catch(x){ return ''; } }
-  function session(){ var now=Date.now(); for(var i=0;i<SESSIONS.length;i++){ if(new Date(SESSIONS[i].at).getTime()>now) return SESSIONS[i]; } return null; }
+  function session(){ var now=Date.now(); for(var i=0;i<SESSIONS.length;i++){ if(new Date(SESSIONS[i].until||SESSIONS[i].at).getTime()>now) return SESSIONS[i]; } return null; }
   function email(){
     var e=''; try{ e=localStorage.getItem('pp_email')||''; }catch(x){}
     if(e.indexOf('@')<1){ var m=document.cookie.match(/(?:^|;\s*)_cioid=([^;]+)/); e=m?decodeURIComponent(m[1]):''; }

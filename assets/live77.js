@@ -15,20 +15,24 @@
      [data-l77-open]    shown only while $77 is open
      [data-l77-closed]  shown only after the $77 price ends                              */
 (function(){
-  var D13=Date.parse('2026-11-13T23:59:00-05:00'), D20=Date.parse('2026-11-20T23:59:00-05:00');
-  var WINDOWS={'13':{at:D13,label:'Fri Nov 13'},'20':{at:D20,label:'Fri Nov 20'}};
+  /* Puja, Nov 16 2026 ("$77 until Dec 4"): after Fri Nov 20 the $77 carries on for the Mon Dec 7 session until
+     Fri Dec 4 11:59pm ET. Each window names its session ([data-l77-session] / [data-l77-sday] show it). */
+  var D13=Date.parse('2026-11-13T23:59:00-05:00'), D20=Date.parse('2026-11-20T23:59:00-05:00'), D04=Date.parse('2026-12-04T23:59:00-05:00');
+  var S23={at:Date.parse('2026-11-23T14:00:00-05:00'), label:'Mon Nov 23, 2pm ET', day:'Mon Nov 23'};
+  var S07={at:Date.parse('2026-12-07T14:00:00-05:00'), label:'Mon Dec 7, 2pm ET', day:'Mon Dec 7'};
+  var WINDOWS={'13':{at:D13,label:'Fri Nov 13',s:S23},'20':{at:D20,label:'Fri Nov 20',s:S23},'04':{at:D04,label:'Fri Dec 4',s:S07}};
   function get(k){ try{ return localStorage.getItem(k)||''; }catch(e){ return ''; } }
   function put(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
   (function(){ var q=''; try{ q=new URLSearchParams(location.search).get('dl')||''; }catch(e){} if(WINDOWS[q]) put('pp77_dl',q); })();
   function win(){
     /* Puja, Nov 12 2026: "leave it 13 for now - then extend it to 20 for everyone" (not announced).
        Once Fri Nov 13 11:59pm ET passes, EVERYONE gets $77 until Fri Nov 20, early visitors and ?dl=13 included. */
+    if(Date.now()>=D20) return WINDOWS['04'];
     if(Date.now()>=D13) return WINDOWS['20'];
     var dl=get('pp77_dl'); if(WINDOWS[dl]) return WINDOWS[dl];
     var first=parseInt(get('pp77_first')||'0',10)||(get('pp77_deadline') ? D13-1 : 0)||Date.now();
     return first<D13 ? WINDOWS['13'] : WINDOWS['20'];
   }
-  var SESSION=Date.parse('2026-11-23T14:00:00-05:00');
   var L77='https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007';
   var L147='https://buy.stripe.com/4gM28k4GK6YX26eeFq6c009';
   function email(){
@@ -62,6 +66,8 @@
   function render(){
     var w=win(), left=Math.max(0,w.at-Date.now()), on=left>0, clock=fmt(left);
     document.querySelectorAll('[data-l77-until]').forEach(function(n){ n.textContent=w.label; });
+    document.querySelectorAll('[data-l77-session]').forEach(function(n){ n.textContent=w.s.label; });
+    document.querySelectorAll('[data-l77-sday]').forEach(function(n){ n.textContent=w.s.day; });
     document.querySelectorAll('[data-l77-clock]').forEach(function(n){ n.textContent=clock; });
     document.querySelectorAll('[data-l77-price]').forEach(function(n){ n.textContent=on?'$77':'$147'; });
     document.querySelectorAll('[data-l77-buy]').forEach(function(n){ n.href=withEmail(on?L77:L147); n.setAttribute('data-price',on?'77':'147'); });
@@ -81,5 +87,5 @@
     try{ if(window.fbq) fbq('track','InitiateCheckout',{ value:v, currency:'USD', content_name:'live_setup_'+v }); }catch(x){}
     try{ clarity('event','live_setup_checkout_'+v); }catch(x){}
   });
-  window.ppLive77={ start:start, open:open, render:render, deadline:function(){ return win().at; }, sessionAhead:function(){ return Date.now()<SESSION; } };
+  window.ppLive77={ start:start, open:open, render:render, deadline:function(){ return win().at; }, sessionAhead:function(){ return Date.now()<win().s.at; }, session:function(){ return win().s; } };
 })();
