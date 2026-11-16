@@ -1777,11 +1777,14 @@ s.parentNode.insertBefore(t,s)})();
          or before sign-up), gets the $77 live setup in both boxes, with the $27 as the do-it-yourself line under it.
          Since Nov 10: 353 sign-ups, 2 bought the $27, 0 the $77, while texts and emails all push the $77. */
       if(window.ppLive77){
+        /* Puja, Nov 15 2026 ("fix the copy"): both $77 boxes lead with value, same as the after-sign-up screen. */
+        var val='<ul class="get77"><li><span class="ck">&#10003;</span>all your data in one place</li><li><span class="ck">&#10003;</span>your business taught to Claude</li><li><span class="ck">&#10003;</span>your second brain set up and running</li></ul>'+
+          '<p>'+s.label+', small group. Start tonight with the Systems Setup File.</p>';
         var buy=function(track){ return '<a class="btn" data-l77-buy href="'+LINK+'" data-track="'+track+'">save my spot, <span data-l77-price>$77</span> &rarr;</a>'; };
         if(top){ top.className='offer offer-live'; top.innerHTML='<h2>Teach your AI to operate like you.</h2><div class="ol-cols">'+
           '<div class="vid"><iframe src="https://www.loom.com/embed/f0a8078104d5444fb2f3ee62f083d38a?hideEmbedTopBar=true" title="What is a second brain? A quick look" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="ol-side">'+
-          '<p><b>Set up your second brain with me, live.</b> '+pitch+'</p>'+timed+buy('map-top-to-live')+gtee+alt('/setup-file/?from=map-top','map-top-to-setup-file')+'</div></div>'; }
-        if(cta){ cta.className='cta cta-live'; cta.innerHTML='<div class="cta-copy"><h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p></div><div class="cta-buy">'+timed+buy('map-to-live')+gtee+alt('/setup-file/','map-to-setup-file')+'</div>'; }
+          '<p style="margin-bottom:4px"><b>Get your business out of your head in one live session.</b> You leave with:</p>'+val+timed+buy('map-top-to-live')+gtee+alt('/setup-file/?from=map-top','map-top-to-setup-file')+'</div></div>'; }
+        if(cta){ cta.className='cta cta-live'; cta.innerHTML='<div class="cta-copy"><h2>Get your business out of your head in one live session.</h2><p style="margin-bottom:4px">You leave with:</p>'+val+'</div><div class="cta-buy">'+timed+buy('map-to-live')+gtee+alt('/setup-file/','map-to-setup-file')+'</div>'; }
         ppLive77.start();
         return;
       }
