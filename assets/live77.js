@@ -36,7 +36,21 @@
     if(e.indexOf('@')<1){ var m=document.cookie.match(/(?:^|;\s*)_cioid=([^;]+)/); e=m?decodeURIComponent(m[1]):''; }
     return e.indexOf('@')>0 ? e : '';
   }
-  function withEmail(base){ var e=email(); return base+(e ? '?prefilled_email='+encodeURIComponent(e) : ''); }
+  /* Puja, Nov 16 2026: every $77 link carries the person. Stripe drops prefilled_email from the checkout session,
+     so client_reference_id = first 16 hex of sha256(lowercased email) rides along too (Stripe keeps it); the
+     abandoned-checkout job (apps/command/checkout_abandon.py) matches it to the lead. */
+  var REF='', REF_FOR='';
+  function ref(e){   /* hashes once per email (the map sets the email at sign-up, after this file loads), then re-renders */
+    if(REF_FOR===e) return REF; REF_FOR=e; REF='';
+    try{ crypto.subtle.digest('SHA-256', new TextEncoder().encode(e.trim().toLowerCase())).then(function(b){
+      if(REF_FOR!==e) return;
+      REF=Array.prototype.map.call(new Uint8Array(b), function(x){ return ('0'+x.toString(16)).slice(-2); }).join('').slice(0,16);
+      try{ render(); }catch(x){}
+    }); }catch(x){}
+    return REF;
+  }
+  function withEmail(base){ var e=email(); if(!e) return base; var r=ref(e);
+    return base+'?prefilled_email='+encodeURIComponent(e)+(r ? '&client_reference_id='+r : ''); }
   function pad(n){ return (n<10?'0':'')+n; }
   function fmt(left){
     var s=Math.floor(left/1000), d=Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), sec=s%60;

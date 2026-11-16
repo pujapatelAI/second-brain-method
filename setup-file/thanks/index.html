@@ -143,6 +143,11 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
   if(e.indexOf('@')<1) return;
   var as=document.querySelectorAll('a[href^="https://buy.stripe.com/"]');
   for(var i=0;i<as.length;i++){ var u=new URL(as[i].href); u.searchParams.set('prefilled_email', e); as[i].href=u.toString(); }
+  /* Nov 16 2026: + client_reference_id (sha256 of the email, 16 hex), which Stripe keeps on the session so an unpaid checkout has a name */
+  try{ crypto.subtle.digest('SHA-256', new TextEncoder().encode(e.trim().toLowerCase())).then(function(b){
+    var r=Array.prototype.map.call(new Uint8Array(b), function(x){ return ('0'+x.toString(16)).slice(-2); }).join('').slice(0,16);
+    for(var i=0;i<as.length;i++){ var u=new URL(as[i].href); u.searchParams.set('client_reference_id', r); as[i].href=u.toString(); }
+  }); }catch(x){}
 }catch(x){}})();
 </script>
 <script src="/assets/live77.js"></script>
