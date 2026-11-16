@@ -211,6 +211,10 @@
   /* Puja, Nov 13 2026: today-only bonus card on the $77 screen, hidden from Sat Nov 14 00:00 ET */
   .bonus77{margin:2px 0 14px;background:var(--surface);background:color-mix(in srgb,var(--accent-bright) 6%,var(--surface));border:2px solid var(--accent-bright);border-radius:6px;padding:12px 14px;text-align:left}
   .bonus77[hidden]{display:none}
+  /* Puja, Nov 15 2026: the $77 screen's value bullets */
+  .get77{list-style:none;display:grid;gap:4px;margin:0 0 12px;padding:0;text-align:left}
+  .get77 li{position:relative;padding-left:22px;font-size:15.5px;line-height:1.45}
+  .get77 .ck{position:absolute;left:0;top:0;color:var(--accent-bright);font-weight:700}
   .otocard .bonus77 .b77-h{font-family:Georgia,serif;font-size:19px;font-weight:700;line-height:1.25;margin:0 0 8px}
   .bonus77 ul{list-style:none;display:grid;gap:6px}
   .bonus77 li{position:relative;padding-left:22px;font-size:15px;line-height:1.45}
@@ -1813,13 +1817,15 @@ s.parentNode.insertBefore(t,s)})();
       if(!oto || !s || TIMED.indexOf(rev)<0 || !window.ppLive77) return;
       oto.querySelector('.otocard').innerHTML=
         '<div class="ok">&#10003; your map is unlocked</div>'+
-        /* Puja, Nov 15 2026 ("Approve, build it"): a Maybe on the $250 question ("I'd want to see it first")
-           gets its own headline and first line; the rest of the screen is the same. */
-        (join==='maybe'
-          ? '<h2 id="oto-h">You said you\'d want to see it first. Here\'s how.</h2>'+
-            '<p>Set up your second brain with me, live, for $77. '+s.label+', small group. You see how it works on your own business before you decide on anything bigger.</p>'
-          : '<h2 id="oto-h">Would you rather do this WITH me and have your second brain set up?</h2>'+
-            '<p>'+pitchOf(s)+'</p>')+
+        /* Puja, Nov 15 2026: lead with value. The headline is the outcome (its own version for "I'm interested"
+           and "I'm not ready" on the map question), then what they leave with, in her order; the price only on the
+           deadline and the button. Bullets per Puja: data in one place -> teach Claude -> second brain running. */
+        '<h2 id="oto-h">'+(join==='maybe' ? 'You said you\'d want to see it work first. Here\'s how.'
+          : join==='no' ? 'Not ready to change everything? Start with one session.'
+          : 'Get your business out of your head in one live session.')+'</h2>'+
+        '<p style="margin:0 0 4px">You leave with:</p>'+
+        '<ul class="get77"><li><span class="ck">&#10003;</span>all your data in one place</li><li><span class="ck">&#10003;</span>your business taught to Claude</li><li><span class="ck">&#10003;</span>your second brain set up and running</li></ul>'+
+        '<p>'+s.label+', small group. Start tonight with the Systems Setup File.</p>'+
         '<p class="pp-one">One of my members, an events-planning co-owner with an 11-person team, set hers up live with me. Working from her own files, Claude drafted a proposal for one of her real clients in about 45 seconds.</p>'+
         '<p data-l77-open><b>Last day for $77:</b> <span data-l77-until>Fri Nov 13</span>, midnight ET.</p><div class="t77" data-t77><span><b data-t="d">0</b><i>days</i></span><span><b data-t="h">00</b><i>hrs</i></span><span><b data-t="m">00</b><i>min</i></span><span><b data-t="s">00</b><i>sec</i></span></div>'+
         '<p data-l77-closed hidden><b>$147.</b> The $77 price ended.</p>'+
