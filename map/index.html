@@ -1648,6 +1648,8 @@ s.parentNode.insertBefore(t,s)})();
           /* Puja, Nov 15 2026: a Yes to the $250 question. Nothing attached, so Meta can build audiences on it
              (it blocks revenue_band) and a custom conversion can optimize on it. */
           if(join==='yes') fbq('trackCustom','Join250Yes');
+          /* Puja, Nov 15 2026: "capture ... the maybe's to meta as an audience". Same shape as Join250Yes. */
+          if(join==='maybe') fbq('trackCustom','Join250Maybe');
         }
       }catch(x){}
       if(join){ try{ clarity('event','map_join250_'+join); }catch(x){} }
