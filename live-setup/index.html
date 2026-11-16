@@ -117,6 +117,20 @@ s.parentNode.insertBefore(t,s)})();
   .grp-tier{margin:18px 0 0; padding:10px 14px; border-radius:8px; background:color-mix(in srgb, var(--accent-bright) 12%, transparent); font-size:.95rem; text-align:center} .grp-tier b{color:var(--accent)}
   @media(max-width:620px){.ws-strip{font-size:.68rem; padding:7px 16px; gap:6px} .ws-strip .ws-full{display:none} .ws-strip .ws-mob{display:inline}}
 
+
+  /* Puja, Nov 16 2026: pick your date, "X spots left" (assets/live77.js fills [data-l77-dates]) */
+  .l77-dates{margin:0 0 14px}
+  .l77-dates-h{margin:0 0 8px; font-family:var(--font-mono); font-size:.72rem; letter-spacing:.11em; text-transform:uppercase; font-weight:600; color:var(--accent)}
+  .l77-dates-row{display:flex; flex-direction:column; gap:6px}
+  .l77-date{display:flex; flex-wrap:wrap; align-items:baseline; column-gap:8px; row-gap:2px; width:100%; min-width:0; padding:10px 12px; text-align:left;
+    background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:3px; font:inherit; cursor:pointer}
+  .l77-date b{font-size:.98rem; white-space:nowrap} .l77-date span{font-size:.9rem; color:var(--ink-soft); white-space:nowrap}
+  .l77-date i{margin-left:auto; font-style:normal; font-size:.85rem; font-weight:700; color:var(--accent); white-space:nowrap}
+  .l77-dates{max-width:100%; overflow:hidden}
+  .l77-date.on{border:2px solid var(--accent-bright); padding:9px 11px; background:color-mix(in srgb, var(--accent-bright) 8%, transparent)}
+  .l77-date:disabled{opacity:.45; cursor:not-allowed} .l77-date:disabled i{color:var(--ink-soft)}
+  .l77-date:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
   .btn{
     display:inline-flex; align-items:center; gap:.5em;
     background:var(--accent-bright); color:var(--on-accent);
@@ -416,16 +430,17 @@ s.parentNode.insertBefore(t,s)})();
   <header class="lhero">
     <div class="wrap lhero-grid">
       <div class="lhero-copy">
-      <div class="callout">Live with Puja · <span data-l77-session>Mon Nov 23, 2pm ET</span> · small group</div>
+      <div class="callout">Live with Puja · <span data-l77-session>Fri Nov 20, 11am ET</span> · small group</div>
       <h1>Set up your second brain with me, live.</h1>
-      <p class="sub">You leave with <b>all your data in one place</b>, <b>your business taught to Claude</b>, and <b>your second brain set up and running</b>. The replay is yours too. <b>Includes the Systems Setup File today, so you can start tonight.</b> Then we finish it together, live, on <span data-l77-sday>Mon Nov 23</span>.</p>
+      <p class="sub">You leave with <b>all your data in one place</b>, <b>your business taught to Claude</b>, and <b>your second brain set up and running</b>. The replay is yours too. <b>Includes the Systems Setup File today, so you can start tonight.</b> Then we finish it together, live, on <span data-l77-sday>Fri Nov 20</span>.</p>
       </div>
       <div class="deal">
-          <div class="bonus77" id="bonus77" hidden><p class="b77-h">Everything you get today for $77:</p><ul><li><span class="ck">✓</span>The live setup with me, <span data-l77-session>Mon Nov 23, 2pm ET</span></li><li><span class="ck">✓</span>The Systems Setup File, so you can start tonight</li><li class="hot"><span class="ck">✓</span><b>TODAY ONLY BONUS:</b> my members-only content editing workshop, Thu Dec 3. Claude edits your videos for you, built right on top of your new second brain.</li></ul></div>
+          <div class="bonus77" id="bonus77" hidden><p class="b77-h">Everything you get today for $77:</p><ul><li><span class="ck">✓</span>The live setup with me, <span data-l77-session>Fri Nov 20, 11am ET</span></li><li><span class="ck">✓</span>The Systems Setup File, so you can start tonight</li><li class="hot"><span class="ck">✓</span><b>TODAY ONLY BONUS:</b> my members-only content editing workshop, Thu Dec 3. Claude edits your videos for you, built right on top of your new second brain.</li></ul></div>
           <script>/* shown only before Sat Nov 14 00:00 ET (starts hidden, so it never flashes after), hides itself at that moment */
           (function(){ var n=document.getElementById('bonus77'), END=Date.parse('2026-11-14T00:00:00-05:00'); function c(){ var on=Date.now()<END; n.hidden=!on; return on; } if(c()){ var t=setInterval(function(){ if(!c()) clearInterval(t); },1000); } })();</script>
           <p class="p" data-l77-open><b>Last day for $77:</b> <span data-l77-until>Fri Nov 13</span>, midnight ET.</p><div class="t77" data-t77><span><b data-t="d">0</b><i>days</i></span><span><b data-t="h">00</b><i>hrs</i></span><span><b data-t="m">00</b><i>min</i></span><span><b data-t="s">00</b><i>sec</i></span></div>
           <p class="p" data-l77-closed hidden><b>$147.</b> The $77 price ended Friday night.</p>
+          <div class="l77-dates" data-l77-dates></div>
           <a class="btn" data-l77-buy href="https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007" data-track="live-setup-hero">save my spot, <span data-l77-price>$77</span> <span class="arw">→</span></a>
           <p class="p gtee" style="margin-top:10px;font-size:.95rem"><b>Guarantee:</b> leave with your second brain set up, or I'll refund you in full.</p>
           <p class="diy"><a href="/setup-file/?from=live-setup" data-track="live-setup-hero-to-setup-file">rather do it on your own? the Systems Setup File is $27 →</a></p>
@@ -461,7 +476,7 @@ s.parentNode.insertBefore(t,s)})();
 
   <section id="session">
     <div class="wrap">
-      <div class="mono lead-label"><span data-l77-session>Mon Nov 23, 2pm ET</span></div>
+      <div class="mono lead-label"><span data-l77-session>Fri Nov 20, 11am ET</span></div>
       <h2 class="h2">What you leave with.</h2>
       <ul class="get">
         <li>All your data in one place.</li>
@@ -485,11 +500,11 @@ s.parentNode.insertBefore(t,s)})();
       <h2 class="h2">FAQ</h2>
       <div class="faq">
         <div class="qa"><p class="q">Who is this for?</p><p class="a">Service based business owners who want more organization, visibility, systems and data in their business. If your business lives in your head and you're the one holding it together, this is for you. If you're still figuring out what you sell, it's probably too early.</p></div>
-        <div class="qa"><p class="q">When is it, and how long?</p><p class="a"><span data-l77-sday>Mon Nov 23</span>, 2pm to 4pm ET (11am to 1pm PT). Live with me, in a small group.</p></div>
+        <div class="qa"><p class="q">When is it, and how long?</p><p class="a"><span data-l77-when>Fri Nov 20 at 11am ET (8am PT)</span>. Live with me, in a small group.</p></div>
         <div class="qa"><p class="q">Do you offer 1:1?</p><p class="a">Yes. If your business is doing more than $50k/mo and you'd like a more 1:1 approach, I offer a VIP tier. The second brain setup is the same either way. Ask me about VIP in the session!</p></div>
         <div class="qa"><p class="q">Where does it happen?</p><p class="a">Online. Once you sign up, you get an email invite to my Circle community. The session is there under Workshops &amp; Events.</p></div>
         <div class="qa"><p class="q">What do I need?</p><p class="a">Your laptop, Claude on the $20 plan or higher, and the Claude desktop app downloaded before the session. Bring the one system you want to start with. That's all.</p></div>
-        <div class="qa"><p class="q">I use ChatGPT. Can I still do this?</p><p class="a">We build it in Claude, so set up Claude and the desktop app before <span data-l77-sday>Mon Nov 23</span>. You don't need to know Claude yet. We start from zero together.</p></div>
+        <div class="qa"><p class="q">I use ChatGPT. Can I still do this?</p><p class="a">We build it in Claude, so set up Claude and the desktop app before <span data-l77-sday>Fri Nov 20</span>. You don't need to know Claude yet. We start from zero together.</p></div>
         <div class="qa"><p class="q">I'm not technical. Will I keep up?</p><p class="a">Good, neither is this. You attach a file, say "start", and talk. Claude asks one question at a time and writes it all down. We do every step together, live.</p></div>
         <div class="qa"><p class="q">Is my data safe?</p><p class="a">You decide what Claude can see. Most people start with one folder, not their whole business, and nothing gets sent anywhere without you.</p></div>
         <div class="qa"><p class="q">I don't have the time.</p><p class="a">It's one 2-hour session, and you can start tonight with the Systems Setup File. Not having time is usually the symptom: when everything lives in your head, every task needs you. Getting it out of your head is what gives you the time back.</p></div>
@@ -506,10 +521,11 @@ s.parentNode.insertBefore(t,s)})();
   <section class="final" id="claim">
     <div class="wrap" style="display:flex; flex-direction:column; align-items:center">
       <h2>Do it with me.</h2>
-      <p style="text-align:center;margin:0 0 18px;max-width:52ch;font-size:1.05rem;line-height:1.55;color:var(--ink-soft)"><b>Includes the Systems Setup File today, so you can start tonight.</b> Then we finish it together, live, on <span data-l77-sday>Mon Nov 23</span>.</p>
+      <p style="text-align:center;margin:0 0 18px;max-width:52ch;font-size:1.05rem;line-height:1.55;color:var(--ink-soft)"><b>Includes the Systems Setup File today, so you can start tonight.</b> Then we finish it together, live, on <span data-l77-sday>Fri Nov 20</span>.</p>
       <div class="deal">
           <p class="p" data-l77-open><b>Last day for $77:</b> <span data-l77-until>Fri Nov 13</span>, midnight ET.</p><div class="t77" data-t77><span><b data-t="d">0</b><i>days</i></span><span><b data-t="h">00</b><i>hrs</i></span><span><b data-t="m">00</b><i>min</i></span><span><b data-t="s">00</b><i>sec</i></span></div>
           <p class="p" data-l77-closed hidden><b>$147.</b> The $77 price ended Friday night.</p>
+          <div class="l77-dates" data-l77-dates></div>
           <a class="btn" data-l77-buy href="https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007" data-track="live-setup-final">save my spot, <span data-l77-price>$77</span> <span class="arw">→</span></a>
           <p class="p gtee" style="margin-top:10px;font-size:.95rem"><b>Guarantee:</b> leave with your second brain set up, or I'll refund you in full.</p>
           <p class="diy"><a href="/setup-file/?from=live-setup" data-track="live-setup-final-to-setup-file">rather do it on your own? the Systems Setup File is $27 →</a></p>

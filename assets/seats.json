@@ -1,0 +1,29 @@
+{
+ "default": "n20",
+ "sessions": [
+  {
+   "code": "n20",
+   "day": "Fri Nov 20",
+   "time": "11am ET",
+   "left": 3,
+   "selling": true,
+   "until_ms": 1795064399999
+  },
+  {
+   "code": "n23",
+   "day": "Mon Nov 23",
+   "time": "2pm ET",
+   "left": 2,
+   "selling": true,
+   "until_ms": 1795237199999
+  },
+  {
+   "code": "d07",
+   "day": "Mon Dec 7",
+   "time": "2pm ET",
+   "left": 3,
+   "selling": true,
+   "until_ms": 1796446799999
+  }
+ ]
+}

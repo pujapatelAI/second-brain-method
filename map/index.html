@@ -1757,11 +1757,15 @@ s.parentNode.insertBefore(t,s)})();
              m6:'$75k to $250k/mo',m7:'$250k to $500k/mo',m8:'$500k+/mo'};
   try{ var kc=new URLSearchParams(location.search).get('k'); if(KCODE[kc]) localStorage.setItem('pp_band', KCODE[kc]); }catch(x){}
   /* until = last moment to buy for that session at $77 (Puja, Nov 16 2026: "$77 until Dec 4" for Mon Dec 7) */
-  var SESSIONS=[{at:'2026-11-23T14:00:00-05:00', until:'2026-11-20T23:59:00-05:00', label:'Mon Nov 23, 2pm ET'},
+  var SESSIONS=[{at:'2026-11-20T11:00:00-05:00', until:'2026-11-18T23:59:00-05:00', label:'Fri Nov 20, 11am ET'},
+                {at:'2026-11-23T14:00:00-05:00', until:'2026-11-20T23:59:00-05:00', label:'Mon Nov 23, 2pm ET'},
                 {at:'2026-12-07T14:00:00-05:00', until:'2026-12-04T23:59:00-05:00', label:'Mon Dec 7, 2pm ET'}];
   var LINK='https://buy.stripe.com/8x2fZa5KOerpfX47cY6c007';
   function band(){ try{ return localStorage.getItem('pp_band')||''; }catch(x){ return ''; } }
-  function session(){ var now=Date.now(); for(var i=0;i<SESSIONS.length;i++){ if(new Date(SESSIONS[i].until||SESSIONS[i].at).getTime()>now) return SESSIONS[i]; } return null; }
+  function session(){
+    /* Puja, Nov 16 2026: buyers pick a date or default into Fri Nov 20 (assets/live77.js holds the dates + seats) */
+    if(window.ppLive77 && ppLive77.session){ var x=ppLive77.session(); if(x && Date.now()<x.until) return {label:x.label, at:x.at, until:x.until}; }
+    var now=Date.now(); for(var i=0;i<SESSIONS.length;i++){ if(new Date(SESSIONS[i].until||SESSIONS[i].at).getTime()>now) return SESSIONS[i]; } return null; }
   function email(){
     var e=''; try{ e=localStorage.getItem('pp_email')||''; }catch(x){}
     if(e.indexOf('@')<1){ var m=document.cookie.match(/(?:^|;\s*)_cioid=([^;]+)/); e=m?decodeURIComponent(m[1]):''; }
