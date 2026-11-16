@@ -131,6 +131,8 @@
 <meta name="twitter:title" content="The Second Brain Method — Turn the Chaos in Your Head Into a System">
 <meta name="twitter:description" content="$250/mo, cancel anytime. Turn the chaos in your head into a system that runs without you.">
 <meta name="twitter:image" content="https://puja-patel.com/assets/og_card.jpg">
+<!-- Link Analyzer: visit + click tracking (assets/visits.js). Added Nov 16 2026: this page had none, so map "I'm ready" visits were invisible. -->
+<script src="/assets/visits.js" defer></script>
 <!-- Microsoft Clarity — project "Second Brain Method" (xni1glpbqz) -->
 <script type="text/javascript">
   (function(c,l,a,r,i,t,y){
@@ -1168,6 +1170,10 @@ document.addEventListener('submit', function (e) {
 <script>
 (function(){
   var KEY='map_popup_seen_home_v1', back=document.getElementById('mp'); if(!back) return;
+  /* Puja, Nov 16 2026: someone who just said "I'm ready" on the map (?from=map-yes), or who already has the map,
+     must never get the auto "Not ready to join? Get the free map" pop-up (one went back to /map/ 35s after landing). */
+  var hasMap=false; try{ hasMap=!!localStorage.getItem('systems_map_unlocked'); }catch(e){}
+  if(/[?&]from=map-yes\b/.test(location.search) || hasMap) mark('has_map');
   var shown=false, t0=Date.now();
   function seen(){ try{ return !!localStorage.getItem(KEY); }catch(e){ return false; } }
   function mark(v){ try{ localStorage.setItem(KEY, v||String(Date.now())); }catch(e){} }
