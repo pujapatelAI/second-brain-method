@@ -107,6 +107,13 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
     </ol>
   </div>
 
+  <div class="card" id="vip-invite" hidden>
+    <h2>Apply for a free spot in my live workshop</h2>
+    <p>Your business is past $50k a month, so you can apply for a free spot in my private Second Brain Workshop. It's a small group of owners at your size, invitation only, and free. You leave with your second brain set up and running.</p>
+    <p class="muted" data-vip-when style="margin-top:0;margin-bottom:16px">Mon Nov 30, 2pm ET. Applications close Fri Nov 27.</p>
+    <a class="btn" data-vip-apply href="/vip/" data-track="thanks-to-vip">Apply for a free spot &rarr;</a>
+  </div>
+
 </div>
 <div class="foot"><div class="wrap">Puja Patel · puja-patel.com</div></div>
 <script>
@@ -152,5 +159,24 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
 </script>
 <script src="/assets/live77.js"></script>
 <script>/* Puja, Nov 11 2026 ("Yes, switch them"): this card follows the person's $77 deadline (Nov 13, or Nov 20 for new leads), then $147. */ if(window.ppLive77) ppLive77.start();</script>
+<script>
+/* Puja, Nov 17 2026: "at the bottom of the $27 thank you/download, invite them to apply for a free spot in the live
+   session". Shown only to buyers whose map answer (pp_band, saved by /map/ in this browser) is $50-75K or $75-250K,
+   the same bands /map/ invites to /vip/. Dates follow /vip/'s VIP_CONFIG: Nov 30 applications close Fri Nov 27
+   midnight ET, then Tue Dec 15; hidden after Dec 15. ?k=m5 / ?k=m6 sets the band for testing. */
+(function(){try{
+  var KCODE={m1:'Under $10k/mo',m2:'$10k to $15k/mo',m3:'$15k to $30k/mo',m4:'$30k to $50k/mo',m5:'$50k to $75k/mo',
+             m6:'$75k to $250k/mo',m7:'$250k to $500k/mo',m8:'$500k+/mo'};
+  var CODE={'$50k to $75k/mo':'m5','$75k to $250k/mo':'m6'}, band='';
+  try{ var kc=new URLSearchParams(location.search).get('k'); if(KCODE[kc]) band=KCODE[kc]; }catch(x){}
+  try{ if(!band) band=localStorage.getItem('pp_band')||''; }catch(x){}
+  var k=CODE[band], now=Date.now();
+  if(!k || now >= Date.parse('2026-12-15T19:00:00Z')) return;
+  var box=document.getElementById('vip-invite');
+  if(now >= Date.parse('2026-11-28T05:00:00Z')) box.querySelector('[data-vip-when]').textContent='Tue Dec 15, 2pm ET.';
+  box.querySelector('[data-vip-apply]').href='/vip/?k='+k+'&utm_source=site&utm_medium=ssf_thanks&utm_campaign=vip_invite';
+  box.hidden=false;
+}catch(x){}})();
+</script>
 </body>
 </html>
