@@ -1867,9 +1867,10 @@ s.parentNode.insertBefore(t,s)})();
         '<h2 id="oto-h">'+(join==='maybe' ? 'You said you\'d want to see it work first. Here\'s how.'
           : join==='no' ? 'Not ready to change everything? Start with one session.'
           : 'Get your business out of your head in one live session.')+'</h2>'+
-        /* Puja, Nov 17 2026: "I'm interested" sees it working first (her Oct 13 TikTok, link-in-bio ending cut) */
-        (join==='maybe' ? '<div class="vid77"><video preload="none" playsinline poster="/assets/pm_demo_poster.jpg"><source src="/assets/pm_demo.mp4" type="video/mp4"></video>'+
-          '<button type="button" class="vplay" data-track="map-maybe-video-play" aria-label="Play: how I use Claude for project management"><span class="pc"></span><span class="pl">how I run 12+ clients &middot; 1:26</span></button></div>' : '')+
+        /* Puja, Nov 17 2026: "I'm interested" sees it working first (her Oct 13 TikTok, link-in-bio ending cut).
+           Nov 18 2026 ("lets try out both changes"): with the question removed, everyone on this screen gets it. */
+        '<div class="vid77"><video preload="none" playsinline poster="/assets/pm_demo_poster.jpg"><source src="/assets/pm_demo.mp4" type="video/mp4"></video>'+
+          '<button type="button" class="vplay" data-track="'+(join==='maybe' ? 'map-maybe-video-play' : 'map-77-video-play')+'" aria-label="Play: how I use Claude for project management"><span class="pc"></span><span class="pl">how I run 12+ clients &middot; 1:25</span></button></div>'+
         '<p style="margin:0 0 4px">You leave with:</p>'+
         '<ul class="get77"><li><span class="ck">&#10003;</span>all your data in one place</li><li><span class="ck">&#10003;</span>your business taught to Claude</li><li><span class="ck">&#10003;</span>your second brain set up and running</li></ul>'+
         '<p>'+s.label+', small group. Start tonight with the Systems Setup File.</p>'+
