@@ -27,7 +27,7 @@
      when a seat is taken); these numbers are the fallback. A session closes at its until (or when full). The pick
      rides on the Stripe link: client_reference_id = <email hash>-<code> ("x-<code>" when we don't know the email). */
   var SESS=[
-    {code:'n20', at:Date.parse('2026-11-20T11:00:00-05:00'), until:Date.parse('2026-11-18T23:59:59-05:00'), day:'Fri Nov 20', time:'11am ET', pt:'8am PT', left:3},
+    {code:'n20', at:Date.parse('2026-11-20T11:00:00-05:00'), until:Date.parse('2026-11-19T15:00:59-05:00'), day:'Fri Nov 20', time:'11am ET', pt:'8am PT', left:3},
     {code:'n23', at:Date.parse('2026-11-23T14:00:00-05:00'), until:Date.parse('2026-11-20T23:59:59-05:00'), day:'Mon Nov 23', time:'2pm ET', pt:'11am PT', left:2},
     {code:'d07', at:Date.parse('2026-12-07T14:00:00-05:00'), until:Date.parse('2026-12-04T23:59:59-05:00'), day:'Mon Dec 7', time:'2pm ET', pt:'11am PT', left:3}];
   SESS.forEach(function(x){ x.label=x.day+', '+x.time; });
@@ -40,7 +40,10 @@
   }
   try{ fetch('/assets/seats.json',{cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
     if(!d || !d.sessions) return;
-    d.sessions.forEach(function(n){ SESS.forEach(function(x){ if(x.code===n.code && typeof n.left==='number') x.left=n.left; }); });
+    /* Nov 18 2026: the cutoff comes from seats.json too (until_ms), so a sell_until change in live77_sessions.json
+       reaches the page without editing this file; the numbers above are the fallback. */
+    d.sessions.forEach(function(n){ SESS.forEach(function(x){ if(x.code!==n.code) return;
+      if(typeof n.left==='number') x.left=n.left; if(typeof n.until_ms==='number') x.until=n.until_ms; }); });
     try{ render(); }catch(x){}
   }).catch(function(){}); }catch(x){}
   function get(k){ try{ return localStorage.getItem(k)||''; }catch(e){ return ''; } }
@@ -104,6 +107,18 @@
     document.querySelectorAll('[data-l77-when]').forEach(function(n){ n.textContent=s.day+' at '+s.time+' ('+s.pt+')'; });
     document.querySelectorAll('[data-l77-dates]').forEach(function(n){ var k=SESS.map(function(x){ return x.code+x.left+selling(x); }).join()+s.code;
       if(n.getAttribute('data-k')!==k){ n.setAttribute('data-k',k); dates(n); } });
+    /* Puja, Nov 18 2026: "by 3pm tomorrow i want it to say friday 11am is FULL! next available slot is nov 23 and only
+       X spots left in that". Once a session stops selling before it starts, [data-l77-note] says so and names the
+       next one with its seats. "Full" only when every seat is taken; otherwise "closed" (it's true either way). */
+    document.querySelectorAll('[data-l77-note]').forEach(function(n){
+      var gone=SESS.filter(function(x){ return Date.now()<x.at && !selling(x); }), nx=SESS.filter(selling)[0];
+      if(!gone.length || !nx){ n.hidden=true; return; }
+      var WD={Mon:'Monday',Tue:'Tuesday',Wed:'Wednesday',Thu:'Thursday',Fri:'Friday',Sat:'Saturday',Sun:'Sunday'};
+      var g=gone[0], st=g.left<=0 ? 'is FULL!' : 'is closed.';
+      n.innerHTML='<b>'+(WD[g.day.slice(0,3)]||g.day)+' '+g.time.replace(' ET','')+' '+st+'</b> The next available slot is '+nx.day+' at '+nx.time+
+        ', and only '+nx.left+(nx.left===1?' spot is':' spots are')+' left.';
+      n.hidden=false;
+    });
     document.querySelectorAll('[data-l77-clock]').forEach(function(n){ n.textContent=clock; });
     document.querySelectorAll('[data-l77-price]').forEach(function(n){ n.textContent=on?'$77':'$147'; });
     document.querySelectorAll('[data-l77-buy]').forEach(function(n){ n.href=withEmail(on?L77:L147); n.setAttribute('data-price',on?'77':'147'); });
