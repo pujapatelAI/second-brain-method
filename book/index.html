@@ -256,7 +256,10 @@ s.parentNode.insertBefore(t,s)})();
     var t=track(rev.value);
     document.querySelectorAll('[data-for]').forEach(function(el){ el.hidden = el.getAttribute('data-for')!==t; });
   }
-  rev.addEventListener('change', sync);
+  /* Puja, Nov 18 2026: "we want VIP to show up to a 'webinar' so we shouldn't even ask them for a call - the call should
+     be for OIP". $50k-$250k/mo goes to the free private workshop on /vip/ instead of a calendar. */
+  function toVip(){ var q=location.search||''; location.replace('/vip/'+q); }
+  rev.addEventListener('change', function(){ if(track(rev.value)==='vip' && rev.value!=='Under $50k/mo'){ toVip(); return; } sync(); });
   (function(){
     var filled=0, band='', lead={}, em='', note=document.getElementById('prefill-note');
     try{ var kc=new URLSearchParams(location.search).get('k'); if(KCODE[kc]) band=KCODE[kc]; }catch(x){}
@@ -266,6 +269,7 @@ s.parentNode.insertBefore(t,s)})();
     function put(n,v){ var el=form.elements[n]; if(el && v && !el.value){ el.value=v; if(el.value) filled++; } }
     put('name', lead.name); put('email', em.indexOf('@')>0 ? em : ''); put('phone', lead.phone); put('revenue', band);
     function showNote(){ if(filled && note) note.hidden=false; }
+    if(band==='$50k to $75k/mo' || band==='$75k to $250k/mo'){ toVip(); return; }
     showNote(); sync();
     try{
       var tok=new URLSearchParams(location.search).get('t');
@@ -336,7 +340,8 @@ s.parentNode.insertBefore(t,s)})();
     if(!name || !band || !team || !goal || !invest || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.classList.add('on'); return; }
     var tel=normPhone(raw);
     if(!tel){ terr.classList.add('on'); f.phone.focus(); return; }
-    var t=track(band), fit=(band!=='Under $50k/mo' && invest!=='not_now'), route=fit ? 'call' : 'sbm';
+    var t=track(band), fit=(t==='oip' && invest!=='not_now'), route=fit ? 'call' : 'sbm';
+    if(t==='vip' && band!=='Under $50k/mo'){ toVip(); return; }
     var first=name.split(/\s+/)[0], utm=utms(), now=Math.floor(Date.now()/1000);
     var d={ name:name, email:email, band:band, track:t };
     document.getElementById('submit').disabled=true;

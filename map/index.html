@@ -1712,7 +1712,8 @@ s.parentNode.insertBefore(t,s)})();
       try{ if(window.fbq) fbq('trackCustom','OIPFit'); }catch(x){}
       var b=document.createElement('div');
       b.style.cssText='background:#B0532F;color:#FBF7F1;padding:14px 16px;text-align:center;font-weight:600;line-height:1.45';
-      /* Puja, Nov 18 2026 ("Yes, build it"): $50K+ sign-ups book a call with her on /book/. */
+      /* Puja, Nov 18 2026 ("Yes, build it"): $250K+ sign-ups book a call with her on /book/. Later that day: "we want VIP to
+         show up to a 'webinar' so we shouldn't even ask them for a call - the call should be for OIP", so $50K-$250K go to /vip/. */
       b.innerHTML='At your size, the map is only the start. <a href="/book/" data-track="map-oip-banner-to-book" style="color:#FBF7F1;text-decoration:underline">Book a call with me about the 14-Day Owner Absence Test &rarr;</a>';
       document.body.insertBefore(b, document.body.firstChild);
       try{ if(window._cio) _cio.track('map_oip_route',{ monthly_revenue_band:rev }); }catch(x){}
@@ -1733,7 +1734,7 @@ s.parentNode.insertBefore(t,s)})();
     try{ if(window.fbq) fbq('trackCustom','VIPFit'); }catch(x){}
     var b=document.createElement('div'); b.id='vip-invite';
     b.style.cssText='background:#B0532F;color:#FBF7F1;padding:14px 16px;text-align:center;font-weight:600;line-height:1.45';
-    b.innerHTML='At your size, the map is only the start. <a href="/book/" data-track="map-vip-banner-to-book" style="color:#FBF7F1;text-decoration:underline">Book a call with me &rarr;</a>';
+    b.innerHTML='At your size, the map is only the start. <a href="/vip/" data-track="map-vip-banner-to-vip" style="color:#FBF7F1;text-decoration:underline">You\'re invited to my free private workshop &rarr;</a>';
     document.body.insertBefore(b, document.body.firstChild);
     if(fresh){ try{ if(window._cio) _cio.track('map_vip_route',{ monthly_revenue_band:rev }); }catch(x){} }
   };
@@ -1846,12 +1847,11 @@ s.parentNode.insertBefore(t,s)})();
       if((rev==='$50k to $75k/mo' || rev==='$75k to $250k/mo') && oto){
         oto.querySelector('.otocard').innerHTML=
           '<div class="ok">&#10003; your map is unlocked</div>'+
-          '<h2 id="oto-h">At your size, let\'s talk first.</h2>'+
-          '<p>I\'m opening 5 seats in my six-month VIP program for owners past $50k a month. Book 45 minutes with me and we\'ll look at where your business still runs through you, and whether VIP is the right fit.</p>'+
+          '<h2 id="oto-h">At your size, you\'re invited to a free private workshop.</h2>'+
+          '<p>I run a private Second Brain Workshop for a small group of owners past $50k a month. It\'s free and invitation only, and it\'s where I open the 5 seats in my six-month VIP program.</p>'+
           '<p class="pp-one">One of my members, an events-planning co-owner with an 11-person team, set hers up live with me. Working from her own files, Claude drafted a proposal for one of her real clients in about 45 seconds.</p>'+
-          '<a class="btn" href="/book/" data-track="map-unlock-to-book">book a call with me &rarr;</a>'+
-          '<p style="margin:10px 0 0;font-size:14.5px;text-align:center">Four quick questions, then pick a time. Your answers carry over.</p>'+
-          '<p style="margin:6px 0 0;font-size:14.5px;text-align:center"><a href="/vip/" data-track="map-unlock-to-vip">or see my free private workshop invitation</a></p>'+
+          '<a class="btn" href="/vip/" data-track="map-unlock-to-vip">see your invitation &rarr;</a>'+
+          '<p style="margin:10px 0 0;font-size:14.5px;text-align:center">Your answers carry over, so you won\'t type them twice.</p>'+
           '<button type="button" class="skip" data-track="map-unlock-vip-no-thanks">not now, show me my map</button>';
         oto.hidden=false; document.documentElement.style.overflow='hidden';
         try{ clarity('event','map_vip_screen_shown'); }catch(x){}
