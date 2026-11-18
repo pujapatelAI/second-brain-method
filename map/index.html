@@ -1612,7 +1612,11 @@ s.parentNode.insertBefore(t,s)})();
      Puja, Nov 15 2026 (later): "open up the 250 question to 2k-10k" (Under $10k + $2k-$5k or $5k-$10k). */
   var JOINQ=['$10k to $15k/mo','$15k to $30k/mo','$30k to $50k/mo'], JOINQ_LOW=['$2k to $5k/mo','$5k to $10k/mo'],
       joinq=document.getElementById('g-join');
-  function asks250(rev, revd){ return JOINQ.indexOf(rev)>=0 || (rev==='Under $10k/mo' && JOINQ_LOW.indexOf(revd)>=0); }
+  /* Puja, Nov 18 2026: question removed ("I'm down to remove it because it's not like its helped me make more sales").
+     $2k-$50k sign-ups fell faster than under-$2k after it became required. Everyone gets the screen they got before
+     Nov 15. To bring it back: return JOINQ.indexOf(rev)>=0 || (rev==='Under $10k/mo' && JOINQ_LOW.indexOf(revd)>=0); */
+  var ASK250=false;
+  function asks250(rev, revd){ return ASK250 && (JOINQ.indexOf(rev)>=0 || (rev==='Under $10k/mo' && JOINQ_LOW.indexOf(revd)>=0)); }
   function showJoin(){
     var jq=asks250(form.monthly_revenue.value, form.revenue_detail.value); joinq.style.display=jq?'block':'none';
     if(!jq) joinq.querySelectorAll('input').forEach(function(i){ i.checked=false; });
