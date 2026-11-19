@@ -22,7 +22,7 @@
    "code": "d07",
    "day": "Mon Dec 7",
    "time": "2pm ET",
-   "left": 3,
+   "left": 2,
    "selling": true,
    "until_ms": 1796446799999,
    "hidden_until_ms": 1795118400000
