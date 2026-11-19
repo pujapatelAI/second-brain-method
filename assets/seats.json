@@ -13,8 +13,8 @@
    "code": "n23",
    "day": "Mon Nov 23",
    "time": "2pm ET",
-   "left": 1,
-   "selling": true,
+   "left": 0,
+   "selling": false,
    "until_ms": 1795237199999
   },
   {
