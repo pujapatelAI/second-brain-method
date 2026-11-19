@@ -122,7 +122,11 @@
   }
   function open(){ return Date.now()<win().at; }
   function render(){
-    var w=win(), left=Math.max(0,w.at-Date.now()), on=left>0, clock=fmt(left), cs=cutoffSess();
+    var w=win(), left=Math.max(0,w.at-Date.now()), on=left>0, cs=cutoffSess(), clock=fmt(cs ? Math.max(0,cutoff(cs)-Date.now()) : left);
+    /* Puja, Nov 19 2026 ("Count to 3pm"): the top bar's clock counts to the same cutoff, labelled for that session */
+    document.querySelectorAll('[data-l77-clocklbl]').forEach(function(n){
+      if(n.__l77o===undefined) n.__l77o=n.textContent;
+      var t=cs ? 'left for '+whenWord(cs) : n.__l77o; if(n.textContent!==t) n.textContent=t; });
     document.querySelectorAll('[data-l77-open]').forEach(function(n){
       if(n.__l77o===undefined){ if(!n.querySelector('[data-l77-until]')) return; n.__l77o=n.innerHTML; }
       var h=cs ? '<b>'+moreLeft(cutoff(cs)-Date.now())+'</b> to get a spot for '+whenWord(cs) : n.__l77o;
