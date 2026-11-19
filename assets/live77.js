@@ -94,6 +94,25 @@
     });
     n.innerHTML='<p class="l77-dates-h">Pick your date</p><div class="l77-dates-row">'+h+'</div>';
   }
+  /* Puja, Nov 19 2026: "Last day for $77: Fri Nov 20, midnight ET. / no - make it into this: / 4 more hours to get a spot
+     for tomorrow morning". While the picked session stops selling before the $77 price ends, the [data-l77-open] line
+     and the timer boxes count down to that session's cutoff instead; after it closes they go back to the price line. */
+  function cutoffSess(){ var s=sel(), c=Math.floor(s.until/60000)*60000;
+    return selling(s) && shown(s) && c<win().at ? s : null; }
+  function cutoff(s){ return Math.floor(s.until/60000)*60000; }
+  function etDay(t){ return new Date(t).toLocaleDateString('en-US',{timeZone:'America/New_York'}); }
+  function whenWord(s){
+    var h=parseInt(new Date(s.at).toLocaleString('en-US',{timeZone:'America/New_York',hour:'numeric',hour12:false}),10)%24,
+        part=h<12?'morning':(h<17?'afternoon':'evening');
+    if(etDay(s.at)===etDay(Date.now())) return 'this '+part;
+    if(etDay(s.at)===etDay(Date.now()+86400000)) return 'tomorrow '+part;
+    return s.day+' at '+s.time;
+  }
+  function moreLeft(ms){
+    if(ms>=5400000) return Math.round(ms/3600000)+' more hours';
+    if(ms>=3600000) return '1 more hour';
+    var m=Math.max(1,Math.ceil(ms/60000)); return m+(m===1?' more minute':' more minutes');
+  }
   function pad(n){ return (n<10?'0':'')+n; }
   function fmt(left){
     var s=Math.floor(left/1000), d=Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), sec=s%60;
@@ -103,7 +122,12 @@
   }
   function open(){ return Date.now()<win().at; }
   function render(){
-    var w=win(), left=Math.max(0,w.at-Date.now()), on=left>0, clock=fmt(left);
+    var w=win(), left=Math.max(0,w.at-Date.now()), on=left>0, clock=fmt(left), cs=cutoffSess();
+    document.querySelectorAll('[data-l77-open]').forEach(function(n){
+      if(n.__l77o===undefined){ if(!n.querySelector('[data-l77-until]')) return; n.__l77o=n.innerHTML; }
+      var h=cs ? '<b>'+moreLeft(cutoff(cs)-Date.now())+'</b> to get a spot for '+whenWord(cs) : n.__l77o;
+      if(n.__l77h!==h){ n.__l77h=h; n.innerHTML=h; }
+    });
     document.querySelectorAll('[data-l77-until]').forEach(function(n){ n.textContent=w.label; });
     var s=sel();
     document.querySelectorAll('[data-l77-session]').forEach(function(n){ n.textContent=s.label; });
@@ -145,5 +169,5 @@
     try{ if(window.fbq) fbq('track','InitiateCheckout',{ value:v, currency:'USD', content_name:'live_setup_'+v }); }catch(x){}
     try{ clarity('event','live_setup_checkout_'+v); }catch(x){}
   });
-  window.ppLive77={ start:start, open:open, render:render, deadline:function(){ return win().at; }, sessionAhead:function(){ return Date.now()<sel().at; }, session:function(){ return sel(); }, sessions:function(){ return SESS; } };
+  window.ppLive77={ start:start, open:open, render:render, deadline:function(){ var c=cutoffSess(); return c ? cutoff(c) : win().at; }, sessionAhead:function(){ return Date.now()<sel().at; }, session:function(){ return sel(); }, sessions:function(){ return SESS; } };
 })();
