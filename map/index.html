@@ -1646,7 +1646,7 @@ s.parentNode.insertBefore(t,s)})();
       var params=new URLSearchParams(window.location.search), now=Math.floor(Date.now()/1000);
       try{ clarity('event','systems_map_optin'); }catch(x){}
       /* Meta: MapSignup = every sign-up (reporting + audiences). SubmitApplication =
-         only the $10k-$30k/mo bands, the one event the SBM ads optimize on, so Meta
+         only $5k-$30k/mo (since Nov 19; was $10k-$30k), the one event the SBM ads optimize on, so Meta
          looks for more of those owners. Name, email and phone go in as advanced
          matching (the pixel hashes them in the browser). */
       try{
@@ -1656,11 +1656,16 @@ s.parentNode.insertBefore(t,s)})();
           /* Puja, Nov 16 2026: "only do retargeting ... for qualified buyers". Every $10k+/mo answer fires this with
              nothing attached (Meta won't build audiences on revenue_band), for the $77 retarget audience. */
           if(rev && rev.indexOf('Under')!==0 && rev.indexOf('Not making')!==0) fbq('trackCustom','Qualified10K');
-          if(rev==='$10k to $15k/mo' || rev==='$15k to $30k/mo'){
-            fbq('track','SubmitApplication',{ content_name:'systems_map_10k_30k', revenue_band:rev });
+          /* Nov 19 2026: widened from $10k-$30k to $5k-$30k, the band every map-lead buyer since Nov 10 answered. */
+          if((rev==='Under $10k/mo' && revd==='$5k to $10k/mo') || rev==='$10k to $15k/mo' || rev==='$15k to $30k/mo'){
+            fbq('track','SubmitApplication',{ content_name:'systems_map_5k_30k', revenue_band:rev });
           }
           /* Puja, Nov 15 2026: a Yes to the $250 question. Nothing attached, so Meta can build audiences on it
              (it blocks revenue_band) and a custom conversion can optimize on it. */
+          /* Puja, Nov 19 2026 ("Yes, switch it"): the 4 map-lead $77/$250 buyers since Nov 10 all answered $5k-$30k/mo
+             (none under $5k, none at $30k+), so the map ads optimize on this: $5k-$10k, $10k-$15k and $15k-$30k.
+             Nothing attached (Meta won't use revenue answers); the custom conversion "Map sign-up $5K-$30K" is built on it. */
+          if((rev==='Under $10k/mo' && revd==='$5k to $10k/mo') || rev==='$10k to $15k/mo' || rev==='$15k to $30k/mo') fbq('trackCustom','MapFit');
           if(join==='yes') fbq('trackCustom','Join250Yes');
           /* Puja, Nov 15 2026: "capture ... the maybe's to meta as an audience". Same shape as Join250Yes. */
           if(join==='maybe') fbq('trackCustom','Join250Maybe');
