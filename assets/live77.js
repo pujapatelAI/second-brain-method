@@ -56,8 +56,9 @@
   function win(){
     /* Puja, Nov 12 2026: "leave it 13 for now - then extend it to 20 for everyone" (not announced).
        Once Fri Nov 13 11:59pm ET passes, EVERYONE gets $77 until Fri Nov 20, early visitors and ?dl=13 included. */
-    if(Date.now()>=D20) return WINDOWS['04'];
-    if(Date.now()>=D13) return WINDOWS['20'];
+    /* Nov 20 2026 (messaging audit, Puja: "Yes, fix all 8"): Mon Nov 23 is private now and the only public date is
+       Mon Dec 7, whose $77 runs to Fri Dec 4. "Last day for $77: Fri Nov 20" was a deadline that wasn't true. */
+    if(Date.now()>=D13) return WINDOWS['04'];
     var dl=get('pp77_dl'); if(WINDOWS[dl]) return WINDOWS[dl];
     var first=parseInt(get('pp77_first')||'0',10)||(get('pp77_deadline') ? D13-1 : 0)||Date.now();
     return first<D13 ? WINDOWS['13'] : WINDOWS['20'];
