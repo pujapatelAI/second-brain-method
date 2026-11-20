@@ -29,7 +29,7 @@
  "url": "https://puja-patel.com/vip/",
  "name": "VIP Second Brain Method",
  "isPartOf": { "@id": "https://puja-patel.com/#website" },
- "description": "A six-month program for owners past $50k a month that puts an AI operating system into the business, with the team doing the work: an AI and operations assessment, a six-month plan, an AI curriculum for the owner and the team, and a weekly implementation workshop. $2,500 a month, 6-month minimum, 5 seats."
+ "description": "A six-month program for owners past $50k a month that puts an AI operating system into the business, with the team doing the work: a private 1:1 kickoff with the verdict, a six-month plan, a weekly implementation workshop, a monthly 1:1 strategy call, a scorecard on day 1, 90 and 180, and an AI curriculum for the owner and the team. $2,500 a month, 6-month minimum, 5 seats."
 }
 </script>
 <!-- Microsoft Clarity: project "Second Brain Method" (xni1glpbqz) -->
@@ -152,6 +152,11 @@ window.VIP_CONFIG = {
   .gets li:before{content:"\2713"; position:absolute; left:0; top:12px; color:var(--accent); font-weight:700}
   .gets b{display:block; font-family:var(--font-display); font-weight:normal; font-size:1.12rem; line-height:1.3}
   .gets span{display:block; color:var(--ink-soft); font-size:.96rem; margin-top:3px}
+  /* Puja, Nov 20 2026 ("we need a better list of deliverables", Savannah's tier 2 steps I-VI): numbered steps */
+  .gets.steps li:before{content:attr(data-n); font-family:var(--font-display); font-weight:normal; font-size:.95rem; letter-spacing:.02em}
+  .gets .in{list-style:disc; margin:6px 0 0; padding:0 0 0 18px; color:var(--ink-soft); font-size:.96rem}
+  .gets .in li{position:static; padding:3px 0; border:0}
+  .gets .in li:before{content:none}
   .ticks{list-style:none; margin:0; padding:0}
   .ticks li{position:relative; padding:7px 0 7px 26px; border-bottom:1px solid var(--line)}
   .ticks li:last-child{border-bottom:0}
@@ -329,18 +334,22 @@ window.VIP_CONFIG = {
 
     <section class="blk" id="included">
       <div class="eyebrow">Inside VIP</div>
-      <h2>Everything you get in six months.</h2>
+      <h2>Your six months, step by step.</h2>
       <div class="card">
-        <ul class="gets">
-          <li><b>An AI and operations assessment</b><span>We go through your OpMap, your tools and your numbers: what already works, where the gaps are, what's missing, and where AI and automation can take work off your team.</span></li>
-          <li><b>Your six-month plan, written down</b><span>Built around your revenue and profit goals: which systems to build and in what order, what goes to AI, what goes to your team, and what stays with you.</span></li>
-          <li><b>An AI curriculum for you and your team</b><span>What each person needs to learn, in the order they'll use it, tied to the plan.</span></li>
-          <li><b>A weekly implementation workshop, VIP owners only</b><span>Five owners at your level. Each week your team puts the next piece in place in your own business, with me guiding it live.</span></li>
-          <li><b>Your second brain set up in your first week</b><span>The six months start with something working, not with homework.</span></li>
-          <li><b>Your plan and weekly check-ins inside OpMap</b><span>We both see what moved every week, so nothing drifts between workshops.</span></li>
-          <li><b>A scorecard on day 1, day 90 and day 180</b><span>The same numbers, measured three times, so you can see what changed.</span></li>
-          <li><b>A team that can run it without me</b><span>Your team does the work from week one, and I teach the why behind every system as they put it in place. By month six, you and your team own all of it.</span></li>
-          <li><b>Everything in the Membership</b><span>The monthly technical workshop, live weekly working sessions, OpMap and the community.</span></li>
+        <ul class="gets steps">
+          <li data-n="I"><b>You map your business</b><span>In OpMap, you walk through how work moves through your business, every place it routes back to you, your tools and your numbers. About an hour, and it sets your day-1 scorecard.</span></li>
+          <li data-n="II"><b>Your private 1:1 kickoff, with the verdict</b><span>I come with what's already working that we keep, where the gaps are, what's missing that we put in, and which work AI and automation can take off your team first.</span></li>
+          <li data-n="III"><b>Your six-month plan, written down</b><span>Built around your revenue and profit goals: which systems come first, what goes to AI, what goes to your team and what stays with you, broken into monthly milestones your team can run with.</span></li>
+          <li data-n="IV"><b>Then your team puts it in place, with me</b>
+            <ul class="in">
+              <li>Your second brain set up and connected to your tools and data in the first weeks</li>
+              <li>A weekly implementation workshop with the other VIP owners, five at most, where your team puts the next piece in place on your own business, live</li>
+              <li>A monthly 1:1 strategy call with me</li>
+              <li>Your plan and weekly check-ins in OpMap, so nothing drifts</li>
+            </ul></li>
+          <li data-n="V"><b>Every month, we measure and refine</b><span>Your scorecard (hours on manual work, team capacity, margin) against day 1. On your monthly 1:1, I tell you what's working to double down on and what to put in place next. Re-scored on day 90 and day 180.</span></li>
+          <li data-n="VI"><b>Throughout, I teach the why</b><span>An AI curriculum for you and your team, in the order you'll use it. Every system comes with the reason behind it, so when the six months end, you and your team run it without me.</span></li>
+          <li data-n="+"><b>Plus everything in the Membership</b><span>The monthly technical workshop, weekly working sessions, OpMap and the community.</span></li>
         </ul>
       </div>
     </section>
