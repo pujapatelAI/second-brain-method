@@ -22,7 +22,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
  {"@type":"Organization","@id":"https://puja-patel.com/#org","name":"Puja Patel LLC","url":"https://puja-patel.com/","logo":"https://puja-patel.com/assets/puja.jpg",
-  "description":"AI, systems, operations and data for small business owners: the Second Brain Method, the Business Systems Audit and the Owner Independence Program.",
+  "description":"AI, systems, operations and data for small business owners: the Second Brain Method, VIP and the Owner Independence Program.",
   "founder":{"@id":"https://puja-patel.com/#puja"},
   "sameAs":["https://www.linkedin.com/in/pujap109/","https://www.tiktok.com/@pujap109","https://www.instagram.com/pujapatel.ai","https://www.youtube.com/channel/UCFcm-eAvCkPryWrb0ZcQMRg"]},
  {"@type":"Person","@id":"https://puja-patel.com/#puja","name":"Puja Patel","url":"https://puja-patel.com/","image":"https://puja-patel.com/assets/puja.jpg","worksFor":{"@id":"https://puja-patel.com/#org"}}
@@ -669,11 +669,11 @@ s.parentNode.insertBefore(t,s)})();
 
   /* ---------- best-fit router ---------- */
   /* Puja, Nov 9 2026: under $10k -> marketing first (+ free map); $10k-50k -> SBM; $50k-75k -> VIP SBM;
-     $75k-250k -> VIP SBM or the Business Systems Audit; $250k+ -> Owner Independence Program. */
+     $75k-250k -> VIP SBM (Nov 20 2026: the Business Systems Audit is retired, Puja's VIP plan has SBM, VIP and premium consulting only); $250k+ -> Owner Independence Program. */
   var ROUTES = {
     'Not making money yet':'marketing', 'Under $10k/mo':'marketing',
     '$10k to $30k/mo':'sbm', '$30k to $50k/mo':'sbm',
-    '$50k to $75k/mo':'vip', '$75k to $250k/mo':'vip_audit',
+    '$50k to $75k/mo':'vip', '$75k to $250k/mo':'vip',
     '$250k to $500k/mo':'oip', '$500k+/mo':'oip'
   };
   function card(o){
@@ -690,17 +690,13 @@ s.parentNode.insertBefore(t,s)})();
     vip: card({id:'vip', band:'Done with you · $2,500/mo', title:'VIP Second Brain Method', hi:true,
       body:'For businesses past $50k a month: six months with me on your operations, your data and your AI, built around your team.',
       href:'/vip/', cta:'See the program and apply'}),
-    audit: card({id:'audit', band:'Done for you', title:'Business Systems Audit',
-      body:'I map how your business actually runs: interviews with the people doing the work and read-only access to your systems. You get a blueprint and a phased roadmap, then we build it.',
-      cta:'I\'ll reach out to you personally within one business day.'}),
     oip: card({id:'oip', band:'Done for you · from $100,000', title:'The Owner Independence Program', hi:true,
-      body:'120 days, built around the managers already in place, until your company can run 14 days without you.',
+      body:'4 to 6 months, built around the managers already in place, until your company can run 14 days without you.',
       href:'/owner-independence/', cta:'See the program'})
   };
   function render(route, first){
     var r=document.getElementById('result'), h='<div class="rhead"><div class="proof-k">Your best fit</div><p>'+(first?first+', here':'Here')+'\'s where I\'d start.</p></div>';
-    if(route==='vip_audit') h+= '<div class="rboth">'+CARDS.vip+CARDS.audit+'</div>';
-    else h+= CARDS[route];
+    h+= CARDS[route];
     r.innerHTML=h; r.classList.add('done');
     r.querySelectorAll('[data-route]').forEach(function(a){ a.addEventListener('click', function(){ hit('fit_route_click',{route:a.getAttribute('data-route')}); }); });
     if(window.innerWidth<860) r.scrollIntoView({behavior:'smooth', block:'start'});

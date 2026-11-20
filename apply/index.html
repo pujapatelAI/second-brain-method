@@ -7,7 +7,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2JTHK29BD"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y2JTHK29BD');</script>
 <title>Apply for a call · Puja Patel</title>
-<meta name="description" content="A 45-minute call about the 14-Day Owner Absence Test: where your company routes through you, what it would take to pass, and whether we're a fit. For service businesses doing $3M a year and up. Packages start at $100,000. Under $3M a year: The Second Brain Method.">
+<meta name="description" content="A 45-minute call about the 14-Day Owner Absence Test: where your company routes through you, what it would take to pass, and whether we're a fit. For service businesses doing $3M a year and up. Packages start at $100,000. Under $3M a year: VIP or The Second Brain Method.">
 <link rel="canonical" href="https://puja-patel.com/apply/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
 <meta property="og:type" content="website">
@@ -183,7 +183,7 @@ window.APPLY_CONFIG = {
       <div class="what">
         <b>What the call is not:</b> a free audit. Nothing gets mapped on the call. Mapping every decision that lands on you takes interviews with your managers and your real data, and that is the first part of the paid work.
         <ul>
-          <li>Under $3M a year? You will get a page with where I'd start instead: The Second Brain Method, the same idea at your size.</li>
+          <li>Under $3M a year? You will get a page with where I'd start instead: VIP from $1M a year, The Second Brain Method under that. The same idea at your size.</li>
           <li>Takes about two minutes. Your answers come to me only.</li>
         </ul>
       </div>
@@ -408,7 +408,8 @@ window.APPLY_CONFIG = {
     if(qualified && (!q.margin || !q.team || !q.mgr || !q.days || !q.invest)){ err.classList.add('on'); return; }
     var tel=normPhone(raw);
     if(!tel){ terr.classList.add('on'); f.phone.focus(); return; }
-    var route=!qualified ? 'sbm' : (dm==='yes' ? 'call' : 'owner');
+    /* Nov 20 2026 (messaging audit B4): $1M-$3M a year is VIP's band ($50k-$250k a month), not the $250 plan. */
+    var route=!qualified ? (band==='$1M to $3M' ? 'vip' : 'sbm') : (dm==='yes' ? 'call' : 'owner');
     var first=name.split(/\s+/)[0], utm=utms(), now=Math.floor(Date.now()/1000);
     var d={name:name, email:email, band:band, utm:utm};
     document.getElementById('submit').disabled=true;
@@ -443,7 +444,7 @@ window.APPLY_CONFIG = {
       }catch(x){}
       try{
         var fd=new FormData();
-        fd.append('_subject','Consulting application: '+band+(route==='call'?' (booking)':route==='owner'?' (not the decision maker)':' (sent to SBM)')); fd.append('_captcha','false');
+        fd.append('_subject','Consulting application: '+band+(route==='call'?' (booking)':route==='owner'?' (not the decision maker)':route==='vip'?' (sent to VIP)':' (sent to SBM)')); fd.append('_captcha','false');
         fd.append('name',name); fd.append('email',email); fd.append('phone',tel); fd.append('website',site);
         fd.append('decision_maker',dm); fd.append('annual_revenue',band); fd.append('heard_from',heard); fd.append('route',route);
         if(qualified){ fd.append('profit_margin',q.margin); fd.append('team_size',q.team); fd.append('management',q.mgr); fd.append('fourteen_days',q.days); fd.append('investment_100k',q.invest); }
@@ -458,7 +459,7 @@ window.APPLY_CONFIG = {
       /* Under $3M: their own page. Short pause so the pixel/GA4/Customer.io calls above go out first. */
       try{ sessionStorage.setItem('apply_first', first); }catch(x){}
       document.getElementById('submit').innerHTML='One moment&hellip;';
-      setTimeout(function(){ location.href=CFG.SBM_URL; }, 700);
+      setTimeout(function(){ location.href=(route==='vip' ? '/vip/?k=m6' : CFG.SBM_URL); }, 700);
     }
   });
   /* First-touch UTM capture (same key as the homepage). */

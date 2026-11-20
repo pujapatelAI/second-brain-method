@@ -7,7 +7,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2JTHK29BD"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y2JTHK29BD');</script>
 <title>Book a call · Puja Patel</title>
-<meta name="description" content="45 minutes with Puja Patel about where your business still runs through you and whether her VIP program or the Owner Independence Program is the right fit.">
+<meta name="description" content="45 minutes with Puja Patel on the 14-Day Owner Absence Test: where your company routes through you, what it would take to pass, and whether the Owner Independence Program is the right fit.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://puja-patel.com/book/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
@@ -148,11 +148,11 @@ s.parentNode.insertBefore(t,s)})();
 <main>
   <div class="wrap">
     <div class="intro">
-      <div class="eyebrow" data-for="vip">VIP Second Brain Method · 6 months</div>
-      <div class="eyebrow" data-for="oip" hidden>Owner Independence Program · done for you</div>
+      <div class="eyebrow" data-for="vip" hidden>VIP Second Brain Method · 6 months</div>
+      <div class="eyebrow" data-for="oip">Owner Independence Program · done for you</div>
       <h1>Book a call with me.</h1>
-      <p class="lead" data-for="vip">45 minutes on <b>where your business still runs through you, what six months of building it into a second brain would change for your margins and your team's capacity, and whether VIP is the right fit.</b></p>
-      <p class="lead" data-for="oip" hidden>45 minutes on the 14-Day Owner Absence Test: <b>where your company routes through you today, what it would take to pass, and whether we're a fit.</b></p>
+      <p class="lead" data-for="vip" hidden>45 minutes on <b>where your business still runs through you, what six months of building it into a second brain would change for your margins and your team's capacity, and whether VIP is the right fit.</b></p>
+      <p class="lead" data-for="oip">45 minutes on the 14-Day Owner Absence Test: <b>where your company routes through you today, what it would take to pass, and whether we're a fit.</b></p>
       <p class="note" id="prefill-note" hidden>I filled in what you told me on your map. Check it and answer the four questions below.</p>
     </div>
 
@@ -191,8 +191,8 @@ s.parentNode.insertBefore(t,s)})();
           <input id="f-goal" name="goal" type="text" maxlength="200" placeholder="For example: client onboarding, proposals, hiring" required>
         </div>
         <div class="field">
-          <label data-for="vip"><span class="qn">4</span>VIP is $2,500 a month for 6 months. If it's the right fit, can you invest that?</label>
-          <label data-for="oip" hidden><span class="qn">4</span>Packages start at $100,000. If it's the right fit, can the business make that investment?</label>
+          <label data-for="vip" hidden><span class="qn">4</span>VIP is $2,500 a month for 6 months. If it's the right fit, can you invest that?</label>
+          <label data-for="oip"><span class="qn">4</span>Packages start at $100,000. If it's the right fit, can the business make that investment?</label>
           <div class="radios">
             <label><input type="radio" name="invest" value="yes" required> Yes</label>
             <label><input type="radio" name="invest" value="depends"> Depends on what's included</label>
@@ -211,8 +211,8 @@ s.parentNode.insertBefore(t,s)})();
     <section class="panel" id="p-call" aria-live="polite">
       <div class="eyebrow">Last step</div>
       <h2>Thanks, <span data-first>there</span>. Pick a time.</h2>
-      <p data-for="vip">45 minutes, just us. <b>Come with the one thing you want running without you.</b> If someone else decides with you, bring them too.</p>
-      <p data-for="oip" hidden>45 minutes. We look at where your company routes through you and what it would take to pass the 14-Day Owner Absence Test. <b>If someone else decides with you, have them on the call too.</b></p>
+      <p data-for="vip" hidden>45 minutes, just us. <b>Come with the one thing you want running without you.</b> If someone else decides with you, bring them too.</p>
+      <p data-for="oip">45 minutes. We look at where your company routes through you and what it would take to pass the 14-Day Owner Absence Test. <b>If someone else decides with you, have them on the call too.</b></p>
       <div class="cal" id="cal"></div>
       <a class="btnlink" id="cal-link" href="#" target="_blank" rel="noopener">Open the calendar in a new tab <span aria-hidden="true">&rarr;</span></a>
       <div class="booked" id="booked"><b>Booked.</b> A confirmation is on its way to your inbox. Talk soon.</div>
@@ -251,7 +251,10 @@ s.parentNode.insertBefore(t,s)})();
   var KCODE={m1:'Under $50k/mo',m2:'Under $50k/mo',m3:'Under $50k/mo',m4:'Under $50k/mo',m5:'$50k to $75k/mo',
              m6:'$75k to $250k/mo',m7:'$250k to $500k/mo',m8:'$500k+/mo'};
   var MAPBAND={'$50k to $75k/mo':1,'$75k to $250k/mo':1,'$250k to $500k/mo':1,'$500k+/mo':1};
-  function track(band){ return (band==='$250k to $500k/mo' || band==='$500k+/mo') ? 'oip' : 'vip'; }
+  /* Nov 20 2026 (messaging audit B2, Puja: "Yes, start the B list"): VIP never gets a call, so the page opens on the
+     Owner Independence copy. Only $50k-$250k/mo is 'vip' (and that goes to /vip/); a call is only for $250k+/mo. */
+  var OIPB={'$250k to $500k/mo':1,'$500k+/mo':1};
+  function track(band){ return (band==='$50k to $75k/mo' || band==='$75k to $250k/mo') ? 'vip' : 'oip'; }
   function sync(){
     var t=track(rev.value);
     document.querySelectorAll('[data-for]').forEach(function(el){ el.hidden = el.getAttribute('data-for')!==t; });
@@ -340,7 +343,7 @@ s.parentNode.insertBefore(t,s)})();
     if(!name || !band || !team || !goal || !invest || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.classList.add('on'); return; }
     var tel=normPhone(raw);
     if(!tel){ terr.classList.add('on'); f.phone.focus(); return; }
-    var t=track(band), fit=(t==='oip' && invest!=='not_now'), route=fit ? 'call' : 'sbm';
+    var t=track(band), fit=(!!OIPB[band] && invest!=='not_now'), route=fit ? 'call' : 'sbm';
     if(t==='vip' && band!=='Under $50k/mo'){ toVip(); return; }
     var first=name.split(/\s+/)[0], utm=utms(), now=Math.floor(Date.now()/1000);
     var d={ name:name, email:email, band:band, track:t };

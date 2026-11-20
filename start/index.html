@@ -105,7 +105,7 @@ s.parentNode.insertBefore(t,s)})();
 
   /* Two sizes */
   .sizes{display:grid; gap:14px; margin:26px 0 0}
-  @media(min-width:640px){.sizes{grid-template-columns:1fr 1fr}}
+  @media(min-width:720px){.sizes{grid-template-columns:repeat(3,1fr)}}
   .size{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:20px 20px 18px}
   .size.you{border:2px solid var(--accent-bright)}
   .size .tag{display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 8px}
@@ -202,10 +202,15 @@ s.parentNode.insertBefore(t,s)})();
         <div class="size">
           <span class="tag">$3M a year and up</span>
           <h3>Done for you</h3>
-          <p>A company with managers. The Owner Independence Program: 120 days, built around the people already there, until the company can run 14 days without the owner. Packages start at $100,000.</p>
+          <p>A company with managers. The Owner Independence Program: 4 to 6 months, built around the people already there, until the company can run 14 days without the owner. Packages start at $100,000.</p>
+        </div>
+        <div class="size">
+          <span class="tag">$600K to $3M a year</span>
+          <h3>Done with you, VIP</h3>
+          <p>A business with a team that still runs through you. Six months with me on your operations, your data and your AI, built around your team. $2,500 a month. <a href="/vip/">See VIP</a></p>
         </div>
         <div class="size you">
-          <span class="tag">Under $3M a year &middot; you</span>
+          <span class="tag">Under $600K a year &middot; you</span>
           <h3>Done with you</h3>
           <p>A business that runs through one head. <b>You build your second brain with me and the group</b>, one live build a month and a working session every week. $250 a month, cancel anytime.</p>
         </div>
@@ -277,7 +282,7 @@ s.parentNode.insertBefore(t,s)})();
       <div class="plan">
         <div class="name">The Second Brain Method</div>
         <div class="amt">$250<small>/month</small></div>
-        <div class="terms">or $2,500/year &middot; cancel anytime</div>
+        <div class="terms">or $650 every 3 months &middot; cancel anytime</div>
         <ul>
           <li>OpMap: your business mapped, a workflow analysis and a 30-day plan</li>
           <li>A deep-dive workshop every month, plus the recording to keep</li>
