@@ -688,7 +688,7 @@ s.parentNode.insertBefore(t,s)})();
       body:'You build your second brain with me and a small group: everything in your head, out and into one place your AI can read and run from. Cancel anytime.',
       href:'/second-brain-method/', cta:'See the program'}),
     vip: card({id:'vip', band:'Done with you · $2,500/mo', title:'VIP Second Brain Method', hi:true,
-      body:'For businesses past $50k a month: six months putting an AI operating system into your business, with your team doing the work, guided by my weekly workshops and a monthly 1:1.',
+      body:'For consulting firms past $50k a month: six months putting an AI operating system into your business, with your team doing the work, guided by my weekly workshops and a monthly 1:1.',
       href:'/vip/', cta:'See the program and apply'}),
     oip: card({id:'oip', band:'Done for you · from $100,000', title:'The Owner Independence Program', hi:true,
       body:'4 to 6 months, built around the managers already in place, until your company can run 14 days without you.',
@@ -710,6 +710,8 @@ s.parentNode.insertBefore(t,s)})();
     if(!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !ind || !rev){ err.hidden=false; return; }
     err.hidden=true;
     var route=ROUTES[rev], industry=(ind==='Other' && indo ? 'Other: '+indo.slice(0,80) : ind), now=Math.floor(Date.now()/1000);
+    /* Puja, Nov 20 2026 ("i think consulting only", from the December group on): VIP is for consulting firms. Other $50k-$250k/mo businesses get the Second Brain Method card. */
+    if(route==='vip' && !/consult/i.test(industry)) route='sbm';
     try{ localStorage.setItem('sbm_email', email); }catch(x){}
     try{ if(window._cio){
       _cio.identify({ id:email, email:email, first_name:name.split(/\s+/)[0], full_name:name.slice(0,120),

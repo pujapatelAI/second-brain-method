@@ -1723,7 +1723,8 @@ s.parentNode.insertBefore(t,s)})();
       document.body.insertBefore(b, document.body.firstChild);
       try{ if(window._cio) _cio.track('map_oip_route',{ monthly_revenue_band:rev }); }catch(x){}
     }
-    if((rev==='$50k to $75k/mo' || rev==='$75k to $250k/mo') && window.ppVipInvite){ window.ppVipInvite(rev, true); }
+    /* Puja, Nov 20 2026 ("i think consulting only", from the December group on): VIP is for consulting firms. Other $50k-$250k/mo owners get the $77 screen like everyone else. */
+    if((rev==='$50k to $75k/mo' || rev==='$75k to $250k/mo') && window.ppVipInvite && window.ppConsult && window.ppConsult()){ window.ppVipInvite(rev, true); }
   });
 })();
 </script>
@@ -1734,6 +1735,8 @@ s.parentNode.insertBefore(t,s)})();
    because the gate script above stops early for anyone already unlocked (?open=1 links, returning visitors),
    and those are exactly the leads who should see the banner when they come back. */
 (function(){
+  /* Puja, Nov 20 2026 ("i think consulting only", from the December group on): VIP is for consulting firms. The industry they picked on the map is in pp_lead (this browser only). */
+  window.ppConsult=function(){ try{ var l=JSON.parse(localStorage.getItem('pp_lead')||'{}')||{}; return /consult/i.test(l.industry||''); }catch(x){ return false; } };
   window.ppVipInvite=function(rev, fresh){
     if(document.getElementById('vip-invite')) return;
     try{ if(window.fbq) fbq('trackCustom','VIPFit'); }catch(x){}
@@ -1746,8 +1749,10 @@ s.parentNode.insertBefore(t,s)})();
   try{
     var vk=new URLSearchParams(location.search).get('k'), vb=localStorage.getItem('pp_band')||'';
     var VB={m5:'$50k to $75k/mo', m6:'$75k to $250k/mo'};
-    if(VB[vk]) window.ppVipInvite(VB[vk], false);
-    else if(!vk && (vb==='$50k to $75k/mo' || vb==='$75k to $250k/mo')) window.ppVipInvite(vb, false);
+    if(window.ppConsult()){
+      if(VB[vk]) window.ppVipInvite(VB[vk], false);
+      else if(!vk && (vb==='$50k to $75k/mo' || vb==='$75k to $250k/mo')) window.ppVipInvite(vb, false);
+    }
   }catch(x){}
 })();
 </script>
@@ -1849,11 +1854,11 @@ s.parentNode.insertBefore(t,s)})();
         oto.querySelector('.skip').addEventListener('click', function(){ oto.hidden=true; document.documentElement.style.overflow=''; window.scrollTo(0,0); });
         return;
       }
-      if((rev==='$50k to $75k/mo' || rev==='$75k to $250k/mo') && oto){
+      if((rev==='$50k to $75k/mo' || rev==='$75k to $250k/mo') && oto && window.ppConsult && window.ppConsult()){
         oto.querySelector('.otocard').innerHTML=
           '<div class="ok">&#10003; your map is unlocked</div>'+
           '<h2 id="oto-h">At your size, you\'re invited to a free private workshop.</h2>'+
-          '<p>I run a private Second Brain Workshop for a small group of owners past $50k a month. It\'s free and invitation only, and it\'s where I open the 5 seats in my six-month VIP program.</p>'+
+          '<p>I run a private Second Brain Workshop for a small group of consulting firm owners past $50k a month. It\'s free and invitation only, and it\'s where I open the 5 seats in my six-month VIP program.</p>'+
           '<p class="pp-one">One of my members, an events-planning co-owner with an 11-person team, set hers up live with me. Working from her own files, Claude drafted a proposal for one of her real clients in about 45 seconds.</p>'+
           '<a class="btn" href="/vip/" data-track="map-unlock-to-vip">see your invitation &rarr;</a>'+
           '<p style="margin:10px 0 0;font-size:14.5px;text-align:center">Your answers carry over, so you won\'t type them twice.</p>'+

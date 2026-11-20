@@ -7,13 +7,13 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2JTHK29BD"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y2JTHK29BD');</script>
 <title>VIP Second Brain Method · Puja Patel</title>
-<meta name="description" content="A free, exclusive Second Brain Workshop that teaches your business to your AI, for owners past $50k a month. It is also where I open the 5 seats in my six-month VIP program: $2,500 a month, 6-month minimum.">
+<meta name="description" content="A free, exclusive Second Brain Workshop that teaches your business to your AI, for consulting firm owners past $50k a month. It is also where I open the 5 seats in my six-month VIP program: $2,500 a month, 6-month minimum.">
 <link rel="canonical" href="https://puja-patel.com/vip/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://puja-patel.com/vip/">
 <meta property="og:title" content="VIP Second Brain Method · Puja Patel">
-<meta property="og:description" content="A free, exclusive Second Brain Workshop that teaches your business to your AI. By invitation, for owners past $50k a month.">
+<meta property="og:description" content="A free, exclusive Second Brain Workshop that teaches your business to your AI. By invitation, for consulting firm owners past $50k a month.">
 <meta property="og:image" content="https://puja-patel.com/assets/og_card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -29,7 +29,7 @@
  "url": "https://puja-patel.com/vip/",
  "name": "VIP Second Brain Method",
  "isPartOf": { "@id": "https://puja-patel.com/#website" },
- "description": "A six-month program for owners past $50k a month that puts an AI operating system into the business, with the team doing the work: a private 1:1 kickoff with the verdict, a six-month plan, a weekly implementation workshop, a monthly 1:1 strategy call, a scorecard on day 1, 90 and 180, and an AI curriculum for the owner and the team. $2,500 a month, 6-month minimum, 5 seats."
+ "description": "A six-month program for consulting firms past $50k a month that puts an AI operating system into the business, with the team doing the work: a private 1:1 kickoff with the verdict, a six-month plan, a weekly implementation workshop, a monthly 1:1 strategy call, a scorecard on day 1, 90 and 180, and an AI curriculum for the owner and the team. $2,500 a month, 6-month minimum, 5 seats."
 }
 </script>
 <!-- Microsoft Clarity: project "Second Brain Method" (xni1glpbqz) -->
@@ -254,12 +254,12 @@ window.VIP_CONFIG = {
 
 <main>
   <div class="wrap">
-    <p class="other">Looking for the $250 Membership? <a href="/membership/">It's here &rarr;</a></p>
+    <p class="other">VIP is for consulting firms. Running a different kind of service business? <a href="/second-brain-method/">The $250 Second Brain Method is where I'd start &rarr;</a></p>
 
     <div class="intro">
       <div class="eyebrow">Free · Private · Invitation only</div>
       <h1>A free, exclusive Second Brain Workshop that teaches your business to your AI.</h1>
-      <p class="lead">Live with me, in a small private group of owners past $50k a month. <b>You leave with your second brain set up and running.</b></p>
+      <p class="lead">Live with me, in a small private group of consulting firm owners past $50k a month. <b>You leave with your second brain set up and running.</b></p>
       <a class="btnlink" href="#apply">Apply for the free workshop <span aria-hidden="true">&rarr;</span></a>
       <p class="under open-only">Mon Nov 30 · 2pm ET · online. Applications close Fri Nov 27.</p>
       <p class="under closed-note">Applications for the Mon Nov 30 workshop are closed. Apply now and I'll invite you to the next one.</p>
@@ -276,7 +276,7 @@ window.VIP_CONFIG = {
       <div class="eyebrow">The workshop</div>
       <h2>A free private workshop. Invitation only.</h2>
       <p class="freeline open-only"><span class="free">Free</span><span>Mon Nov 30 · 2pm ET · online</span></p>
-      <p class="sub open-only">It's my Second Brain Workshop, run privately for a small group of owners at this level. It costs nothing to attend.</p>
+      <p class="sub open-only">It's my Second Brain Workshop, run privately for a small group of consulting firm owners at this level. It costs nothing to attend.</p>
       <p class="sub closed-note">Applications for the Mon Nov 30 workshop are closed. Apply below and I'll invite you to the next one.</p>
       <div class="card">
         <p style="margin:0"><b>You leave with your second brain set up and running.</b></p>
@@ -634,7 +634,8 @@ window.VIP_CONFIG = {
     }catch(x){}
     /* VIPFit carries nothing (Meta blocks audiences built on revenue). It exists so the $77 retargeting ads
        can exclude owners at this level (Puja, Nov 14 2026: "make sure they don't get the retargeting 77 ads"). */
-    if(band==='$50k to $75k/mo' || band==='$75k to $250k/mo'){ try{ if(window.fbq) fbq('trackCustom','VIPFit'); }catch(x){} }
+    /* Nov 20 2026: VIP is consulting firms only, so a known non-consulting industry stays in the $77 retargeting. */
+    if((band==='$50k to $75k/mo' || band==='$75k to $250k/mo') && (!lead.industry || /consult/i.test(lead.industry))){ try{ if(window.fbq) fbq('trackCustom','VIPFit'); }catch(x){} }
   })();
   function normPhone(v){
     var s=(v||'').trim(), d=s.replace(/\D/g,'');
