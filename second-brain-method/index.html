@@ -1028,7 +1028,7 @@ s.parentNode.insertBefore(t,s)})();
        2026-08-29 minimal redesign so the Circle date automation still updates the countdown
        (WS-DATES) without erroring on missing schedule cards. Not displayed to visitors. -->
   <div hidden aria-hidden="true">
-    <div class="sched-dates" data-ws-slot="workshop">Nov 23</div>
+    <div class="sched-dates" data-ws-slot="workshop">Nov 23 · Dec 7</div>
     <div class="sched-dates" data-ws-slot="thursday">Dec 10 · Jan 7 · 14 · 28</div>
     <div class="sched-dates" data-ws-slot="deepdive">New dates soon</div>
   </div>
@@ -1098,7 +1098,7 @@ s.parentNode.insertBefore(t,s)})();
   // errors if they are missing. With no strip on the page this only sets the scroll padding.
   var WORKSHOPS = [
     /* WS-DATES:START (auto-managed by apps/command/sbm_landing_dates_sync.py — do not hand-edit) */
-    '2026-11-23T19:00:00Z'
+    '2026-11-23T19:00:00Z','2026-12-07T19:00:00Z'
     /* WS-DATES:END */
   ].map(function(s){ return new Date(s).getTime(); });
   var bar = document.querySelector('.bar');
