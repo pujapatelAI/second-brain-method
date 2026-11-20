@@ -231,6 +231,11 @@
   .bonus77 li.hot b{color:var(--accent)}
   .cta a.btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:15.5px;padding:13px 22px;border-radius:3px;text-decoration:none}
 
+  /* SMS consent box (Nov 20 2026): optional, never pre-ticked, never restored from a draft. */
+  .smsok{display:flex !important; gap:10px; align-items:flex-start; font-size:12.5px !important; line-height:1.5; font-weight:400 !important; color:var(--ink-soft); margin:10px 0 6px !important; cursor:pointer; text-transform:none; letter-spacing:0}
+  .smsok input[type=checkbox]{flex:none; width:18px !important; height:18px; margin:1px 0 0 !important; padding:0 !important; accent-color:var(--accent-bright)}
+  .smsok b{color:var(--ink); font-weight:600}
+  .smsok a{color:inherit; text-decoration:underline}
 </style>
 <!-- Link Analyzer: visit + click tracking (assets/visits.js) -->
 <script src="/assets/visits.js" defer></script>
@@ -280,6 +285,7 @@ s.parentNode.insertBefore(t,s)})();
     <input id="g-email" name="email" type="email" autocomplete="email" required>
     <label for="g-phone">Mobile number</label>
     <input id="g-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required>
+    <label class="smsok" for="g-sms"><input type="checkbox" id="g-sms" name="sms_consent" value="yes"><span><b>Text me</b> (optional). I agree to get texts from Puja Patel LLC about my Systems Map and Puja's programs, including marketing texts sent with automated technology. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. <a href="/terms/" target="_blank" rel="noopener">Terms</a> · <a href="/privacy.html" target="_blank" rel="noopener">Privacy</a></span></label>
     <label for="g-ind">Industry</label>
     <select id="g-ind" name="industry" required>
       <option value="">Select…</option>
@@ -331,7 +337,7 @@ s.parentNode.insertBefore(t,s)})();
     <p class="err" id="g-err">please fill in every field.</p>
     <p class="err" id="g-tel-err">that doesn't look like a mobile number. outside the US? start with + and your country code.</p>
   </form>
-  <p class="fine">By adding your number, you agree to get texts and calls from Puja Patel and her team. Msg &amp; data rates may apply. Reply STOP anytime. <a href="/privacy.html">Privacy</a></p>
+  <p class="fine"><a href="/privacy.html">Privacy</a> · <a href="/terms/">Terms</a></p>
 </div></div>
 
 
@@ -1644,6 +1650,7 @@ s.parentNode.insertBefore(t,s)})();
       /* Puja, Nov 14 2026: /vip/ fills in what they already answered here (same browser only; nothing goes in a URL). */
       try{ localStorage.setItem('pp_lead', JSON.stringify({ name:name, phone:tel, industry:(ind==='Other' ? indo : ind) })); }catch(x){}
       var params=new URLSearchParams(window.location.search), now=Math.floor(Date.now()/1000);
+      var sms=!!(f.sms_consent && f.sms_consent.checked);
       try{ clarity('event','systems_map_optin'); }catch(x){}
       /* Meta: MapSignup = every sign-up (reporting + audiences). SubmitApplication =
          only $5k-$30k/mo (since Nov 19; was $10k-$30k), the one event the SBM ads optimize on, so Meta
@@ -1681,11 +1688,14 @@ s.parentNode.insertBefore(t,s)})();
       }catch(x){}
       try{
         if(window._cio){
-          _cio.identify({ id:email, email:email, first_name:name.split(/\s+/)[0], full_name:name.slice(0,120),
+          var person={ id:email, email:email, first_name:name.split(/\s+/)[0], full_name:name.slice(0,120),
             industry:(ind==='Other' ? 'Other: '+indo.slice(0,80) : ind), monthly_revenue_band:rev, monthly_revenue_detail:revd, mobile_phone:tel,
-            systems_map_lead:true, systems_map_optin_at:now, join_250_answer:join });
+            systems_map_lead:true, systems_map_optin_at:now, join_250_answer:join };
+          /* Text consent is recorded only when ticked; an unticked box never clears an earlier yes. */
+          if(sms){ person.sms_consent=true; person.sms_consent_at=now; person.sms_consent_source='map'; person.sms_consent_version='sms-v1-2026-11-20'; }
+          _cio.identify(person);
           _cio.track('systems_map_optin',{ utm_source:params.get('utm_source')||'', utm_medium:params.get('utm_medium')||'',
-            utm_campaign:params.get('utm_campaign')||'' });
+            utm_campaign:params.get('utm_campaign')||'', sms_consent:(sms?'yes':'no') });
         }
       }catch(x){}
       try{
@@ -1694,6 +1704,7 @@ s.parentNode.insertBefore(t,s)})();
         fd.append('name',name); fd.append('email',email); fd.append('phone',tel);
         fd.append('industry',ind==='Other' ? 'Other: '+indo : ind); fd.append('monthly_revenue',rev); fd.append('revenue_detail',revd);
         fd.append('utm_source',params.get('utm_source')||''); fd.append('join_250',join);
+        fd.append('sms_consent', sms ? 'yes (ticked the text box, sms-v1-2026-11-20)' : 'no');
         fetch('https://formsubmit.co/ajax/info@puja-patel.com',{ method:'POST', headers:{'Accept':'application/json'}, body:fd, keepalive:true }).catch(function(){});
       }catch(x){}
     }

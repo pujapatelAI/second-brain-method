@@ -134,6 +134,11 @@ s.parentNode.insertBefore(t,s)})();
   .qs{margin:8px 0 6px; padding:18px 0 2px; border-top:1px solid var(--line)}
   .qn{display:inline-grid; place-items:center; width:22px; height:22px; margin-right:8px; border-radius:50%; background:var(--accent-bright); color:var(--on-accent); font-size:.78rem; font-weight:700; vertical-align:1px}
   input[type=text]::placeholder{color:var(--ink-soft); opacity:.8}
+  /* SMS consent box (Nov 20 2026): optional, never pre-ticked, never restored from a draft. */
+  .smsok{display:flex !important; gap:10px; align-items:flex-start; font-size:12.5px !important; line-height:1.5; font-weight:400 !important; color:var(--ink-soft); margin:10px 0 6px !important; cursor:pointer; text-transform:none; letter-spacing:0}
+  .smsok input[type=checkbox]{flex:none; width:18px !important; height:18px; margin:1px 0 0 !important; padding:0 !important; accent-color:var(--accent-bright)}
+  .smsok b{color:var(--ink); font-weight:600}
+  .smsok a{color:inherit; text-decoration:underline}
 </style>
 </head>
 <body>
@@ -161,7 +166,8 @@ s.parentNode.insertBefore(t,s)})();
         <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
         <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
       </div>
-      <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required></div>
+      <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required>
+        <label class="smsok" for="f-sms"><input type="checkbox" id="f-sms" name="sms_consent" value="yes"><span><b>Text me</b> (optional). I agree to get texts from Puja Patel LLC about my call and Puja's programs, including marketing texts sent with automated technology. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. <a href="/terms/" target="_blank" rel="noopener">Terms</a> · <a href="/privacy.html" target="_blank" rel="noopener">Privacy</a></span></label></div>
 
       <div class="qs">
         <div class="field">
@@ -346,6 +352,7 @@ s.parentNode.insertBefore(t,s)})();
     var t=track(band), fit=(!!OIPB[band] && invest!=='not_now'), route=fit ? 'call' : 'sbm';
     if(t==='vip' && band!=='Under $50k/mo'){ toVip(); return; }
     var first=name.split(/\s+/)[0], utm=utms(), now=Math.floor(Date.now()/1000);
+    var sms=!!(f.sms_consent && f.sms_consent.checked);
     var d={ name:name, email:email, band:band, track:t };
     document.getElementById('submit').disabled=true;
     if(!f._honey.value){
@@ -355,9 +362,11 @@ s.parentNode.insertBefore(t,s)})();
       try{ if(window.gtag) gtag('event','generate_lead',{ form:'book', program:t, route:route }); }catch(x){}
       try{
         if(window._cio){
-          _cio.identify({ id:email, email:email, first_name:first, full_name:name.slice(0,120), mobile_phone:tel,
+          var person={ id:email, email:email, first_name:first, full_name:name.slice(0,120), mobile_phone:tel,
             call_requested_at:now, call_track:t, call_route:route, call_revenue_band:band, call_team_size:team,
-            call_goal:goal, call_investment:invest });
+            call_goal:goal, call_investment:invest };
+          if(sms){ person.sms_consent=true; person.sms_consent_at=now; person.sms_consent_source='book'; person.sms_consent_version='sms-v1-2026-11-20'; }
+          _cio.identify(person);
           _cio.track('call_request',{ track:t, route:route, revenue_band:band, team_size:team, goal:goal, investment:invest,
             utm_source:utm.utm_source, utm_medium:utm.utm_medium, utm_campaign:utm.utm_campaign, utm_content:utm.utm_content });
         }
@@ -367,6 +376,7 @@ s.parentNode.insertBefore(t,s)})();
         fd.append('_subject','Call request ('+t.toUpperCase()+'): '+band+(route==='call'?' (picking a time)':' (sent to SBM)')); fd.append('_captcha','false');
         fd.append('name',name); fd.append('email',email); fd.append('phone',tel); fd.append('monthly_revenue',band);
         fd.append('team_size',team); fd.append('wants_running_without_them',goal); fd.append('investment',invest); fd.append('route',route);
+        fd.append('sms_consent', sms ? 'yes (ticked the text box, sms-v1-2026-11-20)' : 'no');
         fd.append('utm_source',utm.utm_source); fd.append('utm_campaign',utm.utm_campaign);
         fetch(CFG.LEAD_WEBHOOK_URL,{ method:'POST', headers:{'Accept':'application/json'}, body:fd, keepalive:true }).catch(function(){});
       }catch(x){}

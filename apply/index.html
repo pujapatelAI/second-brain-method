@@ -162,6 +162,11 @@ window.APPLY_CONFIG = {
   footer .wrap{display:flex; flex-wrap:wrap; gap:8px 18px; justify-content:space-between}
   footer a{color:var(--footer-ink); text-decoration:none}
   footer .soft{color:var(--footer-soft)}
+  /* SMS consent box (Nov 20 2026): optional, never pre-ticked, never restored from a draft. */
+  .smsok{display:flex !important; gap:10px; align-items:flex-start; font-size:12.5px !important; line-height:1.5; font-weight:400 !important; color:var(--ink-soft); margin:10px 0 6px !important; cursor:pointer; text-transform:none; letter-spacing:0}
+  .smsok input[type=checkbox]{flex:none; width:18px !important; height:18px; margin:1px 0 0 !important; padding:0 !important; accent-color:var(--accent-bright)}
+  .smsok b{color:var(--ink); font-weight:600}
+  .smsok a{color:inherit; text-decoration:underline}
 </style>
 <style>.pp-proof{margin-top:8px}.pp-proof .pp-eye{display:block;font:600 12px/1.3 -apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent,#A24A28);margin:0 0 8px}.pp-proof .pp-lead{color:var(--ink-soft,#8A7C6E);max-width:62ch;margin:6px 0 0}.pp-stories{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:18px}.pp-story{background:var(--surface,#FBF7F1);border:1px solid var(--line,#DED3C4);border-top:3px solid var(--accent-bright,#B0532F);border-radius:10px;padding:18px 18px 16px;text-align:left}.pp-story .pp-who{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:1.04rem;line-height:1.3;margin:0 0 8px;color:var(--ink,#2A2320)}.pp-story p{margin:0;font-size:15px;line-height:1.55;color:var(--ink,#2A2320)}.pp-one{margin:12px 0;padding:12px 14px;background:var(--ground,#EFE8DE);border-left:3px solid var(--accent-bright,#B0532F);border-radius:6px;font-size:14.5px;line-height:1.5;text-align:left}.pp-stats{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:12px}.pp-stat{background:var(--surface,#FBF7F1);border:1px solid var(--line,#DED3C4);border-radius:8px;padding:12px 14px}.pp-stat b{display:block;font-family:Georgia,serif;font-size:1.5rem;line-height:1.1;color:var(--accent,#A24A28)}.pp-stat span{font-size:14px;line-height:1.45}</style>
 </head>
@@ -204,7 +209,7 @@ window.APPLY_CONFIG = {
         <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
       </div>
       <div class="row">
-        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required></div>
+        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required><label class="smsok" for="f-sms"><input type="checkbox" id="f-sms" name="sms_consent" value="yes"><span><b>Text me</b> (optional). I agree to get texts from Puja Patel LLC about my application and Puja's programs, including marketing texts sent with automated technology. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. <a href="/terms/" target="_blank" rel="noopener">Terms</a> · <a href="/privacy.html" target="_blank" rel="noopener">Privacy</a></span></label></div>
         <div class="field"><label for="f-web">Company website</label><input id="f-web" name="website" type="text" autocomplete="url" inputmode="url" placeholder="yourcompany.com" required></div>
       </div>
       <div class="row">
@@ -411,6 +416,7 @@ window.APPLY_CONFIG = {
     /* Nov 20 2026 (messaging audit B4): $1M-$3M a year is VIP's band ($50k-$250k a month), not the $250 plan. */
     var route=!qualified ? (band==='$1M to $3M' ? 'vip' : 'sbm') : (dm==='yes' ? 'call' : 'owner');
     var first=name.split(/\s+/)[0], utm=utms(), now=Math.floor(Date.now()/1000);
+    var sms=!!(f.sms_consent && f.sms_consent.checked);
     var d={name:name, email:email, band:band, utm:utm};
     document.getElementById('submit').disabled=true;
     if(!f._honey.value){
@@ -433,13 +439,14 @@ window.APPLY_CONFIG = {
           var person={ id:email, email:email, first_name:first, full_name:name.slice(0,120), mobile_phone:tel,
             company_website:site.slice(0,120), annual_revenue_band:band, decision_maker:(dm==='yes'), heard_from:heard,
             consulting_applicant:true, consulting_applied_at:now, consulting_route:route };
+          if(sms){ person.sms_consent=true; person.sms_consent_at=now; person.sms_consent_source='apply'; person.sms_consent_version='sms-v1-2026-11-20'; }
           /* The $3M+ answers only when asked, so an under-$3M application never blanks earlier answers. */
           if(qualified){ person.profit_margin_band=q.margin; person.team_size_band=q.team; person.management_layer=q.mgr;
             person.fourteen_day_answer=q.days; person.investment_ready=q.invest; }
           _cio.identify(person);
           _cio.track('consulting_application',{ revenue_band:band, decision_maker:dm, route:route, heard_from:heard,
             profit_margin:q.margin, team_size:q.team, management:q.mgr, fourteen_days:q.days, investment:q.invest,
-            utm_source:utm.utm_source, utm_medium:utm.utm_medium, utm_campaign:utm.utm_campaign, utm_content:utm.utm_content });
+            utm_source:utm.utm_source, utm_medium:utm.utm_medium, utm_campaign:utm.utm_campaign, utm_content:utm.utm_content, sms_consent:(sms?'yes':'no') });
         }
       }catch(x){}
       try{
@@ -447,6 +454,7 @@ window.APPLY_CONFIG = {
         fd.append('_subject','Consulting application: '+band+(route==='call'?' (booking)':route==='owner'?' (not the decision maker)':route==='vip'?' (sent to VIP)':' (sent to SBM)')); fd.append('_captcha','false');
         fd.append('name',name); fd.append('email',email); fd.append('phone',tel); fd.append('website',site);
         fd.append('decision_maker',dm); fd.append('annual_revenue',band); fd.append('heard_from',heard); fd.append('route',route);
+        fd.append('sms_consent', sms ? 'yes (ticked the text box, sms-v1-2026-11-20)' : 'no');
         if(qualified){ fd.append('profit_margin',q.margin); fd.append('team_size',q.team); fd.append('management',q.mgr); fd.append('fourteen_days',q.days); fd.append('investment_100k',q.invest); }
         fd.append('utm_source',utm.utm_source); fd.append('utm_campaign',utm.utm_campaign);
         fetch(CFG.LEAD_WEBHOOK_URL,{ method:'POST', headers:{'Accept':'application/json'}, body:fd, keepalive:true }).catch(function(){});

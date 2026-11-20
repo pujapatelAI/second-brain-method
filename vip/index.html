@@ -247,6 +247,11 @@ window.VIP_CONFIG = {
   footer .wrap{display:flex; flex-wrap:wrap; gap:8px 18px; justify-content:space-between}
   footer a{color:var(--footer-ink); text-decoration:none}
   footer .soft{color:var(--footer-soft)}
+  /* SMS consent box (Nov 20 2026): optional, never pre-ticked, never restored from a draft. */
+  .smsok{display:flex !important; gap:10px; align-items:flex-start; font-size:12.5px !important; line-height:1.5; font-weight:400 !important; color:var(--ink-soft); margin:10px 0 6px !important; cursor:pointer; text-transform:none; letter-spacing:0}
+  .smsok input[type=checkbox]{flex:none; width:18px !important; height:18px; margin:1px 0 0 !important; padding:0 !important; accent-color:var(--accent-bright)}
+  .smsok b{color:var(--ink); font-weight:600}
+  .smsok a{color:inherit; text-decoration:underline}
 </style>
 </head>
 <body>
@@ -430,7 +435,7 @@ window.VIP_CONFIG = {
             <div class="field" data-req="email"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email"></div>
           </div>
           <div class="row">
-            <div class="field" data-req="phone"><label for="f-phone">Mobile phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24"></div>
+            <div class="field" data-req="phone"><label for="f-phone">Mobile phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24"><label class="smsok" for="f-sms"><input type="checkbox" id="f-sms" name="sms_consent" value="yes"><span><b>Text me</b> (optional). I agree to get texts from Puja Patel LLC about my VIP application and Puja's programs, including marketing texts sent with automated technology. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. <a href="/terms/" target="_blank" rel="noopener">Terms</a> · <a href="/privacy.html" target="_blank" rel="noopener">Privacy</a></span></label></div>
             <div class="field" data-req="business"><label for="f-biz">Business name</label><input id="f-biz" name="business" type="text" autocomplete="organization"></div>
           </div>
           <div class="field" data-req="website"><label for="f-web">Website <span class="opt">(or your main social profile)</span></label><input id="f-web" name="website" type="text" autocomplete="url" inputmode="url" placeholder="yourcompany.com"></div>
@@ -726,7 +731,7 @@ window.VIP_CONFIG = {
     try{
       var v={};
       Array.prototype.forEach.call(form.elements, function(el){
-        if(!el.name || el.name==='_honey') return;
+        if(!el.name || el.name==='_honey' || el.name==='sms_consent') return;
         if(el.type==='radio'){ if(el.checked) v[el.name]=el.value; }
         else if(el.type==='checkbox'){ if(el.checked) (v[el.name]=v[el.name]||[]).push(el.value); }
         else if(el.value) v[el.name]=el.value;
@@ -777,6 +782,8 @@ window.VIP_CONFIG = {
           person.first_name=nm.split(/\s+/)[0]; person.full_name=cut(nm,120); person.mobile_phone=normPhone(val('phone'));
           person.business_name=cut(val('business'),120); person.company_website=cut(val('website'),120);
           person.vip_application_started=true; person.vip_application_started_at=Math.floor(Date.now()/1000);
+          var sms=!!(form.elements.sms_consent && form.elements.sms_consent.checked);
+          if(sms){ person.sms_consent=true; person.sms_consent_at=person.vip_application_started_at; person.sms_consent_source='vip'; person.sms_consent_version='sms-v1-2026-11-20'; }
         }
         _cio.identify(person);
         var ev={ step:i+1, of:steps.length };
@@ -826,6 +833,7 @@ window.VIP_CONFIG = {
       flag(form, bad); return;
     }
     var tel=normPhone(val('phone'));
+    var sms=!!(form.elements.sms_consent && form.elements.sms_consent.checked);
 
     var name=val('name'), email=val('email').toLowerCase(), first=name.split(/\s+/)[0];
     var a={ decision_maker:radio('decision_maker'), business:val('business'), website:val('website'), what:val('what'),
@@ -861,12 +869,14 @@ window.VIP_CONFIG = {
       try{ if(window.gtag){ gtag('event','generate_lead',{ form:'vip_apply', revenue_band:a.revenue, investment:a.investment }); } }catch(x){}
       try{
         if(window._cio){
-          _cio.identify({ id:email, email:email, first_name:first, full_name:cut(name,120), mobile_phone:tel,
+          var vp={ id:email, email:email, first_name:first, full_name:cut(name,120), mobile_phone:tel,
             business_name:cut(a.business,120), company_website:cut(a.website,120),
             vip_applicant:true, vip_applied_at:now, vip_cohort:cohort, vip_revenue_band:a.revenue, vip_team_size:a.team,
             vip_decision_maker:(a.decision_maker==='yes'), vip_investment:a.investment, vip_can_attend:a.can_attend, vip_can_dec15:a.can_dec15,
             vip_start:a.start, vip_time_ok:a.time_ok, vip_heard_from:a.heard,
-            vip_meta_event_id:qid, vip_meta_fbp:ck('_fbp'), vip_meta_fbc:ck('_fbc'), vip_meta_ua:cut(navigator.userAgent,300) });
+            vip_meta_event_id:qid, vip_meta_fbp:ck('_fbp'), vip_meta_fbc:ck('_fbc'), vip_meta_ua:cut(navigator.userAgent,300) };
+          if(sms){ vp.sms_consent=true; vp.sms_consent_at=now; vp.sms_consent_source='vip'; vp.sms_consent_version='sms-v1-2026-11-20'; }
+          _cio.identify(vp);
           var ev={ cohort:cohort, utm_source:utm.utm_source, utm_medium:utm.utm_medium, utm_campaign:utm.utm_campaign, utm_content:utm.utm_content };
           Object.keys(a).forEach(function(k){ ev[k]=cut(a[k],1000); });
           _cio.track('vip_application', ev);
@@ -877,6 +887,7 @@ window.VIP_CONFIG = {
         fd.append('_subject','VIP application: '+a.business+' · '+a.revenue+' · $2,500 workable: '+a.investment);
         fd.append('_captcha','false'); fd.append('_template','table');
         fd.append('name',name); fd.append('email',email); fd.append('phone',tel); fd.append('cohort',cohort);
+        fd.append('sms_consent', sms ? 'yes (ticked the text box, sms-v1-2026-11-20)' : 'no');
         Object.keys(a).forEach(function(k){ fd.append(k, a[k]); });
         fd.append('utm_source',utm.utm_source); fd.append('utm_campaign',utm.utm_campaign); fd.append('utm_content',utm.utm_content);
         fetch(CFG.LEAD_WEBHOOK_URL,{ method:'POST', headers:{'Accept':'application/json'}, body:fd, keepalive:true }).catch(function(){});
