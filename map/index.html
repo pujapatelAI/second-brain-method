@@ -283,6 +283,7 @@ s.parentNode.insertBefore(t,s)})();
     <input id="g-name" name="name" autocomplete="name" required>
     <label for="g-email">Business email</label>
     <input id="g-email" name="email" type="email" autocomplete="email" required>
+    <p class="err" id="g-email-hint"></p>
     <label for="g-phone">Mobile number</label>
     <input id="g-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required>
     <label class="smsok" for="g-sms"><input type="checkbox" id="g-sms" name="sms_consent" value="yes"><span><b>Text me</b> (optional). I agree to get texts from Puja Patel LLC about my Systems Map and Puja's programs, including marketing texts sent with automated technology. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. <a href="/terms/" target="_blank" rel="noopener">Terms</a> · <a href="/privacy.html" target="_blank" rel="noopener">Privacy</a></span></label>
@@ -1633,6 +1634,63 @@ s.parentNode.insertBefore(t,s)})();
     showJoin();
   });
   form.revenue_detail.addEventListener('change', showJoin);
+  /* Puja, Nov 21 2026 (email opens review, "Turn on all 5"): catch email typos before sign-up. 63 sign-ups like
+     name@gmail.con never got a single email (and the daily email kept trying). A misspelled gmail/yahoo/etc. gets
+     "did you mean"; any other domain is looked up (dns.google, the domain only, never the address) and a domain that
+     doesn't exist gets "is it spelled right?". They can always keep going. Slow or failed lookups never block. */
+  var EMAIL_OK='', CHECKING='', PROVIDERS=['gmail','yahoo','hotmail','outlook','icloud','aol','comcast','sbcglobal','verizon','protonmail','bellsouth'],
+      REAL=['email','mail','ymail','gmx','aim','live','me','mac','msn','att','cox'], BADTLD=['con','cmo','ocm','vom','xom','comm','cpm','cim','coom','comn'];
+  function osa(x,y){ var d=[],i,j; for(i=0;i<=x.length;i++){ d[i]=[i]; } for(j=0;j<=y.length;j++){ d[0][j]=j; }
+    for(i=1;i<=x.length;i++) for(j=1;j<=y.length;j++){ var c=x[i-1]===y[j-1]?0:1;
+      d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+c);
+      if(i>1&&j>1&&x[i-1]===y[j-2]&&x[i-2]===y[j-1]) d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1); }
+    return d[x.length][y.length]; }
+  function fixDomain(dom){
+    var parts=dom.split('.'), tld=parts.pop(), name=parts.join('.');
+    if(!name) return '';
+    if(PROVIDERS.indexOf(name)>=0) return (tld==='com'||(name==='comcast'||name==='sbcglobal'||name==='verizon'||name==='bellsouth')&&tld==='net') ? '' :
+      (['co','con','cm','cmo','om','ocm','vom','xom','comm','cpm','cim','c','coom','comn'].indexOf(tld)>=0 ? name+'.'+(['comcast','sbcglobal','verizon','bellsouth'].indexOf(name)>=0?'net':'com') : '');
+    if(REAL.indexOf(name)<0 && parts.length===1){
+      for(var k=0;k<PROVIDERS.length;k++){ var pv=PROVIDERS[k], lim=pv.length<=5?1:2;
+        if(pv.length>3 && osa(name,pv)<=lim && (tld==='com'||BADTLD.indexOf(tld)>=0||tld==='co'||tld==='cm'||tld==='om'||tld==='net'))
+          return pv+'.'+(['comcast','sbcglobal','verizon','bellsouth'].indexOf(pv)>=0?'net':'com'); }
+    }
+    if(BADTLD.indexOf(tld)>=0) return name+'.com';
+    return '';
+  }
+  function emailHint(html, fixed, email){
+    var h=document.getElementById('g-email-hint');
+    h.innerHTML=html+' '+(fixed ? '<a href="#" data-a="fix" style="color:inherit;text-decoration:underline">yes, use that</a> · ' : '')+
+      '<a href="#" data-a="keep" style="color:inherit;text-decoration:underline">'+(fixed?'no, mine is right':'it\'s right, keep going')+'</a>';
+    h.style.display='block';
+    h.onclick=function(ev){ var t=ev.target.getAttribute && ev.target.getAttribute('data-a'); if(!t) return; ev.preventDefault();
+      if(t==='fix'){ form.email.value=fixed; EMAIL_OK=fixed; try{ clarity('event','map_email_typo_fixed'); }catch(x){} }
+      else { EMAIL_OK=email; try{ clarity('event','map_email_typo_kept'); }catch(x){} }
+      h.style.display='none'; resubmit(); };
+  }
+  function resubmit(){ if(form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit',{cancelable:true})); }
+  /* true = hold the sign-up (a hint is showing, or the lookup is running and will resubmit) */
+  function emailHeld(email){
+    if(email===EMAIL_OK) return false;
+    var at=email.lastIndexOf('@'), user=email.slice(0,at), dom=email.slice(at+1), fix=fixDomain(dom);
+    var safe=function(t){ return t.replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+    if(fix){ emailHint('did you mean <b>'+safe(user+'@'+fix)+'</b>?', user+'@'+fix, email); try{ clarity('event','map_email_typo_shown'); }catch(x){} return true; }
+    var base=dom.split('.').slice(-2)[0];
+    if(PROVIDERS.indexOf(base)>=0 || REAL.indexOf(base)>=0 || !window.fetch){ EMAIL_OK=email; return false; }
+    if(CHECKING===email) return true;   /* a second click while the lookup runs: wait for it */
+    CHECKING=email;
+    var done=false, go=function(){ if(done) return; done=true; CHECKING=''; EMAIL_OK=email; resubmit(); };
+    setTimeout(go, 2500);
+    fetch('https://dns.google/resolve?name='+encodeURIComponent(dom)+'&type=MX').then(function(r){ return r.json(); }).then(function(j){
+      if(done) return;
+      var nullmx=(j.Answer||[]).some(function(x){ return x.type===15 && /^0 \.?$/.test(x.data); });
+      if(j.Status===3 || nullmx){ done=true; CHECKING=''; EMAIL_OK=''; emailHint('we can\'t find <b>'+safe(dom)+'</b>. is your email spelled right?', '', email);
+        try{ clarity('event','map_email_domain_missing'); }catch(x){} }
+      else go();
+    }).catch(go);
+    return true;
+  }
+  form.email.addEventListener('input', function(){ document.getElementById('g-email-hint').style.display='none'; });
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var f=form, name=f.name.value.trim(), email=f.email.value.trim().toLowerCase(),
@@ -1643,6 +1701,7 @@ s.parentNode.insertBefore(t,s)})();
     if(!name || !ind || (ind==='Other' && !indo) || !rev || (rev==='Under $10k/mo' && !revd) || (asks250(rev, revd) && !join) || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.style.display='block'; return; }
     var tel=normPhone(raw);
     if(!tel){ terr.style.display='block'; f.phone.focus(); return; }
+    if(emailHeld(email)) return;
     if(!f._honey.value){
       /* so /setup-file/ can hand Stripe their email (Puja, Nov 11 2026) */
       try{ localStorage.setItem('pp_email', email); }catch(x){}
