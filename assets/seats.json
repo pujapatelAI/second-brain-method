@@ -1,12 +1,12 @@
 {
- "default": "n20",
+ "default": "n23",
  "sessions": [
   {
    "code": "n20",
    "day": "Fri Nov 20",
    "time": "11am ET",
    "left": 3,
-   "selling": true,
+   "selling": false,
    "until_ms": 1795185059999,
    "hidden_until_ms": 1795190400000
   },
@@ -14,7 +14,7 @@
    "code": "n23",
    "day": "Mon Nov 23",
    "time": "2pm ET",
-   "left": 2,
+   "left": 3,
    "selling": true,
    "until_ms": 1795388459999,
    "hidden_until_ms": 1795460400000
