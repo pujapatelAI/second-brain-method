@@ -1,5 +1,5 @@
 {
- "default": "n23",
+ "default": "d07",
  "sessions": [
   {
    "code": "n20",
@@ -15,7 +15,7 @@
    "day": "Mon Nov 23",
    "time": "2pm ET",
    "left": 3,
-   "selling": true,
+   "selling": false,
    "until_ms": 1795388459999,
    "hidden_until_ms": 1795460400000
   },
@@ -23,7 +23,7 @@
    "code": "d07",
    "day": "Mon Dec 7",
    "time": "2pm ET",
-   "left": 1,
+   "left": 3,
    "selling": true,
    "until_ms": 1796446799999,
    "hidden_until_ms": 1795118400000
