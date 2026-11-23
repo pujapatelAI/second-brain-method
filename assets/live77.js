@@ -29,6 +29,7 @@
   var SESS=[
     {code:'n20', at:Date.parse('2026-11-20T11:00:00-05:00'), until:Date.parse('2026-11-19T15:00:59-05:00'), day:'Fri Nov 20', time:'11am ET', pt:'8am PT', left:3},
     {code:'n23', at:Date.parse('2026-11-23T14:00:00-05:00'), until:Date.parse('2026-11-20T23:59:59-05:00'), day:'Mon Nov 23', time:'2pm ET', pt:'11am PT', left:0},
+    {code:'n30', at:Date.parse('2026-11-30T16:00:00-05:00'), until:Date.parse('2026-11-27T23:59:59-05:00'), day:'Mon Nov 30', time:'4pm ET', pt:'1pm PT', left:5},
     {code:'d07', at:Date.parse('2026-12-07T14:00:00-05:00'), until:Date.parse('2026-12-04T23:59:59-05:00'), day:'Mon Dec 7', time:'2pm ET', pt:'11am PT', left:3, hideUntil:Date.parse('2026-11-19T15:00:00-05:00')}];
   SESS.forEach(function(x){ x.label=x.day+', '+x.time; });
   function selling(x){ return x.left>0 && Date.now()<x.until && Date.now()<x.at; }
