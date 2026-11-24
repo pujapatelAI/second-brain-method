@@ -10,7 +10,7 @@
 <title>You're confirmed · Puja Patel</title>
 <!-- Puja, Nov 18 2026: email reminders + an RSVP for the free private workshop, "but mention that no show's don't
      get replay or another invitation". The RSVP email's only button opens this page; that click is the RSVP
-     (vip_applications.py reads it from Customer.io). ?w=nov30 or ?w=dec15 picks the date. Nothing personal in the URL. -->
+     (vip_applications.py reads it from Customer.io). The only date is Nov 30 (?w= is ignored). Nothing personal in the URL. -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -60,8 +60,7 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
 <div class="foot"><div class="wrap">Puja Patel · puja-patel.com</div></div>
 <script>
 (function(){
-  var W={ nov30:{when:'Mon Nov 30 at 2pm ET', eve:'Sunday at 5pm ET', due:'Sun Nov 29 at noon ET', ics:'/assets/vip_workshop_nov30.ics'},
-          dec15:{when:'Tue Dec 15 at 2pm ET', eve:'Monday at 5pm ET', due:'Mon Dec 14 at noon ET', ics:'/assets/vip_workshop_dec15.ics'} };
+  var W={ nov30:{when:'Mon Nov 30 at 2pm ET', eve:'Sunday at 5pm ET', due:'Sun Nov 29 at noon ET', ics:'/assets/vip_workshop_nov30.ics'} };
   var w=W[new URLSearchParams(location.search).get('w')]||W.nov30;
   document.getElementById('when').textContent=w.when; document.getElementById('eve').textContent=w.eve;
   document.getElementById('due').textContent=w.due; document.getElementById('ics').href=w.ics;
