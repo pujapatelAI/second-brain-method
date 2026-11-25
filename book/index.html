@@ -261,36 +261,63 @@ s.parentNode.insertBefore(t,s)})();
      Owner Independence copy. Only $50k-$250k/mo is 'vip' (and that goes to /vip/); a call is only for $250k+/mo. */
   var OIPB={'$250k to $500k/mo':1,'$500k+/mo':1};
   function track(band){ return (band==='$50k to $75k/mo' || band==='$75k to $250k/mo') ? 'vip' : 'oip'; }
+  /* Puja, Nov 25 2026: "have the book a call option AFTER the application". /vip/ sets this flag when a fit applicant
+     sends the application (VIP_CONFIG.CALL_AFTER_APPLY there: same FLAG and FLAG_DAYS, change both together). With a
+     fresh flag the VIP redirect below stands down; without it nothing changes. The flag lives in this browser only. */
+  var APPLIED=(function(){ try{ var at=+localStorage.getItem('vip_applied'), now=Date.now();
+    return !!at && at<=now+6e4 && now-at < 14*864e5; }catch(x){ return false; } })();
   function sync(){
     var t=track(rev.value);
+    if(APPLIED && !rev.value) t='vip';   /* an applicant with no revenue answer yet reads the VIP words, not the $100K ones */
     document.querySelectorAll('[data-for]').forEach(function(el){ el.hidden = el.getAttribute('data-for')!==t; });
   }
   /* Puja, Nov 18 2026: "we want VIP to show up to a 'webinar' so we shouldn't even ask them for a call - the call should
-     be for OIP". $50k-$250k/mo goes to the free private workshop on /vip/ instead of a calendar. */
-  function toVip(){ var q=location.search||''; location.replace('/vip/'+q); }
-  rev.addEventListener('change', function(){ if(track(rev.value)==='vip' && rev.value!=='Under $50k/mo'){ toVip(); return; } sync(); });
+     be for OIP". $50k-$250k/mo goes to the free private workshop on /vip/ instead of a calendar.
+     Nov 25 2026: not for someone who has applied on /vip/ (APPLIED). Returns true when it redirected. */
+  function toVip(){ if(APPLIED) return false; var q=location.search||''; location.replace('/vip/'+q); return true; }
+  rev.addEventListener('change', function(){ if(track(rev.value)==='vip' && rev.value!=='Under $50k/mo' && toVip()) return; sync(); });
   (function(){
-    var filled=0, band='', lead={}, em='', note=document.getElementById('prefill-note');
+    var filled=0, fromMap=0, fromApp=0, band='', lead={}, em='', note=document.getElementById('prefill-note');
     try{ var kc=new URLSearchParams(location.search).get('k'); if(KCODE[kc]) band=KCODE[kc]; }catch(x){}
     try{ if(!band){ var b=localStorage.getItem('pp_band')||''; band=MAPBAND[b] ? b : (b ? 'Under $50k/mo' : ''); } }catch(x){}
     try{ lead=JSON.parse(localStorage.getItem('pp_lead')||'{}')||{}; }catch(x){ lead={}; }
     try{ em=localStorage.getItem('pp_email')||''; }catch(x){}
-    function put(n,v){ var el=form.elements[n]; if(el && v && !el.value){ el.value=v; if(el.value) filled++; } }
+    /* src 'app' = what the person typed in the VIP application (the 'vip_applied_lead' saved by /vip/). It only fills
+       what is still empty, and it runs after the map data (and after the ?t= lookup), so map data always wins. */
+    function put(n,v,src){ var el=form.elements[n]; if(el && v && !el.value){ el.value=v; if(el.value){ filled++; if(src==='app') fromApp++; else fromMap++; } } }
     put('name', lead.name); put('email', em.indexOf('@')>0 ? em : ''); put('phone', lead.phone); put('revenue', band);
-    function showNote(){ if(filled && note) note.hidden=false; }
-    if(band==='$50k to $75k/mo' || band==='$75k to $250k/mo'){ toVip(); return; }
+    function showNote(){ if(!filled || !note) return;
+      if(fromApp) note.textContent='I filled in what you told me '+(fromMap ? 'on your map and in your application' : 'in your application')+'. Check it and answer the four questions below.';
+      note.hidden=false; }
+    /* The application counts people besides the owner and this form's ranges touch at 5, 15 and 50, so those three
+       numbers are left for the person to pick. */
+    function teamBand(v){ var n=parseInt(v,10); if(!(n>=0) || n===5 || n===15 || n===50) return '';
+      return n===0 ? 'Just me' : n<5 ? '2 to 5' : n<15 ? '6 to 15' : n<50 ? '16 to 50' : '50+'; }
+    function revBand(v){ return MAPBAND[v] ? v : (v ? 'Under $50k/mo' : ''); }
+    var appDone=false;
+    function fromApplication(){
+      if(appDone) return; appDone=true;
+      if(!APPLIED) return;
+      var a=null; try{ a=JSON.parse(localStorage.getItem('vip_applied_lead')||'null'); }catch(x){}
+      if(!a || typeof a!=='object') return;
+      put('name', a.name, 'app'); put('email', a.email, 'app'); put('phone', a.phone, 'app');
+      put('revenue', revBand(a.revenue), 'app'); put('team', teamBand(a.team), 'app');
+      showNote(); sync();
+    }
+    if((band==='$50k to $75k/mo' || band==='$75k to $250k/mo') && toVip()) return;
     showNote(); sync();
-    try{
-      var tok=new URLSearchParams(location.search).get('t');
-      if(tok && tok.length>=20){
+    var tok=''; try{ tok=new URLSearchParams(location.search).get('t')||''; }catch(x){}
+    if(tok.length>=20){
+      try{
         fetch('https://elfcasizjccgjrwgebvv.supabase.co/rest/v1/rpc/map_prefill_get',{ method:'POST',
           headers:{'apikey':'sb_publishable_01CM_h2wN3ysZN52BcO1Sw_SDAatM00','Content-Type':'application/json'},
           body:JSON.stringify({p_token:tok}) }).then(function(r){ return r.ok ? r.json() : []; }).then(function(rows){
           var p=rows && rows[0]; if(!p) return;
           put('name', p.name); put('email', p.email); put('phone', p.phone); showNote();
-        }).catch(function(){});
-      }
-    }catch(x){}
+        }).catch(function(){}).then(fromApplication);
+        setTimeout(fromApplication, 3000);   /* a slow lookup never holds the application's answers back for long */
+      }catch(x){ fromApplication(); }
+    } else { fromApplication(); }
     try{ if(window.clarity) clarity('event','book_page_view'); }catch(x){}
   })();
   function normPhone(v){
@@ -316,12 +343,16 @@ s.parentNode.insertBefore(t,s)})();
     p.querySelectorAll('[data-first]').forEach(function(el){ el.textContent=first||'there'; });
     try{ p.scrollIntoView({behavior:'smooth', block:'start'}); }catch(e){ window.scrollTo(0,0); }
   }
-  function calUrl(d){
-    return CFG.BOOKING_URL+'?hide_gdpr_banner=1&name='+encodeURIComponent(d.name)+'&email='+encodeURIComponent(d.email)
+  function calUrl(d, bare){
+    return CFG.BOOKING_URL+'?hide_gdpr_banner=1'+(bare ? '' : '&name='+encodeURIComponent(d.name)+'&email='+encodeURIComponent(d.email))
       +'&utm_source=book&utm_medium=site&utm_campaign='+encodeURIComponent(d.track)+'&utm_content='+encodeURIComponent(d.band);
   }
   function mountCalendar(d){
-    var url=calUrl(d), link=document.getElementById('cal-link'); link.href=url;
+    var url=calUrl(d), link=document.getElementById('cal-link');
+    /* Calendly only takes name and email in the calendar's own address (no other way to prefill), so the embedded
+       calendar gets them there, out of sight. The "open in a new tab" link would put them in the address bar, so for
+       every track it opens the calendar blank and they type them there (Nov 25 2026). */
+    link.href = calUrl(d, true);
     var box=document.getElementById('cal'), ifr=document.createElement('iframe');
     ifr.src=url+'&embed_domain='+encodeURIComponent(location.hostname)+'&embed_type=Inline';
     ifr.title='Pick a time with Puja'; ifr.loading='lazy';
@@ -349,8 +380,9 @@ s.parentNode.insertBefore(t,s)})();
     if(!name || !band || !team || !goal || !invest || !raw || email.indexOf('@')<1 || email.indexOf('.')<0){ err.classList.add('on'); return; }
     var tel=normPhone(raw);
     if(!tel){ terr.classList.add('on'); f.phone.focus(); return; }
-    var t=track(band), fit=(!!OIPB[band] && invest!=='not_now'), route=fit ? 'call' : 'sbm';
-    if(t==='vip' && band!=='Under $50k/mo'){ toVip(); return; }
+    /* A VIP applicant (APPLIED) who isn't "Not right now" gets the calendar too; everyone else keeps the old rule. */
+    var t=track(band), fit=((!!OIPB[band] || (APPLIED && t==='vip')) && invest!=='not_now'), route=fit ? 'call' : 'sbm';
+    if(t==='vip' && band!=='Under $50k/mo' && toVip()) return;
     var first=name.split(/\s+/)[0], utm=utms(), now=Math.floor(Date.now()/1000);
     var sms=!!(f.sms_consent && f.sms_consent.checked);
     var d={ name:name, email:email, band:band, track:t };

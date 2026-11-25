@@ -80,7 +80,15 @@ window.VIP_CONFIG = {
   // waitlist: no to both dates, or these not met (decision maker always required). Same rules as CommandOS
   // data/marketing/systems_map/vip_applications.json auto_approve: change both together.
   AUTO_APPROVE: { bands:["$50k to $75k/mo", "$75k to $250k/mo"], investment:["yes", "need_to_talk"], exclude_start:["I'm only exploring"] },
-  WAITLIST_URL: "/vip/waitlist/"
+  WAITLIST_URL: "/vip/waitlist/",
+  // Puja, Nov 25 2026: after the application, an applicant who fits can book a call. /book/ lets them past its
+  // VIP redirect when this browser holds the flag below (set at submit, kept FLAG_DAYS days). FIT_ONLY = the same
+  // AUTO_APPROVE rule above, so nobody who said "Not right now" gets the button (Puja, Nov 18 + Nov 20: no call
+  // for a non-fit). Set FIT_ONLY to false to offer it to everyone who applies; ENABLED false removes the button.
+  // LEAD = what they typed here (name, email, phone, revenue, team), kept in this browser only so /book/ can fill in
+  // what /map/ never saved (map data always wins there). /book/ reads the same FLAG, FLAG_DAYS and LEAD: change both
+  // files together.
+  CALL_AFTER_APPLY: { ENABLED:true, FIT_ONLY:true, FLAG:"vip_applied", FLAG_DAYS:14, LEAD:"vip_applied_lead" }
 };
 </script>
 <style>
@@ -240,6 +248,9 @@ window.VIP_CONFIG = {
   .panel p{color:var(--ink-soft)}
   .panel p b{color:var(--ink)}
   .panel h2{margin-bottom:12px}
+  .callask{margin:22px 0 0; padding:18px 0 0; border-top:1px solid var(--line)}
+  .callask p{margin:0; color:var(--ink); font-weight:600}
+  .callask .btnlink{margin-top:12px}
 
   footer{background:var(--footer-bg); color:var(--footer-ink); padding:26px 0 30px; font-size:.9rem}
   footer .wrap{display:flex; flex-wrap:wrap; gap:8px 18px; justify-content:space-between}
@@ -603,6 +614,10 @@ window.VIP_CONFIG = {
         <p data-done="nov30"><b>You'll hear from me by text and email within one business day.</b></p>
         <p data-done="nov30">If it's a fit, your invitation arrives with free access to OpMap. Finishing it by <b>Sun Nov 29, noon ET</b> holds your free seat for <b>Mon Nov 30 at 2pm ET</b>.</p>
         <p data-done="waitlist">Thank you for applying. You're on the waitlist for my private Second Brain Workshop.</p>
+        <div class="callask" id="call-ask" hidden>
+          <p>Want to talk it through?</p>
+          <a class="btnlink" id="call-btn" href="/book/">Book a call <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </section>
     </section>
 
@@ -824,8 +839,9 @@ window.VIP_CONFIG = {
             investment:radio('investment'), time_ok:radio('time_ok'), heard:val('heard'), anything_else:val('anything_else') };
     var cohort = (!closed && a.can_attend==='yes') ? CFG.COHORT : 'waitlist';
     var R=CFG.AUTO_APPROVE||{}, inList=function(list,v){ return (list||[]).indexOf(v)>-1; };
-    var waitlisted = cohort==='waitlist' || !(a.decision_maker==='yes' && inList(R.bands,a.revenue)
-      && inList(R.investment,a.investment) && !inList(R.exclude_start,a.start));
+    var fits = a.decision_maker==='yes' && inList(R.bands,a.revenue)
+      && inList(R.investment,a.investment) && !inList(R.exclude_start,a.start);
+    var waitlisted = cohort==='waitlist' || !fits;
     var utm=utms(), now=Math.floor(Date.now()/1000);
     var Q=CFG.QUALIFIED||{}, has=function(list,v){ return (list||[]).indexOf(v)>-1; };
     var qualified = a.decision_maker==='yes' && has(Q.investment,a.investment) && has(Q.start,a.start)
@@ -877,8 +893,31 @@ window.VIP_CONFIG = {
     var p=document.getElementById('p-done'); p.classList.add('on');
     var doneKey = waitlisted ? 'waitlist' : cohort;
     p.querySelectorAll('[data-done]').forEach(function(el){ el.style.display=(' '+el.getAttribute('data-done')+' ').indexOf(' '+doneKey+' ')>-1?'':'none'; });
-    /* Waitlisted: on to the thank-you page, after a moment so Customer.io, Meta and FormSubmit finish sending. */
-    if(waitlisted){ setTimeout(function(){ location.replace(CFG.WAITLIST_URL); }, 1500); }
+    /* Book a call after applying (Puja, Nov 25 2026). A real application (not a bot) from someone who fits gets the
+       button, and this browser gets the flag /book/ looks for so its VIP redirect lets them through. No name, email or
+       phone goes in the link: /book/ fills those in from what /map/ saved here (or the private ?t= lookup), then from
+       the LEAD saved just above for anything the map never had. */
+    var CA=CFG.CALL_AFTER_APPLY||{}, callOk = !!CA.ENABLED && !form.elements._honey.value && (!CA.FIT_ONLY || fits);
+    try{
+      if(callOk){
+        localStorage.setItem(CA.FLAG, String(Date.now()));
+        localStorage.setItem(CA.LEAD, JSON.stringify({ name:cut(name,120), email:email, phone:tel, revenue:a.revenue, team:a.team }));
+      } else { localStorage.removeItem(CA.FLAG); localStorage.removeItem(CA.LEAD); }
+    }catch(x){}
+    if(callOk){
+      var cq=new URLSearchParams(location.search), keep=new URLSearchParams();
+      ['k','t','utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(n){ if(cq.get(n)) keep.set(n, cq.get(n)); });
+      keep.set('from','vip-apply');
+      var cb=document.getElementById('call-btn'); cb.href='/book/?'+keep.toString();
+      cb.addEventListener('click', function(){
+        try{ clarity('event','vip_book_call_click'); }catch(x){}
+        try{ if(window.gtag) gtag('event','vip_book_call_click',{ form:'vip_apply' }); }catch(x){}
+      });
+      document.getElementById('call-ask').hidden=false;
+    }
+    /* Waitlisted: on to the thank-you page, after a moment so Customer.io, Meta and FormSubmit finish sending.
+       Not when they were just offered the call: the button has to stay. */
+    if(waitlisted && !callOk){ setTimeout(function(){ location.replace(CFG.WAITLIST_URL); }, 1500); }
     p.querySelectorAll('[data-first]').forEach(function(el){ el.textContent=first||'there'; });
     try{ p.scrollIntoView({behavior:'smooth', block:'start'}); }catch(x){ window.scrollTo(0,0); }
   });
