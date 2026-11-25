@@ -1814,13 +1814,13 @@ s.parentNode.insertBefore(t,s)})();
   window.ppVipInvite=function(rev, fresh){
     if(document.getElementById('vip-invite')) return;
     try{ if(window.fbq) fbq('trackCustom','VIPFit'); }catch(x){}
-    /* Nov 25 2026 (Juno 4, HUB): this banner stays while the Mon Nov 30 workshop is open. It switches off by itself when
-       (a) Nov 30 has passed (Tue Dec 1 00:00 ET), or (b) the flag file /vip/nov30_cancelled.flag exists on the site
-       (whoever cancels Nov 30 adds that one empty file and pushes; the Sat Nov 28 noon ET go/no-go is when). */
-    if(Date.now() >= Date.parse('2026-12-01T05:00:00Z')) return;
+    /* Nov 25 2026 (Juno 6, HUB): this banner now points at the January deal on /vip/ (seats close Wed Dec 23). It switches off
+       by itself when (a) Dec 23 has passed (Thu Dec 24 00:00 ET), or (b) the flag file /vip/nov30_cancelled.flag exists on the
+       site (whoever cancels Nov 30 adds that one empty file and pushes; the Sat Nov 28 noon ET go/no-go is when). */
+    if(Date.now() >= Date.parse('2026-12-24T05:00:00Z')) return;
     var b=document.createElement('div'); b.id='vip-invite';
     b.style.cssText='background:#B0532F;color:#FBF7F1;padding:14px 16px;text-align:center;font-weight:600;line-height:1.45';
-    b.innerHTML='At your size, the map is only the start. <a href="/vip/" data-track="map-vip-banner-to-vip" style="color:#FBF7F1;text-decoration:underline">You\'re invited to my free private workshop &rarr;</a>';
+    b.innerHTML='At your size, the map is only the start. <a href="/vip/" data-track="map-vip-banner-to-vip" style="color:#FBF7F1;text-decoration:underline">You\'re invited to our special deal &rarr;</a>';
     document.body.insertBefore(b, document.body.firstChild);
     try{ fetch('/vip/nov30_cancelled.flag',{method:'HEAD',cache:'no-store'}).then(function(r){ if(r && r.ok){ var e=document.getElementById('vip-invite'); if(e&&e.parentNode) e.parentNode.removeChild(e); } }).catch(function(){}); }catch(x){}
     if(fresh){ try{ if(window._cio) _cio.track('map_vip_route',{ monthly_revenue_band:rev }); }catch(x){} }
