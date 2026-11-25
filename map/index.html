@@ -1943,6 +1943,31 @@ s.parentNode.insertBefore(t,s)})();
       if(cta) cta.innerHTML='<h2>Set up your second brain with me, live.</h2><p>'+pitch+'</p><a class="btn" href="'+link+'" data-track="map-to-77">save my spot, $77 &rarr;</a>'+gtee+alt('/setup-file/','map-to-setup-file');
     }catch(x){}
   };
+  /* Nov 25 2026 (Juno 8, HUB, Puja: "constantly test and iterate" to lower CAC, no new spend): TEST 1, a 50/50 split of the
+     screen right after sign-up. A = today's screen, unchanged. B = the same screen with the button first: the video and the
+     member story move BELOW the button and guarantee (on a phone today the button sits 1,000+ px down, under a video 28 of
+     28 players never bought after). Share of visitors who get B comes from /assets/ab.json (t1.b, 0 = everyone gets A);
+     missing, slow or broken file = A. ?ab=a or ?ab=b forces an arm (for testing). A visitor keeps the arm they were given.
+     Every screen shown logs one tracker event, 'ab-t1-a-shown' or 'ab-t1-b-shown', so taps are counted per arm.
+     Auto-stop: apps/command/ab_watch.py sets t1.b to 0 in ab.json if B does worse (see the test log). */
+  var AB=null;
+  try{ fetch('/assets/ab.json',{cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){ AB=j; }).catch(function(){}); }catch(x){}
+  function abArm(){
+    try{
+      var f=new URLSearchParams(location.search).get('ab'); if(f==='a' || f==='b') return f;
+      var share=(AB && AB.t1 && typeof AB.t1.b==='number') ? AB.t1.b : 0;
+      if(share<=0) return 'a';
+      var st=localStorage.getItem('pp_ab_t1'); if(st==='a' || st==='b') return st;
+      var arm=Math.random()<share ? 'b' : 'a'; localStorage.setItem('pp_ab_t1',arm); return arm;
+    }catch(x){ return 'a'; }
+  }
+  function abShown(arm){
+    try{
+      var m=document.createElement('span'); m.setAttribute('data-track','ab-t1-'+arm+'-shown'); m.style.display='none';
+      document.body.appendChild(m); m.dispatchEvent(new MouseEvent('click',{bubbles:true})); document.body.removeChild(m);
+    }catch(x){}
+    try{ clarity('event','ab_t1_'+arm); }catch(x){}
+  }
   /* Puja, Nov 13 2026: the today-only bonus card on this screen is built only before Sat Nov 14 00:00 ET; tick() hides it at that moment */
   var BONUS77=Date.parse('2026-11-14T00:00:00-05:00');
   /* The screen right after sign-up (Puja, Nov 11 2026: "would you rather do it WITH me ... $77 now"). */
@@ -2004,6 +2029,16 @@ s.parentNode.insertBefore(t,s)})();
         gtee.replace('margin:8px 0 0','margin:10px 0 0;text-align:center')+
         '<p style="margin:12px 0 0;font-size:14.5px;text-align:center"><a href="/live-setup/" data-track="map-unlock-to-live-setup" style="color:inherit;text-decoration:underline">what\'s a second brain? see how I use mine &rarr;</a></p>'+
         '<button type="button" class="skip" data-track="map-unlock-no-thanks">no thanks, show me my map</button>';
+      var arm=abArm();
+      if(arm==='b'){
+        /* TEST 1 arm B: button first. Same pieces, new order: ... deadline, button, guarantee, VIDEO, STORY, link, skip. */
+        var card=oto.querySelector('.otocard'), g=card.querySelector('.gtee'), vd=card.querySelector('.vid77'), st=card.querySelector('.pp-one'),
+            by=card.querySelector('[data-l77-buy]'), sk=card.querySelector('.skip');
+        if(g && vd && st && by && sk){
+          g.insertAdjacentElement('afterend', st); g.insertAdjacentElement('afterend', vd);
+          by.setAttribute('data-track','map-unlock-to-live-b'); sk.setAttribute('data-track','map-unlock-no-thanks-b');
+        } else { arm='a'; }
+      }
       ppLive77.start();
       var vp=oto.querySelector('.vplay');
       if(vp) vp.addEventListener('click', function(){
@@ -2013,6 +2048,7 @@ s.parentNode.insertBefore(t,s)})();
       });
       oto.hidden=false; document.documentElement.style.overflow='hidden';
       try{ clarity('event','map_live_screen_shown'); }catch(x){}
+      abShown(arm);
       oto.querySelector('.skip').addEventListener('click', function(){ oto.hidden=true; document.documentElement.style.overflow=''; window.scrollTo(0,0); });
     }catch(x){}
   };

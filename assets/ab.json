@@ -1,0 +1,3 @@
+{
+ "t1": {"b": 0.5, "started": "2026-11-25", "note": "TEST 1: share of the sign-up screen visitors who get arm B (button first). 0 = everyone gets today's screen. apps/command/ab_watch.py sets this to 0 if B does worse."}
+}
