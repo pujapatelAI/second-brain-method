@@ -222,6 +222,10 @@
   .get77{list-style:none;display:grid;gap:4px;margin:0 0 12px;padding:0;text-align:left}
   .get77 li{position:relative;padding-left:22px;font-size:15.5px;line-height:1.45}
   .get77 .ck{position:absolute;left:0;top:0;color:var(--accent-bright);font-weight:700}
+  /* Puja, Nov 25 2026: the VIP block for $50k-$250k/mo on the result screen and in the two map boxes */
+  .vipmap .vm-who{font-size:15px;color:var(--ink-soft);margin:0 0 10px}
+  .vipmap .vm-deal{font-size:15px;color:var(--ink-soft);margin:0 0 12px}
+  .vipmap a.btn{display:block;text-align:center;white-space:normal;max-width:380px}
   .otocard .bonus77 .b77-h{font-family:Georgia,serif;font-size:19px;font-weight:700;line-height:1.25;margin:0 0 8px}
   .bonus77 ul{list-style:none;display:grid;gap:6px}
   .bonus77 li{position:relative;padding-left:22px;font-size:15px;line-height:1.45}
@@ -1810,10 +1814,15 @@ s.parentNode.insertBefore(t,s)})();
   window.ppVipInvite=function(rev, fresh){
     if(document.getElementById('vip-invite')) return;
     try{ if(window.fbq) fbq('trackCustom','VIPFit'); }catch(x){}
+    /* Nov 25 2026 (Juno 4, HUB): this banner stays while the Mon Nov 30 workshop is open. It switches off by itself when
+       (a) Nov 30 has passed (Tue Dec 1 00:00 ET), or (b) the flag file /vip/nov30_cancelled.flag exists on the site
+       (whoever cancels Nov 30 adds that one empty file and pushes; the Sat Nov 28 noon ET go/no-go is when). */
+    if(Date.now() >= Date.parse('2026-12-01T05:00:00Z')) return;
     var b=document.createElement('div'); b.id='vip-invite';
     b.style.cssText='background:#B0532F;color:#FBF7F1;padding:14px 16px;text-align:center;font-weight:600;line-height:1.45';
     b.innerHTML='At your size, the map is only the start. <a href="/vip/" data-track="map-vip-banner-to-vip" style="color:#FBF7F1;text-decoration:underline">You\'re invited to my free private workshop &rarr;</a>';
     document.body.insertBefore(b, document.body.firstChild);
+    try{ fetch('/vip/nov30_cancelled.flag',{method:'HEAD',cache:'no-store'}).then(function(r){ if(r && r.ok){ var e=document.getElementById('vip-invite'); if(e&&e.parentNode) e.parentNode.removeChild(e); } }).catch(function(){}); }catch(x){}
     if(fresh){ try{ if(window._cio) _cio.track('map_vip_route',{ monthly_revenue_band:rev }); }catch(x){} }
   };
   try{
@@ -1873,9 +1882,43 @@ s.parentNode.insertBefore(t,s)})();
   var timed='<p data-l77-open style="margin:10px 0 0"><b>Last day for $77:</b> <span data-l77-until>Fri Dec 4</span>, midnight ET.</p><div class="t77" data-t77><span><b data-t="d">0</b><i>days</i></span><span><b data-t="h">00</b><i>hrs</i></span><span><b data-t="m">00</b><i>min</i></span><span><b data-t="s">00</b><i>sec</i></span></div>'+
     '<p data-l77-closed hidden style="margin:10px 0 0"><b>$147.</b> The $77 price ended.</p>';
   var how='<p style="margin:10px 0 0;font-size:14.5px"><a href="/live-setup/" data-track="map-to-live-setup" style="color:inherit;text-decoration:underline">what\'s a second brain? see how I use mine &rarr;</a></p>';
+  /* Puja, Nov 25 2026 ("a different map page for VIP ... the VIP free application or book a call instead of the $77 offer"):
+     $50k-$250k/mo (m5, m6) see this block where everyone else sees the $77. Links carry the band code (?k=), the invite token
+     (?t=, same private lookup /vip/ uses) and the utm_ tags; names, emails and phone numbers never go in a URL. */
+  var KBACK={}; Object.keys(KCODE).forEach(function(c){ KBACK[KCODE[c]]=c; });
+  function vipQs(){
+    var p=new URLSearchParams(location.search), o=new URLSearchParams(), k=p.get('k'), t=p.get('t');
+    if(!KCODE[k]) k=KBACK[band()]||'';
+    if(k) o.set('k',k);
+    if(t && t.length>=20) o.set('t',t);
+    ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(n){ if(p.get(n)) o.set(n,p.get(n)); });
+    var q=o.toString(); return q ? '?'+q : '';
+  }
+  function vipBlock(where, full){
+    var q=vipQs(), ck=function(t){ return '<li><span class="ck">&#10003;</span>'+t+'</li>'; };
+    return '<div class="vipmap"><h2'+(full?' id="oto-h"':'')+'>Congratulations! You\'re invited to our special deal.</h2>'+
+      '<p class="vm-who">For owners past $50K a month with a team.</p>'+
+      (full ? '<ul class="get77">'+ck('Only 10 seats, and they close Dec 23. Join by Dec 9 and your audit is in December and your support starts Jan&nbsp;4.')+
+        ck('Your audit comes with 6 months of support.')+
+        ck('We guarantee to free up a minimum of 20 hrs/week by day&nbsp;90.')+'</ul>'
+            : '<p class="vm-deal">Limited time, 10 seats: join by Dec 9 and your audit is in December. 6 months of support, and we guarantee at least 20 hrs/week freed up by day&nbsp;90.</p>')+
+      '<a class="btn" data-vipmap="apply" data-where="'+where+'" href="/vip/'+q+'#apply" data-track="map-'+where+'-vip-apply">Apply free (3 minutes)</a></div>';
+  }
+  /* Meta: one custom event per button, nothing revenue-related attached (same as VIPFit, OIPFit, Join250Yes). */
+  document.addEventListener('click', function(e){
+    var a=e.target && e.target.closest ? e.target.closest('a[data-vipmap]') : null;
+    if(!a) return;
+    try{ if(window.fbq) fbq('trackCustom', a.getAttribute('data-vipmap')==='book' ? 'VIPMapBook' : 'VIPMapApply', { placement:a.getAttribute('data-where') }); }catch(x){}
+  });
   window.ppLiveOffer=function(){
     try{
       var b=band(), s=session();
+      if(MID.indexOf(b)>=0){
+        var vt=document.querySelector('.offer'), vc=document.querySelector('.cta');
+        if(vt){ vt.className='offer offer-live'; vt.innerHTML=vipBlock('top', false); }
+        if(vc){ vc.className='cta'; vc.innerHTML=vipBlock('bottom', false); }
+        return;
+      }
       if(!s) return;
       var top=document.querySelector('.offer'), cta=document.querySelector('.cta'), pitch=pitchOf(s);
       /* Puja, Nov 12 2026: "no keep 77 for everyone". Every visitor, any band or none (a new device with no ?k=,
@@ -1924,14 +1967,12 @@ s.parentNode.insertBefore(t,s)})();
         oto.querySelector('.skip').addEventListener('click', function(){ oto.hidden=true; document.documentElement.style.overflow=''; window.scrollTo(0,0); });
         return;
       }
-      if((rev==='$50k to $75k/mo' || rev==='$75k to $250k/mo') && oto && window.ppConsult && window.ppConsult()){
+      /* Puja, Nov 25 2026 ("a different map page for VIP ... the VIP free application or book a call instead of the $77 offer"):
+         every $50k-$250k/mo sign-up (any industry) sees the VIP block here. Was: the free-workshop invitation for consulting
+         firms, and the $77 screen for everyone else at this size. */
+      if(MID.indexOf(rev)>=0 && oto){
         oto.querySelector('.otocard').innerHTML=
-          '<div class="ok">&#10003; your map is unlocked</div>'+
-          '<h2 id="oto-h">At your size, you\'re invited to a free private workshop.</h2>'+
-          '<p>I run a private Second Brain Workshop for a small group of consulting firm owners past $50k a month. It\'s free and invitation only, and it\'s where I open the 5 seats in my six-month VIP program.</p>'+
-          '<p class="pp-one">One of my members, an events-planning co-owner with an 11-person team, set hers up live with me. Once Claude read her own files, it showed her things about her own clients she didn\'t even know had happened.</p>'+
-          '<a class="btn" href="/vip/" data-track="map-unlock-to-vip">see your invitation &rarr;</a>'+
-          '<p style="margin:10px 0 0;font-size:14.5px;text-align:center">Your answers carry over, so you won\'t type them twice.</p>'+
+          '<div class="ok">&#10003; your map is unlocked</div>'+vipBlock('unlock', true)+
           '<button type="button" class="skip" data-track="map-unlock-vip-no-thanks">not now, show me my map</button>';
         oto.hidden=false; document.documentElement.style.overflow='hidden';
         try{ clarity('event','map_vip_screen_shown'); }catch(x){}
