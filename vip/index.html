@@ -71,9 +71,9 @@ window.VIP_CONFIG = {
   // vip_cohort arrives at the backend as "nov30" or "jan" (vip_applications.py needs cohorts.jan).
   MAIN_COHORT: "jan",
   COHORT: "nov30",
-  // The Mon Nov 30 workshop side option closes Fri Nov 27 at midnight ET (= Nov 28 05:00 UTC). After this the
+  // The Mon Nov 30 workshop side option closes Sat Nov 28 at 11am ET (= 16:00 UTC; moved from Fri midnight Nov 26 for the free-class ads). After this the
   // workshop section and the Nov 30 question are hidden. Nothing else on the page depends on this date.
-  CLOSES_AT: "2026-11-28T05:00:00Z",
+  CLOSES_AT: "2026-11-28T16:00:00Z",
   // Lead copy to info@ (same FormSubmit endpoint as /map/ and /apply/).
   LEAD_WEBHOOK_URL: "https://formsubmit.co/ajax/info@puja-patel.com",
   // Puja, Nov 14 2026: Meta gets "VIPQualified" (nothing attached) only when the answers match these, plus
@@ -238,7 +238,7 @@ window.VIP_CONFIG = {
   .qa:last-child{border-bottom:0; padding-bottom:2px}
   .qa h3{font-size:1.12rem; line-height:1.3}
   .qa p{margin:6px 0 0; color:var(--ink-soft); font-size:.98rem}
-  /* After CLOSES_AT (Fri Nov 27 midnight ET) the free-workshop section and question are hidden. */
+  /* After CLOSES_AT (Sat Nov 28 11am ET) the free-workshop section and question are hidden. */
   body.closed .open-only{display:none}
 
   /* application */
@@ -333,7 +333,7 @@ window.VIP_CONFIG = {
       <div class="eyebrow">Also coming up</div>
       <h2>A free private workshop, Mon Nov 30 at 2pm ET.</h2>
       <p class="freeline"><span class="free">Free</span><span>Mon Nov 30 · 2pm ET · online</span></p>
-      <p class="sub">If you apply by Fri Nov 27, you can also join my Second Brain Workshop, run privately for a small group of owners at your level. It costs nothing to attend.</p>
+      <p class="sub">If you apply by Sat Nov 28 at 11am ET, you can also join my Second Brain Workshop, run privately for a small group of owners at your level. It costs nothing to attend.</p>
       <div class="card">
         <p style="margin:0"><b>You leave with your second brain set up and running.</b></p>
       </div>
