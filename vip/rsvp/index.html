@@ -10,7 +10,7 @@
 <title>You're confirmed · Puja Patel</title>
 <!-- Puja, Nov 18 2026: email reminders + an RSVP for the free private workshop, "but mention that no show's don't
      get replay or another invitation". The RSVP email's only button opens this page; that click is the RSVP
-     (vip_applications.py reads it from Customer.io). The only date is Nov 30 (?w= is ignored). Nothing personal in the URL. -->
+     (vip_applications.py reads it from Customer.io). Dates: Tue Dec 8 (?w=dec8, the default since Nov 26) and the old Nov 30 (?w=nov30). Nothing personal in the URL. -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -48,20 +48,21 @@ src="https://www.facebook.com/tr?id=1358901016182853&ev=PageView&noscript=1"/></
 <body>
 <main>
 <div class="wrap">
-  <div class="eyebrow">Puja Patel · Free private workshop</div>
+  <div class="eyebrow">Puja Patel · Free live class</div>
   <h1>You're confirmed.</h1>
-  <p class="lead">See you <b id="when">Mon Nov 30 at 2pm ET</b>, online.</p>
-  <a class="btn" id="ics" href="/assets/vip_workshop_nov30.ics">Add it to my calendar &rarr;</a>
-  <div class="note"><b>The room link</b> comes by email <span id="eve">Sunday at 5pm ET</span>.</div>
-  <div class="note"><b>Your OpMap holds your seat.</b> Finish it by <span id="due">Sun Nov 29 at noon ET</span> at <a href="https://opmap.ai" style="color:var(--accent)">opmap.ai</a>.</div>
+  <p class="lead">See you <b id="when">Tue Dec 8 at 2pm ET</b>, online.</p>
+  <a class="btn" id="ics" href="/assets/vip_workshop_dec8.ics">Add it to my calendar &rarr;</a>
+  <div class="note"><b>The room link</b> comes by email <span id="eve">Monday at 5pm ET</span>.</div>
+  <div class="note"><b>Your OpMap holds your seat.</b> Finish it by <span id="due">Mon Dec 7 at noon ET</span> at <a href="https://opmap.ai" style="color:var(--accent)">opmap.ai</a>.</div>
   <div class="note"><b>There's no replay.</b> If you miss it, I won't send a recording or another invitation.</div>
 </div>
 </main>
 <div class="foot"><div class="wrap">Puja Patel · puja-patel.com</div></div>
 <script>
 (function(){
-  var W={ nov30:{when:'Mon Nov 30 at 2pm ET', eve:'Sunday at 5pm ET', due:'Sun Nov 29 at noon ET', ics:'/assets/vip_workshop_nov30.ics'} };
-  var w=W[new URLSearchParams(location.search).get('w')]||W.nov30;
+  var W={ dec8:{when:'Tue Dec 8 at 2pm ET', eve:'Monday at 5pm ET', due:'Mon Dec 7 at noon ET', ics:'/assets/vip_workshop_dec8.ics'},
+        nov30:{when:'Mon Nov 30 at 2pm ET', eve:'Sunday at 5pm ET', due:'Sun Nov 29 at noon ET', ics:'/assets/vip_workshop_nov30.ics'} };
+  var w=W[new URLSearchParams(location.search).get('w')]||W.dec8;
   document.getElementById('when').textContent=w.when; document.getElementById('eve').textContent=w.eve;
   document.getElementById('due').textContent=w.due; document.getElementById('ics').href=w.ics;
   try{ if(window.fbq) fbq('trackCustom','VIPWorkshopRSVP'); }catch(x){}
