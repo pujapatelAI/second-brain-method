@@ -67,13 +67,13 @@ s.parentNode.insertBefore(t,s)})();
 <script>
 window.VIP_CONFIG = {
   // Puja, Nov 25 2026: the page now sells the January group. MAIN_COHORT is where everyone lands by default.
-  // COHORT is the optional free workshop (Tue Dec 8): only someone who says yes to it, before CLOSES_AT, gets it.
-  // vip_cohort arrives at the backend as "dec8" or "jan" (vip_applications.py needs cohorts.jan).
+  // COHORT is the optional free workshop (Tue Dec 15): only someone who says yes to it, before CLOSES_AT, gets it.
+  // vip_cohort arrives at the backend as "dec15" or "jan" (vip_applications.py needs cohorts.jan).
   MAIN_COHORT: "jan",
-  COHORT: "dec8",
-  // The Tue Dec 8 workshop side option closes Sun Dec 6 at 11am ET (= 16:00 UTC; moved from Fri midnight Nov 26 for the free-class ads). After this the
-  // workshop section and the Dec 8 question are hidden (the Nov 30 workshop moved to Tue Dec 8, Nov 26). Nothing else on the page depends on this date.
-  CLOSES_AT: "2026-12-06T16:00:00Z",
+  COHORT: "dec15",
+  // The Tue Dec 15 workshop side option closes Sun Dec 13 at 11am ET (= 16:00 UTC; moved from Fri midnight Nov 26 for the free-class ads). After this the
+  // workshop section and the Dec 15 question are hidden (the class is Tue Dec 15 since Nov 26; it was Nov 30, then Dec 8). Nothing else on the page depends on this date.
+  CLOSES_AT: "2026-12-13T16:00:00Z",
   // Lead copy to info@ (same FormSubmit endpoint as /map/ and /apply/).
   LEAD_WEBHOOK_URL: "https://formsubmit.co/ajax/info@puja-patel.com",
   // Puja, Nov 14 2026: Meta gets "VIPQualified" (nothing attached) only when the answers match these, plus
@@ -81,7 +81,7 @@ window.VIP_CONFIG = {
   // meta_qualified (the server sends the same event with the same ID): change both together.
   QUALIFIED: { investment:["yes"], start:["Start in the January group (Mon Jan 4)"], team_max:5, bands:["$50k to $75k/mo"], time_ok:["yes"] },
   // Puja, Nov 14 2026: "route them to a thank you, you're on the waitlist page". Who the approval job puts on the
-  // waitlist: these not met (decision maker always required). A no to the Dec 8 workshop, or applying after it
+  // waitlist: these not met (decision maker always required). A no to the Dec 15 workshop, or applying after it
   // closes, no longer waitlists anyone (Nov 25 2026). Same rules as CommandOS
   // data/marketing/systems_map/vip_applications.json auto_approve: change both together.
   AUTO_APPROVE: { bands:["$50k to $75k/mo", "$75k to $250k/mo"], investment:["yes", "need_to_talk"], exclude_start:["I'm only exploring"] },
@@ -238,7 +238,7 @@ window.VIP_CONFIG = {
   .qa:last-child{border-bottom:0; padding-bottom:2px}
   .qa h3{font-size:1.12rem; line-height:1.3}
   .qa p{margin:6px 0 0; color:var(--ink-soft); font-size:.98rem}
-  /* After CLOSES_AT (Sun Dec 6 11am ET) the free-workshop section and question are hidden. */
+  /* After CLOSES_AT (Sun Dec 13 11am ET) the free-workshop section and question are hidden. */
   body.closed .open-only{display:none}
 
   /* application */
@@ -331,9 +331,9 @@ window.VIP_CONFIG = {
 
     <section class="blk open-only" id="workshop">
       <div class="eyebrow">Also coming up</div>
-      <h2>A free live class, Tue Dec 8 at 2pm ET.</h2>
-      <p class="freeline"><span class="free">Free</span><span>Tue Dec 8 · 2pm ET · online</span></p>
-      <p class="sub">If you apply by Sun Dec 6 at 11am ET, you can also join my free live class, run privately for a small group of owners at your level. It costs nothing to attend.</p>
+      <h2>A free live class, Tue Dec 15 at 2pm ET.</h2>
+      <p class="freeline"><span class="free">Free</span><span>Tue Dec 15 · 2pm ET · online</span></p>
+      <p class="sub">If you apply by Sun Dec 13 at 11am ET, you can also join my free live class, run privately for a small group of owners at your level. It costs nothing to attend.</p>
       <div class="card">
         <p style="margin:0"><b>You leave with your second brain set up and running.</b></p>
       </div>
@@ -342,7 +342,7 @@ window.VIP_CONFIG = {
         <ol class="how">
           <li>Apply below and say yes to the class.</li>
           <li>If it's a fit, your invite arrives with free access to OpMap.</li>
-          <li>Finish your OpMap by Mon Dec 7, noon ET. That holds your seat in the class.</li>
+          <li>Finish your OpMap by Mon Dec 14, noon ET. That holds your seat in the class.</li>
         </ol>
       </div>
     </section>
@@ -619,7 +619,7 @@ window.VIP_CONFIG = {
             <div class="field"><label for="f-who">Who on your team would work on this with you? <span class="opt">(optional)</span></label><input id="f-who" name="team_lead" type="text" maxlength="160"></div>
           </div>
           <div class="field open-only">
-            <label>Want to join the free live class on Tue Dec 8 at 2pm ET too? <span class="opt">(optional)</span></label>
+            <label>Want to join the free live class on Tue Dec 15 at 2pm ET too? <span class="opt">(optional)</span></label>
             <div class="radios">
               <label><input type="radio" name="can_attend" value="yes"> Yes</label>
               <label><input type="radio" name="can_attend" value="no"> No, just the January group</label>
@@ -678,9 +678,10 @@ window.VIP_CONFIG = {
       <section class="panel" id="p-done" aria-live="polite">
         <div class="eyebrow">Application received</div>
         <h2>Got it, <span data-first>there</span>.</h2>
-        <p data-done="dec8 jan"><b>You'll hear from me by email within one business day</b>, with the January group details and, if it's a fit, your link to join.</p>
-        <p data-done="dec8 jan">Join by Wed Dec 9 and your audit is in December.</p>
-        <p data-done="dec8">You also said yes to the free live class on Tue Dec 8 at 2pm ET. Your invite comes with free access to OpMap. Finishing it by <b>Mon Dec 7, noon ET</b> holds your seat in the class.</p>
+        <p data-done="dec15 jan"><b>You'll hear from me by email within one business day</b>, with the January group details and, if it's a fit, your link to join.</p>
+        <p data-done="jan">Join by Wed Dec 9 and your audit is in December.</p>
+        <p data-done="dec15">Seats in the January group close Wed Dec 23.</p>
+        <p data-done="dec15">You also said yes to the free live class on Tue Dec 15 at 2pm ET. Your invite comes with free access to OpMap. Finishing it by <b>Mon Dec 14, noon ET</b> holds your seat in the class.</p>
         <p data-done="waitlist">Thank you for applying. Right now you're on the waitlist for the January group. Keep an eye out for an email from me.</p>
         <div class="callask" id="call-ask" hidden>
           <p>Want to talk it through?</p>
@@ -701,14 +702,14 @@ window.VIP_CONFIG = {
 
 <script>
 /* VIP Second Brain Method application (Puja, Nov 13 2026). $2,500/mo, 6-month minimum, 10 seats (Jan group); the path is
-   application -> fit -> the January group details and link to join (and, for a yes to Dec 8, an invitation + free
+   application -> fit -> the January group details and link to join (and, for a yes to Dec 15, an invitation + free
    OpMap as pre-work for the free workshop) -> agreement.
    Every application goes to Customer.io (identify + vip_application event, long answers on the event) and a
    FormSubmit copy to info@, the same plumbing as /apply/ and /map/. Phone is stored as mobile_phone (+E.164),
    never the `phone` identifier. It never writes `source`, `purchased` or `monthly_revenue_band`, so a map lead's
    text route doesn't change because they applied. GA4: generate_lead. Meta: VIPApplication (custom).
-   After CLOSES_AT the workshop section and the optional Dec 8 question are hidden (Puja, Nov 25 2026). Cohort =
-   CFG.COHORT ("dec8") only for a yes to that question before CLOSES_AT, otherwise CFG.MAIN_COHORT ("jan"). The
+   After CLOSES_AT the workshop section and the optional Dec 15 question are hidden (Puja, Nov 25 2026). Cohort =
+   CFG.COHORT ("dec15") only for a yes to that question before CLOSES_AT, otherwise CFG.MAIN_COHORT ("jan"). The
    waitlist is only for applicants who do not fit the AUTO_APPROVE rule. */
 (function(){
   var CFG=window.VIP_CONFIG, form=document.getElementById('vip-form');
