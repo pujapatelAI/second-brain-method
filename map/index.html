@@ -191,6 +191,12 @@
   .offer-live p{max-width:none;margin:0 0 10px}
   .offer-live .vid{position:relative;aspect-ratio:16/9;margin:0 0 14px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
   .offer-live .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  /* Nov 25 2026 (Juno 9, CAC loop TEST 2): arm B on a phone puts the copy + "save my spot" button of the in-map top box ABOVE the video
+     (today the video sits first and the button is about 1,000 px down). Class set by the script near ab-t2 below; phones only. */
+  @media(max-width:860px){
+    html.ab2b .offer-live .ol-cols{display:flex;flex-direction:column}
+    html.ab2b .offer-live .ol-cols .vid{order:2;margin:14px 0 0!important}
+  }
   .offer a.btn{display:inline-block;background:var(--accent-bright);color:var(--on-accent);font-weight:700;font-size:14.5px;padding:11px 18px;border-radius:3px;text-decoration:none;white-space:nowrap}
   /* $27 offer right after sign-up (Puja, Nov 10 2026: only 2 of 41 Meta sign-ups ever reached the $27 page) */
   #oto{position:fixed;inset:0;z-index:50;background:rgba(42,35,32,.55);overflow-y:auto;padding:0 16px}
@@ -1968,6 +1974,41 @@ s.parentNode.insertBefore(t,s)})();
     }catch(x){}
     try{ clarity('event','ab_t1_'+arm); }catch(x){}
   }
+  /* Nov 25 2026 (Juno 9, HUB, Puja: "constantly test and iterate" to lower CAC, no new spend): TEST 2, a 50/50 split of the in-map
+     top offer box ("Teach your AI to operate like you.") on PHONES only. A = today's box, unchanged (video first). B = the same box with
+     the copy, the checklist, the countdown and the "save my spot, $77" button FIRST and the video below them (CSS only, class ab2b on
+     <html>). Why: in the last 7 days the two in-map boxes got more $77 taps than the screen right after sign-up (about 33 vs 12),
+     and on a phone this box has the same video-above-button order that test 1 is checking. Share of phone visitors who get B comes
+     from /assets/ab.json (t2.b, 0 = everyone gets A; missing, slow or broken file = A). ?ab2=a or ?ab2=b forces an arm (testing).
+     A visitor keeps the arm they were given. One tracker event per visitor when 15% of the box is on screen: 'ab-t2-a-shown' /
+     'ab-t2-b-shown'; a tap is the existing 'map-top-to-live' button. Auto-stop: apps/command/ab_watch.py sets t2.b to 0 if B does worse. */
+  (function(){
+    var mq=window.matchMedia ? window.matchMedia('(max-width:860px)') : null;
+    if(!mq || !mq.matches) return;
+    function arm(j){
+      try{
+        var f=new URLSearchParams(location.search).get('ab2'); if(f==='a' || f==='b') return f;
+        var share=(j && j.t2 && typeof j.t2.b==='number') ? j.t2.b : 0;
+        if(share<=0) return 'a';
+        var st=localStorage.getItem('pp_ab_t2'); if(st==='a' || st==='b') return st;
+        var a=Math.random()<share ? 'b' : 'a'; localStorage.setItem('pp_ab_t2',a); return a;
+      }catch(x){ return 'a'; }
+    }
+    function go(j){
+      var a=arm(j);
+      if(a==='b') document.documentElement.classList.add('ab2b');
+      var box=document.querySelector('.offer');
+      if(!box || !window.IntersectionObserver) return;
+      var done=false, io=new IntersectionObserver(function(es){ es.forEach(function(en){
+        if(done || !en.isIntersecting || !box.querySelector('.vid')) return; done=true; io.disconnect();   /* only the $77 box has the video: the VIP and call boxes are not part of this test */
+        try{ var m=document.createElement('span'); m.setAttribute('data-track','ab-t2-'+a+'-shown'); m.style.display='none';
+          document.body.appendChild(m); m.dispatchEvent(new MouseEvent('click',{bubbles:true})); document.body.removeChild(m); }catch(x){}
+        try{ clarity('event','ab_t2_'+a); }catch(x){}
+      }); },{threshold:[0.15]});
+      io.observe(box);
+    }
+    try{ fetch('/assets/ab.json',{cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).then(go).catch(function(){ go(null); }); }catch(x){}
+  })();
   /* Puja, Nov 13 2026: the today-only bonus card on this screen is built only before Sat Nov 14 00:00 ET; tick() hides it at that moment */
   var BONUS77=Date.parse('2026-11-14T00:00:00-05:00');
   /* The screen right after sign-up (Puja, Nov 11 2026: "would you rather do it WITH me ... $77 now"). */
